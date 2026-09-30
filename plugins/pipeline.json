@@ -1,0 +1,93 @@
+{
+  "schema": 2,
+  "id": "plugin.exemplo.pipeline",
+  "name": "Pipeline",
+  "interval": 600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "briefcase.fill"
+  },
+  "source": {
+    "kind": "command",
+    "steps": [
+      {
+        "program": "/bin/echo",
+        "arguments": [
+          "{\"meta\":{\"moeda\":\"BRL\",\"objetivo\":1200000,\"fechado\":175000},\"etapas\":[{\"nome\":\"Prospecção\",\"quantidade\":6,\"valor\":214000},{\"nome\":\"Proposta\",\"quantidade\":4,\"valor\":388000},{\"nome\":\"Negociação\",\"quantidade\":3,\"valor\":296000},{\"nome\":\"Ganho\",\"quantidade\":2,\"valor\":175000}],\"historico\":[{\"mes\":\"2026-04\",\"valor\":82000},{\"mes\":\"2026-05\",\"valor\":117000},{\"mes\":\"2026-06\",\"valor\":96000},{\"mes\":\"2026-07\",\"valor\":148000},{\"mes\":\"2026-08\",\"valor\":131000},{\"mes\":\"2026-09\",\"valor\":175000}],\"negocios\":[{\"cliente\":\"Padaria Aurora\",\"etapa\":\"Prospecção\",\"valor\":18000,\"dono\":\"Marina\"},{\"cliente\":\"Clínica Sete\",\"etapa\":\"Prospecção\",\"valor\":24000,\"dono\":\"Rafael\"},{\"cliente\":\"Transportes Vale\",\"etapa\":\"Prospecção\",\"valor\":61000,\"dono\":\"Marina\"},{\"cliente\":\"Estúdio Norte\",\"etapa\":\"Prospecção\",\"valor\":33000,\"dono\":\"Bia\"},{\"cliente\":\"Mercado Bom Dia\",\"etapa\":\"Prospecção\",\"valor\":47000,\"dono\":\"Rafael\"},{\"cliente\":\"Oficina Central\",\"etapa\":\"Prospecção\",\"valor\":31000,\"dono\":\"Bia\"},{\"cliente\":\"Construtora Lima\",\"etapa\":\"Proposta\",\"valor\":145000,\"dono\":\"Marina\"},{\"cliente\":\"Rede Farmácia Sul\",\"etapa\":\"Proposta\",\"valor\":98000,\"dono\":\"Rafael\"},{\"cliente\":\"Colégio Horizonte\",\"etapa\":\"Proposta\",\"valor\":76000,\"dono\":\"Bia\"},{\"cliente\":\"Hotel Praia Azul\",\"etapa\":\"Proposta\",\"valor\":69000,\"dono\":\"Marina\"},{\"cliente\":\"Laticínios Serra\",\"etapa\":\"Negociação\",\"valor\":132000,\"dono\":\"Rafael\"},{\"cliente\":\"Gráfica Ponto\",\"etapa\":\"Negociação\",\"valor\":87000,\"dono\":\"Bia\"},{\"cliente\":\"Academia Pulso\",\"etapa\":\"Negociação\",\"valor\":77000,\"dono\":\"Marina\"},{\"cliente\":\"Distribuidora Ré\",\"etapa\":\"Ganho\",\"valor\":105000,\"dono\":\"Rafael\"},{\"cliente\":\"Café da Esquina\",\"etapa\":\"Ganho\",\"valor\":70000,\"dono\":\"Bia\"}]}"
+        ],
+        "isEnabled": true
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{negocios | count}}",
+    "value": "{{meta.fechado}}",
+    "total": "{{meta.objetivo}}",
+    "style": "arc"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Pipeline",
+    "subtitle": "Dados de exemplo, não é um CRM de verdade",
+    "emptyMessage": "Nenhum negócio em aberto.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{meta.fechado}}",
+        "total": "{{meta.objetivo}}",
+        "caption": "Fechado contra a meta do trimestre",
+        "format": "money",
+        "currency": "BRL"
+      },
+      {
+        "type": "stages",
+        "path": "etapas",
+        "label": "{{nome}}",
+        "value": "{{quantidade}}",
+        "filters": {
+          "list": 0,
+          "field": "{{etapa}}"
+        }
+      },
+      {
+        "type": "chart",
+        "title": "Fechado por mês",
+        "style": "bar",
+        "path": "historico",
+        "x": "{{mes}}",
+        "y": "{{valor}}",
+        "dateFormat": "yyyy-MM",
+        "height": "small",
+        "format": "compact"
+      },
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Negócios",
+            "path": "negocios",
+            "sections": "{{etapa}}",
+            "rowTitle": "{{cliente}}",
+            "rowSubtitle": "{{dono}}",
+            "rowMeta": "{{valor | shape R$ #,##0}}",
+            "rowStatus": "{{etapa}}",
+            "statusColors": {
+              "Prospecção": "neutral",
+              "Proposta": "attention",
+              "Negociação": "attention",
+              "Ganho": "positive"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

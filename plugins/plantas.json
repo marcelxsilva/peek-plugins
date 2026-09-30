@@ -1,0 +1,42 @@
+{
+  "schema": 7,
+  "id": "plugin.exemplo.plantas",
+  "name": "Plantas",
+  "interval": 3600,
+  "readsOnItsOwn": false,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "leaf.fill"
+  },
+  "source": {
+    "kind": "panel",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "answer": "{\n  \"plantas\": [\n    {\n      \"nome\": \"Costela de Adão\",\n      \"regar\": \"2026-09-27\",\n      \"onde\": \"Sala\",\n      \"como\": \"Água até drenar\"\n    },\n    {\n      \"nome\": \"Jiboia\",\n      \"regar\": \"2026-09-29\",\n      \"onde\": \"Escritório\",\n      \"como\": \"Meio copo\"\n    },\n    {\n      \"nome\": \"Suculentas\",\n      \"regar\": \"2026-10-08\",\n      \"onde\": \"Varanda\",\n      \"como\": \"Pouca água\"\n    }\n  ]\n}",
+  "slot": {
+    "label": "{{plantas | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Plantas",
+    "subtitle": "Quando regar cada uma",
+    "blocks": [
+      {
+        "type": "timeline",
+        "path": "plantas",
+        "date": "{{regar}}",
+        "rowTitle": "{{nome}}",
+        "rowSubtitle": "{{onde}} · {{como}}",
+        "range": "upcoming",
+        "limit": 8
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

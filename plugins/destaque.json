@@ -1,0 +1,56 @@
+{
+  "schema": 5,
+  "id": "plugin.exemplo.destaque",
+  "name": "Mais lidas",
+  "interval": 21600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "chart.line.uptrend.xyaxis.circle.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://pt.wikipedia.org/api/rest_v1/feed/featured/{{$now | shape yyyy}}/{{$now | shape MM}}/{{$now | shape dd}}",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{mostread.articles | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "picture": {
+      "kind": "address",
+      "value": "{{mostread.articles[0].thumbnail.source}}",
+      "shape": "rounded",
+      "scale": 1.4
+    },
+    "title": "Mais lidas",
+    "subtitle": "O que o Brasil procurou na Wikipédia",
+    "emptyMessage": "A Wikipédia não trouxe nada para hoje.",
+    "blocks": [
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Artigos",
+            "path": "mostread.articles",
+            "rowTitle": "{{titles.normalized}}",
+            "rowSubtitle": "{{extract}}",
+            "rowMeta": "{{views}} visitas",
+            "rowImage": "{{thumbnail.source}}",
+            "rowWrapsTitle": true,
+            "rowURL": "{{content_urls.desktop.page}}"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

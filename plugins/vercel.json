@@ -1,0 +1,144 @@
+{
+  "schema": 11,
+  "id": "plugin.exemplo.vercel",
+  "name": "Vercel",
+  "interval": 300,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "triangle.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://api.vercel.com/v6/deployments",
+    "query": [
+      {
+        "name": "limit",
+        "value": "10"
+      },
+      {
+        "name": "projectId",
+        "value": "{{$settings.projeto}}"
+      }
+    ],
+    "headers": [
+      {
+        "name": "Authorization",
+        "value": "Bearer {{secret}}"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{deployments[0].state | lower}}",
+    "status": "{{deployments[0].state}}",
+    "style": "status",
+    "statusColors": {
+      "READY": "positive",
+      "BUILDING": "attention",
+      "QUEUED": "attention",
+      "ERROR": "negative",
+      "CANCELED": "neutral"
+    }
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Vercel",
+    "subtitle": "Últimos deploys",
+    "emptyMessage": "Nenhum deploy neste projeto.",
+    "blocks": [
+      {
+        "type": "breakdown",
+        "title": "Por estado",
+        "breakdownStyle": "bar",
+        "path": "deployments",
+        "groupField": "{{state}}",
+        "groupKind": "text",
+        "measure": "count",
+        "shows": "amount",
+        "groups": [
+          {
+            "id": "3E50FA4B-62BE-4C5B-8A64-E8FE8DD281BC",
+            "name": "Pronto",
+            "color": "green",
+            "match": "READY"
+          },
+          {
+            "id": "22273FB6-AEB0-4B7E-9696-7A59E40A5CB4",
+            "name": "Buildando",
+            "color": "yellow",
+            "match": "BUILDING, INITIALIZING"
+          },
+          {
+            "id": "F5335275-63A2-4654-A2BC-06065F42C899",
+            "name": "Na fila",
+            "color": "blue",
+            "match": "QUEUED"
+          },
+          {
+            "id": "9D79DCF6-33A7-4859-B384-0FA878FB9BFE",
+            "name": "Erro",
+            "color": "red",
+            "match": "ERROR"
+          },
+          {
+            "id": "C125D7DA-D609-446D-A029-716701BC78DA",
+            "name": "Cancelado",
+            "color": "gray",
+            "match": "CANCELED"
+          }
+        ],
+        "others": {
+          "shows": true,
+          "name": "Outros",
+          "color": "gray"
+        }
+      },
+      {
+        "type": "list",
+        "limit": 5,
+        "tabs": [
+          {
+            "title": "Deploys",
+            "path": "deployments",
+            "rowTitle": "{{meta.githubCommitMessage ?? name}}",
+            "rowSubtitle": "{{creator.username}} · {{created | ago}}",
+            "rowBadge": "{{target}}",
+            "rowStatus": "{{state}}",
+            "rowWrapsTitle": true,
+            "statusWords": {
+              "READY": "pronto",
+              "BUILDING": "buildando",
+              "QUEUED": "na fila",
+              "ERROR": "erro",
+              "CANCELED": "cancelado"
+            },
+            "statusColors": {
+              "READY": "positive",
+              "BUILDING": "attention",
+              "QUEUED": "attention",
+              "ERROR": "negative",
+              "CANCELED": "neutral"
+            },
+            "rowURL": "https://{{url}}"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "newRows"
+  },
+  "settings": [
+    {
+      "key": "projeto",
+      "label": "ID do projeto",
+      "type": "text",
+      "help": "Painel da Vercel › o projeto › Settings › Project ID.",
+      "required": true
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "schema": 11,
+  "id": "plugin.exemplo.agenda-comercial",
+  "name": "Agenda comercial",
+  "interval": 3600,
+  "readsOnItsOwn": false,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "calendar.badge.clock"
+  },
+  "source": {
+    "kind": "panel",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "answer": "{\n  \"reunioes\": [\n    {\n      \"cliente\": \"Alfa Ltda\",\n      \"quando\": \"2026-09-28T14:00:00\",\n      \"tipo\": \"Demonstração\",\n      \"dono\": \"Ana\"\n    },\n    {\n      \"cliente\": \"Beta S/A\",\n      \"quando\": \"2026-09-30T10:30:00\",\n      \"tipo\": \"Fechamento\",\n      \"dono\": \"Bruno\"\n    },\n    {\n      \"cliente\": \"Delta Inc\",\n      \"quando\": \"2026-10-02T16:00:00\",\n      \"tipo\": \"Descoberta\",\n      \"dono\": \"Carla\"\n    }\n  ]\n}",
+  "slot": {
+    "label": "{{reunioes | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Agenda comercial",
+    "subtitle": "As próximas conversas",
+    "blocks": [
+      {
+        "type": "timeline",
+        "path": "reunioes",
+        "date": "{{quando}}",
+        "rowTitle": "{{cliente}}",
+        "rowSubtitle": "{{tipo}} · {{dono}}",
+        "range": "upcoming",
+        "limit": 8
+      },
+      {
+        "type": "breakdown",
+        "title": "Por tipo",
+        "breakdownStyle": "bar",
+        "path": "reunioes",
+        "groupField": "{{tipo}}",
+        "groupKind": "text",
+        "measure": "count",
+        "shows": "amount",
+        "groups": [
+          {
+            "id": "FEF483A2-C66F-4CE9-80EA-A2AF5AFCF131",
+            "name": "Descoberta",
+            "color": "blue",
+            "match": "Descoberta"
+          },
+          {
+            "id": "ADB7822C-DED4-401F-A52E-5F2A1AE52819",
+            "name": "Demonstração",
+            "color": "purple",
+            "match": "Demonstração"
+          },
+          {
+            "id": "162540B2-ACBC-45A9-B5BA-E02CB788D49A",
+            "name": "Fechamento",
+            "color": "green",
+            "match": "Fechamento"
+          }
+        ],
+        "others": {
+          "shows": false,
+          "name": "Outros",
+          "color": "gray"
+        }
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

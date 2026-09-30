@@ -1,0 +1,80 @@
+{
+  "schema": 5,
+  "id": "plugin.exemplo.chatwoot",
+  "name": "Chatwoot",
+  "interval": 300,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "bubble.left.and.bubble.right.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://app.chatwoot.com/api/v1/accounts/{{$settings.conta}}/conversations",
+    "query": [
+      {
+        "name": "status",
+        "value": "open"
+      }
+    ],
+    "headers": [
+      {
+        "name": "api_access_token",
+        "value": "{{secret}}"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{data.meta.all_count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Chatwoot",
+    "subtitle": "Conversas abertas",
+    "emptyMessage": "Nenhuma conversa aberta.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{data.meta.all_count}}",
+        "caption": "Abertas · {{data.meta.unassigned_count}} sem dono",
+        "goodDirection": "down",
+        "format": "integer"
+      },
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Conversas",
+            "path": "data.payload",
+            "rowTitle": "{{meta.sender.name}}",
+            "rowSubtitle": "{{messages[0].content}}",
+            "rowImage": "{{meta.sender.thumbnail}}",
+            "rowImageShape": "round",
+            "rowMeta": "{{last_activity_at | shape dd/MM HH:mm}}",
+            "rowWrapsTitle": true,
+            "rowEvent": "none"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "newRows"
+  },
+  "settings": [
+    {
+      "key": "conta",
+      "label": "ID da conta",
+      "type": "text",
+      "default": "1",
+      "help": "O número na URL do Chatwoot. O token de acesso vai no campo de segredo, em Dado.",
+      "required": true
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "schema": 7,
+  "id": "plugin.exemplo.plantao",
+  "name": "Plantão",
+  "interval": 3600,
+  "readsOnItsOwn": false,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "person.badge.clock.fill"
+  },
+  "source": {
+    "kind": "panel",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "answer": "{\n  \"agora\": \"Ana\",\n  \"escala\": [\n    {\n      \"quem\": \"Ana\",\n      \"comeca\": \"2026-09-22\",\n      \"ate\": \"2026-09-29\",\n      \"time\": \"Suporte\"\n    },\n    {\n      \"quem\": \"Bruno\",\n      \"comeca\": \"2026-09-29\",\n      \"ate\": \"2026-10-06\",\n      \"time\": \"Suporte\"\n    },\n    {\n      \"quem\": \"Carla\",\n      \"comeca\": \"2026-10-06\",\n      \"ate\": \"2026-10-13\",\n      \"time\": \"Suporte\"\n    }\n  ]\n}",
+  "slot": {
+    "label": "{{agora}}",
+    "style": "arc"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Plantão",
+    "subtitle": "Quem está de plantão é {{agora}}",
+    "blocks": [
+      {
+        "type": "timeline",
+        "path": "escala",
+        "date": "{{comeca}}",
+        "rowTitle": "{{quem}}",
+        "rowSubtitle": "{{time}} · até {{ate | date}}",
+        "range": "upcoming",
+        "limit": 8
+      },
+      {
+        "type": "table",
+        "path": "escala",
+        "sortable": true,
+        "limit": 6,
+        "rowEvent": "none",
+        "columns": [
+          {
+            "title": "Pessoa",
+            "kind": "text",
+            "value": "{{quem}}",
+            "align": "leading"
+          },
+          {
+            "title": "De",
+            "kind": "text",
+            "value": "{{comeca | shape dd/MM}}",
+            "align": "leading"
+          },
+          {
+            "title": "Até",
+            "kind": "text",
+            "value": "{{ate | shape dd/MM}}",
+            "align": "trailing"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

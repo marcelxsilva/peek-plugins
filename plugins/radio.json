@@ -1,0 +1,95 @@
+{
+  "schema": 5,
+  "id": "plugin.exemplo.radio",
+  "name": "Rádio",
+  "interval": 21600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "dot.radiowaves.left.and.right"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://de1.api.radio-browser.info/json/stations/bycountrycodeexact/{{$settings.pais}}",
+    "query": [
+      {
+        "name": "order",
+        "value": "clickcount"
+      },
+      {
+        "name": "reverse",
+        "value": "true"
+      },
+      {
+        "name": "limit",
+        "value": "12"
+      },
+      {
+        "name": "hidebroken",
+        "value": "true"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{$ | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Rádio",
+    "subtitle": "As mais ouvidas agora",
+    "emptyMessage": "Nenhuma estação.",
+    "blocks": [
+      {
+        "type": "list",
+        "limit": 8,
+        "tabs": [
+          {
+            "title": "Estações",
+            "path": "$",
+            "rowTitle": "{{name}}",
+            "rowSubtitle": "{{tags}}",
+            "rowMeta": "{{bitrate}} kbps",
+            "rowImage": "{{favicon}}",
+            "rowImageShape": "round",
+            "rowWrapsTitle": true,
+            "rowURL": "{{url_resolved}}"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "pais",
+      "label": "País",
+      "type": "choice",
+      "default": "BR",
+      "options": [
+        {
+          "value": "BR",
+          "label": "Brasil"
+        },
+        {
+          "value": "PT",
+          "label": "Portugal"
+        },
+        {
+          "value": "US",
+          "label": "Estados Unidos"
+        },
+        {
+          "value": "GB",
+          "label": "Reino Unido"
+        }
+      ]
+    }
+  ]
+}

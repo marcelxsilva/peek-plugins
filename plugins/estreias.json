@@ -1,0 +1,63 @@
+{
+  "schema": 5,
+  "id": "plugin.exemplo.estreias",
+  "name": "Estreias",
+  "interval": 86400,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "film.stack.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://api.themoviedb.org/3/movie/upcoming",
+    "query": [
+      {
+        "name": "api_key",
+        "value": "{{secret}}"
+      },
+      {
+        "name": "language",
+        "value": "pt-BR"
+      },
+      {
+        "name": "region",
+        "value": "BR"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{results | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "picture": {
+      "kind": "address",
+      "value": "https://image.tmdb.org/t/p/w500{{results[0].backdrop_path}}",
+      "shape": "rounded",
+      "scale": 2
+    },
+    "title": "Estreias",
+    "subtitle": "O que chega aos cinemas",
+    "emptyMessage": "Nada agendado, ou a chave da API está faltando.",
+    "blocks": [
+      {
+        "type": "timeline",
+        "path": "results",
+        "date": "{{release_date}}",
+        "rowTitle": "{{title}}",
+        "rowSubtitle": "{{overview}}",
+        "range": "upcoming",
+        "limit": 8
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "newRows"
+  }
+}

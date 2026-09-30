@@ -1,0 +1,90 @@
+{
+  "schema": 3,
+  "id": "plugin.exemplo.steam",
+  "name": "Steam",
+  "interval": 3600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "gamecontroller.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v1/",
+    "query": [
+      {
+        "name": "key",
+        "value": "{{secret}}"
+      },
+      {
+        "name": "steamid",
+        "value": "{{$settings.steamid}}"
+      },
+      {
+        "name": "format",
+        "value": "json"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{response.total_count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Steam",
+    "subtitle": "O que você jogou nas últimas duas semanas",
+    "emptyMessage": "Nada jogado, ou o perfil está privado.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{response.games[0].playtime_2weeks}}",
+        "caption": "Nas duas semanas · {{response.games[0].name}}",
+        "goodDirection": "up",
+        "format": "duration",
+        "unit": "minutes"
+      },
+      {
+        "type": "bars",
+        "path": "response.games",
+        "label": "{{name}}",
+        "value": "{{playtime_2weeks}}",
+        "limit": 6,
+        "format": "duration",
+        "title": "Tempo por jogo",
+        "unit": "minutes"
+      },
+      {
+        "type": "list",
+        "limit": 5,
+        "tabs": [
+          {
+            "title": "Jogos",
+            "path": "response.games",
+            "rowTitle": "{{name}}",
+            "rowSubtitle": "{{playtime_forever | duration minutes}} no total",
+            "rowImage": "https://media.steampowered.com/steamcommunity/public/images/apps/{{appid}}/{{img_icon_url}}.jpg",
+            "rowURL": "https://store.steampowered.com/app/{{appid}}"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "steamid",
+      "label": "SteamID64",
+      "type": "text",
+      "help": "O número de 17 dígitos do seu perfil. A chave da API vai no campo de segredo, em Dado.",
+      "required": true,
+      "placeholder": "7656119…"
+    }
+  ]
+}

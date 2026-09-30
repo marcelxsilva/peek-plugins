@@ -1,0 +1,85 @@
+{
+  "schema": 8,
+  "id": "plugin.exemplo.swap",
+  "name": "Memória virtual",
+  "interval": 300,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "memorychip.fill"
+  },
+  "source": {
+    "kind": "command",
+    "steps": [
+      {
+        "program": "/usr/sbin/sysctl",
+        "arguments": [
+          "vm.swapusage"
+        ]
+      }
+    ],
+    "format": {
+      "kind": "regex",
+      "pattern": "total = (?<total>[\\d.]+)M\\s+used = (?<usado>[\\d.]+)M\\s+free = (?<livre>[\\d.]+)M"
+    }
+  },
+  "slot": {
+    "label": "{{usado | round}}",
+    "value": "{{usado}}",
+    "total": "{{total}}",
+    "style": "arc",
+    "alertsOnThreshold": true
+  },
+  "history": {
+    "path": "usado",
+    "keep": 96
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Memória virtual",
+    "subtitle": "Quanto o Mac já jogou para o disco",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{usado}}",
+        "total": "{{total}}",
+        "caption": "MB em swap",
+        "goodDirection": "down",
+        "format": "number",
+        "width": "half"
+      },
+      {
+        "type": "properties",
+        "width": "half",
+        "layout": "stacked",
+        "properties": [
+          {
+            "id": "5CCEE182-F463-4773-8106-B45633058ED7",
+            "name": "Livre",
+            "value": "{{livre | round}} MB"
+          },
+          {
+            "id": "740C86FB-6772-42EA-BF4D-912EDDB30FF5",
+            "name": "Reservado",
+            "value": "{{total | round}} MB"
+          }
+        ]
+      },
+      {
+        "type": "chart",
+        "style": "area",
+        "title": "Swap ao longo do tempo",
+        "height": "medium",
+        "format": "number"
+      },
+      {
+        "type": "text",
+        "value": "Swap alto e crescendo indica memória apertada. Em um Mac com memória sobrando, fica zerado.",
+        "maxHeight": "small"
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

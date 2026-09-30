@@ -1,0 +1,90 @@
+{
+  "schema": 11,
+  "id": "plugin.exemplo.pix",
+  "name": "Pix",
+  "interval": 86400,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "arrow.left.arrow.right.circle.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://brasilapi.com.br/api/pix/v1/participants",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{$ | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Pix",
+    "subtitle": "Quem participa do arranjo, direto do Banco Central",
+    "emptyMessage": "A BrasilAPI não respondeu.",
+    "blocks": [
+      {
+        "type": "breakdown",
+        "title": "Participação",
+        "breakdownStyle": "bar",
+        "path": "$",
+        "groupField": "{{tipo_participacao}}",
+        "groupKind": "text",
+        "measure": "count",
+        "shows": "both",
+        "groups": [
+          {
+            "id": "2173572D-F679-41BB-A6D3-A6F97747322F",
+            "name": "Direta",
+            "color": "blue",
+            "match": "DRCT"
+          },
+          {
+            "id": "435FE507-B4BC-4DFE-B096-4A3F4C219E81",
+            "name": "Indireta",
+            "color": "teal",
+            "match": "IDRT"
+          }
+        ],
+        "others": {
+          "shows": true,
+          "name": "Outras",
+          "color": "gray"
+        }
+      },
+      {
+        "type": "table",
+        "path": "$",
+        "sortable": true,
+        "limit": 12,
+        "rowEvent": "none",
+        "columns": [
+          {
+            "title": "Instituição",
+            "kind": "text",
+            "value": "{{nome_reduzido ?? nome}}",
+            "align": "leading"
+          },
+          {
+            "title": "Participação",
+            "kind": "text",
+            "value": "{{tipo_participacao}}",
+            "align": "leading"
+          },
+          {
+            "title": "ISPB",
+            "kind": "text",
+            "value": "{{ispb}}",
+            "align": "trailing"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

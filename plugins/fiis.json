@@ -1,0 +1,107 @@
+{
+  "schema": 5,
+  "id": "plugin.exemplo.fiis",
+  "name": "Fundos imobiliários",
+  "interval": 900,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "building.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://brapi.dev/api/quote/{{$settings.tickers}}?token={{$settings.token}}",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{results[0].regularMarketPrice | shape #,##0.00}}",
+    "style": "sparkline"
+  },
+  "history": {
+    "path": "results[0].regularMarketPrice",
+    "keep": 96
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Fundos imobiliários",
+    "subtitle": "B3 · {{results[0].regularMarketTime | ago}}",
+    "emptyMessage": "Nenhum fundo encontrado com esses códigos.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{results[0].regularMarketPrice}}",
+        "caption": "{{results[0].longName}}",
+        "goodDirection": "up",
+        "format": "money",
+        "currency": "BRL"
+      },
+      {
+        "type": "chart",
+        "style": "line",
+        "title": "Desde que o Peek abriu",
+        "height": "medium",
+        "format": "money",
+        "currency": "BRL"
+      },
+      {
+        "type": "table",
+        "path": "results",
+        "sortable": true,
+        "limit": 8,
+        "rowEvent": "none",
+        "columns": [
+          {
+            "title": "",
+            "kind": "image",
+            "value": "{{logourl}}",
+            "align": "leading",
+            "shape": "round"
+          },
+          {
+            "title": "Fundo",
+            "kind": "text",
+            "value": "{{symbol}}",
+            "align": "leading"
+          },
+          {
+            "title": "Cota",
+            "kind": "text",
+            "value": "{{regularMarketPrice}}",
+            "align": "trailing",
+            "format": "money",
+            "currency": "BRL"
+          },
+          {
+            "title": "Dia",
+            "kind": "text",
+            "value": "{{regularMarketChangePercent}}",
+            "align": "trailing",
+            "format": "percent"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "tickers",
+      "label": "Fundos",
+      "type": "text",
+      "default": "HGLG11,MXRF11,KNRI11",
+      "help": "Códigos da B3 separados por vírgula.",
+      "required": true
+    },
+    {
+      "key": "token",
+      "label": "Token da brapi",
+      "type": "secret",
+      "help": "Opcional. Sem ele a brapi atende com limite baixo."
+    }
+  ]
+}

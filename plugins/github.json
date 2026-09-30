@@ -1,0 +1,313 @@
+{
+  "schema": 5,
+  "id": "plugin.exemplo.github",
+  "name": "GitHub",
+  "interval": 300,
+  "icon": {
+    "kind": "picture",
+    "symbolName": "chevron.left.forwardslash.chevron.right",
+    "pictureSource": "{{data.viewer.avatarUrl}}"
+  },
+  "source": {
+    "kind": "command",
+    "steps": [
+      {
+        "program": "/opt/homebrew/bin/gh",
+        "arguments": [
+          "api",
+          "graphql",
+          "-f",
+          "query=query($q: String!) {\n  viewer {\n    login name avatarUrl(size: 128)\n    followers { totalCount }\n    following { totalCount }\n    contributionsCollection { contributionCalendar { totalContributions } }\n  }\n  reviewRequested: search(query: \"is:open is:pr review-requested:@me archived:false\", type: ISSUE, first: 25) { nodes { ...pr } }\n  authored: search(query: \"is:open is:pr author:@me archived:false\", type: ISSUE, first: 25) { nodes { ...pr } }\n  assigned: search(query: \"is:open is:pr assignee:@me archived:false\", type: ISSUE, first: 25) { nodes { ...pr } }\n  repos: search(query: $q, type: REPOSITORY, first: 25) {\n    repositoryCount\n    nodes { ... on Repository {\n      nameWithOwner description url isPrivate stargazerCount pushedAt\n      primaryLanguage { name }\n      owner { avatarUrl(size: 128) }\n    } }\n  }\n}\nfragment pr on PullRequest {\n  number title url updatedAt isDraft bodyText totalCommentsCount\n  reviewDecision\n  approvals: reviews(states: APPROVED) { totalCount }\n  askedFrom: reviewRequests { totalCount }\n  author { login avatarUrl(size: 64) }\n  repository { nameWithOwner owner { avatarUrl(size: 128) } }\n  commits(last: 1) { nodes { commit { statusCheckRollup {\n    state\n    contexts(first: 1) { totalCount checkRunCountsByState { state count } }\n  } } } }\n}",
+          "-f",
+          "q=user:@me sort:updated {{$global.github_busca}}"
+        ]
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{data.reviewRequested.nodes | count}} PRs"
+  },
+  "card": {
+    "isEnabled": true,
+    "picture": {
+      "kind": "address",
+      "value": "{{data.viewer.avatarUrl}}",
+      "shape": "round",
+      "scale": 1.9
+    },
+    "title": "{{data.viewer.name ?? data.viewer.login}}",
+    "headline": "{{data.reviewRequested.nodes | count}}",
+    "subtitle": "@{{data.viewer.login}} · {{data.viewer.followers.totalCount}} seguidores · {{data.viewer.contributionsCollection.contributionCalendar.totalContributions}} contribuições",
+    "emptyMessage": "Nada esperando você.",
+    "blocks": [
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Revisão",
+            "path": "data.reviewRequested.nodes",
+            "face": {
+              "kind": "symbol",
+              "value": "eye"
+            },
+            "tabHint": "Esperando a sua revisão",
+            "rowTitle": "{{title}}",
+            "rowWrapsTitle": false,
+            "rowSubtitle": "{{repository.nameWithOwner}} #{{number}}",
+            "rowMeta": "@{{author.login}}",
+            "rowMetaImage": "{{author.avatarUrl}}",
+            "rowMetaImageShape": "round",
+            "rowImage": "{{repository.owner.avatarUrl}}",
+            "rowImageShape": "rounded",
+            "rowStatus": "{{reviewDecision ?? \"REVIEW_REQUIRED\"}}",
+            "statusWords": {
+              "APPROVED": "aprovada",
+              "CHANGES_REQUESTED": "mudanças",
+              "REVIEW_REQUIRED": "revisão"
+            },
+            "statusColors": {
+              "APPROVED": "positive",
+              "CHANGES_REQUESTED": "negative",
+              "REVIEW_REQUIRED": "attention"
+            },
+            "badges": [
+              {
+                "value": "{{approvals.totalCount}}/{{askedFrom.totalCount}}",
+                "symbolName": "eye",
+                "tintFrom": "{{reviewDecision ?? \"REVIEW_REQUIRED\"}}",
+                "colors": {
+                  "APPROVED": "positive",
+                  "CHANGES_REQUESTED": "negative",
+                  "REVIEW_REQUIRED": "attention"
+                }
+              },
+              {
+                "value": "{{commits.nodes[0].commit.statusCheckRollup.contexts.checkRunCountsByState[state=SUCCESS].count}}/{{commits.nodes[0].commit.statusCheckRollup.contexts.totalCount}}",
+                "symbolName": "checkmark.circle",
+                "tintFrom": "{{commits.nodes[0].commit.statusCheckRollup.state}}",
+                "colors": {
+                  "SUCCESS": "positive",
+                  "FAILURE": "negative",
+                  "ERROR": "negative",
+                  "PENDING": "attention"
+                }
+              },
+              {
+                "value": "{{totalCommentsCount}}",
+                "symbolName": "bubble.left"
+              }
+            ],
+            "rowDetail": "{{bodyText}}",
+            "rowEvent": "open",
+            "rowURL": "{{url}}"
+          },
+          {
+            "title": "Minhas",
+            "path": "data.authored.nodes",
+            "face": {
+              "kind": "symbol",
+              "value": "person.fill"
+            },
+            "tabHint": "Abertas por você",
+            "rowTitle": "{{title}}",
+            "rowWrapsTitle": false,
+            "rowSubtitle": "{{repository.nameWithOwner}} #{{number}}",
+            "rowMeta": "@{{author.login}}",
+            "rowMetaImage": "{{author.avatarUrl}}",
+            "rowMetaImageShape": "round",
+            "rowImage": "{{repository.owner.avatarUrl}}",
+            "rowImageShape": "rounded",
+            "rowStatus": "{{reviewDecision ?? \"REVIEW_REQUIRED\"}}",
+            "statusWords": {
+              "APPROVED": "aprovada",
+              "CHANGES_REQUESTED": "mudanças",
+              "REVIEW_REQUIRED": "revisão"
+            },
+            "statusColors": {
+              "APPROVED": "positive",
+              "CHANGES_REQUESTED": "negative",
+              "REVIEW_REQUIRED": "attention"
+            },
+            "badges": [
+              {
+                "value": "{{approvals.totalCount}}/{{askedFrom.totalCount}}",
+                "symbolName": "eye",
+                "tintFrom": "{{reviewDecision ?? \"REVIEW_REQUIRED\"}}",
+                "colors": {
+                  "APPROVED": "positive",
+                  "CHANGES_REQUESTED": "negative",
+                  "REVIEW_REQUIRED": "attention"
+                }
+              },
+              {
+                "value": "{{commits.nodes[0].commit.statusCheckRollup.contexts.checkRunCountsByState[state=SUCCESS].count}}/{{commits.nodes[0].commit.statusCheckRollup.contexts.totalCount}}",
+                "symbolName": "checkmark.circle",
+                "tintFrom": "{{commits.nodes[0].commit.statusCheckRollup.state}}",
+                "colors": {
+                  "SUCCESS": "positive",
+                  "FAILURE": "negative",
+                  "ERROR": "negative",
+                  "PENDING": "attention"
+                }
+              },
+              {
+                "value": "{{totalCommentsCount}}",
+                "symbolName": "bubble.left"
+              }
+            ],
+            "rowDetail": "{{bodyText}}",
+            "rowEvent": "open",
+            "rowURL": "{{url}}"
+          },
+          {
+            "title": "Atribuídas",
+            "path": "data.assigned.nodes",
+            "face": {
+              "kind": "symbol",
+              "value": "tray.and.arrow.down.fill"
+            },
+            "tabHint": "Atribuídas a você",
+            "rowTitle": "{{title}}",
+            "rowWrapsTitle": false,
+            "rowSubtitle": "{{repository.nameWithOwner}} #{{number}}",
+            "rowMeta": "@{{author.login}}",
+            "rowMetaImage": "{{author.avatarUrl}}",
+            "rowMetaImageShape": "round",
+            "rowImage": "{{repository.owner.avatarUrl}}",
+            "rowImageShape": "rounded",
+            "rowStatus": "{{reviewDecision ?? \"REVIEW_REQUIRED\"}}",
+            "statusWords": {
+              "APPROVED": "aprovada",
+              "CHANGES_REQUESTED": "mudanças",
+              "REVIEW_REQUIRED": "revisão"
+            },
+            "statusColors": {
+              "APPROVED": "positive",
+              "CHANGES_REQUESTED": "negative",
+              "REVIEW_REQUIRED": "attention"
+            },
+            "badges": [
+              {
+                "value": "{{approvals.totalCount}}/{{askedFrom.totalCount}}",
+                "symbolName": "eye",
+                "tintFrom": "{{reviewDecision ?? \"REVIEW_REQUIRED\"}}",
+                "colors": {
+                  "APPROVED": "positive",
+                  "CHANGES_REQUESTED": "negative",
+                  "REVIEW_REQUIRED": "attention"
+                }
+              },
+              {
+                "value": "{{commits.nodes[0].commit.statusCheckRollup.contexts.checkRunCountsByState[state=SUCCESS].count}}/{{commits.nodes[0].commit.statusCheckRollup.contexts.totalCount}}",
+                "symbolName": "checkmark.circle",
+                "tintFrom": "{{commits.nodes[0].commit.statusCheckRollup.state}}",
+                "colors": {
+                  "SUCCESS": "positive",
+                  "FAILURE": "negative",
+                  "ERROR": "negative",
+                  "PENDING": "attention"
+                }
+              },
+              {
+                "value": "{{totalCommentsCount}}",
+                "symbolName": "bubble.left"
+              }
+            ],
+            "rowDetail": "{{bodyText}}",
+            "rowEvent": "open",
+            "rowURL": "{{url}}"
+          },
+          {
+            "title": "Repos",
+            "path": "data.repos.nodes",
+            "face": {
+              "kind": "symbol",
+              "value": "folder.fill"
+            },
+            "tabHint": "Seus repositórios, e o que a busca achar",
+            "rowTitle": "{{nameWithOwner}}",
+            "rowSubtitle": "{{description}}",
+            "rowMeta": "{{primaryLanguage.name}}",
+            "rowImage": "{{owner.avatarUrl}}",
+            "rowImageShape": "rounded",
+            "rowStatus": "{{isPrivate}}",
+            "statusWords": {
+              "true": "privado",
+              "false": "público"
+            },
+            "statusColors": {
+              "true": "attention",
+              "false": "positive"
+            },
+            "badges": [
+              {
+                "value": "{{stargazerCount}}",
+                "symbolName": "star"
+              },
+              {
+                "value": "{{pushedAt | ago}}",
+                "symbolName": "clock"
+              }
+            ],
+            "rowEvent": "open",
+            "rowURL": "{{url}}"
+          }
+        ],
+        "everyTab": {
+          "title": "Tudo",
+          "face": {
+            "kind": "symbol",
+            "value": "tray.full.fill"
+          },
+          "tabHint": "Todas as três listas juntas"
+        }
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Buscar",
+      "symbolName": "magnifyingglass",
+      "place": "card",
+      "hint": "Buscar nos seus repositórios",
+      "asksForValue": true,
+      "question": "Buscar repositórios",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "remember",
+        "variable": "github_busca",
+        "text": "{{$input}}"
+      }
+    },
+    {
+      "name": "Limpar a busca",
+      "symbolName": "xmark.circle",
+      "place": "card",
+      "hint": "Voltar a listar tudo",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "remember",
+        "variable": "github_busca",
+        "text": ""
+      }
+    },
+    {
+      "name": "Abrir no GitHub",
+      "symbolName": "arrow.up.right.square",
+      "place": "card",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "openLink",
+        "text": "https://github.com/pulls"
+      }
+    }
+  ],
+  "attention": {
+    "mode": "newRows",
+    "listIndex": 0
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "schema": 11,
+  "id": "plugin.exemplo.riscos",
+  "name": "Riscos",
+  "interval": 3600,
+  "readsOnItsOwn": false,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "exclamationmark.triangle.fill"
+  },
+  "source": {
+    "kind": "panel",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "answer": "{\n  \"riscos\": [\n    {\n      \"nome\": \"Dependência de um fornecedor só\",\n      \"nivel\": \"alto\",\n      \"dono\": \"Ana\",\n      \"acao\": \"Buscar segundo fornecedor\"\n    },\n    {\n      \"nome\": \"Migração do banco\",\n      \"nivel\": \"medio\",\n      \"dono\": \"Bruno\",\n      \"acao\": \"Ensaio em homologação\"\n    },\n    {\n      \"nome\": \"Rotatividade no suporte\",\n      \"nivel\": \"baixo\",\n      \"dono\": \"Carla\",\n      \"acao\": \"Plano de carreira\"\n    }\n  ]\n}",
+  "slot": {
+    "label": "{{riscos | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Riscos",
+    "subtitle": "O que pode dar errado, e quem cuida",
+    "emptyMessage": "Nenhum risco registrado.",
+    "blocks": [
+      {
+        "type": "breakdown",
+        "title": "Por nível",
+        "breakdownStyle": "bar",
+        "path": "riscos",
+        "groupField": "{{nivel}}",
+        "groupKind": "text",
+        "measure": "count",
+        "shows": "amount",
+        "groups": [
+          {
+            "id": "DBD1D1AB-B8FF-4009-85E2-60BCFEF219AB",
+            "name": "Alto",
+            "color": "red",
+            "match": "alto"
+          },
+          {
+            "id": "86DF1AE8-80D2-4BFD-AB61-FF01DAB74D06",
+            "name": "Médio",
+            "color": "yellow",
+            "match": "medio, médio"
+          },
+          {
+            "id": "32E5D5BF-01D6-4752-9451-3AD8FE1931DD",
+            "name": "Baixo",
+            "color": "green",
+            "match": "baixo"
+          }
+        ],
+        "others": {
+          "shows": false,
+          "name": "Sem nível",
+          "color": "gray"
+        }
+      },
+      {
+        "type": "table",
+        "path": "riscos",
+        "sortable": true,
+        "limit": 8,
+        "rowEvent": "none",
+        "columns": [
+          {
+            "title": "Risco",
+            "kind": "text",
+            "value": "{{nome}}",
+            "align": "leading"
+          },
+          {
+            "title": "Dono",
+            "kind": "text",
+            "value": "{{dono}}",
+            "align": "leading"
+          },
+          {
+            "title": "",
+            "kind": "status",
+            "value": "{{nivel}}",
+            "align": "trailing",
+            "statusColors": {
+              "alto": "negative",
+              "medio": "attention",
+              "baixo": "positive"
+            },
+            "showsWord": true
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "Escreva os riscos na aba **Dado**. Um quadro de riscos que ninguém abre não serve; este fica na borda da tela.",
+        "maxHeight": "small"
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "schema": 11,
+  "id": "plugin.exemplo.dividendos",
+  "name": "Dividendos",
+  "interval": 3600,
+  "readsOnItsOwn": false,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "dollarsign.circle.fill"
+  },
+  "source": {
+    "kind": "panel",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "answer": "{\n  \"previsto_mes\": 1284.5,\n  \"pagamentos\": [\n    {\n      \"papel\": \"HGLG11\",\n      \"valor\": 412.0,\n      \"paga\": \"2026-10-14\",\n      \"tipo\": \"Rendimento\"\n    },\n    {\n      \"papel\": \"MXRF11\",\n      \"valor\": 298.3,\n      \"paga\": \"2026-10-15\",\n      \"tipo\": \"Rendimento\"\n    },\n    {\n      \"papel\": \"ITUB4\",\n      \"valor\": 356.2,\n      \"paga\": \"2026-10-22\",\n      \"tipo\": \"JCP\"\n    },\n    {\n      \"papel\": \"PETR4\",\n      \"valor\": 218.0,\n      \"paga\": \"2026-11-05\",\n      \"tipo\": \"Dividendo\"\n    }\n  ]\n}",
+  "slot": {
+    "label": "{{previsto_mes | shape #,##0}}",
+    "style": "arc"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Dividendos",
+    "subtitle": "O que cai na conta",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{previsto_mes}}",
+        "caption": "Previsto para este mês",
+        "goodDirection": "up",
+        "format": "money",
+        "currency": "BRL"
+      },
+      {
+        "type": "breakdown",
+        "title": "Por tipo",
+        "breakdownStyle": "bar",
+        "path": "pagamentos",
+        "groupField": "{{tipo}}",
+        "groupKind": "text",
+        "measure": "sum",
+        "sumField": "{{valor}}",
+        "shows": "both",
+        "prefix": "R$",
+        "groups": [
+          {
+            "id": "631635D3-BD8B-4DA0-89AF-EB70975CFC38",
+            "name": "Rendimento",
+            "color": "teal",
+            "match": "rendimento"
+          },
+          {
+            "id": "8E538000-910B-448A-A9F4-C8B37E5D0692",
+            "name": "JCP",
+            "color": "purple",
+            "match": "jcp"
+          },
+          {
+            "id": "510D9A6C-25E6-4020-B5B3-8FCF66FC6DA4",
+            "name": "Dividendo",
+            "color": "blue",
+            "match": "dividendo"
+          }
+        ],
+        "others": {
+          "shows": false,
+          "name": "Outros",
+          "color": "gray"
+        }
+      },
+      {
+        "type": "timeline",
+        "path": "pagamentos",
+        "date": "{{paga}}",
+        "rowTitle": "{{papel}}",
+        "rowSubtitle": "{{tipo}} · {{valor | shape R$ #,##0.00}}",
+        "range": "upcoming",
+        "limit": 8
+      },
+      {
+        "type": "bars",
+        "path": "pagamentos",
+        "label": "{{papel}}",
+        "value": "{{valor}}",
+        "limit": 6,
+        "format": "money",
+        "currency": "BRL"
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "schema": 10,
+  "id": "plugin.exemplo.npm",
+  "name": "npm",
+  "interval": 3600,
+  "icon": {
+    "kind": "word",
+    "word": "npm"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://api.npmjs.org/downloads/range/last-month/{{$settings.pacote}}",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{downloads[-1].downloads}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "{{package}}",
+    "subtitle": "De {{start}} a {{end}}",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{downloads[-1].downloads}}",
+        "previous": "{{downloads[-2].downloads}}",
+        "caption": "Downloads no último dia fechado",
+        "format": "compact",
+        "goodDirection": "up"
+      },
+      {
+        "type": "chart",
+        "title": "Últimos 30 dias",
+        "style": "area",
+        "path": "downloads",
+        "x": "{{day}}",
+        "y": "{{downloads}}",
+        "height": "medium",
+        "format": "compact"
+      },
+      {
+        "type": "heatmap",
+        "title": "Downloads por dia",
+        "heatStyle": "calendar",
+        "path": "downloads",
+        "date": "{{day}}",
+        "value": "{{downloads}}",
+        "heatColor": "red",
+        "legend": true,
+        "scale": "automatic",
+        "heatUnit": "downloads"
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Abrir no npm",
+      "symbolName": "arrow.up.forward.square",
+      "place": "card",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "openLink",
+        "text": "https://www.npmjs.com/package/{{package}}"
+      },
+      "successReport": "nothing"
+    }
+  ],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "pacote",
+      "label": "Pacote",
+      "type": "text",
+      "default": "react",
+      "required": true
+    }
+  ]
+}

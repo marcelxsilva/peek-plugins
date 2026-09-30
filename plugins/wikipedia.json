@@ -1,0 +1,57 @@
+{
+  "schema": 5,
+  "id": "plugin.exemplo.wikipedia",
+  "name": "Hoje na história",
+  "interval": 21600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "book.closed.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://pt.wikipedia.org/api/rest_v1/feed/onthisday/events/{{$now | shape MM}}/{{$now | shape dd}}",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{events | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "picture": {
+      "kind": "address",
+      "value": "{{events[0].pages[0].thumbnail.source}}",
+      "shape": "rounded",
+      "scale": 1.4
+    },
+    "title": "Hoje na história",
+    "subtitle": "{{$now | shape dd 'de' MMMM}}",
+    "emptyMessage": "A Wikipédia não trouxe nada para hoje.",
+    "blocks": [
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Aconteceu",
+            "path": "events",
+            "rowTitle": "{{text}}",
+            "rowSubtitle": "{{year}}",
+            "rowWrapsTitle": true,
+            "rowImage": "{{pages[0].thumbnail.source}}",
+            "rowImageShape": "rounded",
+            "rowURL": "{{pages[0].content_urls.desktop.page}}",
+            "rowDetail": "{{pages[0].extract}}"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

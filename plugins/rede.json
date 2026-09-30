@@ -1,0 +1,88 @@
+{
+  "schema": 8,
+  "id": "plugin.exemplo.rede",
+  "name": "Meu IP",
+  "interval": 1800,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "globe.americas.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://ipwho.is/",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{country_code}}",
+    "style": "arc"
+  },
+  "card": {
+    "isEnabled": true,
+    "picture": {
+      "kind": "address",
+      "value": "{{flag.img}}",
+      "shape": "rounded"
+    },
+    "title": "{{ip}}",
+    "subtitle": "{{city}}, {{region}} · {{country}}",
+    "blocks": [
+      {
+        "type": "properties",
+        "layout": "columns",
+        "properties": [
+          {
+            "id": "63399938-0098-471F-A1B5-392D53AB8E62",
+            "name": "Provedor",
+            "value": "{{connection.isp}}"
+          },
+          {
+            "id": "F4BCDA19-6365-4A6B-A7D8-D43CE9084200",
+            "name": "Rede",
+            "value": "{{connection.org}} · AS{{connection.asn}}"
+          },
+          {
+            "id": "3A1AB25A-00EE-4AD9-8780-A0FAC362F892",
+            "name": "Fuso",
+            "value": "{{timezone.id}} ({{timezone.utc}})"
+          },
+          {
+            "id": "319F0289-9249-43D2-9094-2746015E55CF",
+            "name": "Tipo",
+            "value": "{{type}}"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Copiar o IP",
+      "symbolName": "doc.on.doc",
+      "place": "card",
+      "isProminent": true,
+      "run": {
+        "kind": "onTheMac",
+        "errand": "copy",
+        "text": "{{ip}}"
+      },
+      "successMessage": "{{ip}} copiado."
+    },
+    {
+      "name": "Ver no mapa",
+      "symbolName": "map",
+      "place": "card",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "openLink",
+        "text": "https://www.google.com/maps?q={{latitude}},{{longitude}}"
+      },
+      "successReport": "nothing"
+    }
+  ],
+  "attention": {
+    "mode": "never"
+  }
+}

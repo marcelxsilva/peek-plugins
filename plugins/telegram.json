@@ -1,0 +1,78 @@
+{
+  "schema": 5,
+  "id": "plugin.exemplo.telegram",
+  "name": "Telegram",
+  "interval": 120,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "paperplane.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://api.telegram.org/bot{{secret}}/getUpdates",
+    "query": [
+      {
+        "name": "limit",
+        "value": "20"
+      },
+      {
+        "name": "allowed_updates",
+        "value": "[\"message\"]"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{result | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Telegram",
+    "subtitle": "Mensagens que chegaram para o bot",
+    "emptyMessage": "Nada novo. O Telegram só guarda as últimas 24 horas.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{result | count}}",
+        "caption": "Mensagens esperando resposta",
+        "format": "integer",
+        "goodDirection": "down"
+      },
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Mensagens",
+            "path": "result",
+            "rowTitle": "{{message.text}}",
+            "rowSubtitle": "{{message.from.first_name}} · {{message.chat.title ?? message.from.username}}",
+            "rowMeta": "{{message.date | shape dd/MM HH:mm}}",
+            "rowWrapsTitle": true,
+            "rowEvent": "none"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Abrir o Telegram",
+      "symbolName": "arrow.up.forward.app",
+      "place": "card",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "openApp",
+        "text": "ru.keepcoder.Telegram"
+      },
+      "successReport": "nothing"
+    }
+  ],
+  "attention": {
+    "mode": "newRows"
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "schema": 8,
+  "id": "plugin.exemplo.cripto",
+  "name": "Cripto",
+  "interval": 600,
+  "icon": {
+    "kind": "picture",
+    "pictureSource": "{{[0].image}}"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://api.coingecko.com/api/v3/coins/markets",
+    "query": [
+      {
+        "name": "vs_currency",
+        "value": "brl"
+      },
+      {
+        "name": "ids",
+        "value": "{{$settings.moedas}}"
+      },
+      {
+        "name": "order",
+        "value": "market_cap_desc"
+      },
+      {
+        "name": "sparkline",
+        "value": "false"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{[0].current_price | shape #,##0}}",
+    "style": "sparkline"
+  },
+  "history": {
+    "path": "[0].current_price",
+    "keep": 96
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Cripto",
+    "subtitle": "Em reais · {{[0].last_updated | ago}}",
+    "blocks": [
+      {
+        "type": "hero",
+        "title": "{{[0].name}}",
+        "value": "{{[0].current_price}}",
+        "caption": "Preço agora",
+        "format": "money",
+        "currency": "BRL",
+        "goodDirection": "up",
+        "width": "half"
+      },
+      {
+        "type": "properties",
+        "layout": "stacked",
+        "width": "half",
+        "properties": [
+          {
+            "id": "27295860-65F2-4E08-86E9-0795ED46C267",
+            "name": "Máxima em 24 h",
+            "value": "{{[0].high_24h | shape R$ #,##0.00}}"
+          },
+          {
+            "id": "7481D983-0570-4924-9E0C-16A8EAC9BC8E",
+            "name": "Mínima em 24 h",
+            "value": "{{[0].low_24h | shape R$ #,##0.00}}"
+          },
+          {
+            "id": "64C38BF9-F6D9-4982-8E75-20BE0CBB8C6F",
+            "name": "Variação em 24 h",
+            "value": "{{[0].price_change_percentage_24h | round}}%"
+          }
+        ]
+      },
+      {
+        "type": "chart",
+        "title": "Desde que o Peek abriu",
+        "style": "area",
+        "height": "small",
+        "format": "money",
+        "currency": "BRL"
+      },
+      {
+        "type": "table",
+        "path": "$",
+        "sortable": true,
+        "limit": 6,
+        "rowEvent": "none",
+        "columns": [
+          {
+            "title": "",
+            "kind": "image",
+            "value": "{{image}}",
+            "shape": "round",
+            "align": "leading"
+          },
+          {
+            "title": "Moeda",
+            "kind": "text",
+            "value": "{{symbol | upper}}",
+            "align": "leading"
+          },
+          {
+            "title": "Preço",
+            "kind": "text",
+            "value": "{{current_price}}",
+            "align": "trailing",
+            "format": "money",
+            "currency": "BRL"
+          },
+          {
+            "title": "24 h",
+            "kind": "text",
+            "value": "{{price_change_percentage_24h}}",
+            "align": "trailing",
+            "format": "percent"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "moedas",
+      "label": "Moedas",
+      "type": "text",
+      "default": "bitcoin,ethereum,solana",
+      "help": "Os ids da CoinGecko, separados por vírgula. A primeira é a que aparece no ícone.",
+      "required": true
+    }
+  ]
+}

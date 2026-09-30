@@ -1,0 +1,90 @@
+{
+  "schema": 8,
+  "id": "plugin.exemplo.iss",
+  "name": "Estação espacial",
+  "interval": 120,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "globe.desk.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://api.wheretheiss.at/v1/satellites/25544",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{altitude | round}}",
+    "style": "sparkline"
+  },
+  "history": {
+    "path": "altitude",
+    "keep": 96
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Estação espacial",
+    "subtitle": "Onde ela está agora",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{altitude}}",
+        "caption": "km de altitude · {{velocity | round}} km/h",
+        "format": "number",
+        "goodDirection": "up"
+      },
+      {
+        "type": "chart",
+        "title": "Altitude ao longo do tempo",
+        "style": "line",
+        "height": "medium",
+        "format": "number"
+      },
+      {
+        "type": "properties",
+        "layout": "grid",
+        "properties": [
+          {
+            "id": "10CCE2C4-3351-44AE-90D9-72F7CFCC9061",
+            "name": "Latitude",
+            "value": "{{latitude}}"
+          },
+          {
+            "id": "868ED464-1EDC-4CF3-A945-0F8BA8A42527",
+            "name": "Longitude",
+            "value": "{{longitude}}"
+          },
+          {
+            "id": "D13563A1-6872-4C57-AFD8-8A7197468C1E",
+            "name": "Luz",
+            "value": "{{visibility}}"
+          },
+          {
+            "id": "D7883B1B-7DA5-4D62-B35C-B2C1824C8686",
+            "name": "Alcance",
+            "value": "{{footprint | round}} km"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Ver no mapa",
+      "symbolName": "map",
+      "place": "card",
+      "isProminent": true,
+      "run": {
+        "kind": "onTheMac",
+        "errand": "openLink",
+        "text": "https://www.google.com/maps?q={{latitude}},{{longitude}}"
+      },
+      "successReport": "nothing"
+    }
+  ],
+  "attention": {
+    "mode": "never"
+  }
+}

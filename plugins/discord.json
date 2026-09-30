@@ -1,0 +1,128 @@
+{
+  "schema": 11,
+  "id": "plugin.exemplo.discord",
+  "name": "Discord",
+  "interval": 300,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "bubble.left.and.bubble.right.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://discord.com/api/guilds/{{$settings.servidor}}/widget.json",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{presence_count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "{{name}}",
+    "subtitle": "Quem está por aí agora",
+    "emptyMessage": "Ninguém online, ou o widget do servidor está desligado.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{presence_count}}",
+        "caption": "Pessoas online no servidor",
+        "format": "integer",
+        "goodDirection": "up",
+        "width": "half"
+      },
+      {
+        "type": "breakdown",
+        "title": "Por status",
+        "breakdownStyle": "list",
+        "path": "members",
+        "groupField": "{{status}}",
+        "groupKind": "text",
+        "measure": "count",
+        "shows": "amount",
+        "groups": [
+          {
+            "id": "F9D61D58-B22C-45AA-8B6C-621AB6BA4E3F",
+            "name": "Online",
+            "color": "green",
+            "match": "online"
+          },
+          {
+            "id": "25C6BCD5-E991-42F0-BE9D-FB265E50527A",
+            "name": "Ausente",
+            "color": "yellow",
+            "match": "idle"
+          },
+          {
+            "id": "22FCBE15-5EF9-45E5-B72A-FC4860DF37E3",
+            "name": "Ocupado",
+            "color": "red",
+            "match": "dnd"
+          }
+        ],
+        "others": {
+          "shows": false,
+          "name": "Outros",
+          "color": "gray"
+        },
+        "width": "half"
+      },
+      {
+        "type": "list",
+        "limit": 8,
+        "tabs": [
+          {
+            "title": "Online",
+            "path": "members",
+            "rowTitle": "{{username}}",
+            "rowSubtitle": "{{game.name}}",
+            "rowImage": "{{avatar_url}}",
+            "rowImageShape": "round",
+            "rowStatus": "{{status}}",
+            "rowEvent": "none",
+            "statusWords": {
+              "online": "online",
+              "idle": "ausente",
+              "dnd": "ocupado",
+              "offline": "offline"
+            },
+            "statusColors": {
+              "online": "positive",
+              "idle": "attention",
+              "dnd": "negative",
+              "offline": "neutral"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Entrar",
+      "symbolName": "arrow.up.forward.square",
+      "place": "card",
+      "needs": "{{instant_invite}}",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "openLink",
+        "text": "{{instant_invite}}"
+      },
+      "successReport": "nothing"
+    }
+  ],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "servidor",
+      "label": "ID do servidor",
+      "type": "text",
+      "help": "Configurações do servidor › Widget › ligue o widget e copie o ID do servidor.",
+      "required": true
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "schema": 5,
+  "id": "plugin.exemplo.podcast",
+  "name": "Podcasts",
+  "interval": 21600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "mic.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://itunes.apple.com/search",
+    "query": [
+      {
+        "name": "term",
+        "value": "{{$settings.busca}}"
+      },
+      {
+        "name": "entity",
+        "value": "podcast"
+      },
+      {
+        "name": "limit",
+        "value": "12"
+      },
+      {
+        "name": "country",
+        "value": "BR"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{resultCount}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "picture": {
+      "kind": "address",
+      "value": "{{results[0].artworkUrl600}}",
+      "shape": "rounded",
+      "scale": 1.6
+    },
+    "title": "Podcasts",
+    "subtitle": "Buscando por {{$settings.busca}}",
+    "emptyMessage": "Nada encontrado.",
+    "blocks": [
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Podcasts",
+            "path": "results",
+            "rowTitle": "{{collectionName}}",
+            "rowSubtitle": "{{artistName}}",
+            "rowMeta": "{{trackCount | plural episódio/episódios}}",
+            "rowImage": "{{artworkUrl100}}",
+            "rowWrapsTitle": true,
+            "rowURL": "{{collectionViewUrl}}"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "busca",
+      "label": "Buscar por",
+      "type": "text",
+      "default": "tecnologia",
+      "required": true
+    }
+  ]
+}

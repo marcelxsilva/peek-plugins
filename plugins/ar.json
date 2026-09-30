@@ -1,0 +1,109 @@
+{
+  "schema": 8,
+  "id": "plugin.exemplo.ar",
+  "name": "Qualidade do ar",
+  "interval": 1800,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "aqi.medium"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://air-quality-api.open-meteo.com/v1/air-quality?latitude={{$settings.lat}}&longitude={{$settings.lon}}&current=pm2_5,pm10,european_aqi,uv_index&hourly=european_aqi&forecast_days=2&timezone=auto",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{current.european_aqi | round}}",
+    "value": "{{current.european_aqi}}",
+    "total": "100",
+    "style": "arc",
+    "alertsOnThreshold": true
+  },
+  "history": {
+    "path": "current.european_aqi",
+    "keep": 48
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Qualidade do ar",
+    "subtitle": "{{timezone}}",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{current.european_aqi}}",
+        "caption": "Índice europeu",
+        "format": "integer",
+        "goodDirection": "down",
+        "width": "half"
+      },
+      {
+        "type": "properties",
+        "layout": "stacked",
+        "width": "half",
+        "properties": [
+          {
+            "id": "39544494-CBFA-4D8B-A3AC-1DB8AD0FC079",
+            "name": "PM2,5",
+            "value": "{{current.pm2_5}} µg/m³"
+          },
+          {
+            "id": "51CC352F-C845-4602-A2F1-8776C56337EC",
+            "name": "PM10",
+            "value": "{{current.pm10}} µg/m³"
+          },
+          {
+            "id": "381B8ECE-D915-4A0D-8D90-9819C3455DD1",
+            "name": "Índice UV",
+            "value": "{{current.uv_index}}"
+          }
+        ]
+      },
+      {
+        "type": "chart",
+        "title": "Próximas 48 horas",
+        "style": "area",
+        "path": "hourly.european_aqi",
+        "x": "hourly.time",
+        "height": "medium",
+        "format": "integer",
+        "dateFormat": "yyyy-MM-dd'T'HH:mm"
+      },
+      {
+        "type": "text",
+        "value": "Até 20 é bom, até 40 razoável, até 60 moderado, até 80 ruim, até 100 muito ruim. Acima disso, evite esforço ao ar livre.",
+        "maxHeight": "small"
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "countAbove",
+    "comparison": "above",
+    "countPath": "current.european_aqi",
+    "threshold": "{{$settings.avisar}}"
+  },
+  "settings": [
+    {
+      "key": "lat",
+      "label": "Latitude",
+      "type": "text",
+      "default": "-23.55"
+    },
+    {
+      "key": "lon",
+      "label": "Longitude",
+      "type": "text",
+      "default": "-46.63"
+    },
+    {
+      "key": "avisar",
+      "label": "Avisar acima de",
+      "type": "number",
+      "default": 80,
+      "help": "No índice europeu. O ícone pisca quando o ar passa disso."
+    }
+  ]
+}

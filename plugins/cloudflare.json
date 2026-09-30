@@ -1,0 +1,123 @@
+{
+  "schema": 5,
+  "id": "plugin.exemplo.cloudflare",
+  "name": "Cloudflare",
+  "interval": 600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "cloud.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://www.cloudflarestatus.com/api/v2/summary.json",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "style": "status",
+    "status": "{{status.indicator}}",
+    "statusColors": {
+      "none": "positive",
+      "minor": "attention",
+      "major": "negative",
+      "critical": "negative",
+      "maintenance": "neutral"
+    }
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Cloudflare",
+    "subtitle": "{{status.description}}",
+    "headline": "{{incidents | count}}",
+    "emptyMessage": "Nada acontecendo agora.",
+    "blocks": [
+      {
+        "type": "list",
+        "limit": 5,
+        "tabs": [
+          {
+            "title": "Incidentes",
+            "path": "incidents",
+            "rowTitle": "{{name}}",
+            "rowWrapsTitle": true,
+            "rowSubtitle": "{{updated_at | ago}}",
+            "rowStatus": "{{status}}",
+            "badges": [
+              {
+                "value": "{{impact}}",
+                "symbolName": "bolt.fill",
+                "colors": {
+                  "none": "neutral",
+                  "minor": "attention",
+                  "major": "negative",
+                  "critical": "negative"
+                }
+              }
+            ],
+            "rowURL": "{{shortlink}}",
+            "statusColors": {
+              "investigating": "negative",
+              "identified": "attention",
+              "monitoring": "attention",
+              "resolved": "positive",
+              "postmortem": "neutral"
+            },
+            "face": {
+              "kind": "symbol",
+              "value": "exclamationmark.triangle.fill"
+            }
+          },
+          {
+            "title": "Manutenção",
+            "path": "scheduled_maintenances",
+            "rowTitle": "{{name}}",
+            "rowWrapsTitle": true,
+            "rowSubtitle": "{{scheduled_for | date}}",
+            "rowStatus": "{{status}}",
+            "rowURL": "{{shortlink}}",
+            "statusColors": {
+              "scheduled": "neutral",
+              "in_progress": "attention",
+              "verifying": "attention",
+              "completed": "positive"
+            },
+            "face": {
+              "kind": "symbol",
+              "value": "wrench.and.screwdriver.fill"
+            }
+          }
+        ],
+        "everyTab": {
+          "title": "Tudo",
+          "face": {
+            "kind": "symbol",
+            "value": "tray.full.fill"
+          }
+        }
+      },
+      {
+        "type": "grid",
+        "title": "Pontos de presença",
+        "path": "components",
+        "label": "{{name}}",
+        "status": "{{status}}",
+        "limit": 36,
+        "rowURL": "https://www.cloudflarestatus.com",
+        "statusColors": {
+          "operational": "positive",
+          "degraded_performance": "attention",
+          "partial_outage": "attention",
+          "major_outage": "negative",
+          "under_maintenance": "neutral"
+        }
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "newRows",
+    "listIndex": 0
+  }
+}

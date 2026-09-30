@@ -1,0 +1,78 @@
+{
+  "schema": 5,
+  "id": "plugin.exemplo.tmdb",
+  "name": "Nos cinemas",
+  "interval": 21600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "popcorn.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://api.themoviedb.org/3/movie/now_playing",
+    "query": [
+      { "name": "api_key", "value": "{{secret}}" },
+      { "name": "language", "value": "pt-BR" },
+      { "name": "region", "value": "BR" },
+      { "name": "page", "value": "{{$page}}" }
+    ],
+    "format": {
+      "kind": "json"
+    },
+    "pagination": {
+      "kind": "page",
+      "listPath": "results",
+      "start": 1,
+      "maxPages": 4,
+      "buttonText": "Mais filmes"
+    }
+  },
+  "slot": {
+    "label": "{{results | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "picture": {
+      "kind": "address",
+      "value": "https://image.tmdb.org/t/p/w500{{results[0].backdrop_path}}",
+      "shape": "rounded",
+      "scale": 2
+    },
+    "title": "Nos cinemas",
+    "subtitle": "Em cartaz no Brasil",
+    "emptyMessage": "Nada em cartaz, ou a chave da API está faltando.",
+    "blocks": [
+      {
+        "type": "list",
+        "limit": 5,
+        "tabs": [
+          {
+            "title": "Em cartaz",
+            "path": "results",
+            "rowTitle": "{{title}}",
+            "rowSubtitle": "Estreia {{release_date | date}}",
+            "rowImage": "https://image.tmdb.org/t/p/w185{{poster_path}}",
+            "rowImageShape": "rounded",
+            "rowImageScale": 1.3,
+            "rowWrapsTitle": true,
+            "rowDetail": "{{overview}}",
+            "rowURL": "https://www.themoviedb.org/movie/{{id}}",
+            "badges": [
+              {
+                "value": "{{vote_average}}",
+                "symbolName": "star.fill",
+                "tint": "attention"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "newRows"
+  }
+}

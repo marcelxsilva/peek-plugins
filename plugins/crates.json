@@ -1,0 +1,122 @@
+{
+  "schema": 8,
+  "id": "plugin.exemplo.crates",
+  "name": "crates.io",
+  "interval": 3600,
+  "icon": {
+    "kind": "word",
+    "word": "{{crate.max_version}}"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://crates.io/api/v1/crates/{{$settings.crate}}",
+    "headers": [
+      {
+        "name": "User-Agent",
+        "value": "Peek plugin (github.com/peek)"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{crate.name}}",
+    "style": "arc"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "{{crate.name}} {{crate.max_version}}",
+    "subtitle": "Atualizado {{crate.updated_at | ago}}",
+    "emptyMessage": "Crate não encontrada.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{crate.downloads}}",
+        "caption": "Downloads no total",
+        "goodDirection": "up",
+        "format": "compact",
+        "width": "half"
+      },
+      {
+        "type": "hero",
+        "value": "{{crate.recent_downloads}}",
+        "caption": "Nos últimos 90 dias",
+        "goodDirection": "up",
+        "format": "compact",
+        "width": "half"
+      },
+      {
+        "type": "text",
+        "value": "{{crate.description}}",
+        "maxHeight": "small"
+      },
+      {
+        "type": "table",
+        "path": "versions",
+        "sortable": true,
+        "limit": 6,
+        "rowEvent": "none",
+        "columns": [
+          {
+            "title": "Versão",
+            "kind": "text",
+            "value": "{{num}}",
+            "align": "leading"
+          },
+          {
+            "title": "Publicada",
+            "kind": "text",
+            "value": "{{created_at | shape dd/MM/yyyy}}",
+            "align": "leading"
+          },
+          {
+            "title": "Downloads",
+            "kind": "text",
+            "value": "{{downloads}}",
+            "align": "trailing",
+            "format": "compact"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Abrir na crates.io",
+      "symbolName": "arrow.up.forward.square",
+      "place": "card",
+      "isProminent": false,
+      "run": {
+        "kind": "onTheMac",
+        "errand": "openLink",
+        "text": "https://crates.io/crates/{{crate.name}}"
+      },
+      "successReport": "nothing"
+    },
+    {
+      "name": "Copiar para o Cargo.toml",
+      "symbolName": "doc.on.doc",
+      "place": "card",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "copy",
+        "text": "{{crate.name}} = \"{{crate.max_version}}\""
+      },
+      "successMessage": "Linha copiada."
+    }
+  ],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "crate",
+      "label": "Crate",
+      "type": "text",
+      "default": "serde",
+      "required": true
+    }
+  ]
+}

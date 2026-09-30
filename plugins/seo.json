@@ -1,0 +1,118 @@
+{
+  "schema": 11,
+  "id": "plugin.exemplo.seo",
+  "name": "SEO",
+  "interval": 3600,
+  "readsOnItsOwn": false,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "magnifyingglass.circle.fill"
+  },
+  "source": {
+    "kind": "panel",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "answer": "{\n  \"medidas\": \"2026-09-25\",\n  \"termos\": [\n    {\n      \"termo\": \"peek para mac\",\n      \"posicao\": 3,\n      \"antes\": 6,\n      \"volume\": 1200\n    },\n    {\n      \"termo\": \"barra de status mac\",\n      \"posicao\": 8,\n      \"antes\": 11,\n      \"volume\": 3400\n    },\n    {\n      \"termo\": \"plugin json mac\",\n      \"posicao\": 14,\n      \"antes\": 9,\n      \"volume\": 480\n    },\n    {\n      \"termo\": \"widget de borda\",\n      \"posicao\": 21,\n      \"antes\": 27,\n      \"volume\": 210\n    }\n  ]\n}",
+  "slot": {
+    "label": "{{termos | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "SEO",
+    "subtitle": "Posições em {{medidas | date}}",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{termos[0].posicao}}",
+        "previous": "{{termos[0].antes}}",
+        "caption": "Melhor posição · {{termos[0].termo}}",
+        "goodDirection": "down",
+        "format": "integer"
+      },
+      {
+        "type": "breakdown",
+        "title": "Por faixa",
+        "breakdownStyle": "bar",
+        "path": "termos",
+        "groupField": "{{posicao}}",
+        "groupKind": "number",
+        "measure": "count",
+        "shows": "amount",
+        "groups": [
+          {
+            "id": "8887F25D-29FA-46A2-BEB3-3ED1C70F4B9C",
+            "name": "Top 3",
+            "color": "green",
+            "from": "1"
+          },
+          {
+            "id": "8E6A5BEE-1E1A-4C22-ABA8-7008ED8FB713",
+            "name": "Primeira página",
+            "color": "teal",
+            "from": "4"
+          },
+          {
+            "id": "6DE8ECAA-ADF9-41C6-9F90-0DB26669EB32",
+            "name": "Segunda página",
+            "color": "yellow",
+            "from": "11"
+          },
+          {
+            "id": "8C311F12-BB0D-4EC0-A987-02F94D616EF2",
+            "name": "Depois",
+            "color": "gray",
+            "from": "21"
+          }
+        ],
+        "others": {
+          "shows": false,
+          "name": "Outros",
+          "color": "gray"
+        }
+      },
+      {
+        "type": "table",
+        "path": "termos",
+        "sortable": true,
+        "limit": 10,
+        "rowEvent": "none",
+        "columns": [
+          {
+            "title": "Termo",
+            "kind": "text",
+            "value": "{{termo}}",
+            "align": "leading"
+          },
+          {
+            "title": "Hoje",
+            "kind": "text",
+            "value": "{{posicao}}",
+            "align": "trailing",
+            "format": "integer"
+          },
+          {
+            "title": "Antes",
+            "kind": "text",
+            "value": "{{antes}}",
+            "align": "trailing",
+            "format": "integer"
+          },
+          {
+            "title": "Buscas",
+            "kind": "text",
+            "value": "{{volume}}",
+            "align": "trailing",
+            "format": "compact"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

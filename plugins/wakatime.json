@@ -1,0 +1,93 @@
+{
+  "schema": 3,
+  "id": "plugin.exemplo.wakatime",
+  "name": "Tempo de foco",
+  "interval": 1800,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "timer"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://wakatime.com/api/v1/users/current/summaries",
+    "query": [
+      {
+        "name": "start",
+        "value": "today"
+      },
+      {
+        "name": "end",
+        "value": "today"
+      },
+      {
+        "name": "api_key",
+        "value": "{{secret}}"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{data[0].grand_total.digital}}",
+    "style": "arc",
+    "value": "{{data[0].grand_total.total_seconds}}",
+    "total": "28800"
+  },
+  "history": {
+    "path": "data[0].grand_total.total_seconds",
+    "keep": 96
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Tempo de foco",
+    "subtitle": "Hoje, segundo o WakaTime",
+    "emptyMessage": "Nada registrado hoje. A chave da API vai no campo de segredo, em Dado.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{data[0].grand_total.total_seconds}}",
+        "total": "28800",
+        "caption": "Escrevendo código hoje",
+        "goodDirection": "up",
+        "format": "duration"
+      },
+      {
+        "type": "bars",
+        "path": "data[0].projects",
+        "label": "{{name}}",
+        "value": "{{total_seconds}}",
+        "limit": 5,
+        "format": "duration",
+        "title": "Por projeto"
+      },
+      {
+        "type": "bars",
+        "path": "data[0].languages",
+        "label": "{{name}}",
+        "value": "{{total_seconds}}",
+        "limit": 5,
+        "format": "duration",
+        "title": "Por linguagem"
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Abrir o painel",
+      "symbolName": "arrow.up.forward.square",
+      "place": "card",
+      "isProminent": false,
+      "run": {
+        "kind": "onTheMac",
+        "errand": "openLink",
+        "text": "https://wakatime.com/dashboard"
+      },
+      "successReport": "nothing"
+    }
+  ],
+  "attention": {
+    "mode": "never"
+  }
+}

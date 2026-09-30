@@ -1,0 +1,121 @@
+{
+  "schema": 8,
+  "id": "plugin.exemplo.github-repo",
+  "name": "Repositório",
+  "interval": 1800,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "star.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://api.github.com/repos/{{$settings.repo}}",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.github+json"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{stargazers_count}}",
+    "value": "{{stargazers_count}}",
+    "style": "sparkline"
+  },
+  "history": {
+    "path": "stargazers_count",
+    "keep": 96
+  },
+  "card": {
+    "isEnabled": true,
+    "picture": {
+      "kind": "address",
+      "value": "{{owner.avatar_url}}",
+      "shape": "round"
+    },
+    "title": "{{full_name}}",
+    "subtitle": "Atualizado {{pushed_at | ago}}",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{stargazers_count}}",
+        "caption": "Estrelas",
+        "format": "integer",
+        "goodDirection": "up"
+      },
+      {
+        "type": "properties",
+        "layout": "grid",
+        "properties": [
+          {
+            "id": "77C706D4-CFE9-4399-BDE7-500AD83CF590",
+            "name": "Forks",
+            "value": "{{forks_count}}"
+          },
+          {
+            "id": "F9933859-B656-411C-B6BF-395F3D831432",
+            "name": "Issues abertas",
+            "value": "{{open_issues_count}}"
+          },
+          {
+            "id": "E0B203C8-8E34-4E0C-B3CA-673F7E71F18E",
+            "name": "Observando",
+            "value": "{{subscribers_count}}"
+          },
+          {
+            "id": "64A87F18-C5E0-41AE-83BA-112D36602FD0",
+            "name": "Linguagem",
+            "value": "{{language}}"
+          },
+          {
+            "id": "B4C21CAF-E84A-488D-98ED-DFA858F93226",
+            "name": "Licença",
+            "value": "{{license.spdx_id}}"
+          }
+        ]
+      },
+      {
+        "type": "chart",
+        "title": "Estrelas ao longo do tempo",
+        "style": "area",
+        "height": "medium",
+        "format": "integer"
+      },
+      {
+        "type": "text",
+        "value": "{{description}}",
+        "maxHeight": "small"
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Abrir",
+      "symbolName": "arrow.up.forward.square",
+      "place": "card",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "openLink",
+        "text": "{{html_url}}"
+      },
+      "successReport": "nothing"
+    }
+  ],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "repo",
+      "label": "Repositório",
+      "type": "text",
+      "default": "apple/swift",
+      "placeholder": "dono/nome",
+      "required": true
+    }
+  ]
+}

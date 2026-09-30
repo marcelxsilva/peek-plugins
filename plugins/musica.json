@@ -1,0 +1,117 @@
+{
+  "schema": 8,
+  "id": "plugin.exemplo.musica",
+  "name": "Tocando agora",
+  "interval": 60,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "music.note"
+  },
+  "source": {
+    "kind": "script",
+    "language": "applescript",
+    "script": "if application \"Music\" is running then\n\ttell application \"Music\"\n\t\tif player state is stopped then return \"estado: parado\"\n\t\treturn \"estado: tocando\" & linefeed & \"musica: \" & (name of current track) & linefeed & \"artista: \" & (artist of current track) & linefeed & \"album: \" & (album of current track)\n\tend tell\nelse\n\treturn \"estado: fechado\"\nend if",
+    "format": {
+      "kind": "keyValue"
+    }
+  },
+  "slot": {
+    "label": "{{musica}}",
+    "status": "{{estado}}",
+    "style": "status",
+    "statusColors": {
+      "tocando": "positive",
+      "parado": "neutral",
+      "fechado": "neutral"
+    }
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Tocando agora",
+    "subtitle": "{{artista}}",
+    "emptyMessage": "Nada tocando.",
+    "blocks": [
+      {
+        "type": "properties",
+        "layout": "columns",
+        "properties": [
+          {
+            "id": "6FEB9C05-4BF3-4AC3-B432-A07F84488EF6",
+            "name": "Música",
+            "value": "{{musica}}"
+          },
+          {
+            "id": "C7C819DA-14D4-41C6-9A5D-F3077F60EAF1",
+            "name": "Artista",
+            "value": "{{artista}}"
+          },
+          {
+            "id": "528794B4-9AF4-4A58-8C8B-FCF2947DA8EA",
+            "name": "Álbum",
+            "value": "{{album}}"
+          }
+        ]
+      },
+      {
+        "type": "buttons",
+        "resultSpot": "below"
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Anterior",
+      "symbolName": "backward.fill",
+      "place": "panel",
+      "size": "small",
+      "titleSpot": "below",
+      "hue": "theme",
+      "run": {
+        "kind": "script",
+        "language": "applescript",
+        "script": "tell application \"Music\" to previous track",
+        "format": {
+          "kind": "json"
+        }
+      },
+      "successReport": "nothing"
+    },
+    {
+      "name": "Tocar ou pausar",
+      "symbolName": "playpause.fill",
+      "place": "panel",
+      "size": "small",
+      "titleSpot": "below",
+      "hue": "green",
+      "run": {
+        "kind": "script",
+        "language": "applescript",
+        "script": "tell application \"Music\" to playpause",
+        "format": {
+          "kind": "json"
+        }
+      },
+      "successReport": "nothing"
+    },
+    {
+      "name": "Próxima",
+      "symbolName": "forward.fill",
+      "place": "panel",
+      "size": "small",
+      "titleSpot": "below",
+      "hue": "theme",
+      "run": {
+        "kind": "script",
+        "language": "applescript",
+        "script": "tell application \"Music\" to next track",
+        "format": {
+          "kind": "json"
+        }
+      },
+      "successReport": "nothing"
+    }
+  ],
+  "attention": {
+    "mode": "never"
+  }
+}

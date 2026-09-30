@@ -1,0 +1,148 @@
+{
+  "schema": 11,
+  "id": "plugin.exemplo.hubspot",
+  "name": "HubSpot",
+  "interval": 900,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "cube.box.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://api.hubapi.com/crm/v3/objects/deals",
+    "query": [
+      {
+        "name": "limit",
+        "value": "20"
+      },
+      {
+        "name": "properties",
+        "value": "dealname,amount,dealstage,closedate"
+      },
+      {
+        "name": "sort",
+        "value": "-createdate"
+      }
+    ],
+    "headers": [
+      {
+        "name": "Authorization",
+        "value": "Bearer {{secret}}"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{results | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "HubSpot",
+    "subtitle": "Negócios no CRM",
+    "emptyMessage": "Nenhum negócio, ou o token não tem escopo de CRM.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{results | count}}",
+        "caption": "Negócios trazidos",
+        "goodDirection": "up",
+        "format": "integer"
+      },
+      {
+        "type": "breakdown",
+        "title": "Por etapa",
+        "breakdownStyle": "list",
+        "path": "results",
+        "groupField": "{{properties.dealstage}}",
+        "groupKind": "text",
+        "measure": "sum",
+        "shows": "amount",
+        "groups": [
+          {
+            "id": "AA36209C-4EFC-439C-B3F3-143F3A79F292",
+            "name": "Reunião marcada",
+            "color": "blue",
+            "match": "appointmentscheduled"
+          },
+          {
+            "id": "F1174301-3A31-451F-A560-9599635396FA",
+            "name": "Qualificado",
+            "color": "teal",
+            "match": "qualifiedtobuy"
+          },
+          {
+            "id": "97C5E47E-5E95-4172-B62A-F9362B4A5845",
+            "name": "Apresentação",
+            "color": "indigo",
+            "match": "presentationscheduled"
+          },
+          {
+            "id": "1E3EDBB4-018E-4437-BAB0-2FBAE4822182",
+            "name": "Decisor a bordo",
+            "color": "purple",
+            "match": "decisionmakerboughtin"
+          },
+          {
+            "id": "5D9A1F9D-6487-41EA-A61A-9637E7CE7098",
+            "name": "Contrato enviado",
+            "color": "yellow",
+            "match": "contractsent"
+          },
+          {
+            "id": "A4EA75DF-72AE-4B2F-A5A0-C1696CE48998",
+            "name": "Ganho",
+            "color": "green",
+            "match": "closedwon"
+          },
+          {
+            "id": "4A17F22A-1B04-494E-85EA-6C1DF2CFC723",
+            "name": "Perdido",
+            "color": "red",
+            "match": "closedlost"
+          }
+        ],
+        "others": {
+          "shows": true,
+          "name": "Outras etapas",
+          "color": "gray"
+        },
+        "sumField": "{{properties.amount}}",
+        "prefix": "R$ "
+      },
+      {
+        "type": "bars",
+        "path": "results",
+        "label": "{{properties.dealname}}",
+        "value": "{{properties.amount}}",
+        "limit": 5,
+        "format": "money",
+        "currency": "BRL",
+        "title": "Maiores"
+      },
+      {
+        "type": "list",
+        "limit": 5,
+        "tabs": [
+          {
+            "title": "Negócios",
+            "path": "results",
+            "rowTitle": "{{properties.dealname}}",
+            "rowSubtitle": "{{properties.dealstage}}",
+            "rowMeta": "Fecha {{properties.closedate | date}}",
+            "rowStatus": "{{properties.amount}}",
+            "rowWrapsTitle": true,
+            "rowEvent": "none"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "newRows"
+  }
+}

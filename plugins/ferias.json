@@ -1,0 +1,70 @@
+{
+  "schema": 7,
+  "id": "plugin.exemplo.ferias",
+  "name": "Férias do time",
+  "interval": 3600,
+  "readsOnItsOwn": false,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "beach.umbrella.fill"
+  },
+  "source": {
+    "kind": "panel",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "answer": "{\n  \"pessoas\": [\n    {\n      \"nome\": \"Ana\",\n      \"comeca\": \"2026-10-13\",\n      \"volta\": \"2026-10-27\",\n      \"time\": \"Produto\"\n    },\n    {\n      \"nome\": \"Bruno\",\n      \"comeca\": \"2026-11-03\",\n      \"volta\": \"2026-11-17\",\n      \"time\": \"Engenharia\"\n    },\n    {\n      \"nome\": \"Carla\",\n      \"comeca\": \"2026-12-22\",\n      \"volta\": \"2027-01-05\",\n      \"time\": \"Design\"\n    }\n  ]\n}",
+  "slot": {
+    "label": "{{pessoas | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Férias do time",
+    "subtitle": "Quem sai e quando",
+    "emptyMessage": "Ninguém de férias marcado.",
+    "blocks": [
+      {
+        "type": "timeline",
+        "path": "pessoas",
+        "date": "{{comeca}}",
+        "rowTitle": "{{nome}}",
+        "rowSubtitle": "{{time}} · volta {{volta | date}}",
+        "range": "upcoming",
+        "limit": 8
+      },
+      {
+        "type": "table",
+        "path": "pessoas",
+        "sortable": true,
+        "limit": 6,
+        "rowEvent": "none",
+        "columns": [
+          {
+            "title": "Pessoa",
+            "kind": "text",
+            "value": "{{nome}}",
+            "align": "leading"
+          },
+          {
+            "title": "Sai",
+            "kind": "text",
+            "value": "{{comeca | shape dd/MM}}",
+            "align": "leading"
+          },
+          {
+            "title": "Volta",
+            "kind": "text",
+            "value": "{{volta | shape dd/MM}}",
+            "align": "trailing"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

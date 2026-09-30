@@ -1,0 +1,83 @@
+{
+  "schema": 8,
+  "id": "plugin.exemplo.ibovespa",
+  "name": "Ibovespa",
+  "interval": 600,
+  "icon": {
+    "kind": "word",
+    "word": "IBOV"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://brapi.dev/api/quote/%5EBVSP?token={{$settings.token}}",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{results[0].regularMarketPrice | shape #,##0}}",
+    "style": "sparkline"
+  },
+  "history": {
+    "path": "results[0].regularMarketPrice",
+    "keep": 96
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Ibovespa",
+    "subtitle": "{{results[0].regularMarketTime | ago}}",
+    "emptyMessage": "A brapi não respondeu.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{results[0].regularMarketPrice}}",
+        "caption": "Pontos",
+        "goodDirection": "up",
+        "format": "integer",
+        "width": "half"
+      },
+      {
+        "type": "properties",
+        "width": "half",
+        "layout": "stacked",
+        "properties": [
+          {
+            "id": "826DDDD2-BC04-4AF7-9548-7C45FC3710FA",
+            "name": "Faixa do dia",
+            "value": "{{results[0].regularMarketDayLow | shape #,##0}} a {{results[0].regularMarketDayHigh | shape #,##0}}"
+          },
+          {
+            "id": "9413F4BF-1908-4D62-A0E4-B016A6D776DF",
+            "name": "Variação do dia",
+            "value": "{{results[0].regularMarketChangePercent}}%"
+          },
+          {
+            "id": "66C25A06-D434-45BC-A7AC-418F6056CBFB",
+            "name": "Fechamento anterior",
+            "value": "{{results[0].regularMarketPreviousClose | shape #,##0}}"
+          }
+        ]
+      },
+      {
+        "type": "chart",
+        "style": "area",
+        "title": "Desde que o Peek abriu",
+        "height": "medium",
+        "format": "integer"
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "token",
+      "label": "Token da brapi",
+      "type": "secret",
+      "help": "Opcional."
+    }
+  ]
+}

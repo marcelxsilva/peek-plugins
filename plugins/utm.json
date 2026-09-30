@@ -1,0 +1,121 @@
+{
+  "schema": 8,
+  "id": "plugin.exemplo.utm",
+  "name": "UTM",
+  "interval": 300,
+  "readsOnItsOwn": false,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "link.badge.plus"
+  },
+  "source": {
+    "kind": "panel",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "",
+    "style": "arc"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "UTM",
+    "subtitle": "Monta o link da campanha e copia",
+    "blocks": [
+      {
+        "type": "properties",
+        "layout": "columns",
+        "properties": [
+          {
+            "id": "194FEEAE-70AA-4BB4-830E-51E7A13E11DE",
+            "name": "Link",
+            "value": "{{$global.utm_base}}"
+          },
+          {
+            "id": "8E19D1D1-739E-4B72-BFD6-3B73DFBD666F",
+            "name": "Campanha",
+            "value": "{{$settings.campanha}}"
+          }
+        ]
+      },
+      {
+        "type": "buttons",
+        "resultSpot": "below"
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Definir o link",
+      "symbolName": "link",
+      "place": "panel",
+      "size": "large",
+      "titleSpot": "inside",
+      "hue": "theme",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "remember",
+        "variable": "utm_base",
+        "text": "{{$input}}"
+      },
+      "asksForValue": true,
+      "question": "Qual endereço você vai divulgar?",
+      "successMessage": "Link guardado."
+    },
+    {
+      "name": "E-mail",
+      "symbolName": "envelope.fill",
+      "place": "panel",
+      "size": "small",
+      "titleSpot": "below",
+      "hue": "blue",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "copy",
+        "text": "{{$global.utm_base}}?utm_source=email&utm_medium=newsletter&utm_campaign={{$settings.campanha}}"
+      },
+      "successMessage": "Link de e-mail copiado."
+    },
+    {
+      "name": "Instagram",
+      "symbolName": "camera.fill",
+      "place": "panel",
+      "size": "small",
+      "titleSpot": "below",
+      "hue": "pink",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "copy",
+        "text": "{{$global.utm_base}}?utm_source=instagram&utm_medium=social&utm_campaign={{$settings.campanha}}"
+      },
+      "successMessage": "Link de Instagram copiado."
+    },
+    {
+      "name": "Anúncio",
+      "symbolName": "megaphone.fill",
+      "place": "panel",
+      "size": "small",
+      "titleSpot": "below",
+      "hue": "orange",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "copy",
+        "text": "{{$global.utm_base}}?utm_source=google&utm_medium=cpc&utm_campaign={{$settings.campanha}}"
+      },
+      "successMessage": "Link de anúncio copiado."
+    }
+  ],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "campanha",
+      "label": "Campanha",
+      "type": "text",
+      "default": "lancamento",
+      "help": "Vira o utm_campaign de todos os botões."
+    }
+  ]
+}

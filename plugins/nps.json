@@ -1,0 +1,84 @@
+{
+  "schema": 11,
+  "id": "plugin.exemplo.nps",
+  "name": "NPS",
+  "interval": 3600,
+  "readsOnItsOwn": false,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "hand.thumbsup.fill"
+  },
+  "source": {
+    "kind": "panel",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "answer": "{\n  \"nps\": 62,\n  \"respostas\": 418,\n  \"grupos\": [\n    {\n      \"grupo\": \"Promotores\",\n      \"quantos\": 268\n    },\n    {\n      \"grupo\": \"Neutros\",\n      \"quantos\": 98\n    },\n    {\n      \"grupo\": \"Detratores\",\n      \"quantos\": 52\n    }\n  ]\n}",
+  "slot": {
+    "label": "{{nps}}",
+    "value": "{{nps}}",
+    "total": "100",
+    "style": "arc"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "NPS",
+    "subtitle": "{{respostas}} respostas no período",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{nps}}",
+        "total": "100",
+        "caption": "Promotores menos detratores",
+        "goodDirection": "up",
+        "format": "integer"
+      },
+      {
+        "type": "breakdown",
+        "title": "Respostas",
+        "breakdownStyle": "bar",
+        "path": "grupos",
+        "groupField": "{{grupo}}",
+        "groupKind": "text",
+        "measure": "sum",
+        "sumField": "{{quantos}}",
+        "shows": "both",
+        "groups": [
+          {
+            "id": "7CF0D2C1-7714-41EF-A92F-DD66DBE2CC1F",
+            "name": "Promotores",
+            "color": "green",
+            "match": "Promotores"
+          },
+          {
+            "id": "C39DD440-BFDC-4612-B812-9C3A40E7517B",
+            "name": "Neutros",
+            "color": "gray",
+            "match": "Neutros"
+          },
+          {
+            "id": "053EAE12-78F2-4681-AB7D-B11156687D20",
+            "name": "Detratores",
+            "color": "red",
+            "match": "Detratores"
+          }
+        ],
+        "others": {
+          "shows": false,
+          "name": "Outros",
+          "color": "gray"
+        }
+      },
+      {
+        "type": "text",
+        "value": "Acima de 50 costuma ser considerado muito bom, acima de 70 excelente. O que importa é a direção, não o número de um mês.",
+        "maxHeight": "small"
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

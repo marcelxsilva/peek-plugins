@@ -1,0 +1,147 @@
+{
+  "schema": 11,
+  "id": "plugin.exemplo.terremotos",
+  "name": "Terremotos",
+  "interval": 1800,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "waveform.path"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/{{$settings.minimo}}_day.geojson",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{metadata.count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Terremotos",
+    "subtitle": "{{metadata.title}}",
+    "emptyMessage": "Nada acima desse limite nas últimas 24 horas.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{metadata.count}}",
+        "caption": "Nas últimas 24 horas · maior de {{features[0].properties.mag}}",
+        "format": "integer",
+        "goodDirection": "down"
+      },
+      {
+        "type": "breakdown",
+        "title": "Por magnitude",
+        "breakdownStyle": "list",
+        "path": "features",
+        "groupField": "{{properties.mag}}",
+        "groupKind": "number",
+        "measure": "count",
+        "shows": "amount",
+        "groups": [
+          {
+            "id": "1EF159A9-DF63-48F3-8987-4E7CBA570F0D",
+            "name": "Abaixo de 3",
+            "color": "green",
+            "from": "-10"
+          },
+          {
+            "id": "AFDA95C0-684E-4800-8B4D-338F1C9EF1A4",
+            "name": "3 a 5",
+            "color": "yellow",
+            "from": "3"
+          },
+          {
+            "id": "80F14FBE-8011-438F-A08F-7EF9CE52CA2C",
+            "name": "5 a 6",
+            "color": "orange",
+            "from": "5"
+          },
+          {
+            "id": "46744979-36DA-4054-A5A9-401FF82B20DD",
+            "name": "6 ou mais",
+            "color": "red",
+            "from": "6"
+          }
+        ],
+        "others": {
+          "shows": false,
+          "name": "Outros",
+          "color": "gray"
+        }
+      },
+      {
+        "type": "table",
+        "path": "features",
+        "sortable": true,
+        "limit": 10,
+        "rowEvent": "open",
+        "rowURL": "{{properties.url}}",
+        "columns": [
+          {
+            "title": "Mag",
+            "kind": "text",
+            "value": "{{properties.mag}}",
+            "align": "leading",
+            "format": "number"
+          },
+          {
+            "title": "Lugar",
+            "kind": "text",
+            "value": "{{properties.place}}",
+            "align": "leading"
+          },
+          {
+            "title": "Quando",
+            "kind": "text",
+            "value": "{{properties.time | shape dd/MM HH:mm}}",
+            "align": "trailing"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "countAbove",
+    "comparison": "above",
+    "countPath": "metadata.count",
+    "threshold": "{{$settings.avisar}}"
+  },
+  "settings": [
+    {
+      "key": "minimo",
+      "label": "A partir de",
+      "type": "choice",
+      "default": "2.5",
+      "options": [
+        {
+          "value": "1.0",
+          "label": "Magnitude 1"
+        },
+        {
+          "value": "2.5",
+          "label": "Magnitude 2,5"
+        },
+        {
+          "value": "4.5",
+          "label": "Magnitude 4,5"
+        },
+        {
+          "value": "significant",
+          "label": "Só os significativos"
+        }
+      ]
+    },
+    {
+      "key": "avisar",
+      "label": "Avisar acima de",
+      "type": "number",
+      "default": 40,
+      "help": "Número de eventos no dia."
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "schema": 11,
+  "id": "plugin.exemplo.medo",
+  "name": "Medo e ganância",
+  "interval": 3600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "gauge.with.needle.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://api.alternative.me/fng/",
+    "query": [
+      {
+        "name": "limit",
+        "value": "14"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{data[0].value}}",
+    "value": "{{data[0].value}}",
+    "total": "100",
+    "style": "arc"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Medo e ganância",
+    "subtitle": "O humor do mercado cripto hoje",
+    "emptyMessage": "O índice não respondeu.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{data[0].value}}",
+        "total": "100",
+        "caption": "{{data[0].value_classification}} · 0 é pânico, 100 é euforia",
+        "goodDirection": "up",
+        "format": "integer"
+      },
+      {
+        "type": "chart",
+        "style": "area",
+        "title": "Últimas duas semanas",
+        "path": "data",
+        "x": "{{timestamp}}",
+        "y": "{{value}}",
+        "height": "medium",
+        "format": "integer"
+      },
+      {
+        "type": "breakdown",
+        "title": "Dias por humor",
+        "breakdownStyle": "bar",
+        "path": "data",
+        "groupField": "{{value_classification}}",
+        "groupKind": "text",
+        "measure": "count",
+        "shows": "amount",
+        "groups": [
+          {
+            "id": "70DDDD49-18A2-45E4-95CC-63B3BC71BAAC",
+            "name": "Medo extremo",
+            "color": "red",
+            "match": "Extreme Fear"
+          },
+          {
+            "id": "98F5C735-B0EB-4F0E-ABD1-9A0011046C62",
+            "name": "Medo",
+            "color": "orange",
+            "match": "Fear"
+          },
+          {
+            "id": "AD0118AF-1FC7-4822-88A5-88620A9B80F1",
+            "name": "Neutro",
+            "color": "gray",
+            "match": "Neutral"
+          },
+          {
+            "id": "6A5A6FB6-A75C-401A-8499-984979A77613",
+            "name": "Ganância",
+            "color": "teal",
+            "match": "Greed"
+          },
+          {
+            "id": "95928EA3-257F-4FC0-A54B-6B3BA34AF7B8",
+            "name": "Ganância extrema",
+            "color": "green",
+            "match": "Extreme Greed"
+          }
+        ],
+        "others": {
+          "shows": false,
+          "name": "Outros",
+          "color": "gray"
+        }
+      },
+      {
+        "type": "text",
+        "value": "Abaixo de 25 o mercado está com medo extremo, acima de 75 com ganância extrema. O índice é uma leitura de humor, não um conselho.",
+        "maxHeight": "small"
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "schema": 3,
+  "id": "plugin.exemplo.asana",
+  "name": "Asana",
+  "interval": 600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "circle.hexagongrid.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://app.asana.com/api/1.0/tasks",
+    "query": [
+      {
+        "name": "assignee",
+        "value": "me"
+      },
+      {
+        "name": "workspace",
+        "value": "{{$settings.workspace}}"
+      },
+      {
+        "name": "completed_since",
+        "value": "now"
+      },
+      {
+        "name": "opt_fields",
+        "value": "name,due_on,permalink_url,projects.name"
+      }
+    ],
+    "headers": [
+      {
+        "name": "Authorization",
+        "value": "Bearer {{secret}}"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{data | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Asana",
+    "subtitle": "Tarefas no seu nome",
+    "emptyMessage": "Nenhuma tarefa em aberto.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{data | count}}",
+        "caption": "Em aberto",
+        "goodDirection": "down",
+        "format": "integer"
+      },
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Tarefas",
+            "path": "data",
+            "rowTitle": "{{name}}",
+            "rowSubtitle": "{{projects[0].name}}",
+            "rowMeta": "{{due_on | date}}",
+            "rowWrapsTitle": true,
+            "rowURL": "{{permalink_url}}"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "newRows"
+  },
+  "settings": [
+    {
+      "key": "workspace",
+      "label": "ID do workspace",
+      "type": "text",
+      "help": "Aparece na URL do Asana. O token vai no campo de segredo, em Dado.",
+      "required": true
+    }
+  ]
+}

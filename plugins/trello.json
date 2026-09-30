@@ -1,0 +1,102 @@
+{
+  "schema": 5,
+  "id": "plugin.exemplo.trello",
+  "name": "Trello",
+  "interval": 600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "rectangle.stack.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://api.trello.com/1/members/me/cards",
+    "query": [
+      {
+        "name": "key",
+        "value": "{{$settings.chave}}"
+      },
+      {
+        "name": "token",
+        "value": "{{secret}}"
+      },
+      {
+        "name": "fields",
+        "value": "name,shortUrl,due,dueComplete,dateLastActivity,badges"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{$ | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Meus cartões",
+    "subtitle": "Trello",
+    "emptyMessage": "Nenhum cartão atribuído a você.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{$ | count}}",
+        "caption": "Cartões com o seu nome",
+        "format": "integer",
+        "goodDirection": "down"
+      },
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Cartões",
+            "path": "$",
+            "rowTitle": "{{name}}",
+            "rowSubtitle": "{{due | date ?? dateLastActivity | ago}}",
+            "rowWrapsTitle": true,
+            "rowURL": "{{shortUrl}}",
+            "badges": [
+              {
+                "value": "{{badges.comments}}",
+                "symbolName": "bubble.left",
+                "tint": "neutral"
+              },
+              {
+                "value": "{{badges.checkItemsChecked}}/{{badges.checkItems}}",
+                "symbolName": "checklist",
+                "tint": "neutral"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Abrir o Trello",
+      "symbolName": "arrow.up.forward.square",
+      "place": "card",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "openLink",
+        "text": "https://trello.com/"
+      },
+      "successReport": "nothing"
+    }
+  ],
+  "attention": {
+    "mode": "newRows"
+  },
+  "settings": [
+    {
+      "key": "chave",
+      "label": "API key",
+      "type": "text",
+      "help": "Pegue em trello.com/power-ups/admin. O token vai no campo de segredo, abaixo.",
+      "required": true
+    }
+  ]
+}

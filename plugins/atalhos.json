@@ -1,0 +1,126 @@
+{
+  "schema": 3,
+  "id": "plugin.exemplo.atalhos",
+  "name": "Atalhos",
+  "interval": 3600,
+  "readsOnItsOwn": false,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "square.grid.2x2.fill"
+  },
+  "source": {
+    "kind": "panel"
+  },
+  "slot": {
+    "label": "",
+    "style": "arc"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Atalhos",
+    "subtitle": "O que você faz todo dia, num clique",
+    "blocks": [
+      {
+        "type": "buttons",
+        "resultSpot": "below"
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Terminal",
+      "symbolName": "terminal.fill",
+      "place": "panel",
+      "size": "small",
+      "titleSpot": "below",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "openApp",
+        "text": "com.apple.Terminal"
+      },
+      "successReport": "nothing"
+    },
+    {
+      "name": "Reunião",
+      "symbolName": "video.fill",
+      "place": "panel",
+      "size": "small",
+      "titleSpot": "below",
+      "hue": "green",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "openLink",
+        "text": "{{$settings.reuniao}}"
+      },
+      "successReport": "nothing"
+    },
+    {
+      "name": "E-mail",
+      "symbolName": "envelope.fill",
+      "place": "panel",
+      "size": "small",
+      "titleSpot": "below",
+      "hue": "teal",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "copy",
+        "text": "{{$settings.email}}"
+      },
+      "successMessage": "E-mail copiado."
+    },
+    {
+      "name": "Pausa",
+      "symbolName": "cup.and.saucer.fill",
+      "place": "panel",
+      "size": "small",
+      "titleSpot": "below",
+      "hue": "orange",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "notify",
+        "title": "Hora da pausa",
+        "text": "Levanta, bebe água e volta em cinco minutos."
+      },
+      "successReport": "nothing"
+    },
+    {
+      "name": "Rodar o atalho",
+      "symbolName": "wand.and.stars",
+      "place": "panel",
+      "size": "large",
+      "hue": "indigo",
+      "label": "{{$settings.atalho}}",
+      "hint": "Roda este atalho do app Atalhos",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "runShortcut",
+        "text": "{{$settings.atalho}}"
+      },
+      "successMessage": "Atalho rodado."
+    }
+  ],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "reuniao",
+      "label": "Link da reunião",
+      "type": "text",
+      "placeholder": "https://meet.google.com/…"
+    },
+    {
+      "key": "email",
+      "label": "E-mail para copiar",
+      "type": "text",
+      "placeholder": "voce@empresa.com"
+    },
+    {
+      "key": "atalho",
+      "label": "Atalho",
+      "type": "text",
+      "default": "Modo Foco",
+      "help": "O nome exato de um atalho do app Atalhos."
+    }
+  ]
+}

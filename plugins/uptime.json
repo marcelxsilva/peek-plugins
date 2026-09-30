@@ -1,0 +1,121 @@
+{
+  "schema": 8,
+  "id": "plugin.exemplo.uptime",
+  "name": "No ar",
+  "interval": 120,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "waveform.path.ecg"
+  },
+  "source": {
+    "kind": "command",
+    "steps": [
+      {
+        "program": "/usr/bin/curl",
+        "arguments": [
+          "-sS",
+          "-o",
+          "/dev/null",
+          "-m",
+          "10",
+          "-w",
+          "codigo: %{http_code}\ntempo: %{time_total}\nconexao: %{time_connect}\ntamanho: %{size_download}\n",
+          "{{$settings.endereco}}"
+        ]
+      }
+    ],
+    "format": {
+      "kind": "keyValue"
+    }
+  },
+  "slot": {
+    "label": "{{codigo}}",
+    "value": "{{tempo}}",
+    "total": "3",
+    "style": "arc",
+    "alertsOnThreshold": true
+  },
+  "history": {
+    "path": "tempo",
+    "keep": 96
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "No ar",
+    "subtitle": "{{$settings.endereco}}",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{tempo}}",
+        "caption": "Segundos para responder",
+        "format": "number",
+        "goodDirection": "down",
+        "width": "half"
+      },
+      {
+        "type": "properties",
+        "width": "half",
+        "layout": "columns",
+        "properties": [
+          {
+            "id": "B93104AE-2060-4D83-AC9F-52EB2A9881CE",
+            "name": "HTTP",
+            "value": "{{codigo}}"
+          },
+          {
+            "id": "1637C76B-8708-4CAA-965C-4247A6F40ED2",
+            "name": "Conexão",
+            "value": "{{conexao}} s"
+          },
+          {
+            "id": "50A714E6-2ED7-4D89-B5BE-D7F57165C25E",
+            "name": "Tamanho",
+            "value": "{{tamanho | bytes}}"
+          }
+        ]
+      },
+      {
+        "type": "chart",
+        "title": "Tempo de resposta",
+        "style": "line",
+        "height": "medium",
+        "format": "number"
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Abrir",
+      "symbolName": "arrow.up.forward.square",
+      "place": "card",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "openLink",
+        "text": "{{$settings.endereco}}"
+      },
+      "successReport": "nothing"
+    }
+  ],
+  "attention": {
+    "mode": "countAbove",
+    "comparison": "above",
+    "countPath": "tempo",
+    "threshold": "{{$settings.lento}}"
+  },
+  "settings": [
+    {
+      "key": "endereco",
+      "label": "Endereço",
+      "type": "text",
+      "default": "https://exemplo.dev",
+      "required": true
+    },
+    {
+      "key": "lento",
+      "label": "Avisar acima de",
+      "type": "number",
+      "default": 2,
+      "help": "Em segundos. O ícone pisca quando a resposta passa disso."
+    }
+  ]
+}

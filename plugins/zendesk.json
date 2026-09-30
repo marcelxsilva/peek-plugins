@@ -1,0 +1,136 @@
+{
+  "schema": 11,
+  "id": "plugin.exemplo.zendesk",
+  "name": "Zendesk",
+  "interval": 600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "headphones"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://{{$settings.dominio}}/api/v2/search.json",
+    "query": [
+      {
+        "name": "query",
+        "value": "type:ticket status<solved"
+      },
+      {
+        "name": "sort_by",
+        "value": "created_at"
+      },
+      {
+        "name": "sort_order",
+        "value": "desc"
+      }
+    ],
+    "headers": [
+      {
+        "name": "Authorization",
+        "value": "Basic {{secret}}"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Zendesk",
+    "subtitle": "Chamados em aberto",
+    "emptyMessage": "Nenhum chamado em aberto.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{count}}",
+        "caption": "Em aberto agora",
+        "goodDirection": "down",
+        "format": "integer",
+        "width": "half"
+      },
+      {
+        "type": "breakdown",
+        "title": "Por status",
+        "width": "half",
+        "breakdownStyle": "list",
+        "path": "results",
+        "groupField": "{{status}}",
+        "groupKind": "text",
+        "measure": "count",
+        "shows": "amount",
+        "groups": [
+          {
+            "id": "9EA69900-99AA-4BF7-9510-2ECCCFC42C78",
+            "name": "Novo",
+            "color": "blue",
+            "match": "new"
+          },
+          {
+            "id": "30CD0450-3C56-461A-9636-77E1A18130AD",
+            "name": "Aberto",
+            "color": "orange",
+            "match": "open"
+          },
+          {
+            "id": "0C11EC16-5494-452E-9544-7A1F9784B13E",
+            "name": "Pendente",
+            "color": "yellow",
+            "match": "pending"
+          },
+          {
+            "id": "0F1B9651-DCB2-459C-AD99-146CCB568980",
+            "name": "Em espera",
+            "color": "gray",
+            "match": "hold"
+          }
+        ],
+        "others": {
+          "shows": false,
+          "name": "Outros",
+          "color": "gray"
+        }
+      },
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Chamados",
+            "path": "results",
+            "rowTitle": "{{subject}}",
+            "rowSubtitle": "{{created_at | ago}}",
+            "rowBadge": "#{{id}}",
+            "rowStatus": "{{priority ?? status}}",
+            "rowWrapsTitle": true,
+            "statusColors": {
+              "urgent": "negative",
+              "high": "attention",
+              "normal": "neutral",
+              "low": "neutral"
+            },
+            "rowURL": "https://{{$settings.dominio}}/agent/tickets/{{id}}"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "newRows"
+  },
+  "settings": [
+    {
+      "key": "dominio",
+      "label": "Domínio do Zendesk",
+      "type": "text",
+      "help": "No campo de segredo, em Dado, cole o Base64 de «seu-email/token:token-da-api».",
+      "required": true,
+      "placeholder": "minhaempresa.zendesk.com"
+    }
+  ]
+}

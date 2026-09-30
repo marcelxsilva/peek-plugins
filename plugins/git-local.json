@@ -1,0 +1,84 @@
+{
+  "schema": 5,
+  "id": "plugin.exemplo.git-local",
+  "name": "Git",
+  "interval": 120,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "arrow.triangle.branch"
+  },
+  "source": {
+    "kind": "command",
+    "steps": [
+      {
+        "program": "/usr/bin/git",
+        "arguments": [
+          "-C",
+          "{{$settings.pasta}}",
+          "log",
+          "-15",
+          "--date=iso-strict",
+          "--pretty=format:%h%x09%s%x09%an%x09%ad"
+        ]
+      }
+    ],
+    "format": {
+      "kind": "columns",
+      "separator": "tab"
+    }
+  },
+  "slot": {
+    "label": "{{rows | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Git",
+    "subtitle": "{{$settings.pasta}}",
+    "emptyMessage": "Nenhum commit, ou a pasta não é um repositório.",
+    "blocks": [
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Commits",
+            "path": "rows[*]",
+            "rowTitle": "{{c2}}",
+            "rowSubtitle": "{{c3}} · {{c4 | ago}}",
+            "rowBadge": "{{c1}}",
+            "rowWrapsTitle": true,
+            "rowEvent": "none",
+            "rowDetail": "{{c1}} · {{c3}}"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Copiar o último hash",
+      "symbolName": "doc.on.doc",
+      "place": "card",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "copy",
+        "text": "{{rows[0].c1}}"
+      },
+      "successMessage": "{{rows[0].c1}} copiado."
+    }
+  ],
+  "attention": {
+    "mode": "newRows"
+  },
+  "settings": [
+    {
+      "key": "pasta",
+      "label": "Pasta do repositório",
+      "type": "text",
+      "placeholder": "/Users/voce/projetos/meu-repo",
+      "help": "Caminho absoluto. Sem til nem variáveis: aqui não há shell.",
+      "required": true
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "schema": 6,
+  "id": "plugin.exemplo.blog",
+  "name": "Blog",
+  "interval": 3600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "doc.richtext.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "{{$settings.endereco}}",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{items | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "{{title}}",
+    "subtitle": "{{description}}",
+    "emptyMessage": "Nenhum item, ou o endereço ainda não foi preenchido.",
+    "blocks": [
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Posts",
+            "path": "items",
+            "rowTitle": "{{title}}",
+            "rowSubtitle": "{{summary ?? content_text}}",
+            "rowMeta": "{{date_published | ago}}",
+            "rowImage": "{{image}}",
+            "rowWrapsTitle": true,
+            "rowURL": "{{url}}"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Ler depois",
+      "symbolName": "bookmark",
+      "place": "row",
+      "listIndex": 0,
+      "run": {
+        "kind": "onTheMac",
+        "errand": "readLater",
+        "text": "{{url}}"
+      },
+      "successMessage": "Guardado."
+    }
+  ],
+  "attention": {
+    "mode": "newRows"
+  },
+  "settings": [
+    {
+      "key": "endereco",
+      "label": "Endereço do JSON Feed",
+      "type": "text",
+      "help": "Um JSON Feed (jsonfeed.org). Para RSS, use o módulo Notícias, que já entende feed.",
+      "required": true,
+      "placeholder": "https://exemplo.dev/feed.json"
+    }
+  ]
+}

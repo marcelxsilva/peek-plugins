@@ -1,0 +1,63 @@
+{
+  "schema": 2,
+  "id": "plugin.exemplo.aurora",
+  "name": "Tempestade solar",
+  "interval": 1800,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "sparkles.tv.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://services.swpc.noaa.gov/json/planetary_k_index_1m.json",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{[-1].kp_index}}",
+    "value": "{{[-1].kp_index}}",
+    "total": "9",
+    "style": "arc",
+    "alertsOnThreshold": true
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Tempestade solar",
+    "subtitle": "Índice Kp planetário, da NOAA",
+    "emptyMessage": "A NOAA não respondeu.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{[-1].kp_index}}",
+        "total": "9",
+        "caption": "Kp agora · medido {{[-1].time_tag | ago}}",
+        "goodDirection": "down",
+        "format": "integer"
+      },
+      {
+        "type": "chart",
+        "style": "area",
+        "title": "Últimas horas",
+        "path": "$",
+        "x": "{{time_tag}}",
+        "y": "{{estimated_kp}}",
+        "height": "medium",
+        "format": "number"
+      },
+      {
+        "type": "text",
+        "value": "Kp até 4 é campo calmo. De 5 para cima é tempestade geomagnética, e é quando a aurora desce de latitude.",
+        "maxHeight": "small"
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "countAbove",
+    "comparison": "above",
+    "countPath": "[-1].kp_index",
+    "threshold": 5
+  }
+}

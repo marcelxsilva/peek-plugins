@@ -1,0 +1,98 @@
+{
+  "schema": 8,
+  "id": "plugin.exemplo.rede-local",
+  "name": "Rede local",
+  "interval": 300,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "wifi"
+  },
+  "source": {
+    "kind": "command",
+    "steps": [
+      {
+        "program": "/usr/sbin/ipconfig",
+        "arguments": [
+          "getsummary",
+          "{{$settings.interface}}"
+        ]
+      }
+    ],
+    "format": {
+      "kind": "regex",
+      "pattern": "yiaddr = (?<ip>[\\d.]+)[\\s\\S]*?Router = (?<roteador>[\\d.]+)"
+    }
+  },
+  "slot": {
+    "label": "{{ip}}",
+    "style": "arc"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Rede local",
+    "subtitle": "{{$settings.interface}}",
+    "emptyMessage": "A interface não respondeu. Em Mac com cabo costuma ser en1.",
+    "blocks": [
+      {
+        "type": "properties",
+        "layout": "columns",
+        "properties": [
+          {
+            "id": "B849E4CA-7FF4-44E0-9675-893FA52C9B45",
+            "name": "IP nesta rede",
+            "value": "{{ip}}"
+          },
+          {
+            "id": "5F57997F-25A4-46F8-9365-1CA9725A6688",
+            "name": "Roteador",
+            "value": "{{roteador}}"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "O endereço público fica no plugin Meu IP.",
+        "maxHeight": "small"
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Copiar o IP",
+      "symbolName": "doc.on.doc",
+      "place": "property",
+      "property": "B849E4CA-7FF4-44E0-9675-893FA52C9B45",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "copy",
+        "text": "{{ip}}"
+      },
+      "successMessage": "{{ip}} copiado."
+    }
+  ],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "interface",
+      "label": "Interface",
+      "type": "choice",
+      "default": "en0",
+      "options": [
+        {
+          "value": "en0",
+          "label": "Wi-Fi (en0)"
+        },
+        {
+          "value": "en1",
+          "label": "Segunda (en1)"
+        },
+        {
+          "value": "en2",
+          "label": "Terceira (en2)"
+        }
+      ]
+    }
+  ]
+}

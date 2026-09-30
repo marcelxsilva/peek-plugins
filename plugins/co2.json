@@ -1,0 +1,47 @@
+{
+  "schema": 2,
+  "id": "plugin.exemplo.co2",
+  "name": "CO₂",
+  "interval": 86400,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "aqi.high"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://global-warming.org/api/co2-api",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{co2[-1].trend}}",
+    "style": "arc"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "CO₂",
+    "subtitle": "Concentração na atmosfera, em ppm",
+    "emptyMessage": "O serviço não respondeu.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{co2[-1].trend}}",
+        "previous": "{{co2[-2].trend}}",
+        "caption": "ppm na última medição · ciclo em {{co2[-1].cycle}}",
+        "goodDirection": "down",
+        "format": "number"
+      },
+      {
+        "type": "text",
+        "value": "O valor de tendência tira a variação das estações do ano. Antes da industrialização girava em torno de 280 ppm.",
+        "maxHeight": "small"
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

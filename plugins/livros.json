@@ -1,0 +1,89 @@
+{
+  "schema": 5,
+  "id": "plugin.exemplo.livros",
+  "name": "Livros",
+  "interval": 3600,
+  "readsOnItsOwn": false,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "books.vertical.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://openlibrary.org/search.json",
+    "query": [
+      {
+        "name": "q",
+        "value": "{{$global.peek_livro ?? $settings.padrao}}"
+      },
+      {
+        "name": "limit",
+        "value": "12"
+      },
+      {
+        "name": "fields",
+        "value": "title,author_name,first_publish_year,cover_i,key"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{docs | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Livros",
+    "subtitle": "{{numFound}} resultados na Open Library",
+    "emptyMessage": "Nada encontrado. Toque em Buscar.",
+    "blocks": [
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Resultados",
+            "path": "docs",
+            "rowTitle": "{{title}}",
+            "rowSubtitle": "{{author_name[0]}}",
+            "rowMeta": "{{first_publish_year}}",
+            "rowImage": "https://covers.openlibrary.org/b/id/{{cover_i}}-M.jpg",
+            "rowWrapsTitle": true,
+            "rowURL": "https://openlibrary.org{{key}}"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Buscar",
+      "symbolName": "magnifyingglass",
+      "place": "card",
+      "isProminent": true,
+      "asksForValue": true,
+      "question": "Buscar um livro",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "remember",
+        "variable": "peek_livro",
+        "text": "{{$input}}"
+      },
+      "successMessage": "Buscando {{$input}}."
+    }
+  ],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "padrao",
+      "label": "Busca inicial",
+      "type": "text",
+      "default": "clean architecture"
+    }
+  ]
+}

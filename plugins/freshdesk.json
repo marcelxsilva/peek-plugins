@@ -1,0 +1,138 @@
+{
+  "schema": 11,
+  "id": "plugin.exemplo.freshdesk",
+  "name": "Freshdesk",
+  "interval": 600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "bubble.left.and.exclamationmark.bubble.right.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://{{$settings.dominio}}/api/v2/tickets",
+    "query": [
+      {
+        "name": "per_page",
+        "value": "20"
+      },
+      {
+        "name": "order_by",
+        "value": "created_at"
+      }
+    ],
+    "headers": [
+      {
+        "name": "Authorization",
+        "value": "Basic {{secret}}"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{$ | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Freshdesk",
+    "subtitle": "Chamados recentes",
+    "emptyMessage": "Nenhum chamado, ou a chave não tem acesso.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{$ | count}}",
+        "caption": "Chamados trazidos",
+        "goodDirection": "down",
+        "format": "integer",
+        "width": "half"
+      },
+      {
+        "type": "breakdown",
+        "title": "Por prioridade",
+        "breakdownStyle": "list",
+        "path": "$",
+        "groupField": "{{priority}}",
+        "groupKind": "number",
+        "measure": "count",
+        "shows": "amount",
+        "groups": [
+          {
+            "id": "AE841DBE-363C-4A22-97D6-EEB29DBBA0FE",
+            "name": "Baixa",
+            "color": "gray",
+            "from": "1"
+          },
+          {
+            "id": "4E55E7AC-007A-4B92-81A3-EEBA66D7A456",
+            "name": "Média",
+            "color": "blue",
+            "from": "2"
+          },
+          {
+            "id": "4D63333F-53D0-4332-8697-65E70B7F6FF4",
+            "name": "Alta",
+            "color": "orange",
+            "from": "3"
+          },
+          {
+            "id": "6DBBA152-306E-4612-91EF-05BA46CB3754",
+            "name": "Urgente",
+            "color": "red",
+            "from": "4"
+          }
+        ],
+        "others": {
+          "shows": false,
+          "name": "Outros",
+          "color": "gray"
+        },
+        "width": "half"
+      },
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Chamados",
+            "path": "$",
+            "rowTitle": "{{subject}}",
+            "rowSubtitle": "{{created_at | ago}}",
+            "rowBadge": "#{{id}}",
+            "rowStatus": "{{priority}}",
+            "rowWrapsTitle": true,
+            "statusWords": {
+              "1": "baixa",
+              "2": "média",
+              "3": "alta",
+              "4": "urgente"
+            },
+            "statusColors": {
+              "4": "negative",
+              "3": "attention",
+              "2": "neutral",
+              "1": "neutral"
+            },
+            "rowURL": "https://{{$settings.dominio}}/a/tickets/{{id}}"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "newRows"
+  },
+  "settings": [
+    {
+      "key": "dominio",
+      "label": "Domínio do Freshdesk",
+      "type": "text",
+      "help": "No campo de segredo, em Dado, cole o Base64 de «sua-chave:X».",
+      "required": true,
+      "placeholder": "minhaempresa.freshdesk.com"
+    }
+  ]
+}

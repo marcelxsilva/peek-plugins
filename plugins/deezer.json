@@ -1,0 +1,62 @@
+{
+  "schema": 5,
+  "id": "plugin.exemplo.deezer",
+  "name": "Mais tocadas",
+  "interval": 21600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "music.note.list"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://api.deezer.com/chart/0/tracks",
+    "query": [
+      {
+        "name": "limit",
+        "value": "12"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{data | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "picture": {
+      "kind": "address",
+      "value": "{{data[0].album.cover_medium}}",
+      "shape": "rounded",
+      "scale": 1.6
+    },
+    "title": "Mais tocadas",
+    "subtitle": "O ranking do Deezer agora",
+    "emptyMessage": "O Deezer não respondeu.",
+    "blocks": [
+      {
+        "type": "list",
+        "limit": 8,
+        "tabs": [
+          {
+            "title": "Faixas",
+            "path": "data",
+            "rowTitle": "{{title}}",
+            "rowSubtitle": "{{artist.name}}",
+            "rowMeta": "{{duration | clock}}",
+            "rowImage": "{{album.cover_small}}",
+            "rowWrapsTitle": true,
+            "rowURL": "{{link}}"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

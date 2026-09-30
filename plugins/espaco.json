@@ -1,0 +1,71 @@
+{
+  "schema": 5,
+  "id": "plugin.exemplo.espaco",
+  "name": "Espaço",
+  "interval": 1800,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "moon.stars.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://api.spaceflightnewsapi.net/v4/articles/?limit=10",
+    "format": {
+      "kind": "json"
+    },
+    "pagination": {
+      "kind": "nextURL",
+      "nextURLPath": "next",
+      "listPath": "results",
+      "buttonText": "Ver mais"
+    }
+  },
+  "slot": {
+    "label": "{{results | count}}",
+    "style": "arc"
+  },
+  "card": {
+    "isEnabled": true,
+    "picture": {
+      "kind": "address",
+      "value": "{{results[0].image_url}}",
+      "shape": "rounded",
+      "scale": 1.6
+    },
+    "title": "Espaço",
+    "subtitle": "Notícias de voo espacial",
+    "headline": "{{results | count}}",
+    "emptyMessage": "Nenhuma notícia agora.",
+    "blocks": [
+      {
+        "type": "text",
+        "title": "Destaque",
+        "value": "**{{results[0].title}}**\n\n{{results[0].summary}}",
+        "maxHeight": "small"
+      },
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Artigos",
+            "path": "results",
+            "rowTitle": "{{title}}",
+            "rowWrapsTitle": true,
+            "rowSubtitle": "{{news_site ?? authors[0].name}}",
+            "rowMeta": "{{published_at | ago}}",
+            "rowURL": "{{url}}",
+            "rowImage": "{{image_url}}",
+            "rowImageShape": "rounded"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "newRows",
+    "listIndex": 0
+  }
+}

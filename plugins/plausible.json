@@ -1,0 +1,106 @@
+{
+  "schema": 10,
+  "id": "plugin.exemplo.plausible",
+  "name": "Visitas",
+  "interval": 900,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "chart.xyaxis.line"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://plausible.io/api/v1/stats/timeseries",
+    "query": [
+      {
+        "name": "site_id",
+        "value": "{{$settings.site}}"
+      },
+      {
+        "name": "period",
+        "value": "30d"
+      },
+      {
+        "name": "metrics",
+        "value": "visitors,pageviews"
+      }
+    ],
+    "headers": [
+      {
+        "name": "Authorization",
+        "value": "Bearer {{secret}}"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{results[-1].visitors}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "{{$settings.site}}",
+    "subtitle": "Últimos 30 dias",
+    "emptyMessage": "Nenhuma visita no período.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{results[-1].visitors}}",
+        "previous": "{{results[-2].visitors}}",
+        "caption": "Visitantes de ontem · {{results[-1].pageviews}} páginas vistas",
+        "format": "integer",
+        "goodDirection": "up"
+      },
+      {
+        "type": "chart",
+        "title": "Tendência",
+        "style": "area",
+        "path": "results",
+        "x": "{{date}}",
+        "y": "{{visitors}}",
+        "height": "medium",
+        "format": "integer"
+      },
+      {
+        "type": "heatmap",
+        "title": "Visitantes por dia",
+        "heatStyle": "calendar",
+        "path": "results",
+        "date": "{{date}}",
+        "value": "{{visitors}}",
+        "heatColor": "indigo",
+        "legend": true,
+        "scale": "automatic",
+        "heatUnit": "visitantes"
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Abrir o painel",
+      "symbolName": "arrow.up.forward.square",
+      "place": "card",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "openLink",
+        "text": "https://plausible.io/{{$settings.site}}"
+      },
+      "successReport": "nothing"
+    }
+  ],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "site",
+      "label": "Domínio do site",
+      "type": "text",
+      "placeholder": "exemplo.dev",
+      "help": "O mesmo domínio cadastrado no Plausible. A chave da API vai no campo de segredo, em Dado.",
+      "required": true
+    }
+  ]
+}

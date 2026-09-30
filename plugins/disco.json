@@ -1,0 +1,58 @@
+{
+  "schema": 2,
+  "id": "plugin.exemplo.disco",
+  "name": "Disco",
+  "interval": 600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "internaldrive.fill"
+  },
+  "source": {
+    "kind": "command",
+    "steps": [
+      {
+        "program": "/bin/df",
+        "arguments": [
+          "-k",
+          "/System/Volumes/Data"
+        ]
+      }
+    ],
+    "format": {
+      "kind": "columns",
+      "separator": "whitespace",
+      "skip": 1
+    }
+  },
+  "slot": {
+    "label": "{{rows[0].c5}}",
+    "value": "{{rows[0].c3}}",
+    "total": "{{rows[0].c2}}",
+    "style": "arc",
+    "alertsOnThreshold": true
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Disco",
+    "subtitle": "{{rows[0].c9}}",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{rows[0].c4}}",
+        "total": "{{rows[0].c2}}",
+        "caption": "Livre de {{rows[0].c2}} blocos · {{rows[0].c5}} em uso",
+        "goodDirection": "up",
+        "format": "integer"
+      },
+      {
+        "type": "text",
+        "value": "Os números vêm do `df -k`, então estão em blocos de 1 KB. O ícone mostra a capacidade em uso.",
+        "maxHeight": "small"
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "schema": 5,
+  "id": "plugin.exemplo.citacao",
+  "name": "Citação do dia",
+  "interval": 21600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "quote.opening"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://zenquotes.io/api/today",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "",
+    "style": "arc"
+  },
+  "card": {
+    "isEnabled": true,
+    "picture": {
+      "kind": "address",
+      "value": "{{[0].i}}",
+      "shape": "round"
+    },
+    "title": "Citação do dia",
+    "subtitle": "{{[0].a}}",
+    "emptyMessage": "O serviço não respondeu.",
+    "blocks": [
+      {
+        "type": "text",
+        "value": "{{[0].q}}",
+        "maxHeight": "medium"
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Copiar",
+      "symbolName": "doc.on.doc",
+      "place": "card",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "copy",
+        "text": "«{{[0].q}}», {{[0].a}}"
+      },
+      "successMessage": "Citação copiada."
+    }
+  ],
+  "attention": {
+    "mode": "never"
+  }
+}

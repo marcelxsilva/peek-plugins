@@ -1,0 +1,79 @@
+{
+  "schema": 5,
+  "id": "plugin.exemplo.lembretes",
+  "name": "Lembretes",
+  "interval": 300,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "checklist"
+  },
+  "source": {
+    "kind": "script",
+    "language": "applescript",
+    "script": "set saida to \"titulo\" & tab & \"quando\"\ntell application \"Reminders\"\n\trepeat with r in (every reminder in list \"{{$settings.lista}}\" whose completed is false)\n\t\tset quando to \"\"\n\t\ttry\n\t\t\tset quando to short date string of (due date of r)\n\t\tend try\n\t\tset saida to saida & linefeed & (name of r) & tab & quando\n\tend repeat\nend tell\nreturn saida",
+    "format": {
+      "kind": "columns",
+      "separator": "tab",
+      "hasHeader": true
+    }
+  },
+  "slot": {
+    "label": "{{rows | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Lembretes",
+    "subtitle": "{{$settings.lista}}",
+    "emptyMessage": "Nada em aberto nesta lista.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{rows | count}}",
+        "caption": "Em aberto agora",
+        "format": "integer",
+        "goodDirection": "down"
+      },
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Em aberto",
+            "path": "rows[*]",
+            "rowTitle": "{{titulo}}",
+            "rowSubtitle": "{{quando}}",
+            "rowWrapsTitle": true,
+            "rowEvent": "none"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Abrir o Lembretes",
+      "symbolName": "arrow.up.forward.app",
+      "place": "card",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "openApp",
+        "text": "com.apple.reminders"
+      },
+      "successReport": "nothing"
+    }
+  ],
+  "attention": {
+    "mode": "newRows"
+  },
+  "settings": [
+    {
+      "key": "lista",
+      "label": "Lista",
+      "type": "text",
+      "default": "Lembretes",
+      "help": "O nome exato da lista no app Lembretes.",
+      "required": true
+    }
+  ]
+}

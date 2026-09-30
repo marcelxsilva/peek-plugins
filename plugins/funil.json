@@ -1,0 +1,101 @@
+{
+  "schema": 11,
+  "id": "plugin.exemplo.funil",
+  "name": "Funil",
+  "interval": 3600,
+  "readsOnItsOwn": false,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "line.3.horizontal.decrease"
+  },
+  "source": {
+    "kind": "panel",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "answer": "{\n  \"etapas\": [\n    {\n      \"nome\": \"Contato\",\n      \"quantos\": 24\n    },\n    {\n      \"nome\": \"Proposta\",\n      \"quantos\": 11\n    },\n    {\n      \"nome\": \"Negociação\",\n      \"quantos\": 6\n    },\n    {\n      \"nome\": \"Fechado\",\n      \"quantos\": 3\n    }\n  ],\n  \"negocios\": [\n    {\n      \"cliente\": \"Alfa Ltda\",\n      \"valor\": 48000,\n      \"etapa\": \"Negociação\",\n      \"dono\": \"Ana\"\n    },\n    {\n      \"cliente\": \"Beta S/A\",\n      \"valor\": 32000,\n      \"etapa\": \"Proposta\",\n      \"dono\": \"Bruno\"\n    },\n    {\n      \"cliente\": \"Gama ME\",\n      \"valor\": 18500,\n      \"etapa\": \"Proposta\",\n      \"dono\": \"Ana\"\n    },\n    {\n      \"cliente\": \"Delta Inc\",\n      \"valor\": 96000,\n      \"etapa\": \"Contato\",\n      \"dono\": \"Carla\"\n    },\n    {\n      \"cliente\": \"Épsilon\",\n      \"valor\": 12000,\n      \"etapa\": \"Fechado\",\n      \"dono\": \"Bruno\"\n    }\n  ]\n}",
+  "slot": {
+    "label": "{{negocios | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Funil",
+    "subtitle": "Clique numa etapa para filtrar a lista",
+    "blocks": [
+      {
+        "type": "stages",
+        "path": "etapas",
+        "label": "{{nome}}",
+        "value": "{{quantos}}",
+        "filters": {
+          "list": 0,
+          "field": "{{etapa}}"
+        }
+      },
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Negócios",
+            "path": "negocios",
+            "rowTitle": "{{cliente}}",
+            "rowSubtitle": "{{dono}}",
+            "rowStatus": "{{valor}}",
+            "sections": "{{etapa}}",
+            "rowEvent": "none"
+          }
+        ]
+      },
+      {
+        "type": "breakdown",
+        "title": "Valor por etapa",
+        "breakdownStyle": "list",
+        "path": "negocios",
+        "groupField": "{{etapa}}",
+        "groupKind": "text",
+        "measure": "sum",
+        "sumField": "{{valor}}",
+        "shows": "amount",
+        "prefix": "R$",
+        "groups": [
+          {
+            "id": "E7390E3B-1AC0-4F62-95E9-6F4EB68E3EBD",
+            "name": "Contato",
+            "color": "blue",
+            "match": "contato"
+          },
+          {
+            "id": "D7D2226E-D8DB-4066-B221-A8434F05695C",
+            "name": "Proposta",
+            "color": "teal",
+            "match": "proposta"
+          },
+          {
+            "id": "DBD758BA-17CE-40C5-B8C5-DE8E582BB3BC",
+            "name": "Negociação",
+            "color": "purple",
+            "match": "negociação"
+          },
+          {
+            "id": "253A711A-A024-4996-BAF0-24B7F0B5E38E",
+            "name": "Fechado",
+            "color": "green",
+            "match": "fechado"
+          }
+        ],
+        "others": {
+          "shows": false,
+          "name": "Outros",
+          "color": "gray"
+        }
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

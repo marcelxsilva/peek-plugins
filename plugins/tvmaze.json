@@ -1,0 +1,77 @@
+{
+  "schema": 5,
+  "id": "plugin.exemplo.tvmaze",
+  "name": "Na TV hoje",
+  "interval": 10800,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "tv.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://api.tvmaze.com/schedule",
+    "query": [
+      { "name": "country", "value": "{{$settings.pais}}" },
+      { "name": "date", "value": "{{$now | shape yyyy-MM-dd}}" }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{$ | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "picture": {
+      "kind": "address",
+      "value": "{{[0].show.image.medium}}",
+      "shape": "rounded",
+      "scale": 1.4
+    },
+    "title": "Na TV hoje",
+    "subtitle": "{{$now | shape dd/MM}} · {{$settings.pais}}",
+    "emptyMessage": "Nada na grade de hoje.",
+    "blocks": [
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Episódios",
+            "path": "$",
+            "rowTitle": "{{show.name}}",
+            "rowSubtitle": "{{name}}",
+            "rowMeta": "{{airtime}} · {{show.network.name}}",
+            "rowBadge": "T{{season}}E{{number}}",
+            "rowImage": "{{show.image.medium}}",
+            "rowImageShape": "rounded",
+            "rowWrapsTitle": true,
+            "rowURL": "{{url}}",
+            "rowDetail": "{{show.genres[0]}}"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "newRows"
+  },
+  "settings": [
+    {
+      "key": "pais",
+      "label": "País",
+      "type": "choice",
+      "default": "US",
+      "options": [
+        { "value": "US", "label": "Estados Unidos" },
+        { "value": "GB", "label": "Reino Unido" },
+        { "value": "BR", "label": "Brasil" },
+        { "value": "JP", "label": "Japão" }
+      ]
+    }
+  ]
+}

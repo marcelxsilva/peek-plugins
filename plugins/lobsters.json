@@ -1,0 +1,83 @@
+{
+  "schema": 5,
+  "id": "plugin.exemplo.lobsters",
+  "name": "Lobsters",
+  "interval": 1800,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "text.bubble.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://lobste.rs/hottest.json",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{[0].score}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Lobsters",
+    "subtitle": "O que está em alta agora",
+    "emptyMessage": "Nada na primeira página.",
+    "blocks": [
+      {
+        "type": "bars",
+        "title": "Mais votados",
+        "path": "$",
+        "label": "{{title}}",
+        "value": "{{score}}",
+        "limit": 5,
+        "format": "integer"
+      },
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Histórias",
+            "path": "$",
+            "rowTitle": "{{title}}",
+            "rowSubtitle": "{{submitter_user}} · {{created_at | ago}}",
+            "rowBadge": "{{tags[0]}}",
+            "rowWrapsTitle": true,
+            "rowURL": "{{url ?? short_id_url}}",
+            "badges": [
+              {
+                "value": "{{score}}",
+                "symbolName": "arrow.up",
+                "tint": "positive"
+              },
+              {
+                "value": "{{comment_count}}",
+                "symbolName": "bubble.left",
+                "tint": "neutral"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Comentários",
+      "symbolName": "bubble.left.and.bubble.right",
+      "place": "row",
+      "listIndex": 0,
+      "run": {
+        "kind": "onTheMac",
+        "errand": "openLink",
+        "text": "{{comments_url}}"
+      },
+      "successReport": "nothing"
+    }
+  ],
+  "attention": {
+    "mode": "newRows"
+  }
+}

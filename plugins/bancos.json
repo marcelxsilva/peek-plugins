@@ -1,0 +1,61 @@
+{
+  "schema": 4,
+  "id": "plugin.exemplo.bancos",
+  "name": "Bancos",
+  "interval": 86400,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "building.columns.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://brasilapi.com.br/api/banks/v1",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{$ | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Bancos",
+    "subtitle": "Todos os bancos com código no Brasil",
+    "emptyMessage": "A BrasilAPI não respondeu.",
+    "blocks": [
+      {
+        "type": "table",
+        "path": "$",
+        "sortable": true,
+        "limit": 12,
+        "rowEvent": "none",
+        "columns": [
+          {
+            "title": "Código",
+            "kind": "text",
+            "value": "{{code}}",
+            "align": "leading"
+          },
+          {
+            "title": "Banco",
+            "kind": "text",
+            "value": "{{fullName ?? name}}",
+            "align": "leading"
+          },
+          {
+            "title": "ISPB",
+            "kind": "text",
+            "value": "{{ispb}}",
+            "align": "trailing"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

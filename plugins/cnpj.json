@@ -1,0 +1,146 @@
+{
+  "schema": 8,
+  "id": "plugin.exemplo.cnpj",
+  "name": "CNPJ",
+  "interval": 3600,
+  "readsOnItsOwn": false,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "building.2.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://brasilapi.com.br/api/cnpj/v1/{{$global.peek_cnpj ?? $settings.padrao}}",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "CNPJ",
+    "style": "arc"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "{{razao_social}}",
+    "subtitle": "{{nome_fantasia ?? descricao_situacao_cadastral}}",
+    "emptyMessage": "Nenhum CNPJ consultado ainda. Toque em Consultar.",
+    "blocks": [
+      {
+        "type": "properties",
+        "layout": "columns",
+        "properties": [
+          {
+            "id": "3DBE897D-B0F3-4066-A06F-CC7143E5D0F5",
+            "name": "CNPJ",
+            "value": "{{cnpj}}"
+          },
+          {
+            "id": "DD82C28E-632C-4107-9406-DB3CE5DA4A32",
+            "name": "Situação",
+            "value": "{{descricao_situacao_cadastral}}"
+          },
+          {
+            "id": "D4EDD050-8D50-4493-99F5-C612595540BF",
+            "name": "Porte",
+            "value": "{{porte}}"
+          },
+          {
+            "id": "40EF8086-2842-499D-AC46-4AF80E93F2A0",
+            "name": "Atividade",
+            "value": "{{cnae_fiscal_descricao}}"
+          },
+          {
+            "id": "8BCE3B1A-7EEF-4992-AD25-89C9337C0FA3",
+            "name": "Endereço",
+            "value": "{{logradouro}}, {{numero}} · {{municipio}}/{{uf}}"
+          },
+          {
+            "id": "CCFA19BA-D786-4236-AC8A-5CCE156EAA54",
+            "name": "CEP",
+            "value": "{{cep}}"
+          },
+          {
+            "id": "B2A58069-C93C-499F-A152-146ADAB5DFAC",
+            "name": "Aberta em",
+            "value": "{{data_inicio_atividade | date}}"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "path": "qsa",
+        "sortable": true,
+        "limit": 6,
+        "rowEvent": "none",
+        "columns": [
+          {
+            "title": "Sócio",
+            "kind": "text",
+            "value": "{{nome_socio}}",
+            "align": "leading"
+          },
+          {
+            "title": "Qualificação",
+            "kind": "text",
+            "value": "{{qualificacao_socio}}",
+            "align": "trailing"
+          }
+        ],
+        "title": "Quadro societário"
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Consultar",
+      "symbolName": "magnifyingglass",
+      "place": "card",
+      "isProminent": true,
+      "asksForValue": true,
+      "question": "Qual CNPJ?",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "remember",
+        "variable": "peek_cnpj",
+        "text": "{{$input}}"
+      },
+      "successMessage": "Consultando {{$input}}."
+    },
+    {
+      "name": "Copiar a razão social",
+      "symbolName": "doc.on.doc",
+      "place": "card",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "copy",
+        "text": "{{razao_social}}"
+      },
+      "successMessage": "Copiado."
+    },
+    {
+      "name": "Copiar o CNPJ",
+      "symbolName": "doc.on.doc",
+      "place": "property",
+      "property": "3DBE897D-B0F3-4066-A06F-CC7143E5D0F5",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "copy",
+        "text": "{{cnpj}}"
+      },
+      "successMessage": "CNPJ copiado."
+    }
+  ],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "padrao",
+      "label": "CNPJ inicial",
+      "type": "text",
+      "default": "19131243000197",
+      "help": "Só para o cartão não abrir vazio. O botão Consultar troca por qualquer outro."
+    }
+  ]
+}

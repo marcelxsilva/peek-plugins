@@ -1,0 +1,134 @@
+{
+  "schema": 11,
+  "id": "plugin.exemplo.jira",
+  "name": "Jira",
+  "interval": 600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "ticket.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://{{$settings.dominio}}/rest/api/3/search/jql",
+    "query": [
+      {
+        "name": "jql",
+        "value": "{{$settings.jql}}"
+      },
+      {
+        "name": "maxResults",
+        "value": "20"
+      },
+      {
+        "name": "fields",
+        "value": "summary,status,priority,assignee,updated"
+      }
+    ],
+    "headers": [
+      {
+        "name": "Authorization",
+        "value": "Basic {{secret}}"
+      },
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{issues | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Jira",
+    "subtitle": "{{$settings.jql}}",
+    "emptyMessage": "Nenhuma issue com esse JQL.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{issues | count}}",
+        "caption": "Issues nesta busca",
+        "goodDirection": "down",
+        "format": "integer",
+        "width": "half"
+      },
+      {
+        "type": "breakdown",
+        "title": "Andamento",
+        "breakdownStyle": "list",
+        "path": "issues",
+        "groupField": "{{fields.status.statusCategory.key}}",
+        "groupKind": "text",
+        "measure": "count",
+        "shows": "amount",
+        "groups": [
+          {
+            "id": "C68E4972-0D03-4DDF-89A0-DCD43E6ED938",
+            "name": "A fazer",
+            "color": "blue",
+            "match": "new"
+          },
+          {
+            "id": "EB8F9294-B6D3-40F4-B89B-05148725BD87",
+            "name": "Fazendo",
+            "color": "yellow",
+            "match": "indeterminate"
+          },
+          {
+            "id": "BC7FA2C0-1ABB-46D3-B977-6632BE76775C",
+            "name": "Feito",
+            "color": "green",
+            "match": "done"
+          }
+        ],
+        "others": {
+          "shows": false,
+          "name": "Outros",
+          "color": "gray"
+        },
+        "width": "half"
+      },
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Issues",
+            "path": "issues",
+            "rowTitle": "{{fields.summary}}",
+            "rowSubtitle": "{{fields.assignee.displayName}} · {{fields.updated | ago}}",
+            "rowBadge": "{{key}}",
+            "rowWrapsTitle": true,
+            "rowStatus": "{{fields.status.name}}",
+            "rowURL": "https://{{$settings.dominio}}/browse/{{key}}"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "newRows"
+  },
+  "settings": [
+    {
+      "key": "dominio",
+      "label": "Domínio do Jira",
+      "type": "text",
+      "required": true,
+      "placeholder": "minhaempresa.atlassian.net"
+    },
+    {
+      "key": "jql",
+      "label": "Busca JQL",
+      "type": "text",
+      "default": "assignee = currentUser() AND statusCategory != Done ORDER BY updated DESC",
+      "help": "No campo de segredo, em Dado, cole o Base64 de «seu-email:token-da-api». É assim que o Jira Cloud pede a autenticação básica."
+    }
+  ]
+}

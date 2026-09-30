@@ -1,0 +1,81 @@
+{
+  "schema": 7,
+  "id": "plugin.exemplo.comissoes",
+  "name": "Comissões",
+  "interval": 3600,
+  "readsOnItsOwn": false,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "percent"
+  },
+  "source": {
+    "kind": "panel",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "answer": "{\n  \"mes\": \"Setembro de 2026\",\n  \"total\": 18420.5,\n  \"pessoas\": [\n    {\n      \"nome\": \"Ana\",\n      \"vendido\": 142000,\n      \"comissao\": 7100\n    },\n    {\n      \"nome\": \"Bruno\",\n      \"vendido\": 118400,\n      \"comissao\": 5920\n    },\n    {\n      \"nome\": \"Carla\",\n      \"vendido\": 108010,\n      \"comissao\": 5400.5\n    }\n  ]\n}",
+  "slot": {
+    "label": "{{total | shape #,##0}}",
+    "style": "arc"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Comissões",
+    "subtitle": "{{mes}}",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{total}}",
+        "caption": "A pagar neste mês",
+        "goodDirection": "up",
+        "format": "money",
+        "currency": "BRL"
+      },
+      {
+        "type": "bars",
+        "path": "pessoas",
+        "label": "{{nome}}",
+        "value": "{{comissao}}",
+        "limit": 6,
+        "format": "money",
+        "currency": "BRL"
+      },
+      {
+        "type": "table",
+        "path": "pessoas",
+        "sortable": true,
+        "limit": 6,
+        "rowEvent": "none",
+        "columns": [
+          {
+            "title": "Pessoa",
+            "kind": "text",
+            "value": "{{nome}}",
+            "align": "leading"
+          },
+          {
+            "title": "Vendido",
+            "kind": "text",
+            "value": "{{vendido}}",
+            "align": "trailing",
+            "format": "money",
+            "currency": "BRL"
+          },
+          {
+            "title": "Comissão",
+            "kind": "text",
+            "value": "{{comissao}}",
+            "align": "trailing",
+            "format": "money",
+            "currency": "BRL"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

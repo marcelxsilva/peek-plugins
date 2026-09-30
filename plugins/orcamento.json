@@ -1,0 +1,119 @@
+{
+  "schema": 11,
+  "id": "plugin.exemplo.orcamento",
+  "name": "Orçamento",
+  "interval": 3600,
+  "readsOnItsOwn": false,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "chart.pie.fill"
+  },
+  "source": {
+    "kind": "panel",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "answer": "{\n  \"mes\": \"Outubro de 2026\",\n  \"orcado\": 32000,\n  \"gasto\": 21480,\n  \"linhas\": [\n    {\n      \"nome\": \"Nuvem\",\n      \"gasto\": 9800,\n      \"orcado\": 12000\n    },\n    {\n      \"nome\": \"Ferramentas\",\n      \"gasto\": 5200,\n      \"orcado\": 6000\n    },\n    {\n      \"nome\": \"Marketing\",\n      \"gasto\": 4300,\n      \"orcado\": 8000\n    },\n    {\n      \"nome\": \"Viagens\",\n      \"gasto\": 2180,\n      \"orcado\": 6000\n    }\n  ]\n}",
+  "slot": {
+    "label": "{{gasto | shape #,##0}}",
+    "value": "{{gasto}}",
+    "total": "{{orcado}}",
+    "style": "arc",
+    "alertsOnThreshold": true
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Orçamento",
+    "subtitle": "{{mes}}",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{gasto}}",
+        "total": "{{orcado}}",
+        "caption": "Gasto contra o orçado do mês",
+        "goodDirection": "down",
+        "format": "money",
+        "currency": "BRL"
+      },
+      {
+        "type": "breakdown",
+        "title": "Para onde foi",
+        "breakdownStyle": "bar",
+        "path": "linhas",
+        "groupField": "{{nome}}",
+        "groupKind": "text",
+        "measure": "sum",
+        "sumField": "{{gasto}}",
+        "shows": "both",
+        "prefix": "R$ ",
+        "groups": [
+          {
+            "id": "BAC1F1F1-7525-40BB-960F-EA55BEE82C85",
+            "name": "Nuvem",
+            "color": "blue",
+            "match": "Nuvem"
+          },
+          {
+            "id": "162EADA3-82B6-479E-A6C0-24FE2B676DE4",
+            "name": "Ferramentas",
+            "color": "purple",
+            "match": "Ferramentas"
+          },
+          {
+            "id": "38745CA1-2B5D-4808-8341-9A7C46AEE44F",
+            "name": "Marketing",
+            "color": "orange",
+            "match": "Marketing"
+          },
+          {
+            "id": "FA38A3D5-855B-4CE2-8D3A-31FDA3EDEB69",
+            "name": "Viagens",
+            "color": "teal",
+            "match": "Viagens"
+          }
+        ],
+        "others": {
+          "shows": false,
+          "name": "Outras",
+          "color": "gray"
+        }
+      },
+      {
+        "type": "table",
+        "path": "linhas",
+        "sortable": true,
+        "limit": 6,
+        "rowEvent": "none",
+        "columns": [
+          {
+            "title": "Linha",
+            "kind": "text",
+            "value": "{{nome}}",
+            "align": "leading"
+          },
+          {
+            "title": "Gasto",
+            "kind": "text",
+            "value": "{{gasto}}",
+            "align": "trailing",
+            "format": "money",
+            "currency": "BRL"
+          },
+          {
+            "title": "Orçado",
+            "kind": "text",
+            "value": "{{orcado}}",
+            "align": "trailing",
+            "format": "money",
+            "currency": "BRL"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "schema": 11,
+  "id": "plugin.exemplo.kubernetes",
+  "name": "Kubernetes",
+  "interval": 120,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "cube.transparent.fill"
+  },
+  "source": {
+    "kind": "command",
+    "steps": [
+      {
+        "program": "/opt/homebrew/bin/kubectl",
+        "arguments": [
+          "get",
+          "pods",
+          "-A",
+          "-o",
+          "json"
+        ]
+      },
+      {
+        "program": "/usr/bin/jq",
+        "arguments": [
+          "{ pods: [.items[] | { nome: .metadata.name, espaco: .metadata.namespace, fase: .status.phase, reinicios: ([.status.containerStatuses[]?.restartCount] | add // 0) }] }"
+        ]
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{pods | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Kubernetes",
+    "subtitle": "Pods do cluster em uso",
+    "emptyMessage": "Nenhum pod, ou o kubectl não achou um contexto.",
+    "blocks": [
+      {
+        "type": "breakdown",
+        "title": "Por fase",
+        "breakdownStyle": "bar",
+        "path": "pods",
+        "groupField": "{{fase}}",
+        "groupKind": "text",
+        "measure": "count",
+        "shows": "both",
+        "groups": [
+          {
+            "id": "2F10FD52-9421-4FD7-9A88-E6B61DFD8E2D",
+            "name": "Rodando",
+            "color": "green",
+            "match": "Running"
+          },
+          {
+            "id": "BA59EC97-6B82-4F41-9397-6EC9243D228D",
+            "name": "Concluído",
+            "color": "teal",
+            "match": "Succeeded"
+          },
+          {
+            "id": "4C8E61A8-D28A-49FF-A41D-25DE631014BF",
+            "name": "Pendente",
+            "color": "yellow",
+            "match": "Pending"
+          },
+          {
+            "id": "F8976E0F-5ED4-42B3-9184-679FC348099E",
+            "name": "Falhou",
+            "color": "red",
+            "match": "Failed"
+          }
+        ],
+        "others": {
+          "shows": true,
+          "name": "Desconhecido",
+          "color": "gray"
+        }
+      },
+      {
+        "type": "grid",
+        "path": "pods",
+        "label": "{{nome}}",
+        "status": "{{fase}}",
+        "limit": 36,
+        "statusColors": {
+          "Running": "positive",
+          "Succeeded": "positive",
+          "Pending": "attention",
+          "Failed": "negative",
+          "Unknown": "neutral"
+        }
+      },
+      {
+        "type": "table",
+        "path": "pods",
+        "sortable": true,
+        "limit": 10,
+        "rowEvent": "none",
+        "columns": [
+          {
+            "title": "Pod",
+            "kind": "text",
+            "value": "{{nome}}",
+            "align": "leading"
+          },
+          {
+            "title": "Espaço",
+            "kind": "text",
+            "value": "{{espaco}}",
+            "align": "leading"
+          },
+          {
+            "title": "Reinícios",
+            "kind": "text",
+            "value": "{{reinicios}}",
+            "align": "trailing",
+            "format": "integer"
+          },
+          {
+            "title": "",
+            "kind": "status",
+            "value": "{{fase}}",
+            "align": "trailing",
+            "statusColors": {
+              "Running": "positive",
+              "Pending": "attention",
+              "Failed": "negative"
+            },
+            "showsWord": true
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "schema": 8,
+  "id": "plugin.exemplo.moedas",
+  "name": "Moedas",
+  "interval": 600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "coloncurrencysign.circle.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://economia.awesomeapi.com.br/json/last/{{$settings.pares}}",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{USDBRL.bid | shape #,##0.00}}",
+    "style": "arc"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Moedas",
+    "subtitle": "Frente ao real, agora",
+    "emptyMessage": "A AwesomeAPI não respondeu.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{USDBRL.bid}}",
+        "previous": "{{USDBRL.pctChange}}",
+        "caption": "Dólar",
+        "goodDirection": "down",
+        "format": "money",
+        "currency": "BRL",
+        "width": "half"
+      },
+      {
+        "type": "properties",
+        "title": "Hoje",
+        "layout": "stacked",
+        "properties": [
+          {
+            "id": "1F20AA31-1031-4900-950E-8A4EE5E925AB",
+            "name": "Máxima",
+            "value": "{{USDBRL.high}}"
+          },
+          {
+            "id": "E8E73E27-1611-4515-8A59-66ACC4A492E5",
+            "name": "Mínima",
+            "value": "{{USDBRL.low}}"
+          }
+        ],
+        "width": "half"
+      },
+      {
+        "type": "table",
+        "path": "$ | entries",
+        "sortable": true,
+        "limit": 8,
+        "rowEvent": "none",
+        "columns": [
+          {
+            "title": "Par",
+            "kind": "text",
+            "value": "{{value.name}}",
+            "align": "leading"
+          },
+          {
+            "title": "Compra",
+            "kind": "text",
+            "value": "{{value.bid}}",
+            "align": "trailing",
+            "format": "money",
+            "currency": "BRL"
+          },
+          {
+            "title": "Dia",
+            "kind": "text",
+            "value": "{{value.pctChange}}",
+            "align": "trailing",
+            "format": "percent"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "pares",
+      "label": "Pares",
+      "type": "text",
+      "default": "USD-BRL,EUR-BRL,GBP-BRL,BTC-BRL",
+      "help": "Separados por vírgula. O ícone mostra sempre o dólar.",
+      "required": true
+    }
+  ]
+}

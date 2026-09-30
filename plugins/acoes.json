@@ -1,0 +1,108 @@
+{
+  "schema": 5,
+  "id": "plugin.exemplo.acoes",
+  "name": "Ações",
+  "interval": 600,
+  "icon": {
+    "kind": "word",
+    "word": "{{results[0].symbol}}"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://brapi.dev/api/quote/{{$settings.tickers}}?token={{$settings.token}}",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{results[0].regularMarketPrice | shape #,##0.00}}",
+    "style": "sparkline"
+  },
+  "history": {
+    "path": "results[0].regularMarketPrice",
+    "keep": 96
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Ações",
+    "subtitle": "B3 · {{results[0].regularMarketTime | ago}}",
+    "emptyMessage": "Nenhum papel encontrado com esses códigos.",
+    "blocks": [
+      {
+        "type": "hero",
+        "title": "{{results[0].longName}}",
+        "value": "{{results[0].regularMarketPrice}}",
+        "caption": "Dia entre {{results[0].regularMarketDayLow | shape R$ #,##0.00}} e {{results[0].regularMarketDayHigh | shape R$ #,##0.00}}",
+        "format": "money",
+        "currency": "BRL",
+        "goodDirection": "up"
+      },
+      {
+        "type": "chart",
+        "title": "Desde que o Peek abriu",
+        "style": "line",
+        "height": "small",
+        "format": "money",
+        "currency": "BRL"
+      },
+      {
+        "type": "table",
+        "path": "results",
+        "sortable": true,
+        "limit": 8,
+        "rowEvent": "none",
+        "columns": [
+          {
+            "title": "",
+            "kind": "image",
+            "value": "{{logourl}}",
+            "shape": "round",
+            "align": "leading"
+          },
+          {
+            "title": "Papel",
+            "kind": "text",
+            "value": "{{symbol}}",
+            "align": "leading"
+          },
+          {
+            "title": "Preço",
+            "kind": "text",
+            "value": "{{regularMarketPrice}}",
+            "align": "trailing",
+            "format": "money",
+            "currency": "BRL"
+          },
+          {
+            "title": "Dia",
+            "kind": "text",
+            "value": "{{regularMarketChangePercent}}",
+            "align": "trailing",
+            "format": "percent"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "tickers",
+      "label": "Papéis",
+      "type": "text",
+      "default": "PETR4,VALE3,ITUB4",
+      "help": "Códigos da B3 separados por vírgula. O primeiro é o que aparece no ícone.",
+      "required": true
+    },
+    {
+      "key": "token",
+      "label": "Token da brapi",
+      "type": "secret",
+      "help": "Opcional. Sem ele a brapi atende, mas com limite baixo de chamadas."
+    }
+  ]
+}

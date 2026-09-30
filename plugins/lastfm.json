@@ -1,0 +1,81 @@
+{
+  "schema": 3,
+  "id": "plugin.exemplo.lastfm",
+  "name": "Last.fm",
+  "interval": 300,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "waveform"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://ws.audioscrobbler.com/2.0/",
+    "query": [
+      {
+        "name": "method",
+        "value": "user.getrecenttracks"
+      },
+      {
+        "name": "user",
+        "value": "{{$settings.usuario}}"
+      },
+      {
+        "name": "api_key",
+        "value": "{{secret}}"
+      },
+      {
+        "name": "format",
+        "value": "json"
+      },
+      {
+        "name": "limit",
+        "value": "12"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{recenttracks[\"@attr\"].total}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Last.fm",
+    "subtitle": "{{$settings.usuario}} ouviu",
+    "emptyMessage": "Nada registrado, ou a chave está faltando.",
+    "blocks": [
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Faixas",
+            "path": "recenttracks.track",
+            "rowTitle": "{{name}}",
+            "rowSubtitle": "{{artist[\"#text\"]}}",
+            "rowMeta": "{{date.uts | shape dd/MM HH:mm}}",
+            "rowImage": "{{image[2][\"#text\"]}}",
+            "rowWrapsTitle": true,
+            "rowURL": "{{url}}"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "newRows"
+  },
+  "settings": [
+    {
+      "key": "usuario",
+      "label": "Usuário",
+      "type": "text",
+      "help": "A chave da API vai no campo de segredo, em Dado. Pegue em last.fm/api/account/create.",
+      "required": true
+    }
+  ]
+}

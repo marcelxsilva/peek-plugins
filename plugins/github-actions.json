@@ -1,0 +1,147 @@
+{
+  "schema": 11,
+  "id": "plugin.exemplo.github-actions",
+  "name": "GitHub Actions",
+  "interval": 300,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "play.rectangle.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://api.github.com/repos/{{$settings.repo}}/actions/runs",
+    "query": [
+      {
+        "name": "per_page",
+        "value": "12"
+      }
+    ],
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/vnd.github+json"
+      },
+      {
+        "name": "Authorization",
+        "value": "Bearer {{secret}}"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{workflow_runs[0].conclusion}}",
+    "status": "{{workflow_runs[0].conclusion}}",
+    "style": "status",
+    "statusColors": {
+      "success": "positive",
+      "failure": "negative",
+      "cancelled": "neutral",
+      "": "attention"
+    }
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "GitHub Actions",
+    "subtitle": "{{$settings.repo}}",
+    "emptyMessage": "Nenhuma execução ainda.",
+    "blocks": [
+      {
+        "type": "grid",
+        "path": "workflow_runs",
+        "label": "{{name}}",
+        "status": "{{conclusion}}",
+        "limit": 12,
+        "statusColors": {
+          "success": "positive",
+          "failure": "negative",
+          "cancelled": "neutral",
+          "skipped": "neutral"
+        },
+        "rowURL": "{{html_url}}"
+      },
+      {
+        "type": "breakdown",
+        "title": "Resultado",
+        "breakdownStyle": "bar",
+        "path": "workflow_runs",
+        "groupField": "{{conclusion}}",
+        "groupKind": "text",
+        "measure": "count",
+        "shows": "both",
+        "groups": [
+          {
+            "id": "635EA8BA-C97B-4FE3-9EFC-7FB4EF16C25E",
+            "name": "Passou",
+            "color": "green",
+            "match": "success"
+          },
+          {
+            "id": "B8C70AAA-715A-41FD-BB95-CB5C4E2AC1C0",
+            "name": "Quebrou",
+            "color": "red",
+            "match": "failure, timed_out"
+          },
+          {
+            "id": "F7C77C63-FF13-4AC1-9F91-BF738AF9D191",
+            "name": "Cancelada",
+            "color": "gray",
+            "match": "cancelled, skipped"
+          }
+        ],
+        "others": {
+          "shows": true,
+          "name": "Rodando",
+          "color": "yellow"
+        }
+      },
+      {
+        "type": "list",
+        "limit": 5,
+        "tabs": [
+          {
+            "title": "Execuções",
+            "path": "workflow_runs",
+            "rowTitle": "{{display_title}}",
+            "rowSubtitle": "{{head_branch}} · {{created_at | ago}}",
+            "rowMetaImage": "{{actor.avatar_url}}",
+            "rowMeta": "{{actor.login}}",
+            "rowWrapsTitle": true,
+            "rowStatus": "{{conclusion ?? status}}",
+            "statusWords": {
+              "success": "passou",
+              "failure": "quebrou",
+              "cancelled": "cancelada",
+              "in_progress": "rodando",
+              "queued": "na fila"
+            },
+            "statusColors": {
+              "success": "positive",
+              "failure": "negative",
+              "cancelled": "neutral",
+              "in_progress": "attention",
+              "queued": "attention"
+            },
+            "rowURL": "{{html_url}}"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "newRows"
+  },
+  "settings": [
+    {
+      "key": "repo",
+      "label": "Repositório",
+      "type": "text",
+      "help": "Repositório privado precisa de um token no campo de segredo, em Dado.",
+      "required": true,
+      "placeholder": "dono/nome"
+    }
+  ]
+}

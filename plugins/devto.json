@@ -1,0 +1,125 @@
+{
+  "schema": 6,
+  "id": "plugin.exemplo.devto",
+  "name": "DEV",
+  "interval": 3600,
+  "icon": {
+    "kind": "word",
+    "word": "DEV"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://dev.to/api/articles",
+    "query": [
+      {
+        "name": "per_page",
+        "value": "10"
+      },
+      {
+        "name": "top",
+        "value": "{{$settings.dias}}"
+      },
+      {
+        "name": "page",
+        "value": "{{$page}}"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    },
+    "pagination": {
+      "kind": "page",
+      "start": 1,
+      "maxPages": 5,
+      "buttonText": "Mais artigos"
+    }
+  },
+  "slot": {
+    "label": "{{$ | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "picture": {
+      "kind": "address",
+      "value": "{{[0].cover_image}}",
+      "shape": "rounded",
+      "scale": 1.4
+    },
+    "title": "DEV",
+    "subtitle": "O que subiu nos últimos {{$settings.dias}} dias",
+    "emptyMessage": "Nada publicado no período.",
+    "blocks": [
+      {
+        "type": "list",
+        "limit": 5,
+        "tabs": [
+          {
+            "title": "Artigos",
+            "path": "$",
+            "rowTitle": "{{title}}",
+            "rowSubtitle": "{{user.name}} · {{published_timestamp | ago}}",
+            "rowMeta": "{{tag_list[0]}}",
+            "rowMetaImage": "{{user.profile_image_90}}",
+            "rowWrapsTitle": true,
+            "rowImage": "{{cover_image}}",
+            "rowImageShape": "rounded",
+            "rowURL": "{{url}}",
+            "badges": [
+              {
+                "value": "{{public_reactions_count}}",
+                "symbolName": "heart.fill",
+                "tint": "negative"
+              },
+              {
+                "value": "{{reading_time_minutes}} min",
+                "symbolName": "clock",
+                "tint": "neutral"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Ler depois",
+      "symbolName": "bookmark",
+      "place": "row",
+      "listIndex": 0,
+      "run": {
+        "kind": "onTheMac",
+        "errand": "readLater",
+        "text": "{{url}}"
+      },
+      "successMessage": "Guardado."
+    }
+  ],
+  "attention": {
+    "mode": "newRows"
+  },
+  "settings": [
+    {
+      "key": "dias",
+      "label": "Período",
+      "type": "choice",
+      "default": "7",
+      "options": [
+        {
+          "value": "1",
+          "label": "Hoje"
+        },
+        {
+          "value": "7",
+          "label": "Semana"
+        },
+        {
+          "value": "30",
+          "label": "Mês"
+        }
+      ]
+    }
+  ]
+}

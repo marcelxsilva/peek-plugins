@@ -1,0 +1,83 @@
+{
+  "schema": 5,
+  "id": "plugin.exemplo.hackernews",
+  "name": "Hacker News",
+  "interval": 900,
+  "icon": {
+    "kind": "word",
+    "word": "HN"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=20",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{hits | count}}",
+    "style": "arc"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Hacker News",
+    "subtitle": "Primeira página",
+    "emptyMessage": "A primeira página voltou vazia.",
+    "blocks": [
+      {
+        "type": "bars",
+        "title": "Mais votados",
+        "path": "hits",
+        "label": "{{title}}",
+        "value": "{{points}}",
+        "limit": 5,
+        "format": "integer"
+      },
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Histórias",
+            "path": "hits",
+            "rowTitle": "{{title}}",
+            "rowWrapsTitle": true,
+            "rowSubtitle": "{{author}} · {{created_at | ago}}",
+            "rowMeta": "{{num_comments | plural comentário/comentários}}",
+            "rowURL": "https://news.ycombinator.com/item?id={{objectID}}",
+            "badges": [
+              {
+                "value": "{{points}}",
+                "symbolName": "arrowtriangle.up.fill"
+              },
+              {
+                "value": "{{num_comments}}",
+                "symbolName": "bubble.left"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Abrir o link",
+      "symbolName": "safari",
+      "place": "row",
+      "listIndex": 0,
+      "run": {
+        "kind": "onTheMac",
+        "errand": "openLink",
+        "text": "{{url ?? story_url}}"
+      },
+      "successReport": "nothing",
+      "failureMessage": "Essa história não tem link, só a discussão."
+    }
+  ],
+  "attention": {
+    "mode": "newRows",
+    "listIndex": 0
+  }
+}

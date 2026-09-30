@@ -1,0 +1,82 @@
+{
+  "schema": 5,
+  "id": "plugin.exemplo.slack",
+  "name": "Slack",
+  "interval": 300,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "number.square.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://slack.com/api/conversations.history",
+    "query": [
+      {
+        "name": "channel",
+        "value": "{{$settings.canal}}"
+      },
+      {
+        "name": "limit",
+        "value": "15"
+      }
+    ],
+    "headers": [
+      {
+        "name": "Authorization",
+        "value": "Bearer {{secret}}"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{messages | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Slack",
+    "subtitle": "Últimas mensagens do canal",
+    "emptyMessage": "Nada novo, ou o token não tem acesso a este canal.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{messages | count}}",
+        "caption": "Mensagens trazidas",
+        "goodDirection": "up",
+        "format": "integer"
+      },
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Mensagens",
+            "path": "messages",
+            "rowTitle": "{{text}}",
+            "rowSubtitle": "{{user}}",
+            "rowMeta": "{{ts | shape dd/MM HH:mm}}",
+            "rowWrapsTitle": true,
+            "rowEvent": "none"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "newRows"
+  },
+  "settings": [
+    {
+      "key": "canal",
+      "label": "ID do canal",
+      "type": "text",
+      "help": "Aparece em «Copiar link do canal». O token de usuário ou de app vai no campo de segredo, em Dado.",
+      "required": true,
+      "placeholder": "C01ABCDEFG"
+    }
+  ]
+}

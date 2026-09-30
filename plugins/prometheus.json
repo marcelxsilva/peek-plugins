@@ -1,0 +1,77 @@
+{
+  "schema": 3,
+  "id": "plugin.exemplo.prometheus",
+  "name": "Prometheus",
+  "interval": 120,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "flame.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "http://localhost:9090/api/v1/query",
+    "query": [
+      {
+        "name": "query",
+        "value": "{{$settings.consulta}}"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{data.result[0].value[1] | round}}",
+    "style": "sparkline"
+  },
+  "history": {
+    "path": "data.result[0].value[1]",
+    "keep": 96
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Prometheus",
+    "subtitle": "{{$settings.consulta}}",
+    "emptyMessage": "A consulta não devolveu nenhuma série.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{data.result[0].value[1]}}",
+        "caption": "Valor agora",
+        "goodDirection": "up",
+        "format": "number"
+      },
+      {
+        "type": "chart",
+        "style": "area",
+        "title": "Ao longo do tempo",
+        "height": "medium",
+        "format": "number"
+      },
+      {
+        "type": "bars",
+        "path": "data.result",
+        "label": "{{metric.instance ?? metric.job ?? \"sem rótulo\"}}",
+        "value": "{{value[1]}}",
+        "limit": 6,
+        "format": "number",
+        "title": "Por série"
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "consulta",
+      "label": "Consulta PromQL",
+      "type": "text",
+      "default": "up",
+      "help": "O Prometheus precisa estar em localhost, 127.0.0.1 ou num nome .local: o app não fala http com a internet aberta.",
+      "required": true
+    }
+  ]
+}

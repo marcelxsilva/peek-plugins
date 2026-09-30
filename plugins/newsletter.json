@@ -1,0 +1,71 @@
+{
+  "schema": 8,
+  "id": "plugin.exemplo.newsletter",
+  "name": "Crescimento",
+  "interval": 3600,
+  "readsOnItsOwn": false,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "chart.bar.xaxis"
+  },
+  "source": {
+    "kind": "panel",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "answer": "{\n  \"assinantes\": 4820,\n  \"meta\": 6000,\n  \"meses\": [\n    {\n      \"mes\": \"Maio\",\n      \"novos\": 310\n    },\n    {\n      \"mes\": \"Junho\",\n      \"novos\": 402\n    },\n    {\n      \"mes\": \"Julho\",\n      \"novos\": 288\n    },\n    {\n      \"mes\": \"Agosto\",\n      \"novos\": 451\n    },\n    {\n      \"mes\": \"Setembro\",\n      \"novos\": 519\n    }\n  ]\n}",
+  "slot": {
+    "label": "{{assinantes}}",
+    "value": "{{assinantes}}",
+    "total": "{{meta}}",
+    "style": "arc"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Crescimento",
+    "subtitle": "Assinantes contra a meta do ano",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{assinantes}}",
+        "total": "{{meta}}",
+        "caption": "Assinantes hoje",
+        "goodDirection": "up",
+        "format": "integer",
+        "width": "half"
+      },
+      {
+        "type": "properties",
+        "layout": "stacked",
+        "properties": [
+          {
+            "id": "F7888E6C-D1FE-405D-9C59-EAA416D9317E",
+            "name": "Meta do ano",
+            "value": "{{meta | shape #,##0}}"
+          },
+          {
+            "id": "92A1C2E4-8DCB-4A1F-9481-56F035992DEA",
+            "name": "Novos no último mês",
+            "value": "{{meses[-1].novos}}"
+          }
+        ],
+        "width": "half"
+      },
+      {
+        "type": "chart",
+        "style": "bar",
+        "title": "Novos por mês",
+        "path": "meses",
+        "x": "{{mes}}",
+        "y": "{{novos}}",
+        "height": "medium",
+        "format": "integer"
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

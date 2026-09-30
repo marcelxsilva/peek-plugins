@@ -1,0 +1,151 @@
+{
+  "schema": 8,
+  "id": "plugin.exemplo.cotacoes",
+  "name": "Cotações",
+  "interval": 600,
+  "icon": {
+    "kind": "word",
+    "word": "{{[0].code}}"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://economia.awesomeapi.com.br/json/daily/{{$settings.par}}/30",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{[0].bid | shape #,##0.00}}",
+    "style": "arc"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "{{[0].name}}",
+    "subtitle": "Fechamento de {{[0].create_date | ago}}",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{[0].bid}}",
+        "previous": "{{[1].bid}}",
+        "caption": "Fechamento",
+        "format": "money",
+        "currency": "BRL",
+        "goodDirection": "down",
+        "width": "half"
+      },
+      {
+        "type": "properties",
+        "layout": "stacked",
+        "width": "half",
+        "properties": [
+          {
+            "id": "54DD6315-EF9B-4FDA-8A1E-ABC2573FC409",
+            "name": "Máxima",
+            "value": "{{[0].high | shape #,##0.00}}"
+          },
+          {
+            "id": "6D77161D-E3EB-434D-A636-90187BE6FE0C",
+            "name": "Mínima",
+            "value": "{{[0].low | shape #,##0.00}}"
+          },
+          {
+            "id": "7747CAE4-AA5D-41D7-A139-5408B5A9D3D0",
+            "name": "Variação",
+            "value": "{{[0].pctChange}}%"
+          }
+        ]
+      },
+      {
+        "type": "chart",
+        "title": "Últimos 30 dias",
+        "style": "area",
+        "path": "$",
+        "x": "{{timestamp}}",
+        "y": "{{bid}}",
+        "height": "medium",
+        "format": "money",
+        "currency": "BRL"
+      },
+      {
+        "type": "table",
+        "path": "$",
+        "sortable": true,
+        "limit": 8,
+        "rowEvent": "none",
+        "columns": [
+          {
+            "title": "Dia",
+            "kind": "text",
+            "value": "{{timestamp | shape dd/MM}}",
+            "align": "leading"
+          },
+          {
+            "title": "Fechamento",
+            "kind": "text",
+            "value": "{{bid}}",
+            "align": "trailing",
+            "format": "money",
+            "currency": "BRL"
+          },
+          {
+            "title": "Variação",
+            "kind": "text",
+            "value": "{{pctChange}}",
+            "align": "trailing",
+            "format": "percent"
+          },
+          {
+            "title": "",
+            "kind": "button",
+            "action": "Copiar",
+            "align": "trailing",
+            "symbolName": "doc.on.doc"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Copiar",
+      "symbolName": "doc.on.doc",
+      "place": "column",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "copy",
+        "text": "{{bid}}"
+      },
+      "successMessage": "{{bid}} copiado."
+    }
+  ],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "par",
+      "label": "Par",
+      "type": "choice",
+      "default": "USD-BRL",
+      "options": [
+        {
+          "value": "USD-BRL",
+          "label": "Dólar"
+        },
+        {
+          "value": "EUR-BRL",
+          "label": "Euro"
+        },
+        {
+          "value": "GBP-BRL",
+          "label": "Libra"
+        },
+        {
+          "value": "BTC-BRL",
+          "label": "Bitcoin"
+        }
+      ]
+    }
+  ]
+}

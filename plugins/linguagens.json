@@ -1,0 +1,75 @@
+{
+  "schema": 2,
+  "id": "plugin.exemplo.linguagens",
+  "name": "Linguagens",
+  "interval": 1800,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "chevron.left.forwardslash.chevron.right"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://api.github.com/repos/{{$settings.repo}}/languages",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "style": "arc"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "{{$settings.repo}}",
+    "subtitle": "Bytes de código por linguagem",
+    "emptyMessage": "Esse repositório não declara linguagem nenhuma.",
+    "blocks": [
+      {
+        "type": "bars",
+        "path": "$ | entries",
+        "label": "{{key}}",
+        "value": "{{value}}",
+        "limit": 6,
+        "format": "bytes"
+      },
+      {
+        "type": "table",
+        "title": "Todas",
+        "path": "$ | entries",
+        "sortable": true,
+        "limit": 8,
+        "rowEvent": "open",
+        "rowURL": "https://github.com/{{$settings.repo}}/search?l={{key}}",
+        "columns": [
+          {
+            "title": "Linguagem",
+            "kind": "text",
+            "value": "{{key}}",
+            "align": "leading"
+          },
+          {
+            "title": "Tamanho",
+            "kind": "text",
+            "value": "{{value}}",
+            "align": "trailing",
+            "format": "bytes"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "repo",
+      "label": "Repositório",
+      "type": "text",
+      "default": "swiftlang/swift",
+      "placeholder": "dono/nome",
+      "help": "Sem token, o GitHub aceita 60 leituras por hora."
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "schema": 8,
+  "id": "plugin.exemplo.bluesky",
+  "name": "Bluesky",
+  "interval": 1800,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "cloud.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://public.api.bsky.app/xrpc/app.bsky.actor.getProfile",
+    "query": [
+      {
+        "name": "actor",
+        "value": "{{$settings.conta}}"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{followersCount}}",
+    "style": "sparkline"
+  },
+  "history": {
+    "path": "followersCount",
+    "keep": 192
+  },
+  "card": {
+    "isEnabled": true,
+    "picture": {
+      "kind": "address",
+      "value": "{{avatar}}",
+      "shape": "round"
+    },
+    "title": "{{displayName ?? handle}}",
+    "subtitle": "@{{handle}}",
+    "emptyMessage": "Conta não encontrada.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{followersCount}}",
+        "caption": "Seguidores",
+        "goodDirection": "up",
+        "format": "integer",
+        "width": "half"
+      },
+      {
+        "type": "properties",
+        "layout": "stacked",
+        "width": "half",
+        "properties": [
+          {
+            "id": "05E5E8AB-D50D-4BB0-AD72-524E792D4E4E",
+            "name": "Segue",
+            "value": "{{followsCount}}"
+          },
+          {
+            "id": "F3402C25-28DF-47E3-BDCD-73DAFE5900BA",
+            "name": "Posts",
+            "value": "{{postsCount}}"
+          }
+        ]
+      },
+      {
+        "type": "chart",
+        "style": "area",
+        "title": "Seguidores ao longo do tempo",
+        "height": "medium",
+        "format": "integer"
+      },
+      {
+        "type": "text",
+        "value": "{{description}}",
+        "maxHeight": "small"
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Abrir o perfil",
+      "symbolName": "arrow.up.forward.square",
+      "place": "card",
+      "isProminent": false,
+      "run": {
+        "kind": "onTheMac",
+        "errand": "openLink",
+        "text": "https://bsky.app/profile/{{handle}}"
+      },
+      "successReport": "nothing"
+    }
+  ],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "conta",
+      "label": "Conta",
+      "type": "text",
+      "default": "bsky.app",
+      "help": "O handle, como voce.bsky.social.",
+      "required": true
+    }
+  ]
+}

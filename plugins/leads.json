@@ -1,0 +1,66 @@
+{
+  "schema": 5,
+  "id": "plugin.exemplo.leads",
+  "name": "Leads",
+  "interval": 600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "person.crop.circle.badge.plus"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "{{$settings.endereco}}",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{$ | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Leads",
+    "subtitle": "A lista que o seu sistema publica",
+    "emptyMessage": "Nenhum lead, ou o endereço ainda não foi preenchido.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{$ | count}}",
+        "caption": "Leads na fila",
+        "goodDirection": "up",
+        "format": "integer"
+      },
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Leads",
+            "path": "$",
+            "rowTitle": "{{nome ?? name ?? email}}",
+            "rowSubtitle": "{{email}}",
+            "rowMeta": "{{origem ?? source}}",
+            "rowWrapsTitle": true,
+            "rowEvent": "none"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "newRows"
+  },
+  "settings": [
+    {
+      "key": "endereco",
+      "label": "Endereço do JSON",
+      "type": "text",
+      "help": "Qualquer endereço https que devolva uma lista de leads. Ajuste os campos da linha para os nomes que a sua API usa.",
+      "required": true,
+      "placeholder": "https://minhaempresa.com/api/leads"
+    }
+  ]
+}

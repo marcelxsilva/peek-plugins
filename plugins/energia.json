@@ -1,0 +1,73 @@
+{
+  "schema": 2,
+  "id": "plugin.exemplo.energia",
+  "name": "Energia",
+  "interval": 300,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "bolt.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "http://homeassistant.local:8123/api/states/{{$settings.sensor}}",
+    "headers": [
+      {
+        "name": "Authorization",
+        "value": "Bearer {{secret}}"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{state | round}}",
+    "style": "sparkline"
+  },
+  "history": {
+    "path": "state",
+    "keep": 192
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Energia",
+    "subtitle": "{{attributes.friendly_name}}",
+    "emptyMessage": "O Home Assistant não respondeu. Confira o endereço e o token.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{state}}",
+        "caption": "{{attributes.unit_of_measurement}} agora · lido {{last_changed | ago}}",
+        "goodDirection": "down",
+        "format": "number"
+      },
+      {
+        "type": "chart",
+        "style": "area",
+        "title": "Consumo ao longo do tempo",
+        "height": "medium",
+        "format": "number"
+      },
+      {
+        "type": "text",
+        "value": "O sensor lido é `{{$settings.sensor}}`. Troque na aba Dado pelo da sua casa.",
+        "maxHeight": "small"
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "sensor",
+      "label": "Sensor",
+      "type": "text",
+      "default": "sensor.consumo_atual",
+      "help": "O entity_id do sensor de potência. O token do Home Assistant vai no campo de segredo, em Dado.",
+      "required": true
+    }
+  ]
+}

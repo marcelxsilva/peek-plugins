@@ -1,0 +1,137 @@
+{
+  "schema": 11,
+  "id": "plugin.exemplo.linear",
+  "name": "Linear",
+  "interval": 600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "line.3.horizontal.decrease.circle.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "POST",
+    "url": "https://api.linear.app/graphql",
+    "headers": [
+      {
+        "name": "Authorization",
+        "value": "{{secret}}"
+      },
+      {
+        "name": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "body": "{\"query\": \"query { viewer { assignedIssues(first: 20, filter: { completedAt: { null: true }, canceledAt: { null: true } }) { nodes { identifier title url priorityLabel updatedAt state { name } project { name } } } } }\"}",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{data.viewer.assignedIssues.nodes | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Linear",
+    "subtitle": "Issues atribuídas a você",
+    "emptyMessage": "Nenhuma issue aberta no seu nome. A chave da API vai no campo de segredo, em Dado.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{data.viewer.assignedIssues.nodes | count}}",
+        "caption": "Em aberto",
+        "format": "integer",
+        "goodDirection": "down",
+        "width": "half"
+      },
+      {
+        "type": "breakdown",
+        "title": "Prioridade",
+        "breakdownStyle": "list",
+        "path": "data.viewer.assignedIssues.nodes",
+        "groupField": "{{priorityLabel}}",
+        "groupKind": "text",
+        "measure": "count",
+        "shows": "amount",
+        "groups": [
+          {
+            "id": "C20288DB-3259-4FD0-8CA6-5C00BCA75530",
+            "name": "Urgente",
+            "color": "red",
+            "match": "Urgent"
+          },
+          {
+            "id": "7DF6F02D-97A4-4A5F-94DE-EE31311AA34D",
+            "name": "Alta",
+            "color": "orange",
+            "match": "High"
+          },
+          {
+            "id": "4665AE17-2C2A-4EBC-B705-F1FF7732C337",
+            "name": "Média",
+            "color": "yellow",
+            "match": "Medium"
+          },
+          {
+            "id": "ABF6509A-541F-48FA-ABA0-24E6CC96D0D8",
+            "name": "Baixa",
+            "color": "blue",
+            "match": "Low"
+          },
+          {
+            "id": "DDA4EA0F-B7EF-49F8-8D84-EA590238E2CC",
+            "name": "Sem prioridade",
+            "color": "gray",
+            "match": "No priority"
+          }
+        ],
+        "others": {
+          "shows": false,
+          "name": "Outros",
+          "color": "gray"
+        },
+        "width": "half"
+      },
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Minhas issues",
+            "path": "data.viewer.assignedIssues.nodes",
+            "rowTitle": "{{title}}",
+            "rowSubtitle": "{{project.name}} · {{updatedAt | ago}}",
+            "rowBadge": "{{identifier}}",
+            "rowStatus": "{{priorityLabel}}",
+            "rowWrapsTitle": true,
+            "sections": "{{state.name}}",
+            "statusColors": {
+              "Urgent": "negative",
+              "High": "attention",
+              "Medium": "neutral",
+              "Low": "neutral",
+              "No priority": "neutral"
+            },
+            "rowURL": "{{url}}"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Abrir o Linear",
+      "symbolName": "arrow.up.forward.square",
+      "place": "card",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "openLink",
+        "text": "https://linear.app/"
+      },
+      "successReport": "nothing"
+    }
+  ],
+  "attention": {
+    "mode": "newRows"
+  }
+}

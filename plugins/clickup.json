@@ -1,0 +1,118 @@
+{
+  "schema": 11,
+  "id": "plugin.exemplo.clickup",
+  "name": "ClickUp",
+  "interval": 600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "square.stack.3d.up.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://api.clickup.com/api/v2/list/{{$settings.lista}}/task",
+    "query": [
+      {
+        "name": "subtasks",
+        "value": "false"
+      },
+      {
+        "name": "include_closed",
+        "value": "false"
+      }
+    ],
+    "headers": [
+      {
+        "name": "Authorization",
+        "value": "{{secret}}"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{tasks | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "ClickUp",
+    "subtitle": "Tarefas da lista",
+    "emptyMessage": "Nada em aberto nesta lista.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{tasks | count}}",
+        "caption": "Tarefas abertas",
+        "goodDirection": "down",
+        "format": "integer"
+      },
+      {
+        "type": "breakdown",
+        "title": "Por status",
+        "breakdownStyle": "bar",
+        "path": "tasks",
+        "groupField": "{{status.status}}",
+        "groupKind": "text",
+        "measure": "count",
+        "shows": "amount",
+        "groups": [
+          {
+            "id": "EBE620ED-DAFD-41E6-B1DF-A12AB6B739B3",
+            "name": "A fazer",
+            "color": "gray",
+            "match": "to do, open, a fazer, aberto"
+          },
+          {
+            "id": "3805360C-7E49-48D2-AC71-09CFB20E06A8",
+            "name": "Em andamento",
+            "color": "blue",
+            "match": "in progress, em andamento"
+          },
+          {
+            "id": "E59380F8-94EE-47F4-B8A9-C50047AB7762",
+            "name": "Em revisão",
+            "color": "purple",
+            "match": "review, in review, em revisão"
+          }
+        ],
+        "others": {
+          "shows": true,
+          "name": "Outros",
+          "color": "teal"
+        }
+      },
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Tarefas",
+            "path": "tasks",
+            "rowTitle": "{{name}}",
+            "rowSubtitle": "{{assignees[0].username}}",
+            "rowMetaImage": "{{assignees[0].profilePicture}}",
+            "rowMeta": "{{due_date | shape dd/MM}}",
+            "rowWrapsTitle": true,
+            "rowStatus": "{{status.status}}",
+            "rowURL": "{{url}}"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "newRows"
+  },
+  "settings": [
+    {
+      "key": "lista",
+      "label": "ID da lista",
+      "type": "text",
+      "help": "O número no fim da URL da lista. O token pessoal vai no campo de segredo, em Dado.",
+      "required": true
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "schema": 8,
+  "id": "plugin.exemplo.sol",
+  "name": "Sol",
+  "interval": 21600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "sun.horizon.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://api.sunrise-sunset.org/json",
+    "query": [
+      {
+        "name": "lat",
+        "value": "{{$settings.lat}}"
+      },
+      {
+        "name": "lng",
+        "value": "{{$settings.lon}}"
+      },
+      {
+        "name": "formatted",
+        "value": "0"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{results.sunset | shape HH:mm}}",
+    "style": "arc"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Sol",
+    "subtitle": "Nascer e pôr do sol de hoje",
+    "emptyMessage": "O serviço não respondeu.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{results.day_length}}",
+        "caption": "De luz hoje · meio-dia solar às {{results.solar_noon | shape HH:mm}}",
+        "goodDirection": "up",
+        "format": "duration"
+      },
+      {
+        "type": "properties",
+        "layout": "grid",
+        "properties": [
+          {
+            "id": "368EEA26-F367-4929-8491-331881F93987",
+            "name": "Nasce",
+            "value": "{{results.sunrise | shape HH:mm}}"
+          },
+          {
+            "id": "4DC71D61-C42D-4AC5-A892-C255172880A3",
+            "name": "Põe",
+            "value": "{{results.sunset | shape HH:mm}}"
+          },
+          {
+            "id": "25736351-BC2C-4A02-9629-571FD89B2920",
+            "name": "Primeira luz",
+            "value": "{{results.civil_twilight_begin | shape HH:mm}}"
+          },
+          {
+            "id": "B067DE06-D159-4A3E-B7D0-30E24FC38558",
+            "name": "Última luz",
+            "value": "{{results.civil_twilight_end | shape HH:mm}}"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "lat",
+      "label": "Latitude",
+      "type": "text",
+      "default": "-23.55"
+    },
+    {
+      "key": "lon",
+      "label": "Longitude",
+      "type": "text",
+      "default": "-46.63"
+    }
+  ]
+}

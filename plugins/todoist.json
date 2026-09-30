@@ -1,0 +1,155 @@
+{
+  "schema": 11,
+  "id": "plugin.exemplo.todoist",
+  "name": "Todoist",
+  "interval": 300,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "checkmark.circle.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://api.todoist.com/rest/v2/tasks",
+    "query": [
+      {
+        "name": "filter",
+        "value": "{{$settings.filtro}}"
+      }
+    ],
+    "headers": [
+      {
+        "name": "Authorization",
+        "value": "Bearer {{secret}}"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{$ | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Todoist",
+    "subtitle": "{{$settings.filtro}}",
+    "emptyMessage": "Nada para hoje. Aproveite.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{$ | count}}",
+        "caption": "Tarefas neste filtro",
+        "goodDirection": "down",
+        "format": "integer",
+        "width": "half"
+      },
+      {
+        "type": "breakdown",
+        "title": "Prioridade",
+        "width": "half",
+        "breakdownStyle": "list",
+        "path": "$",
+        "groupField": "{{priority}}",
+        "groupKind": "text",
+        "measure": "count",
+        "shows": "amount",
+        "groups": [
+          {
+            "id": "D095EB74-21F9-45EB-8EE8-435CDD5F3D89",
+            "name": "Urgente",
+            "color": "red",
+            "match": "4"
+          },
+          {
+            "id": "AC25B9DF-82EE-4981-98D8-FB0DE15159B4",
+            "name": "Alta",
+            "color": "orange",
+            "match": "3"
+          },
+          {
+            "id": "7E27990B-0CC4-481D-B4E0-7D19C5F5A5E5",
+            "name": "Média",
+            "color": "blue",
+            "match": "2"
+          },
+          {
+            "id": "29B79C7C-65E2-47B7-BDA9-F195255B0A7D",
+            "name": "Normal",
+            "color": "gray",
+            "match": "1"
+          }
+        ],
+        "others": {
+          "shows": false,
+          "name": "Outros",
+          "color": "gray"
+        }
+      },
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Tarefas",
+            "path": "$",
+            "rowTitle": "{{content}}",
+            "rowSubtitle": "{{due.string}}",
+            "rowWrapsTitle": true,
+            "rowStatus": "P{{priority}}",
+            "statusColors": {
+              "P4": "negative",
+              "P3": "attention",
+              "P2": "neutral",
+              "P1": "neutral"
+            },
+            "rowURL": "{{url}}"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Nova tarefa",
+      "symbolName": "plus.circle.fill",
+      "place": "card",
+      "isProminent": true,
+      "asksForValue": true,
+      "question": "O que precisa ser feito?",
+      "run": {
+        "kind": "http",
+        "method": "POST",
+        "url": "https://api.todoist.com/rest/v2/tasks",
+        "headers": [
+          {
+            "name": "Authorization",
+            "value": "Bearer {{secret}}"
+          },
+          {
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": "{\"content\": \"{{$input}}\"}",
+        "format": {
+          "kind": "json"
+        }
+      },
+      "successMessage": "Tarefa criada."
+    }
+  ],
+  "attention": {
+    "mode": "newRows"
+  },
+  "settings": [
+    {
+      "key": "filtro",
+      "label": "Filtro",
+      "type": "text",
+      "default": "today | overdue",
+      "help": "A mesma sintaxe de filtro do Todoist. O token vai no campo de segredo, em Dado."
+    }
+  ]
+}

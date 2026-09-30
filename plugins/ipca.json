@@ -1,0 +1,89 @@
+{
+  "schema": 4,
+  "id": "plugin.exemplo.ipca",
+  "name": "Inflação",
+  "interval": 21600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "chart.line.uptrend.xyaxis"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.{{$settings.serie}}/dados/ultimos/24?formato=json",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{[-1].valor}}",
+    "style": "arc"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Inflação",
+    "subtitle": "Último dado de {{[-1].data}}",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{[-1].valor}}",
+        "previous": "{{[-2].valor}}",
+        "caption": "Variação do mês, em %",
+        "format": "number",
+        "goodDirection": "down"
+      },
+      {
+        "type": "chart",
+        "title": "Últimos 24 meses",
+        "style": "bar",
+        "path": "$",
+        "x": "{{data}}",
+        "y": "{{valor}}",
+        "dateFormat": "dd/MM/yyyy",
+        "height": "medium",
+        "format": "number"
+      },
+      {
+        "type": "table",
+        "path": "$",
+        "sortable": true,
+        "limit": 8,
+        "rowEvent": "none",
+        "columns": [
+          {
+            "title": "Mês",
+            "kind": "text",
+            "value": "{{data | shape MM/yyyy}}",
+            "align": "leading"
+          },
+          {
+            "title": "Variação",
+            "kind": "text",
+            "value": "{{valor}}",
+            "align": "trailing",
+            "format": "number"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "serie",
+      "label": "Índice",
+      "type": "choice",
+      "default": "433",
+      "help": "As séries do Banco Central. Qualquer código do SGS serve.",
+      "options": [
+        { "value": "433", "label": "IPCA" },
+        { "value": "188", "label": "INPC" },
+        { "value": "189", "label": "IGP-M" },
+        { "value": "4390", "label": "CDI ao mês" }
+      ]
+    }
+  ]
+}

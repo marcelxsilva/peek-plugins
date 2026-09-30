@@ -1,0 +1,66 @@
+{
+  "schema": 8,
+  "id": "plugin.exemplo.taxas",
+  "name": "Taxas",
+  "interval": 3600,
+  "icon": {
+    "kind": "word",
+    "word": "%"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://brasilapi.com.br/api/taxas/v1",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{[nome=Selic].valor | shape #,##0.00}}",
+    "style": "arc"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Taxas",
+    "subtitle": "Selic, CDI e IPCA de hoje",
+    "blocks": [
+      {
+        "type": "hero",
+        "title": "Selic",
+        "value": "{{[nome=Selic].valor}}",
+        "caption": "Ao ano",
+        "format": "number",
+        "width": "half"
+      },
+      {
+        "type": "properties",
+        "width": "half",
+        "layout": "stacked",
+        "properties": [
+          {
+            "id": "40350920-1AD5-45FC-B4CA-3B0D5369565F",
+            "name": "CDI",
+            "value": "{{[nome=CDI].valor}}%"
+          },
+          {
+            "id": "C6FEF05B-8110-4CA2-A645-17CD012D1FFE",
+            "name": "IPCA",
+            "value": "{{[nome=IPCA].valor}}%"
+          }
+        ]
+      },
+      {
+        "type": "bars",
+        "path": "$",
+        "label": "{{nome}}",
+        "value": "{{valor}}",
+        "limit": 6,
+        "format": "number"
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

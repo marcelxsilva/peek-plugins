@@ -1,0 +1,82 @@
+{
+  "schema": 5,
+  "id": "plugin.exemplo.pipedrive",
+  "name": "Pipedrive",
+  "interval": 900,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "chart.bar.doc.horizontal"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://{{$settings.empresa}}.pipedrive.com/api/v1/deals",
+    "query": [
+      { "name": "status", "value": "open" },
+      { "name": "limit", "value": "30" },
+      { "name": "api_token", "value": "{{secret}}" }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{data | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Negócios abertos",
+    "subtitle": "Pipedrive",
+    "emptyMessage": "Nenhum negócio aberto.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{data | count}}",
+        "caption": "Negócios em aberto no funil",
+        "format": "integer",
+        "goodDirection": "up"
+      },
+      {
+        "type": "bars",
+        "title": "Maiores negócios",
+        "path": "data",
+        "label": "{{title}}",
+        "value": "{{value}}",
+        "limit": 5,
+        "format": "money",
+        "currency": "BRL"
+      },
+      {
+        "type": "list",
+        "limit": 5,
+        "tabs": [
+          {
+            "title": "Negócios",
+            "path": "data",
+            "rowTitle": "{{title}}",
+            "rowSubtitle": "{{org_name}} · {{person_name}}",
+            "rowMeta": "Mexido {{update_time | ago}}",
+            "rowStatus": "{{value}} {{currency}}",
+            "rowWrapsTitle": true,
+            "rowEvent": "none"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "newRows"
+  },
+  "settings": [
+    {
+      "key": "empresa",
+      "label": "Subdomínio da empresa",
+      "type": "text",
+      "placeholder": "minhaempresa",
+      "help": "O trecho antes de .pipedrive.com. O token da API vai no campo de segredo, em Dado.",
+      "required": true
+    }
+  ]
+}

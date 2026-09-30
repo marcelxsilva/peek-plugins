@@ -1,0 +1,179 @@
+{
+  "schema": 9,
+  "id": "plugin.exemplo.casa",
+  "name": "Casa",
+  "interval": 60,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "house.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "http://homeassistant.local:8123/api/states",
+    "headers": [
+      {
+        "name": "Authorization",
+        "value": "Bearer {{secret}}"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "Casa",
+    "status": "{{[entity_id=light.sala].state}}",
+    "style": "status",
+    "statusColors": {
+      "on": "attention",
+      "off": "neutral",
+      "unavailable": "negative"
+    }
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Casa",
+    "subtitle": "Home Assistant nesta rede",
+    "emptyMessage": "O Home Assistant não respondeu. Confira o endereço e o token.",
+    "blocks": [
+      {
+        "type": "controls",
+        "title": "Luzes",
+        "controlStyle": "tiles",
+        "perRow": 2,
+        "controls": [
+          {
+            "id": "EF459F1A-12E6-454B-A63E-95009EDAA3C9",
+            "kind": "toggle",
+            "isOn": false,
+            "name": "Sala",
+            "path": "[entity_id=light.sala].state"
+          },
+          {
+            "id": "29014AB6-28B4-4988-9ED6-CCFE777D0406",
+            "kind": "toggle",
+            "isOn": false,
+            "name": "Cozinha",
+            "path": "[entity_id=light.cozinha].state"
+          }
+        ]
+      },
+      {
+        "type": "buttons",
+        "resultSpot": "below"
+      },
+      {
+        "type": "properties",
+        "title": "Ambiente",
+        "layout": "grid",
+        "properties": [
+          {
+            "id": "2739FE15-AA56-48B6-9BA0-F837162FE072",
+            "name": "Temperatura",
+            "value": "{{[entity_id=sensor.temperatura].state}}°"
+          },
+          {
+            "id": "DB43F9FE-D54E-451E-B78D-6CD4257E211B",
+            "name": "Umidade",
+            "value": "{{[entity_id=sensor.umidade].state}}%"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "Troque os `entity_id` nas luzes, nos botões e aqui pelos da sua casa.",
+        "maxHeight": "small"
+      }
+    ]
+  },
+  "actions": [
+    {
+      "id": "798FEE39-C8B1-4234-921A-7C2D0BBAEF29",
+      "name": "Sala",
+      "place": "control",
+      "control": "EF459F1A-12E6-454B-A63E-95009EDAA3C9",
+      "mark": {
+        "kind": "symbol",
+        "value": "lightbulb"
+      },
+      "run": {
+        "kind": "http",
+        "method": "POST",
+        "url": "http://homeassistant.local:8123/api/services/light/toggle",
+        "headers": [
+          {
+            "name": "Authorization",
+            "value": "Bearer {{secret}}"
+          },
+          {
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": "{\"entity_id\": \"light.sala\"}"
+      },
+      "successReport": "nothing",
+      "failureReport": "message",
+      "failureMessage": "Não consegui mudar a luz. Confira o endereço e o token."
+    },
+    {
+      "id": "24E2375C-479F-4DC4-9502-CEC141196D85",
+      "name": "Cozinha",
+      "place": "control",
+      "control": "29014AB6-28B4-4988-9ED6-CCFE777D0406",
+      "mark": {
+        "kind": "symbol",
+        "value": "lightbulb"
+      },
+      "run": {
+        "kind": "http",
+        "method": "POST",
+        "url": "http://homeassistant.local:8123/api/services/light/toggle",
+        "headers": [
+          {
+            "name": "Authorization",
+            "value": "Bearer {{secret}}"
+          },
+          {
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": "{\"entity_id\": \"light.cozinha\"}"
+      },
+      "successReport": "nothing",
+      "failureReport": "message",
+      "failureMessage": "Não consegui mudar a luz. Confira o endereço e o token."
+    },
+    {
+      "name": "Tudo apagado",
+      "symbolName": "power",
+      "place": "panel",
+      "size": "large",
+      "hue": "red",
+      "confirms": true,
+      "confirmText": "Apagar todas as luzes da casa?",
+      "run": {
+        "kind": "http",
+        "method": "POST",
+        "url": "http://homeassistant.local:8123/api/services/light/turn_off",
+        "headers": [
+          {
+            "name": "Authorization",
+            "value": "Bearer {{secret}}"
+          },
+          {
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": "{\"entity_id\": \"all\"}"
+      },
+      "successMessage": "Luzes apagadas."
+    }
+  ],
+  "attention": {
+    "mode": "never"
+  }
+}

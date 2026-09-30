@@ -1,0 +1,89 @@
+{
+  "schema": 8,
+  "id": "plugin.exemplo.brew",
+  "name": "Homebrew",
+  "interval": 21600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "shippingbox.and.arrow.backward.fill"
+  },
+  "source": {
+    "kind": "command",
+    "steps": [
+      {
+        "program": "/opt/homebrew/bin/brew",
+        "arguments": [
+          "outdated",
+          "--json=v2"
+        ]
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{formulae | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Homebrew",
+    "subtitle": "O que dá para atualizar",
+    "emptyMessage": "Tudo atualizado.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{formulae | count}}",
+        "caption": "Fórmulas desatualizadas",
+        "goodDirection": "down",
+        "format": "integer",
+        "width": "half"
+      },
+      {
+        "type": "hero",
+        "value": "{{casks | count}}",
+        "caption": "Casks desatualizados",
+        "goodDirection": "down",
+        "format": "integer",
+        "width": "half"
+      },
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Fórmulas",
+            "path": "formulae",
+            "rowTitle": "{{name}}",
+            "rowSubtitle": "{{installed_versions[0]}} → {{current_version}}",
+            "rowEvent": "none"
+          },
+          {
+            "title": "Casks",
+            "path": "casks",
+            "rowTitle": "{{name}}",
+            "rowSubtitle": "{{installed_versions[0]}} → {{current_version}}",
+            "rowEvent": "none"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Copiar o comando",
+      "symbolName": "doc.on.doc",
+      "place": "card",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "copy",
+        "text": "brew upgrade"
+      },
+      "successMessage": "Comando copiado."
+    }
+  ],
+  "attention": {
+    "mode": "newRows"
+  }
+}

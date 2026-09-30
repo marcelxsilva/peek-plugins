@@ -1,0 +1,116 @@
+{
+  "schema": 11,
+  "id": "plugin.exemplo.asteroides",
+  "name": "Asteroides",
+  "interval": 86400,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "circle.dotted.circle"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://api.nasa.gov/neo/rest/v1/neo/browse",
+    "query": [
+      {
+        "name": "size",
+        "value": "12"
+      },
+      {
+        "name": "api_key",
+        "value": "{{$settings.chave}}"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{near_earth_objects | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Asteroides",
+    "subtitle": "{{page.total_elements}} corpos catalogados perto da Terra",
+    "emptyMessage": "A NASA não respondeu.",
+    "blocks": [
+      {
+        "type": "breakdown",
+        "title": "Risco",
+        "breakdownStyle": "bar",
+        "path": "near_earth_objects",
+        "groupField": "{{is_potentially_hazardous_asteroid}}",
+        "groupKind": "boolean",
+        "measure": "count",
+        "shows": "both",
+        "groups": [
+          {
+            "id": "40141CE8-DC35-4D1E-AE27-1D47CE61B5F5",
+            "name": "Potencialmente perigoso",
+            "color": "red",
+            "truth": true
+          },
+          {
+            "id": "1A3A45C6-DA8D-430D-8EF6-9A58DB5FDC7F",
+            "name": "Sem risco",
+            "color": "green",
+            "truth": false
+          }
+        ],
+        "others": {
+          "shows": false,
+          "name": "Outros",
+          "color": "gray"
+        }
+      },
+      {
+        "type": "table",
+        "path": "near_earth_objects",
+        "sortable": true,
+        "limit": 10,
+        "rowEvent": "open",
+        "rowURL": "{{nasa_jpl_url}}",
+        "columns": [
+          {
+            "title": "Nome",
+            "kind": "text",
+            "value": "{{name}}",
+            "align": "leading"
+          },
+          {
+            "title": "Diâmetro",
+            "kind": "text",
+            "value": "{{estimated_diameter.meters.estimated_diameter_max}}",
+            "align": "trailing",
+            "format": "integer"
+          },
+          {
+            "title": "",
+            "kind": "status",
+            "value": "{{is_potentially_hazardous_asteroid}}",
+            "align": "trailing",
+            "statusColors": {
+              "true": "negative",
+              "false": "positive"
+            },
+            "showsWord": true
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "chave",
+      "label": "Chave da NASA",
+      "type": "text",
+      "default": "DEMO_KEY",
+      "help": "DEMO_KEY funciona com poucas chamadas por hora. Uma chave própria é grátis em api.nasa.gov."
+    }
+  ]
+}

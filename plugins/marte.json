@@ -1,0 +1,70 @@
+{
+  "schema": 5,
+  "id": "plugin.exemplo.marte",
+  "name": "Marte",
+  "interval": 86400,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "camera.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/latest_photos",
+    "query": [
+      {
+        "name": "api_key",
+        "value": "{{$settings.chave}}"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{latest_photos | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "picture": {
+      "kind": "address",
+      "value": "{{latest_photos[0].img_src}}",
+      "shape": "rounded",
+      "scale": 2.2
+    },
+    "title": "Marte",
+    "subtitle": "Fotos mais recentes do Curiosity",
+    "emptyMessage": "A NASA não respondeu.",
+    "blocks": [
+      {
+        "type": "list",
+        "limit": 6,
+        "tabs": [
+          {
+            "title": "Fotos",
+            "path": "latest_photos",
+            "rowTitle": "{{camera.full_name}}",
+            "rowSubtitle": "Sol {{sol}} · {{earth_date | date}}",
+            "rowImage": "{{img_src}}",
+            "rowWrapsTitle": true,
+            "rowURL": "{{img_src}}"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "chave",
+      "label": "Chave da NASA",
+      "type": "text",
+      "default": "DEMO_KEY",
+      "help": "DEMO_KEY funciona com poucas chamadas por hora."
+    }
+  ]
+}

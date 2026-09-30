@@ -1,0 +1,68 @@
+{
+  "schema": 2,
+  "id": "plugin.exemplo.mare",
+  "name": "Maré",
+  "interval": 3600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "water.waves"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://marine-api.open-meteo.com/v1/marine?latitude={{$settings.lat}}&longitude={{$settings.lon}}&current=wave_height,wave_period&hourly=wave_height&forecast_days=2&timezone=auto",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{current.wave_height}}",
+    "value": "{{current.wave_height}}",
+    "total": "4",
+    "style": "arc"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Maré",
+    "subtitle": "{{timezone}}",
+    "emptyMessage": "Sem dados de mar para esse ponto. Escolha uma coordenada no litoral.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{current.wave_height}}",
+        "caption": "Metros de onda · período de {{current.wave_period}} s",
+        "goodDirection": "up",
+        "format": "number"
+      },
+      {
+        "type": "chart",
+        "style": "area",
+        "title": "Próximas 48 horas",
+        "path": "hourly.wave_height",
+        "x": "hourly.time",
+        "dateFormat": "yyyy-MM-dd'T'HH:mm",
+        "height": "medium",
+        "format": "number"
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "lat",
+      "label": "Latitude",
+      "type": "text",
+      "default": "-23.98",
+      "help": "Um ponto no mar, não no centro da cidade."
+    },
+    {
+      "key": "lon",
+      "label": "Longitude",
+      "type": "text",
+      "default": "-46.30"
+    }
+  ]
+}

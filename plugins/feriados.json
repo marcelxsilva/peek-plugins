@@ -1,0 +1,61 @@
+{
+  "schema": 2,
+  "id": "plugin.exemplo.feriados",
+  "name": "Feriados",
+  "interval": 3600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "calendar"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://brasilapi.com.br/api/feriados/v1/{{$now | shape yyyy}}",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{$ | count}}",
+    "style": "arc"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Feriados",
+    "subtitle": "Feriados nacionais de {{$now | shape yyyy}}",
+    "emptyMessage": "Nenhum feriado neste ano.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{$ | count}}",
+        "caption": "Feriados nacionais neste ano",
+        "format": "integer"
+      },
+      {
+        "type": "timeline",
+        "path": "$",
+        "date": "{{date}}",
+        "rowTitle": "{{name}}",
+        "rowSubtitle": "{{weekday}}",
+        "range": "upcoming",
+        "limit": 8
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Abrir o Calendário",
+      "symbolName": "calendar",
+      "place": "card",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "openApp",
+        "text": "com.apple.iCal"
+      },
+      "successReport": "nothing"
+    }
+  ],
+  "attention": {
+    "mode": "never"
+  }
+}

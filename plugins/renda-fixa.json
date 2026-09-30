@@ -1,0 +1,77 @@
+{
+  "schema": 7,
+  "id": "plugin.exemplo.renda-fixa",
+  "name": "Renda fixa",
+  "interval": 3600,
+  "readsOnItsOwn": false,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "lock.doc.fill"
+  },
+  "source": {
+    "kind": "panel",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "answer": "{\n  \"total\": 128000,\n  \"titulos\": [\n    {\n      \"nome\": \"CDB Banco A\",\n      \"valor\": 45000,\n      \"vence\": \"2027-03-10\",\n      \"taxa\": \"112% do CDI\"\n    },\n    {\n      \"nome\": \"Tesouro IPCA+ 2029\",\n      \"valor\": 38000,\n      \"vence\": \"2029-05-15\",\n      \"taxa\": \"IPCA + 6,1%\"\n    },\n    {\n      \"nome\": \"LCI Banco B\",\n      \"valor\": 30000,\n      \"vence\": \"2026-12-01\",\n      \"taxa\": \"96% do CDI\"\n    },\n    {\n      \"nome\": \"CDB liquidez diária\",\n      \"valor\": 15000,\n      \"vence\": \"2026-10-30\",\n      \"taxa\": \"101% do CDI\"\n    }\n  ]\n}",
+  "slot": {
+    "label": "{{titulos | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Renda fixa",
+    "subtitle": "O que vence e quando",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{total}}",
+        "caption": "Aplicado em renda fixa",
+        "goodDirection": "up",
+        "format": "money",
+        "currency": "BRL"
+      },
+      {
+        "type": "timeline",
+        "path": "titulos",
+        "date": "{{vence}}",
+        "rowTitle": "{{nome}}",
+        "rowSubtitle": "{{taxa}} · {{valor | shape R$ #,##0}}",
+        "range": "upcoming",
+        "limit": 8
+      },
+      {
+        "type": "table",
+        "path": "titulos",
+        "sortable": true,
+        "limit": 6,
+        "rowEvent": "none",
+        "columns": [
+          {
+            "title": "Título",
+            "kind": "text",
+            "value": "{{nome}}",
+            "align": "leading"
+          },
+          {
+            "title": "Taxa",
+            "kind": "text",
+            "value": "{{taxa}}",
+            "align": "leading"
+          },
+          {
+            "title": "Vence",
+            "kind": "text",
+            "value": "{{vence | shape dd/MM/yy}}",
+            "align": "trailing"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

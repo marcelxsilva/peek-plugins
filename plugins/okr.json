@@ -1,0 +1,59 @@
+{
+  "schema": 7,
+  "id": "plugin.exemplo.okr",
+  "name": "Metas do trimestre",
+  "interval": 3600,
+  "readsOnItsOwn": false,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "target"
+  },
+  "source": {
+    "kind": "panel",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "answer": "{\n  \"trimestre\": \"2026 Q4\",\n  \"metas\": [\n    { \"nome\": \"Receita recorrente\", \"atual\": 420000, \"alvo\": 600000 },\n    { \"nome\": \"Clientes ativos\", \"atual\": 178, \"alvo\": 250 },\n    { \"nome\": \"NPS\", \"atual\": 62, \"alvo\": 70 },\n    { \"nome\": \"Churn mensal\", \"atual\": 3, \"alvo\": 2 }\n  ]\n}",
+  "slot": {
+    "label": "{{metas | count}}",
+    "value": "{{metas[0].atual}}",
+    "total": "{{metas[0].alvo}}",
+    "style": "arc"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Metas do trimestre",
+    "subtitle": "{{trimestre}}",
+    "blocks": [
+      {
+        "type": "hero",
+        "title": "{{metas[0].nome}}",
+        "value": "{{metas[0].atual}}",
+        "total": "{{metas[0].alvo}}",
+        "caption": "Meta do trimestre",
+        "format": "money",
+        "currency": "BRL",
+        "goodDirection": "up"
+      },
+      {
+        "type": "bars",
+        "title": "Como está cada uma",
+        "path": "metas",
+        "label": "{{nome}}",
+        "value": "{{atual}}",
+        "limit": 6,
+        "format": "number"
+      },
+      {
+        "type": "text",
+        "value": "Este plugin não lê nada: os números estão escritos no próprio arquivo, na aba **Dado**. Edite lá e o cartão muda.",
+        "maxHeight": "small"
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

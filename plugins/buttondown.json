@@ -1,0 +1,85 @@
+{
+  "schema": 5,
+  "id": "plugin.exemplo.buttondown",
+  "name": "Newsletter",
+  "interval": 3600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "envelope.open.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://api.buttondown.email/v1/subscribers",
+    "headers": [
+      {
+        "name": "Authorization",
+        "value": "Token {{secret}}"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{count}}",
+    "style": "sparkline"
+  },
+  "history": {
+    "path": "count",
+    "keep": 192
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Newsletter",
+    "subtitle": "Assinantes no Buttondown",
+    "emptyMessage": "Nenhum assinante, ou o token está faltando.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{count}}",
+        "caption": "Pessoas inscritas",
+        "goodDirection": "up",
+        "format": "integer"
+      },
+      {
+        "type": "chart",
+        "style": "area",
+        "title": "Assinantes ao longo do tempo",
+        "height": "medium",
+        "format": "integer"
+      },
+      {
+        "type": "list",
+        "limit": 5,
+        "tabs": [
+          {
+            "title": "Últimos",
+            "path": "results",
+            "rowTitle": "{{email}}",
+            "rowSubtitle": "{{creation_date | ago}}",
+            "rowStatus": "{{subscriber_type}}",
+            "rowEvent": "none"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Abrir o Buttondown",
+      "symbolName": "arrow.up.forward.square",
+      "place": "card",
+      "isProminent": false,
+      "run": {
+        "kind": "onTheMac",
+        "errand": "openLink",
+        "text": "https://buttondown.email/emails"
+      },
+      "successReport": "nothing"
+    }
+  ],
+  "attention": {
+    "mode": "newRows"
+  }
+}

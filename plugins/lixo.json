@@ -1,0 +1,42 @@
+{
+  "schema": 7,
+  "id": "plugin.exemplo.lixo",
+  "name": "Coleta",
+  "interval": 3600,
+  "readsOnItsOwn": false,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "trash.fill"
+  },
+  "source": {
+    "kind": "panel",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "answer": "{\n  \"coletas\": [\n    {\n      \"tipo\": \"Recicláveis\",\n      \"quando\": \"2026-09-28\",\n      \"nota\": \"Deixar até as 7h\"\n    },\n    {\n      \"tipo\": \"Orgânico\",\n      \"quando\": \"2026-09-29\",\n      \"nota\": \"Todo dia útil\"\n    },\n    {\n      \"tipo\": \"Entulho\",\n      \"quando\": \"2026-10-03\",\n      \"nota\": \"Agendado\"\n    }\n  ]\n}",
+  "slot": {
+    "label": "{{coletas | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Coleta",
+    "subtitle": "Quando descer o lixo",
+    "blocks": [
+      {
+        "type": "timeline",
+        "path": "coletas",
+        "date": "{{quando}}",
+        "rowTitle": "{{tipo}}",
+        "rowSubtitle": "{{nota}}",
+        "range": "upcoming",
+        "limit": 6
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

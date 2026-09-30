@@ -1,0 +1,120 @@
+{
+  "schema": 8,
+  "id": "plugin.exemplo.cep",
+  "name": "CEP",
+  "interval": 3600,
+  "readsOnItsOwn": false,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "mappin.circle.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://brasilapi.com.br/api/cep/v2/{{$global.peek_cep ?? $settings.padrao}}",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "CEP",
+    "style": "arc"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "{{street ?? city}}",
+    "subtitle": "{{neighborhood}} · {{city}}/{{state}}",
+    "emptyMessage": "Nenhum CEP consultado ainda.",
+    "blocks": [
+      {
+        "type": "properties",
+        "layout": "columns",
+        "properties": [
+          {
+            "id": "FA62D539-92A7-4ED4-986F-D9283DCFD3D8",
+            "name": "CEP",
+            "value": "{{cep}}"
+          },
+          {
+            "id": "236E27A8-1242-443C-8B0E-BA45EF6938D6",
+            "name": "Rua",
+            "value": "{{street}}"
+          },
+          {
+            "id": "FC19E7DE-AB51-4554-9776-C8BB99BF9DD6",
+            "name": "Bairro",
+            "value": "{{neighborhood}}"
+          },
+          {
+            "id": "69B71CBC-0B1E-4358-8660-6130F64289FE",
+            "name": "Cidade",
+            "value": "{{city}}/{{state}}"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Consultar",
+      "symbolName": "magnifyingglass",
+      "place": "card",
+      "isProminent": true,
+      "asksForValue": true,
+      "question": "Qual CEP?",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "remember",
+        "variable": "peek_cep",
+        "text": "{{$input}}"
+      },
+      "successMessage": "Consultando {{$input}}."
+    },
+    {
+      "name": "Copiar o endereço",
+      "symbolName": "doc.on.doc",
+      "place": "card",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "copy",
+        "text": "{{street}}, {{neighborhood}}, {{city}}/{{state}}, {{cep}}"
+      },
+      "successMessage": "Endereço copiado."
+    },
+    {
+      "name": "Ver no mapa",
+      "symbolName": "map",
+      "place": "card",
+      "isProminent": false,
+      "run": {
+        "kind": "onTheMac",
+        "errand": "openLink",
+        "text": "https://www.google.com/maps?q={{location.coordinates.latitude}},{{location.coordinates.longitude}}"
+      },
+      "successReport": "nothing"
+    },
+    {
+      "name": "Copiar o CEP",
+      "symbolName": "doc.on.doc",
+      "place": "property",
+      "property": "FA62D539-92A7-4ED4-986F-D9283DCFD3D8",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "copy",
+        "text": "{{cep}}"
+      },
+      "successMessage": "CEP copiado."
+    }
+  ],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "padrao",
+      "label": "CEP inicial",
+      "type": "text",
+      "default": "01310100"
+    }
+  ]
+}

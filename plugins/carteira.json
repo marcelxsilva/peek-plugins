@@ -1,0 +1,119 @@
+{
+  "schema": 11,
+  "id": "plugin.exemplo.carteira",
+  "name": "Carteira",
+  "interval": 3600,
+  "readsOnItsOwn": false,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "briefcase.fill"
+  },
+  "source": {
+    "kind": "panel",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "answer": "{\n  \"atualizado\": \"2026-09-25\",\n  \"total\": 184300,\n  \"aportado\": 150000,\n  \"posicoes\": [\n    {\n      \"nome\": \"Tesouro IPCA+ 2029\",\n      \"valor\": 62000,\n      \"classe\": \"Renda fixa\"\n    },\n    {\n      \"nome\": \"PETR4\",\n      \"valor\": 41500,\n      \"classe\": \"Ações\"\n    },\n    {\n      \"nome\": \"HGLG11\",\n      \"valor\": 38800,\n      \"classe\": \"Fundos imobiliários\"\n    },\n    {\n      \"nome\": \"Bitcoin\",\n      \"valor\": 25000,\n      \"classe\": \"Cripto\"\n    },\n    {\n      \"nome\": \"Caixa\",\n      \"valor\": 17000,\n      \"classe\": \"Liquidez\"\n    }\n  ]\n}",
+  "slot": {
+    "label": "{{total | shape #,##0}}",
+    "style": "arc"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Carteira",
+    "subtitle": "Fechamento de {{atualizado | date}}",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{total}}",
+        "previous": "{{aportado}}",
+        "caption": "Patrimônio · {{aportado | shape R$ #,##0}} aportados",
+        "goodDirection": "up",
+        "format": "money",
+        "currency": "BRL"
+      },
+      {
+        "type": "breakdown",
+        "title": "Por classe",
+        "breakdownStyle": "bar",
+        "path": "posicoes",
+        "groupField": "{{classe}}",
+        "groupKind": "text",
+        "measure": "sum",
+        "sumField": "{{valor}}",
+        "shows": "percent",
+        "groups": [
+          {
+            "id": "424C1102-656F-4B4D-AED9-6E909D266FF4",
+            "name": "Renda fixa",
+            "color": "blue",
+            "match": "Renda fixa"
+          },
+          {
+            "id": "D95E94C5-3FB7-4738-8558-80A354B7560A",
+            "name": "Ações",
+            "color": "green",
+            "match": "Ações"
+          },
+          {
+            "id": "F0D9F9C4-3098-4B4B-8644-01BA5BCD5073",
+            "name": "Fundos imobiliários",
+            "color": "purple",
+            "match": "Fundos imobiliários"
+          },
+          {
+            "id": "995BF7FA-B817-406E-9D5C-7FF566F4DBE6",
+            "name": "Cripto",
+            "color": "orange",
+            "match": "Cripto"
+          },
+          {
+            "id": "FF3726C0-9287-4224-8D1C-E5A2F60E5507",
+            "name": "Liquidez",
+            "color": "teal",
+            "match": "Liquidez"
+          }
+        ],
+        "others": {
+          "shows": false,
+          "name": "Outros",
+          "color": "gray"
+        }
+      },
+      {
+        "type": "table",
+        "path": "posicoes",
+        "sortable": true,
+        "limit": 8,
+        "rowEvent": "none",
+        "columns": [
+          {
+            "title": "Posição",
+            "kind": "text",
+            "value": "{{nome}}",
+            "align": "leading"
+          },
+          {
+            "title": "Classe",
+            "kind": "text",
+            "value": "{{classe}}",
+            "align": "leading"
+          },
+          {
+            "title": "Valor",
+            "kind": "text",
+            "value": "{{valor}}",
+            "align": "trailing",
+            "format": "money",
+            "currency": "BRL"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

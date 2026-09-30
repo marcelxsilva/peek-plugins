@@ -1,0 +1,91 @@
+{
+  "schema": 8,
+  "id": "plugin.exemplo.chuva",
+  "name": "Chuva",
+  "interval": 900,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "cloud.rain.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://api.open-meteo.com/v1/forecast?latitude={{$settings.lat}}&longitude={{$settings.lon}}&current=precipitation,rain&hourly=precipitation_probability,precipitation&forecast_days=1&timezone=auto",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{hourly.precipitation_probability[0]}}%",
+    "value": "{{hourly.precipitation_probability[0]}}",
+    "total": "100",
+    "style": "arc",
+    "alertsOnThreshold": true
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Chuva",
+    "subtitle": "{{timezone}}",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{hourly.precipitation_probability[0]}}",
+        "total": "100",
+        "caption": "Chance de chuva na próxima hora",
+        "goodDirection": "down",
+        "format": "percent",
+        "width": "half"
+      },
+      {
+        "type": "properties",
+        "layout": "stacked",
+        "width": "half",
+        "properties": [
+          {
+            "id": "9807C2A2-EF5B-4D89-9250-89AD25B52970",
+            "name": "Caindo agora",
+            "value": "{{current.precipitation}} mm"
+          }
+        ]
+      },
+      {
+        "type": "chart",
+        "style": "area",
+        "title": "Chance ao longo do dia",
+        "path": "hourly.precipitation_probability",
+        "x": "hourly.time",
+        "dateFormat": "yyyy-MM-dd'T'HH:mm",
+        "height": "medium",
+        "format": "percent"
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "countAbove",
+    "comparison": "above",
+    "countPath": "hourly.precipitation_probability[0]",
+    "threshold": "{{$settings.avisar}}"
+  },
+  "settings": [
+    {
+      "key": "lat",
+      "label": "Latitude",
+      "type": "text",
+      "default": "-23.55"
+    },
+    {
+      "key": "lon",
+      "label": "Longitude",
+      "type": "text",
+      "default": "-46.63"
+    },
+    {
+      "key": "avisar",
+      "label": "Avisar acima de",
+      "type": "number",
+      "default": 60,
+      "help": "Em porcentagem de chance de chuva."
+    }
+  ]
+}

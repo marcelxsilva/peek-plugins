@@ -1,0 +1,151 @@
+{
+  "schema": 11,
+  "id": "plugin.exemplo.docker",
+  "name": "Docker",
+  "interval": 60,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "shippingbox.fill"
+  },
+  "source": {
+    "kind": "command",
+    "steps": [
+      {
+        "program": "/usr/local/bin/docker",
+        "arguments": [
+          "ps",
+          "-a",
+          "--format",
+          "json"
+        ]
+      },
+      {
+        "program": "/usr/bin/jq",
+        "arguments": [
+          "-s",
+          "."
+        ]
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{$ | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Docker",
+    "subtitle": "Contêineres desta máquina",
+    "emptyMessage": "Nenhum contêiner. O Docker está rodando?",
+    "blocks": [
+      {
+        "type": "breakdown",
+        "title": "Por estado",
+        "breakdownStyle": "bar",
+        "path": "$",
+        "groupField": "{{State}}",
+        "groupKind": "text",
+        "measure": "count",
+        "shows": "amount",
+        "groups": [
+          {
+            "id": "6481A077-FF30-4EA5-AF7E-C1E593D2252B",
+            "name": "Rodando",
+            "color": "green",
+            "match": "running"
+          },
+          {
+            "id": "30FCC4BA-96A0-4BB6-BF2E-5FD0A8599284",
+            "name": "Pausado",
+            "color": "yellow",
+            "match": "paused, restarting"
+          },
+          {
+            "id": "FD432595-1A4E-49EF-AC7B-576A1891681C",
+            "name": "Parado",
+            "color": "red",
+            "match": "exited, dead"
+          },
+          {
+            "id": "68C152F0-55D7-4F65-9D99-11E5EE337651",
+            "name": "Criado",
+            "color": "gray",
+            "match": "created"
+          }
+        ],
+        "others": {
+          "shows": true,
+          "name": "Outros",
+          "color": "gray"
+        }
+      },
+      {
+        "type": "grid",
+        "path": "$",
+        "label": "{{Names}}",
+        "status": "{{State}}",
+        "statusColors": {
+          "running": "positive",
+          "restarting": "attention",
+          "paused": "attention",
+          "created": "neutral",
+          "exited": "negative",
+          "dead": "negative"
+        },
+        "limit": 24
+      },
+      {
+        "type": "table",
+        "path": "$",
+        "sortable": true,
+        "limit": 8,
+        "rowEvent": "none",
+        "columns": [
+          {
+            "title": "Nome",
+            "kind": "text",
+            "value": "{{Names}}",
+            "align": "leading"
+          },
+          {
+            "title": "Imagem",
+            "kind": "text",
+            "value": "{{Image}}",
+            "align": "leading"
+          },
+          {
+            "title": "",
+            "kind": "status",
+            "value": "{{State}}",
+            "align": "trailing",
+            "showsWord": true,
+            "statusColors": {
+              "running": "positive",
+              "paused": "attention",
+              "exited": "negative"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Copiar os nomes",
+      "symbolName": "doc.on.doc",
+      "place": "card",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "copy",
+        "text": "{{[*].Names}}"
+      },
+      "successMessage": "Copiado."
+    }
+  ],
+  "attention": {
+    "mode": "never"
+  }
+}

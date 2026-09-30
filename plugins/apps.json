@@ -1,0 +1,63 @@
+{
+  "schema": 2,
+  "id": "plugin.exemplo.apps",
+  "name": "Aplicativos",
+  "interval": 86400,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "square.grid.3x3.square"
+  },
+  "source": {
+    "kind": "command",
+    "steps": [
+      {
+        "program": "/usr/bin/find",
+        "arguments": [
+          "/Applications",
+          "-maxdepth",
+          "1",
+          "-name",
+          "*.app"
+        ]
+      }
+    ],
+    "format": {
+      "kind": "files"
+    }
+  },
+  "slot": {
+    "label": "{{files | count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Aplicativos",
+    "subtitle": "O que está instalado em /Applications",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{files | count}}",
+        "caption": "Aplicativos instalados",
+        "goodDirection": "up",
+        "format": "integer"
+      },
+      {
+        "type": "list",
+        "limit": 8,
+        "tabs": [
+          {
+            "title": "Aplicativos",
+            "path": "files[*]",
+            "rowTitle": "{{name}}",
+            "rowSubtitle": "{{modified | ago}}",
+            "rowURL": "{{path}}"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "newRows"
+  }
+}

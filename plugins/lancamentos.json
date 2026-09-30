@@ -1,0 +1,66 @@
+{
+  "schema": 3,
+  "id": "plugin.exemplo.lancamentos",
+  "name": "Lançamentos",
+  "interval": 21600,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "paperplane.circle.fill"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://ll.thespacedevs.com/2.2.0/launch/upcoming/",
+    "query": [
+      {
+        "name": "limit",
+        "value": "10"
+      },
+      {
+        "name": "mode",
+        "value": "list"
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{count}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Lançamentos",
+    "subtitle": "Os próximos foguetes a subir",
+    "emptyMessage": "Nenhum lançamento agendado.",
+    "blocks": [
+      {
+        "type": "timeline",
+        "path": "results",
+        "date": "{{net}}",
+        "rowTitle": "{{name}}",
+        "rowSubtitle": "{{launch_service_provider.name}}",
+        "range": "upcoming",
+        "limit": 8
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Ver a agenda",
+      "symbolName": "arrow.up.forward.square",
+      "place": "card",
+      "isProminent": false,
+      "run": {
+        "kind": "onTheMac",
+        "errand": "openLink",
+        "text": "https://nextspaceflight.com/launches/"
+      },
+      "successReport": "nothing"
+    }
+  ],
+  "attention": {
+    "mode": "newRows"
+  }
+}

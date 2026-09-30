@@ -1,0 +1,199 @@
+{
+  "schema": 11,
+  "id": "plugin.exemplo.status-servicos",
+  "name": "Status dos serviços",
+  "interval": 300,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "dot.radiowaves.left.and.right"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://{{$settings.pagina}}/api/v2/summary.json",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{components | count}}",
+    "status": "{{status.indicator}}",
+    "style": "status",
+    "statusColors": {
+      "none": "positive",
+      "minor": "attention",
+      "major": "negative",
+      "critical": "negative"
+    }
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "{{page.name}}",
+    "subtitle": "{{status.description}}",
+    "emptyMessage": "Nada a relatar.",
+    "blocks": [
+      {
+        "type": "breakdown",
+        "title": "Componentes",
+        "breakdownStyle": "bar",
+        "path": "components",
+        "groupField": "{{status}}",
+        "groupKind": "text",
+        "measure": "count",
+        "shows": "amount",
+        "groups": [
+          {
+            "id": "AEB50E8D-E2A1-4A6A-889D-FD3BAEC67CB9",
+            "name": "Operando",
+            "color": "green",
+            "match": "operational"
+          },
+          {
+            "id": "C8D78462-A2FE-4962-949B-E87664DCD93A",
+            "name": "Lento",
+            "color": "yellow",
+            "match": "degraded_performance"
+          },
+          {
+            "id": "3D01E721-E5EF-4189-8F0D-D098FE3BF3EC",
+            "name": "Falha parcial",
+            "color": "orange",
+            "match": "partial_outage"
+          },
+          {
+            "id": "F6AA0BBE-007B-4EED-860F-36C847E74955",
+            "name": "Fora do ar",
+            "color": "red",
+            "match": "major_outage"
+          },
+          {
+            "id": "A4669090-7D2C-43F5-B484-B56ACFDB41AC",
+            "name": "Manutenção",
+            "color": "blue",
+            "match": "under_maintenance"
+          }
+        ],
+        "others": {
+          "shows": true,
+          "name": "Outros",
+          "color": "gray"
+        }
+      },
+      {
+        "type": "grid",
+        "path": "components",
+        "label": "{{name}}",
+        "status": "{{status}}",
+        "statusColors": {
+          "operational": "positive",
+          "degraded_performance": "attention",
+          "partial_outage": "attention",
+          "major_outage": "negative",
+          "under_maintenance": "neutral"
+        },
+        "limit": 36
+      },
+      {
+        "type": "list",
+        "limit": 4,
+        "tabs": [
+          {
+            "title": "Incidentes",
+            "path": "incidents",
+            "rowTitle": "{{name}}",
+            "rowSubtitle": "{{updated_at | ago}}",
+            "rowStatus": "{{impact}}",
+            "rowWrapsTitle": true,
+            "statusWords": {
+              "none": "nenhum",
+              "minor": "pequeno",
+              "major": "grande",
+              "critical": "crítico"
+            },
+            "statusColors": {
+              "none": "neutral",
+              "minor": "attention",
+              "major": "negative",
+              "critical": "negative"
+            },
+            "rowURL": "{{shortlink}}",
+            "face": {
+              "kind": "symbol",
+              "value": "exclamationmark.triangle.fill"
+            }
+          },
+          {
+            "title": "Manutenção",
+            "path": "scheduled_maintenances",
+            "rowTitle": "{{name}}",
+            "rowSubtitle": "{{scheduled_for | date}}",
+            "rowWrapsTitle": true,
+            "rowURL": "{{shortlink}}",
+            "face": {
+              "kind": "symbol",
+              "value": "wrench.and.screwdriver.fill"
+            }
+          }
+        ],
+        "everyTab": {
+          "title": "Tudo",
+          "face": {
+            "kind": "symbol",
+            "value": "tray.full.fill"
+          }
+        }
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Abrir a página",
+      "symbolName": "arrow.up.forward.square",
+      "place": "card",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "openLink",
+        "text": "https://{{$settings.pagina}}"
+      },
+      "successReport": "nothing"
+    }
+  ],
+  "attention": {
+    "mode": "newRows"
+  },
+  "settings": [
+    {
+      "key": "pagina",
+      "label": "Serviço",
+      "type": "choice",
+      "default": "www.githubstatus.com",
+      "help": "Qualquer página de status feita com Statuspage serve. Cole o domínio dela.",
+      "options": [
+        {
+          "value": "www.githubstatus.com",
+          "label": "GitHub"
+        },
+        {
+          "value": "status.openai.com",
+          "label": "OpenAI"
+        },
+        {
+          "value": "www.cloudflarestatus.com",
+          "label": "Cloudflare"
+        },
+        {
+          "value": "status.slack.com",
+          "label": "Slack"
+        },
+        {
+          "value": "status.notion.so",
+          "label": "Notion"
+        },
+        {
+          "value": "status.atlassian.com",
+          "label": "Atlassian"
+        }
+      ]
+    }
+  ]
+}

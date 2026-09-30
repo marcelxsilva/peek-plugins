@@ -1,0 +1,92 @@
+{
+  "schema": 8,
+  "id": "plugin.exemplo.stripe",
+  "name": "Stripe",
+  "interval": 900,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "creditcard.fill"
+  },
+  "source": {
+    "kind": "command",
+    "steps": [
+      {
+        "program": "/usr/bin/curl",
+        "arguments": [
+          "-sS",
+          "-m",
+          "10",
+          "-H",
+          "Authorization: Bearer {{secret}}",
+          "https://api.stripe.com/v1/balance"
+        ]
+      },
+      {
+        "program": "/usr/bin/jq",
+        "arguments": [
+          "{ disponivel: (.available[0].amount / 100), pendente: (.pending[0].amount / 100), moeda: (.available[0].currency | ascii_upcase) }"
+        ]
+      }
+    ],
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{disponivel | shape #,##0}}",
+    "style": "sparkline"
+  },
+  "history": {
+    "path": "disponivel",
+    "keep": 96
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Stripe",
+    "subtitle": "Saldo da conta",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{disponivel}}",
+        "caption": "Disponível em {{moeda}}",
+        "format": "money",
+        "currency": "BRL",
+        "goodDirection": "up",
+        "width": "half"
+      },
+      {
+        "type": "hero",
+        "width": "half",
+        "value": "{{pendente}}",
+        "caption": "Pendente em {{moeda}}",
+        "format": "money",
+        "currency": "BRL",
+        "goodDirection": "up"
+      },
+      {
+        "type": "chart",
+        "title": "Saldo ao longo do dia",
+        "style": "area",
+        "height": "medium",
+        "format": "money",
+        "currency": "BRL"
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Abrir o painel",
+      "symbolName": "arrow.up.forward.square",
+      "place": "card",
+      "run": {
+        "kind": "onTheMac",
+        "errand": "openLink",
+        "text": "https://dashboard.stripe.com/balance"
+      },
+      "successReport": "nothing"
+    }
+  ],
+  "attention": {
+    "mode": "never"
+  }
+}

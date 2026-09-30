@@ -1,0 +1,78 @@
+{
+  "schema": 8,
+  "id": "plugin.exemplo.cripto-global",
+  "name": "Mercado cripto",
+  "interval": 1800,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "globe"
+  },
+  "source": {
+    "kind": "http",
+    "method": "GET",
+    "url": "https://api.coingecko.com/api/v3/global",
+    "format": {
+      "kind": "json"
+    }
+  },
+  "slot": {
+    "label": "{{data.market_cap_change_percentage_24h_usd | round}}",
+    "style": "sparkline"
+  },
+  "history": {
+    "path": "data.total_market_cap.usd",
+    "keep": 96
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Mercado cripto",
+    "subtitle": "O mercado inteiro, não uma moeda",
+    "emptyMessage": "A CoinGecko não respondeu.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{data.total_market_cap.usd}}",
+        "caption": "Capitalização total · {{data.market_cap_change_percentage_24h_usd | round}}% em 24 h",
+        "goodDirection": "up",
+        "format": "compact"
+      },
+      {
+        "type": "chart",
+        "style": "area",
+        "title": "Desde que o Peek abriu",
+        "height": "medium",
+        "format": "compact"
+      },
+      {
+        "type": "properties",
+        "layout": "grid",
+        "properties": [
+          {
+            "id": "228E1353-13A6-4BA4-ADC1-D6F3BE42F1D0",
+            "name": "Domínio do Bitcoin",
+            "value": "{{data.market_cap_percentage.btc | round}}%"
+          },
+          {
+            "id": "AD0AC764-EAEE-4299-940D-3EE2A96D5FD1",
+            "name": "Domínio do Ethereum",
+            "value": "{{data.market_cap_percentage.eth | round}}%"
+          },
+          {
+            "id": "6E904A20-EFA5-4E18-A720-8179570AAD0B",
+            "name": "Moedas ativas",
+            "value": "{{data.active_cryptocurrencies}}"
+          },
+          {
+            "id": "318423BE-703E-4F55-A39B-DD573D39ACC2",
+            "name": "Mercados",
+            "value": "{{data.markets}}"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  }
+}

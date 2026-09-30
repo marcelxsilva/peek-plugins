@@ -1,0 +1,100 @@
+{
+  "schema": 8,
+  "id": "plugin.exemplo.ping",
+  "name": "Ping",
+  "interval": 120,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "antenna.radiowaves.left.and.right"
+  },
+  "source": {
+    "kind": "command",
+    "steps": [
+      {
+        "program": "/sbin/ping",
+        "arguments": [
+          "-c",
+          "3",
+          "-t",
+          "5",
+          "{{$settings.host}}"
+        ]
+      }
+    ],
+    "format": {
+      "kind": "regex",
+      "pattern": "(?<enviados>\\d+) packets transmitted, (?<recebidos>\\d+) packets received, (?<perda>[\\d.]+)% packet loss[\\s\\S]*?= (?<minimo>[\\d.]+)/(?<media>[\\d.]+)/(?<maximo>[\\d.]+)/"
+    }
+  },
+  "slot": {
+    "label": "{{media | round}}",
+    "value": "{{media}}",
+    "total": "200",
+    "style": "sparkline"
+  },
+  "history": {
+    "path": "media",
+    "keep": 96
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Ping",
+    "subtitle": "{{$settings.host}}",
+    "emptyMessage": "Sem resposta. Quando tudo se perde não há tempo médio para mostrar.",
+    "blocks": [
+      {
+        "type": "hero",
+        "value": "{{media}}",
+        "caption": "Milissegundos em média",
+        "goodDirection": "down",
+        "format": "number"
+      },
+      {
+        "type": "chart",
+        "style": "line",
+        "title": "Latência ao longo do tempo",
+        "height": "medium",
+        "format": "number"
+      },
+      {
+        "type": "properties",
+        "layout": "grid",
+        "properties": [
+          {
+            "id": "D314427E-FB12-4761-B90E-1D428615606F",
+            "name": "Melhor",
+            "value": "{{minimo}} ms"
+          },
+          {
+            "id": "40CA9487-9447-4021-8B8C-8530C0E95132",
+            "name": "Pior",
+            "value": "{{maximo}} ms"
+          },
+          {
+            "id": "28196167-D5B1-4199-91E2-777167D03963",
+            "name": "Perda",
+            "value": "{{perda}}%"
+          },
+          {
+            "id": "6CD54013-7064-480B-A524-3B0C8E66C716",
+            "name": "Pacotes",
+            "value": "{{recebidos}} de {{enviados}}"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [],
+  "attention": {
+    "mode": "never"
+  },
+  "settings": [
+    {
+      "key": "host",
+      "label": "Endereço",
+      "type": "text",
+      "default": "1.1.1.1",
+      "required": true
+    }
+  ]
+}
