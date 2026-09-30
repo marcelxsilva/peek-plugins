@@ -119,7 +119,7 @@
       "category": "prod",
       "kind": "http",
       "description": "Lista os feriados nacionais do ano numa linha do tempo, com o próximo sempre em destaque. Um botão abre o Calendário para você marcar a emenda.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/feriados.json"
     },
     {
@@ -319,7 +319,7 @@
       "category": "infra",
       "kind": "http",
       "description": "O estado da Cloudflare com incidentes, manutenções e os pontos de presença numa grade. O ícone é só a cor: tudo bem ou não.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/cloudflare.json"
     },
     {
@@ -359,7 +359,7 @@
       "category": "infra",
       "kind": "http",
       "description": "O seu endereço público, o provedor, a cidade e o fuso, com a bandeira do país no topo do cartão. Um botão copia o IP e outro abre o mapa.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/rede.json"
     },
     {
@@ -439,7 +439,7 @@
       "category": "gestao",
       "kind": "panel",
       "description": "As metas do trimestre e o quanto já andou de cada uma, sem depender de ferramenta nenhuma. Os números moram no próprio arquivo, na aba Dado.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/okr.json"
     },
     {
@@ -449,7 +449,7 @@
       "category": "gestao",
       "kind": "panel",
       "description": "Pontos entregues contra o planejado da sprint, com a divisão por pessoa. Atualize na aba Dado ao fim de cada sprint.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/capacidade.json"
     },
     {
@@ -459,7 +459,7 @@
       "category": "gestao",
       "kind": "panel",
       "description": "O registro de riscos do projeto numa grade por gravidade, com dono e ação de cada um. Um quadro de riscos que ninguém abre não serve; este fica na borda da tela.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/riscos.json"
     },
     {
@@ -469,7 +469,7 @@
       "category": "gestao",
       "kind": "panel",
       "description": "Quem sai de férias, quando e quando volta, numa linha do tempo. Serve para não marcar a entrega na semana em que metade do time some.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/ferias.json"
     },
     {
@@ -479,7 +479,7 @@
       "category": "fin",
       "kind": "http",
       "description": "Selic, CDI e IPCA de hoje em barras e tabela, com a Selic no ícone. Direto da BrasilAPI, sem cadastro.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/taxas.json"
     },
     {
@@ -489,7 +489,7 @@
       "category": "fin",
       "kind": "http",
       "description": "A variação mensal do IPCA, INPC, IGP-M ou CDI nos últimos 24 meses, em barras. Os dados vêm do próprio Banco Central.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/ipca.json"
     },
     {
@@ -499,7 +499,7 @@
       "category": "fin",
       "kind": "http",
       "description": "Várias moedas frente ao real na mesma tabela, com a variação do dia. O ícone mostra sempre o dólar.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/moedas.json"
     },
     {
@@ -509,7 +509,7 @@
       "category": "fin",
       "kind": "panel",
       "description": "As contas do mês numa linha do tempo, com a próxima em destaque e o valor de cada uma. Escrito à mão no arquivo, para quem não tem API do banco.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/contas.json"
     },
     {
@@ -519,7 +519,7 @@
       "category": "fin",
       "kind": "panel",
       "description": "Tudo que é cobrado todo mês, somado, com a data de cada cobrança e quem come mais. É a conta que ninguém faz até a fatura chegar.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/assinaturas.json"
     },
     {
@@ -529,7 +529,7 @@
       "category": "fin",
       "kind": "panel",
       "description": "O gasto do mês contra o orçado, com a divisão por linha e o arco enchendo conforme você gasta. Avisa quando cruza o limite de aviso do app.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/orcamento.json"
     },
     {
@@ -539,7 +539,7 @@
       "category": "fin",
       "kind": "http",
       "description": "Consulta um CNPJ e mostra razão social, situação, atividade, endereço e o quadro societário. O botão Consultar pergunta o número e relê na hora.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/cnpj.json"
     },
     {
@@ -549,7 +549,7 @@
       "category": "fin",
       "kind": "http",
       "description": "Consulta um CEP e mostra rua, bairro e cidade, com botão para copiar o endereço inteiro. Outro botão abre o ponto no mapa.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/cep.json"
     },
     {
@@ -559,7 +559,7 @@
       "category": "fin",
       "kind": "http",
       "description": "Todos os bancos com código no Brasil, em tabela ordenável por código, nome ou ISPB. Consulta rápida na hora de preencher um cadastro.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/bancos.json"
     },
     {
@@ -569,7 +569,7 @@
       "category": "fin",
       "kind": "http",
       "description": "Quem participa do arranjo Pix, direto do Banco Central, com modalidade e ISPB. Útil para quem trabalha com pagamentos e precisa conferir uma instituição.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/pix.json"
     },
     {
@@ -599,7 +599,7 @@
       "category": "inv",
       "kind": "http",
       "description": "Os pontos do índice agora, a variação do dia e a curva desde que o Peek abriu. Um número só, sempre visível na borda.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/ibovespa.json"
     },
     {
@@ -609,7 +609,7 @@
       "category": "inv",
       "kind": "http",
       "description": "O fechamento do dólar, euro, libra ou bitcoin, com os últimos 30 dias em gráfico e tabela. O código da moeda vira a marca do ícone.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/cotacoes.json"
     },
     {
@@ -629,7 +629,7 @@
       "category": "inv",
       "kind": "http",
       "description": "A capitalização do mercado inteiro, a variação de 24 horas e o domínio do Bitcoin. É o mercado, não uma moeda.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/cripto-global.json"
     },
     {
@@ -639,7 +639,7 @@
       "category": "inv",
       "kind": "http",
       "description": "O índice de medo e ganância do mercado cripto, de 0 a 100, com as duas últimas semanas. Uma leitura de humor, não um conselho.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/medo.json"
     },
     {
@@ -649,7 +649,7 @@
       "category": "inv",
       "kind": "panel",
       "description": "O patrimônio total contra o que foi aportado, com cada posição em barra e tabela. Escrito no próprio arquivo, sem conectar corretora nenhuma.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/carteira.json"
     },
     {
@@ -659,7 +659,7 @@
       "category": "inv",
       "kind": "panel",
       "description": "O que você tem em renda fixa, com a taxa de cada título e quando cada um vence. A linha do tempo mostra o próximo vencimento primeiro.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/renda-fixa.json"
     },
     {
@@ -669,7 +669,7 @@
       "category": "inv",
       "kind": "panel",
       "description": "O que cai na conta este mês, papel por papel, com a data de cada pagamento. Rendimento, JCP e dividendo no mesmo lugar.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/dividendos.json"
     },
     {
@@ -719,7 +719,7 @@
       "category": "vendas",
       "kind": "panel",
       "description": "O quanto já foi vendido no mês contra a meta, com a divisão por vendedor. O arco enche conforme o mês avança.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/meta.json"
     },
     {
@@ -729,7 +729,7 @@
       "category": "vendas",
       "kind": "panel",
       "description": "O funil inteiro escrito à mão: etapas no topo, negócios agrupados por etapa embaixo. Clicar numa etapa filtra a lista.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/funil.json"
     },
     {
@@ -739,7 +739,7 @@
       "category": "vendas",
       "kind": "panel",
       "description": "As propostas na mesa do cliente, com valor, validade e situação de cada uma. A grade mostra de relance o que ainda é rascunho.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/propostas.json"
     },
     {
@@ -749,7 +749,7 @@
       "category": "vendas",
       "kind": "panel",
       "description": "Quanto cada vendedor tem a receber no mês, com o total no número grande. Vendido e comissão lado a lado na tabela.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/comissoes.json"
     },
     {
@@ -769,7 +769,7 @@
       "category": "vendas",
       "kind": "panel",
       "description": "As próximas conversas com clientes, com tipo e responsável, numa linha do tempo. Serve como agenda do time comercial sem abrir o calendário.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/agenda-comercial.json"
     },
     {
@@ -849,7 +849,7 @@
       "category": "mkt",
       "kind": "panel",
       "description": "Quanto foi investido em cada canal e quantos leads cada um trouxe. O número grande compara retorno com investimento.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/campanhas.json"
     },
     {
@@ -859,7 +859,7 @@
       "category": "mkt",
       "kind": "panel",
       "description": "A posição dos seus termos no buscador hoje, contra a medição anterior. A tabela mostra o volume de busca de cada termo.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/seo.json"
     },
     {
@@ -869,7 +869,7 @@
       "category": "mkt",
       "kind": "panel",
       "description": "Assinantes contra a meta do ano, com os novos de cada mês em barras. O arco enche conforme você se aproxima da meta.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/newsletter.json"
     },
     {
@@ -939,7 +939,7 @@
       "category": "atend",
       "kind": "panel",
       "description": "As etapas do atendimento com a contagem de cada uma; clicar numa etapa filtra a lista. Funciona sem ferramenta nenhuma por trás.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/fila.json"
     },
     {
@@ -949,7 +949,7 @@
       "category": "atend",
       "kind": "panel",
       "description": "O percentual de atendimentos dentro do prazo, contra a meta, com a divisão por fila. O arco obedece aos limiares de aviso do app.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/sla.json"
     },
     {
@@ -959,7 +959,7 @@
       "category": "atend",
       "kind": "panel",
       "description": "Quem está de plantão agora e quem entra depois, numa escala em linha do tempo. O nome de quem está de plantão fica no ícone.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/plantao.json"
     },
     {
@@ -969,7 +969,7 @@
       "category": "atend",
       "kind": "panel",
       "description": "O NPS do período, com promotores, neutros e detratores em barras. O que importa é a direção, não o número de um mês.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/nps.json"
     },
     {
@@ -1039,7 +1039,7 @@
       "category": "casa",
       "kind": "panel",
       "description": "Os dias de coleta de cada tipo de lixo, com o próximo em destaque. Escrito no próprio arquivo, porque isso nenhuma API sabe.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/lixo.json"
     },
     {
@@ -1049,7 +1049,7 @@
       "category": "casa",
       "kind": "panel",
       "description": "A lista de compras agrupada por onde comprar, com um botão que copia tudo. Outro botão anota na hora o que estiver na área de transferência.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/mercado.json"
     },
     {
@@ -1059,7 +1059,7 @@
       "category": "casa",
       "kind": "panel",
       "description": "Quando regar cada planta, com o lugar e a quantidade de água. A linha do tempo mostra qual seca primeiro.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/plantas.json"
     },
     {
@@ -1069,7 +1069,7 @@
       "category": "casa",
       "kind": "panel",
       "description": "Vacinas, banho e veterinário dos seus bichos, com data e lugar. O que vem primeiro fica sempre no topo.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/pets.json"
     },
     {
@@ -1079,7 +1079,7 @@
       "category": "sistema",
       "kind": "command",
       "description": "A carga da bateria no ícone, com a fonte de energia e o tempo restante no cartão. Avisa quando cai abaixo de 20%.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/bateria.json"
     },
     {
@@ -1089,7 +1089,7 @@
       "category": "sistema",
       "kind": "command",
       "description": "A média de carga do Mac no último minuto, com a curva ao longo do tempo. Também mostra há quanto tempo a máquina está ligada.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/carga.json"
     },
     {
@@ -1099,7 +1099,7 @@
       "category": "sistema",
       "kind": "command",
       "description": "Quem está comendo a CPU agora, em barras e em tabela com memória. Um botão abre o Monitor de Atividade.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/processos.json"
     },
     {
@@ -1109,7 +1109,7 @@
       "category": "sistema",
       "kind": "command",
       "description": "Quanto do disco está em uso, com o arco obedecendo aos limiares de aviso do app. Lido direto do df, sem depender de nada instalado.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/disco.json"
     },
     {
@@ -1119,7 +1119,7 @@
       "category": "sistema",
       "kind": "command",
       "description": "Quanto o Mac já jogou de memória para o disco, com a curva ao longo do tempo. Swap alto e crescendo é sinal de memória apertada.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/swap.json"
     },
     {
@@ -1139,7 +1139,7 @@
       "category": "sistema",
       "kind": "command",
       "description": "As conexões de rede deste Mac numa grade, com a cor dizendo quem está conectado. Serve para ver a VPN sem abrir os Ajustes.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/vpn.json"
     },
     {
@@ -1169,7 +1169,7 @@
       "category": "sistema",
       "kind": "command",
       "description": "Tudo que está instalado em /Applications, com a data de cada um. Pisca quando um app novo aparece.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/apps.json"
     },
     {
@@ -1179,7 +1179,7 @@
       "category": "leitura",
       "kind": "http",
       "description": "As histórias em alta no Hacker News, com pontos e comentários em cada linha. Um botão em cada linha abre os comentários.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/hackernews.json"
     },
     {
@@ -1189,7 +1189,7 @@
       "category": "leitura",
       "kind": "http",
       "description": "O que está subindo no Lobsters, com a tag e a pontuação de cada história. As mais votadas aparecem em barras acima da lista.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/lobsters.json"
     },
     {
@@ -1199,7 +1199,7 @@
       "category": "leitura",
       "kind": "http",
       "description": "Os artigos em alta no DEV no período que você escolher, com capa e reações. Um botão em cada linha guarda para ler depois, e Ver mais carrega a próxima página.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/devto.json"
     },
     {
@@ -1209,7 +1209,7 @@
       "category": "leitura",
       "kind": "http",
       "description": "As notícias de exploração espacial, com a imagem da matéria no topo do cartão. Pisca quando sai matéria nova.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/espaco.json"
     },
     {
@@ -1219,7 +1219,7 @@
       "category": "leitura",
       "kind": "http",
       "description": "As notícias e releases oficiais do IBGE, com o tipo de cada uma em selo. Um botão em cada linha guarda para ler depois.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/noticias-br.json"
     },
     {
@@ -1229,7 +1229,7 @@
       "category": "leitura",
       "kind": "http",
       "description": "O que aconteceu neste dia na história, com imagem e link para cada artigo. Parar o ponteiro numa linha mostra o resumo do artigo.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/wikipedia.json"
     },
     {
@@ -1239,7 +1239,7 @@
       "category": "leitura",
       "kind": "http",
       "description": "Os artigos mais lidos da Wikipédia em português hoje, com o número de visitas. Bom termômetro do que o país está procurando.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/destaque.json"
     },
     {
@@ -1249,7 +1249,7 @@
       "category": "leitura",
       "kind": "http",
       "description": "Busca um livro na Open Library e mostra capa, autor e ano de cada resultado. O botão Buscar pergunta o termo e relê na hora.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/livros.json"
     },
     {
@@ -1259,7 +1259,7 @@
       "category": "leitura",
       "kind": "http",
       "description": "A citação do dia, com o autor e o retrato dele no topo do cartão. Um botão copia a frase já com o crédito.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/citacao.json"
     },
     {
@@ -1289,7 +1289,7 @@
       "category": "ciencia",
       "kind": "http",
       "description": "Os terremotos das últimas 24 horas acima da magnitude que você escolher. Clicar numa linha abre a página do evento no USGS.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/terremotos.json"
     },
     {
@@ -1299,7 +1299,7 @@
       "category": "ciencia",
       "kind": "http",
       "description": "Os próximos foguetes a subir, com a empresa e a data de cada um. Pisca quando um lançamento novo entra na agenda.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/lancamentos.json"
     },
     {
@@ -1309,7 +1309,7 @@
       "category": "ciencia",
       "kind": "http",
       "description": "Onde a Estação Espacial está agora, a que altitude e a que velocidade. Um botão abre a posição no mapa.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/iss.json"
     },
     {
@@ -1349,7 +1349,7 @@
       "category": "ciencia",
       "kind": "http",
       "description": "O índice Kp planetário da NOAA, que diz quando a aurora desce de latitude. Pisca quando entra em tempestade geomagnética.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/aurora.json"
     },
     {
@@ -1369,7 +1369,7 @@
       "category": "ciencia",
       "kind": "http",
       "description": "A concentração de CO₂ na atmosfera em ppm, com a tendência sem a variação sazonal. Antes da industrialização girava em torno de 280 ppm.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/co2.json"
     },
     {
@@ -1399,7 +1399,7 @@
       "category": "midia",
       "kind": "http",
       "description": "As faixas mais tocadas no Deezer agora, com capa e duração. A capa da primeira fica no topo do cartão.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/deezer.json"
     },
     {
@@ -1409,7 +1409,7 @@
       "category": "midia",
       "kind": "http",
       "description": "As rádios mais ouvidas do país que você escolher, com bitrate e etiquetas. Clicar numa linha abre o stream.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/radio.json"
     },
     {
@@ -1419,7 +1419,7 @@
       "category": "midia",
       "kind": "http",
       "description": "Busca podcasts no catálogo da Apple e mostra capa, autor e número de episódios. Clicar abre o podcast.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/podcast.json"
     },
     {
@@ -1429,7 +1429,7 @@
       "category": "midia",
       "kind": "http",
       "description": "O que estreia hoje na TV do país que você escolher, com pôster e horário. Pisca quando entra episódio novo na grade.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/tvmaze.json"
     },
     {
@@ -1469,7 +1469,7 @@
       "category": "midia",
       "kind": "http",
       "description": "A tirinha mais recente do xkcd, com o texto escondido que aparece no hover do site. Pisca quando sai uma nova, e um botão guarda para ler depois.",
-      "needs": "Nada.",
+      "needs": "",
       "file": "plugins/xkcd.json"
     }
   ]
