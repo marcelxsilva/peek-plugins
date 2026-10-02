@@ -45,7 +45,7 @@
     "title": "{{$settings.site}}",
     "subtitle": "Últimos 30 dias",
     "emptyMessage": "Nenhuma visita no período.",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "value": "{{results[-1].visitors}}",

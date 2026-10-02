@@ -27,7 +27,7 @@
     "title": "Maré",
     "subtitle": "{{timezone}}",
     "emptyMessage": "Sem dados de mar para esse ponto. Escolha uma coordenada no litoral.",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "value": "{{current.wave_height}}",

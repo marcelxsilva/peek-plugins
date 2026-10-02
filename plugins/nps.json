@@ -26,7 +26,7 @@
     "isEnabled": true,
     "title": "NPS",
     "subtitle": "{{respostas}} respostas no período",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "value": "{{nps}}",

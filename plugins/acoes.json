@@ -29,7 +29,7 @@
     "title": "Ações",
     "subtitle": "B3 · {{results[0].regularMarketTime | ago}}",
     "emptyMessage": "Nenhum papel encontrado com esses códigos.",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "title": "{{results[0].longName}}",

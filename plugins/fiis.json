@@ -29,7 +29,7 @@
     "title": "Fundos imobiliários",
     "subtitle": "B3 · {{results[0].regularMarketTime | ago}}",
     "emptyMessage": "Nenhum fundo encontrado com esses códigos.",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "value": "{{results[0].regularMarketPrice}}",

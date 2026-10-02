@@ -35,7 +35,7 @@
     "title": "Lançamentos",
     "subtitle": "Os próximos foguetes a subir",
     "emptyMessage": "Nenhum lançamento agendado.",
-    "blocks": [
+    "components": [
       {
         "type": "timeline",
         "path": "results",

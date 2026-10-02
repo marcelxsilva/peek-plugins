@@ -29,7 +29,7 @@
     "title": "Mercado cripto",
     "subtitle": "O mercado inteiro, não uma moeda",
     "emptyMessage": "A CoinGecko não respondeu.",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "value": "{{data.total_market_cap.usd}}",

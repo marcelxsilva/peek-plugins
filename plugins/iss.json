@@ -28,7 +28,7 @@
     "isEnabled": true,
     "title": "Estação espacial",
     "subtitle": "Onde ela está agora",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "value": "{{altitude}}",

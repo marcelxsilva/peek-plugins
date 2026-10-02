@@ -42,7 +42,7 @@
     "title": "Ping",
     "subtitle": "{{$settings.host}}",
     "emptyMessage": "Sem resposta do endereço.",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "value": "{{media}}",

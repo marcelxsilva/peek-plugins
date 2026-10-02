@@ -44,7 +44,7 @@
     "isEnabled": true,
     "title": "No ar",
     "subtitle": "{{$settings.endereco}}",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "value": "{{tempo}}",

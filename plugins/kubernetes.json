@@ -43,7 +43,7 @@
     "title": "Kubernetes",
     "subtitle": "Pods do cluster em uso",
     "emptyMessage": "Nenhum pod, ou o kubectl não achou um contexto.",
-    "blocks": [
+    "components": [
       {
         "type": "breakdown",
         "title": "Por fase",

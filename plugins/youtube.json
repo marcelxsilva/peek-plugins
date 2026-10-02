@@ -48,7 +48,7 @@
     "title": "{{items[0].snippet.title}}",
     "subtitle": "{{items[0].statistics.videoCount}} vídeos publicados",
     "emptyMessage": "Canal não encontrado. Confira o ID e a chave.",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "value": "{{items[0].statistics.subscriberCount}}",

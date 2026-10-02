@@ -24,7 +24,7 @@
     "isEnabled": true,
     "title": "Inflação",
     "subtitle": "Último dado de {{[-1].data}}",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "value": "{{[-1].valor}}",

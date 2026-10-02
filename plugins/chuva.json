@@ -27,7 +27,7 @@
     "isEnabled": true,
     "title": "Chuva",
     "subtitle": "{{timezone}}",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "value": "{{current.precipitation_probability}}",

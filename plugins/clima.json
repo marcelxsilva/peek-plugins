@@ -30,7 +30,7 @@
     "isEnabled": true,
     "title": "Clima",
     "subtitle": "{{timezone}}",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "value": "{{current.temperature_2m}}",

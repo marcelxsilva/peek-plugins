@@ -23,9 +23,9 @@ Os tokens ficam nas Chaves do Mac, nunca no arquivo. Por isso um plugin pode ser
 
 **O ícone** fica na borda da tela. Dentro dele vai um símbolo, uma palavra curta ou uma imagem. Abaixo, um rótulo com um valor curto. Em volta, um arco de progresso, um número, uma cor de status ou um gráfico pequeno das últimas leituras. Quando algo muda, ele salta.
 
-**O cartão** abre quando o cursor para no ícone. Ele é feito de blocos, empilhados na ordem que você quiser:
+**O cartão** abre quando o cursor para no ícone. Ele é feito de componentes, empilhados na ordem que você quiser:
 
-| Bloco | O que mostra |
+| Componente | O que mostra |
 | --- | --- |
 | Destaque | Um número importante, a variação e a distância até a meta. |
 | Tendência | Como um valor se moveu ao longo do tempo, em linha, área ou barras. |
@@ -40,13 +40,13 @@ Os tokens ficam nas Chaves do Mac, nunca no arquivo. Por isso um plugin pode ser
 | Botões | Um painel de botões, cada um rodando alguma coisa. |
 | Propriedades | Pares de nome e valor, com botões ao lado de cada um. |
 | Controles | Interruptores e níveis, direto no cartão. |
-| Abas | Abas no topo. Cada aba mostra um ou mais blocos do cartão. |
+| Abas | Abas no topo. Cada aba mostra um ou mais componentes do cartão. |
 
-Quase todo bloco pode ocupar meia largura, e dois blocos de meia largura dividem a mesma linha. A Lista, o Mapa de calor e as Abas ocupam sempre a largura toda. O cartão mostra uma Lista por vez: para ter várias, ponha cada uma numa aba.
+Quase todo componente pode ocupar meia largura, e dois componentes de meia largura dividem a mesma linha. A Lista, o Mapa de calor e as Abas ocupam sempre a largura toda. O cartão mostra uma Lista por vez: para ter várias, ponha cada uma numa aba.
 
 Todo texto do cartão pode misturar palavras com campos da resposta. Um campo mostra o valor que veio naquela leitura, e um formato ajusta como ele aparece: arredondado, em percentual, como dinheiro, em tempo relativo, em tamanho de arquivo.
 
-Um cartão feito com blocos:
+Um cartão feito com componentes:
 
 <p align="center">
   <img src="assets/atividade.png" alt="O Peek na borda direita da tela, com o cartão Atividade aberto mostrando acessos por hora, commits por dia e chamados de hoje" width="640">
@@ -70,7 +70,7 @@ Antes de rodar, ele pode pedir confirmação ou perguntar um valor. Depois, most
 2. Em **Dados**, escolha a fonte e clique em **Verificar**. O Peek mostra o que veio.
 3. Escolha um começo: uma lista, abas com listas, um número ou um botão. O Peek monta um rascunho já preenchido.
 4. Em **Ícone**, escolha o que fica na borda da tela.
-5. Em **Detalhes**, ajuste o cartão e adicione blocos. Todo campo tem um **+** para escolher um valor da resposta, e o cartão se atualiza na hora.
+5. Em **Detalhes**, ajuste o cartão e adicione componentes. Todo campo tem um **+** para escolher um valor da resposta, e o cartão se atualiza na hora.
 6. Em **Notificações**, diga quando o ícone deve chamar você.
 7. Clique em **Criar plugin**. Ele vira um ícone na borda da tela.
 

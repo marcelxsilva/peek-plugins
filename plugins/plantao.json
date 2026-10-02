@@ -24,7 +24,7 @@
     "isEnabled": true,
     "title": "Plantão",
     "subtitle": "Quem está de plantão é {{agora}}",
-    "blocks": [
+    "components": [
       {
         "type": "timeline",
         "path": "escala",

@@ -64,7 +64,7 @@
     "successReport" : "message"
   },
   "card" : {
-    "blocks" : [
+    "components" : [
       {
         "id" : "16469321-447B-4951-BCCE-FE54219930D0",
         "maxHeight" : "small",

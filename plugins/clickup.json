@@ -22,7 +22,7 @@
     "successReport" : "message"
   },
   "card" : {
-    "blocks" : [
+    "components" : [
       {
         "caption" : "Tarefas abertas",
         "format" : "integer",

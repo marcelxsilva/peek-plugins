@@ -22,7 +22,7 @@
     "successReport" : "message"
   },
   "card" : {
-    "blocks" : [
+    "components" : [
       {
         "breakdownStyle" : "bar",
         "groupField" : "{{state}}",

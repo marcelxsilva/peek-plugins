@@ -21,7 +21,7 @@
     "successReport" : "message"
   },
   "card" : {
-    "blocks" : [
+    "components" : [
       {
         "id" : "9C955E20-0B7F-4255-BB9D-C18861087490",
         "pages" : [

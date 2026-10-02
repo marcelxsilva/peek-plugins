@@ -24,7 +24,7 @@
     "isEnabled": true,
     "title": "SEO",
     "subtitle": "Posições em {{medidas | date}}",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "value": "{{termos[0].posicao}}",

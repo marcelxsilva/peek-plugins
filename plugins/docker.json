@@ -43,7 +43,7 @@
     "title": "Docker",
     "subtitle": "Contêineres desta máquina",
     "emptyMessage": "Nenhum contêiner. O Docker está rodando?",
-    "blocks": [
+    "components": [
       {
         "type": "breakdown",
         "title": "Por estado",

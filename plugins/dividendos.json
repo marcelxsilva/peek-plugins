@@ -24,7 +24,7 @@
     "isEnabled": true,
     "title": "Dividendos",
     "subtitle": "O que cai na conta",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "value": "{{previsto_mes}}",

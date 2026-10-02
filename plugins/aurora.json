@@ -28,7 +28,7 @@
     "title": "Tempestade solar",
     "subtitle": "Índice Kp planetário, da NOAA",
     "emptyMessage": "A NOAA não respondeu.",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "value": "{{[-1].kp_index}}",

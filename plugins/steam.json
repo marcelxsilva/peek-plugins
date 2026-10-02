@@ -22,7 +22,7 @@
     "successReport" : "message"
   },
   "card" : {
-    "blocks" : [
+    "components" : [
       {
         "caption" : "Nas duas semanas · {{response.games[0].name}}",
         "format" : "duration",

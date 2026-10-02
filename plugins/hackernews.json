@@ -64,7 +64,7 @@
     "successReport" : "message"
   },
   "card" : {
-    "blocks" : [
+    "components" : [
       {
         "format" : "integer",
         "id" : "F9355E32-598B-4BE8-8D05-42EE4E53D105",

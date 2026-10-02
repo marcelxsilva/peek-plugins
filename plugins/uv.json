@@ -27,7 +27,7 @@
     "isEnabled": true,
     "title": "Índice UV",
     "subtitle": "{{timezone}}",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "value": "{{current.uv_index}}",

@@ -46,7 +46,7 @@
     "isEnabled": true,
     "title": "Cripto",
     "subtitle": "Em reais · {{[0].last_updated | ago}}",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "title": "{{[0].name}}",

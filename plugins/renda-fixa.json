@@ -24,7 +24,7 @@
     "isEnabled": true,
     "title": "Renda fixa",
     "subtitle": "O que vence e quando",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "value": "{{total}}",

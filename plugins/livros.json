@@ -65,7 +65,7 @@
     "successReport" : "message"
   },
   "card" : {
-    "blocks" : [
+    "components" : [
       {
         "columnGap" : 8,
         "id" : "03A7514C-B307-45D4-A2B0-989369D8256A",

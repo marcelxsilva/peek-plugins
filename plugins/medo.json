@@ -33,7 +33,7 @@
     "title": "Medo e ganância",
     "subtitle": "O humor do mercado cripto hoje",
     "emptyMessage": "O índice não respondeu.",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "value": "{{data[0].value}}",

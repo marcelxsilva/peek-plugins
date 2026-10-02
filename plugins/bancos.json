@@ -25,7 +25,7 @@
     "title": "Bancos",
     "subtitle": "Todos os bancos com código no Brasil",
     "emptyMessage": "A BrasilAPI não respondeu.",
-    "blocks": [
+    "components": [
       {
         "type": "table",
         "path": "$",

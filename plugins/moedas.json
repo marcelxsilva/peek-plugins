@@ -25,7 +25,7 @@
     "title": "Moedas",
     "subtitle": "Frente ao real, agora",
     "emptyMessage": "A AwesomeAPI não respondeu.",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "value": "{{USDBRL.bid}}",

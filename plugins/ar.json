@@ -31,7 +31,7 @@
     "isEnabled": true,
     "title": "Qualidade do ar",
     "subtitle": "{{timezone}}",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "value": "{{current.european_aqi}}",

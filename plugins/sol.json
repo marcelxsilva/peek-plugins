@@ -39,7 +39,7 @@
     "title": "Sol",
     "subtitle": "Nascer e pôr do sol de hoje",
     "emptyMessage": "O serviço não respondeu.",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "value": "{{results.day_length}}",

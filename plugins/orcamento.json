@@ -27,7 +27,7 @@
     "isEnabled": true,
     "title": "Orçamento",
     "subtitle": "{{mes}}",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "value": "{{gasto}}",

@@ -35,7 +35,7 @@
     "title": "Asteroides",
     "subtitle": "{{page.total_elements}} corpos catalogados perto da Terra",
     "emptyMessage": "A NASA não respondeu.",
-    "blocks": [
+    "components": [
       {
         "type": "breakdown",
         "title": "Risco",

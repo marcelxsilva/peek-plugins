@@ -156,7 +156,7 @@
     "successReport" : "message"
   },
   "card" : {
-    "blocks" : [
+    "components" : [
       {
         "id" : "7DC22F21-2E72-40C3-A5DB-3AA0A7B57656",
         "pages" : [

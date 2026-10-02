@@ -26,7 +26,7 @@
     "title": "{{razao_social}}",
     "subtitle": "{{nome_fantasia ?? descricao_situacao_cadastral}}",
     "emptyMessage": "Nenhum CNPJ consultado ainda. Toque em Consultar.",
-    "blocks": [
+    "components": [
       {
         "type": "properties",
         "layout": "columns",

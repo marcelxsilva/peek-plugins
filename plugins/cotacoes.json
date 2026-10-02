@@ -24,7 +24,7 @@
     "isEnabled": true,
     "title": "{{[0].name}}",
     "subtitle": "Fechamento de {{[0].create_date | ago}}",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "value": "{{[0].bid}}",

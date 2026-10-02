@@ -37,7 +37,7 @@
     "title": "Casa",
     "subtitle": "Home Assistant nesta rede",
     "emptyMessage": "O Home Assistant não respondeu. Confira o endereço e o token.",
-    "blocks": [
+    "components": [
       {
         "type": "controls",
         "title": "Luzes",

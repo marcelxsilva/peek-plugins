@@ -24,7 +24,7 @@
     "isEnabled": true,
     "title": "Taxas",
     "subtitle": "Selic, CDI e IPCA de hoje",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "title": "Selic",

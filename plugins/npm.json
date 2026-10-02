@@ -24,7 +24,7 @@
     "isEnabled": true,
     "title": "{{package}}",
     "subtitle": "De {{start}} a {{end}}",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "value": "{{downloads[-1].downloads}}",

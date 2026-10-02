@@ -51,7 +51,7 @@ Antes de instalar, o Peek mostra tudo o que o plugin lê e roda. Nada entra sem 
 
 ## Monte o seu
 
-Não achou o que precisa? Um plugin se monta dentro do próprio Peek, com os dados de verdade na tela enquanto você escolhe o que mostrar. O cartão é feito de blocos: destaque, gráfico, mapa de calor, barras, etapas, distribuição, grade de status, linha do tempo, tabela, texto, lista, botões, propriedades, controles e abas. Também dá para descrever o que você quer ao seu modelo de IA e importar o arquivo que ele devolver.
+Não achou o que precisa? Um plugin se monta dentro do próprio Peek, com os dados de verdade na tela enquanto você escolhe o que mostrar. O cartão é feito de componentes: destaque, gráfico, mapa de calor, barras, etapas, distribuição, grade de status, linha do tempo, tabela, texto, lista, botões, propriedades, controles e abas. Também dá para descrever o que você quer ao seu modelo de IA e importar o arquivo que ele devolver.
 
 [Veja como criar um plugin](COMO-CRIAR.md).
 

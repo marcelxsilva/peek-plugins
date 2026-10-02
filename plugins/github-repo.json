@@ -43,7 +43,7 @@
     },
     "title": "{{full_name}}",
     "subtitle": "Atualizado {{pushed_at | ago}}",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "value": "{{stargazers_count}}",

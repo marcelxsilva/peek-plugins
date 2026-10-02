@@ -25,7 +25,7 @@
     "title": "Terremotos",
     "subtitle": "Últimas 24 horas, segundo o USGS",
     "emptyMessage": "Nada acima desse limite nas últimas 24 horas.",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "value": "{{metadata.count}}",

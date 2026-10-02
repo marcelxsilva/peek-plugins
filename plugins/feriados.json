@@ -25,7 +25,7 @@
     "title": "Feriados",
     "subtitle": "Feriados nacionais de {{$now | shape yyyy}}",
     "emptyMessage": "Nenhum feriado neste ano.",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "value": "{{$ | count}}",

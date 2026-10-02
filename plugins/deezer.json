@@ -21,7 +21,7 @@
     "successReport" : "message"
   },
   "card" : {
-    "blocks" : [
+    "components" : [
       {
         "columnGap" : 8,
         "id" : "E85BB8B5-31F7-4ECD-AFB0-25ACF7526DE8",

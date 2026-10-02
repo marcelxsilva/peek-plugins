@@ -42,7 +42,7 @@
     "title": "GitHub Actions",
     "subtitle": "{{$settings.repo}}",
     "emptyMessage": "Nenhuma execução ainda.",
-    "blocks": [
+    "components": [
       {
         "type": "grid",
         "path": "latest",

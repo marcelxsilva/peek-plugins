@@ -65,7 +65,7 @@
     "successReport" : "message"
   },
   "card" : {
-    "blocks" : [
+    "components" : [
       {
         "caption" : "Em aberto",
         "format" : "integer",

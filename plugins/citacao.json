@@ -30,7 +30,7 @@
     "title": "Citação do dia",
     "subtitle": "{{[0].a}}",
     "emptyMessage": "O serviço não respondeu.",
-    "blocks": [
+    "components": [
       {
         "type": "text",
         "value": "{{[0].q}}",

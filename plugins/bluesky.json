@@ -40,7 +40,7 @@
     "title": "{{displayName ?? handle}}",
     "subtitle": "@{{handle}}",
     "emptyMessage": "Conta não encontrada.",
-    "blocks": [
+    "components": [
       {
         "type": "hero",
         "value": "{{followersCount}}",

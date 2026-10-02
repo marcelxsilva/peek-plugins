@@ -29,7 +29,7 @@
     },
     "title": "{{ip}}",
     "subtitle": "{{city}}, {{region}} · {{country}}",
-    "blocks": [
+    "components": [
       {
         "type": "properties",
         "layout": "columns",
