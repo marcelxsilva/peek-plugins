@@ -6,7 +6,7 @@
   "icon": {
     "kind": "picture",
     "symbolName": "play.rectangle.fill",
-    "pictureSource": "https://github.com/actions.png?size=128"
+    "pictureSource": "https://avatars.githubusercontent.com/u/54465427?v=4"
   },
   "source": {
     "kind": "command",
@@ -17,7 +17,9 @@
           "PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin",
           "gh",
           "api",
-          "repos/{{$settings.repo}}/actions/runs?per_page=12"
+          "repos/{{$settings.repo}}/actions/runs?per_page=30",
+          "--jq",
+          ". + {latest: (reduce .workflow_runs[] as $x ([]; if any(.[]; .name == $x.name) then . else . + [$x] end))}"
         ]
       }
     ],
@@ -43,7 +45,7 @@
     "blocks": [
       {
         "type": "grid",
-        "path": "workflow_runs",
+        "path": "latest",
         "label": "{{name}}",
         "status": "{{conclusion}}",
         "limit": 12,
@@ -51,7 +53,8 @@
           "success": "positive",
           "failure": "negative",
           "cancelled": "neutral",
-          "skipped": "neutral"
+          "skipped": "neutral",
+          "action_required": "attention"
         },
         "rowURL": "{{html_url}}"
       },
@@ -85,39 +88,59 @@
           }
         ],
         "others": {
-          "shows": true,
+          "shows": false,
           "name": "Rodando",
           "color": "yellow"
         }
       },
       {
-        "type": "list",
-        "limit": 5,
-        "tabs": [
+        "type": "table",
+        "title": "Execuções",
+        "path": "workflow_runs",
+        "limit": 12,
+        "sortable": true,
+        "rowURL": "{{html_url}}",
+        "columns": [
           {
-            "title": "Execuções",
-            "path": "workflow_runs",
-            "rowTitle": "{{display_title}}",
-            "rowSubtitle": "{{head_branch}} · {{created_at | ago}}",
-            "rowMetaImage": "{{actor.avatar_url}}",
-            "rowMeta": "{{actor.login}}",
-            "rowWrapsTitle": true,
-            "rowStatus": "{{conclusion ?? status}}",
-            "statusWords": {
-              "success": "passou",
-              "failure": "quebrou",
-              "cancelled": "cancelada",
-              "in_progress": "rodando",
-              "queued": "na fila"
-            },
+            "kind": "image",
+            "title": "",
+            "value": "{{actor.avatar_url}}",
+            "shape": "rounded"
+          },
+          {
+            "kind": "text",
+            "title": "Execução",
+            "value": "{{display_title}}",
+            "align": "leading"
+          },
+          {
+            "kind": "text",
+            "title": "Branch",
+            "value": "{{head_branch}}",
+            "align": "leading"
+          },
+          {
+            "kind": "text",
+            "title": "Quando",
+            "value": "{{created_at | ago}}",
+            "align": "trailing"
+          },
+          {
+            "kind": "status",
+            "title": "Status",
+            "value": "{{conclusion ?? status}}",
             "statusColors": {
               "success": "positive",
               "failure": "negative",
+              "timed_out": "negative",
               "cancelled": "neutral",
+              "skipped": "neutral",
+              "action_required": "attention",
               "in_progress": "attention",
               "queued": "attention"
             },
-            "rowURL": "{{html_url}}"
+            "showsWord": true,
+            "align": "trailing"
           }
         ]
       }
@@ -137,5 +160,5 @@
       "placeholder": "dono/nome"
     }
   ],
-  "answer": "{\"total_count\":34966,\"workflow_runs\":[{\"id\":36953500908,\"name\":\"Dependabot PR Triage (skills-driven)\",\"head_branch\":\"trunk\",\"head_sha\":\"fc4b137cdef0a6bd28fd461b7cf9c84a5812a8cd\",\"path\":\".github/workflows/dependabot-triage.lock.yml\",\"display_title\":\"Dependabot PR Triage (skills-driven)\",\"run_number\":1459,\"event\":\"schedule\",\"status\":\"completed\",\"conclusion\":\"success\",\"workflow_id\":323696448,\"html_url\":\"https://github.com/cli/cli/actions/runs/36953500908\",\"created_at\":\"2026-10-02T01:59:16Z\",\"updated_at\":\"2026-10-02T02:02:19Z\",\"run_started_at\":\"2026-10-02T01:59:16Z\",\"actor\":{\"login\":\"sergiou87\",\"id\":1083228,\"avatar_url\":\"https://avatars.githubusercontent.com/u/1083228?v=4\",\"html_url\":\"https://github.com/sergiou87\"}},{\"id\":36951841215,\"name\":\"Triage Scheduled Tasks\",\"head_branch\":\"trunk\",\"head_sha\":\"fc4b137cdef0a6bd28fd461b7cf9c84a5812a8cd\",\"path\":\".github/workflows/triage-scheduled-tasks.yml\",\"display_title\":\"Triage Scheduled Tasks\",\"run_number\":7785,\"event\":\"schedule\",\"status\":\"completed\",\"conclusion\":\"success\",\"workflow_id\":235328803,\"html_url\":\"https://github.com/cli/cli/actions/runs/36951841215\",\"created_at\":\"2026-10-02T01:37:44Z\",\"updated_at\":\"2026-10-02T01:37:55Z\",\"run_started_at\":\"2026-10-02T01:37:44Z\",\"actor\":{\"login\":\"BagToad\",\"id\":47394200,\"avatar_url\":\"https://avatars.githubusercontent.com/u/47394200?v=4\",\"html_url\":\"https://github.com/BagToad\"}},{\"id\":36951547930,\"name\":\"Issue Triaging\",\"head_branch\":\"trunk\",\"head_sha\":\"fc4b137cdef0a6bd28fd461b7cf9c84a5812a8cd\",\"path\":\".github/workflows/triage-issues.yml\",\"display_title\":\"Lu\",\"run_number\":3092,\"event\":\"issues\",\"status\":\"completed\",\"conclusion\":\"success\",\"workflow_id\":235328802,\"html_url\":\"https://github.com/cli/cli/actions/runs/36951547930\",\"created_at\":\"2026-10-02T01:34:04Z\",\"updated_at\":\"2026-10-02T01:34:17Z\",\"run_started_at\":\"2026-10-02T01:34:04Z\",\"actor\":{\"login\":\"cli-triage[bot]\",\"id\":280752616,\"avatar_url\":\"https://avatars.githubusercontent.com/in/3557673?v=4\",\"html_url\":\"https://github.com/apps/cli-triage\"}},{\"id\":36951233544,\"name\":\"Issue Triaging\",\"head_branch\":\"trunk\",\"head_sha\":\"fc4b137cdef0a6bd28fd461b7cf9c84a5812a8cd\",\"path\":\".github/workflows/triage-issues.yml\",\"display_title\":\"Lu\",\"run_number\":3091,\"event\":\"issues\",\"status\":\"completed\",\"conclusion\":\"success\",\"workflow_id\":235328802,\"html_url\":\"https://github.com/cli/cli/actions/runs/36951233544\",\"created_at\":\"2026-10-02T01:30:12Z\",\"updated_at\":\"2026-10-02T01:30:39Z\",\"run_started_at\":\"2026-10-02T01:30:12Z\",\"actor\":{\"login\":\"lg08oct18-netizen\",\"id\":281479536,\"avatar_url\":\"https://avatars.githubusercontent.com/u/281479536?v=4\",\"html_url\":\"https://github.com/lg08oct18-netizen\"}},{\"id\":35499316172,\"name\":\"Unit and Integration Tests\",\"head_branch\":\"trunk\",\"head_sha\":\"41721911fad290206c5888a6e2fafe7b1141710c\",\"path\":\".github/workflows/go.yml\",\"display_title\":\"Authorship and follow-up\",\"run_number\":22662,\"event\":\"pull_request\",\"status\":\"completed\",\"conclusion\":\"failure\",\"workflow_id\":25016,\"html_url\":\"https://github.com/cli/cli/actions/runs/35499316172\",\"created_at\":\"2026-09-20T08:21:05Z\",\"updated_at\":\"2026-09-20T08:21:12Z\",\"run_started_at\":\"2026-09-20T08:21:05Z\",\"actor\":{\"login\":\"HIHACK1911\",\"id\":118857651,\"avatar_url\":\"https://avatars.githubusercontent.com/u/118857651?v=4\",\"html_url\":\"https://github.com/HIHACK1911\"}},{\"id\":34473891330,\"name\":\"Acceptance Tests\",\"head_branch\":\"trunk\",\"head_sha\":\"c265dd86f7b50eb788f7fc9432148a60ea7517f9\",\"path\":\".github/workflows/acceptance.yml\",\"display_title\":\"Acceptance Tests\",\"run_number\":1,\"event\":\"workflow_dispatch\",\"status\":\"completed\",\"conclusion\":\"cancelled\",\"workflow_id\":354871894,\"html_url\":\"https://github.com/cli/cli/actions/runs/34473891330\",\"created_at\":\"2026-09-10T11:55:48Z\",\"updated_at\":\"2026-09-10T11:56:00Z\",\"run_started_at\":\"2026-09-10T11:55:48Z\",\"actor\":{\"login\":\"williammartin\",\"id\":1611510,\"avatar_url\":\"https://avatars.githubusercontent.com/u/1611510?v=4\",\"html_url\":\"https://github.com/williammartin\"}}]}"
+  "answer": "{\"total_count\":34966,\"workflow_runs\":[{\"id\":36953500908,\"name\":\"Dependabot PR Triage (skills-driven)\",\"head_branch\":\"trunk\",\"head_sha\":\"fc4b137cdef0a6bd28fd461b7cf9c84a5812a8cd\",\"path\":\".github/workflows/dependabot-triage.lock.yml\",\"display_title\":\"Dependabot PR Triage (skills-driven)\",\"run_number\":1459,\"event\":\"schedule\",\"status\":\"completed\",\"conclusion\":\"success\",\"workflow_id\":323696448,\"html_url\":\"https://github.com/cli/cli/actions/runs/36953500908\",\"created_at\":\"2026-10-02T01:59:16Z\",\"updated_at\":\"2026-10-02T02:02:19Z\",\"run_started_at\":\"2026-10-02T01:59:16Z\",\"actor\":{\"login\":\"sergiou87\",\"id\":1083228,\"avatar_url\":\"https://avatars.githubusercontent.com/u/1083228?v=4\",\"html_url\":\"https://github.com/sergiou87\"}},{\"id\":36951841215,\"name\":\"Triage Scheduled Tasks\",\"head_branch\":\"trunk\",\"head_sha\":\"fc4b137cdef0a6bd28fd461b7cf9c84a5812a8cd\",\"path\":\".github/workflows/triage-scheduled-tasks.yml\",\"display_title\":\"Triage Scheduled Tasks\",\"run_number\":7785,\"event\":\"schedule\",\"status\":\"completed\",\"conclusion\":\"success\",\"workflow_id\":235328803,\"html_url\":\"https://github.com/cli/cli/actions/runs/36951841215\",\"created_at\":\"2026-10-02T01:37:44Z\",\"updated_at\":\"2026-10-02T01:37:55Z\",\"run_started_at\":\"2026-10-02T01:37:44Z\",\"actor\":{\"login\":\"BagToad\",\"id\":47394200,\"avatar_url\":\"https://avatars.githubusercontent.com/u/47394200?v=4\",\"html_url\":\"https://github.com/BagToad\"}},{\"id\":36951547930,\"name\":\"Issue Triaging\",\"head_branch\":\"trunk\",\"head_sha\":\"fc4b137cdef0a6bd28fd461b7cf9c84a5812a8cd\",\"path\":\".github/workflows/triage-issues.yml\",\"display_title\":\"Lu\",\"run_number\":3092,\"event\":\"issues\",\"status\":\"completed\",\"conclusion\":\"success\",\"workflow_id\":235328802,\"html_url\":\"https://github.com/cli/cli/actions/runs/36951547930\",\"created_at\":\"2026-10-02T01:34:04Z\",\"updated_at\":\"2026-10-02T01:34:17Z\",\"run_started_at\":\"2026-10-02T01:34:04Z\",\"actor\":{\"login\":\"cli-triage[bot]\",\"id\":280752616,\"avatar_url\":\"https://avatars.githubusercontent.com/in/3557673?v=4\",\"html_url\":\"https://github.com/apps/cli-triage\"}},{\"id\":36951233544,\"name\":\"Issue Triaging\",\"head_branch\":\"trunk\",\"head_sha\":\"fc4b137cdef0a6bd28fd461b7cf9c84a5812a8cd\",\"path\":\".github/workflows/triage-issues.yml\",\"display_title\":\"Lu\",\"run_number\":3091,\"event\":\"issues\",\"status\":\"completed\",\"conclusion\":\"success\",\"workflow_id\":235328802,\"html_url\":\"https://github.com/cli/cli/actions/runs/36951233544\",\"created_at\":\"2026-10-02T01:30:12Z\",\"updated_at\":\"2026-10-02T01:30:39Z\",\"run_started_at\":\"2026-10-02T01:30:12Z\",\"actor\":{\"login\":\"lg08oct18-netizen\",\"id\":281479536,\"avatar_url\":\"https://avatars.githubusercontent.com/u/281479536?v=4\",\"html_url\":\"https://github.com/lg08oct18-netizen\"}},{\"id\":35499316172,\"name\":\"Unit and Integration Tests\",\"head_branch\":\"trunk\",\"head_sha\":\"41721911fad290206c5888a6e2fafe7b1141710c\",\"path\":\".github/workflows/go.yml\",\"display_title\":\"Authorship and follow-up\",\"run_number\":22662,\"event\":\"pull_request\",\"status\":\"completed\",\"conclusion\":\"failure\",\"workflow_id\":25016,\"html_url\":\"https://github.com/cli/cli/actions/runs/35499316172\",\"created_at\":\"2026-09-20T08:21:05Z\",\"updated_at\":\"2026-09-20T08:21:12Z\",\"run_started_at\":\"2026-09-20T08:21:05Z\",\"actor\":{\"login\":\"HIHACK1911\",\"id\":118857651,\"avatar_url\":\"https://avatars.githubusercontent.com/u/118857651?v=4\",\"html_url\":\"https://github.com/HIHACK1911\"}},{\"id\":34473891330,\"name\":\"Acceptance Tests\",\"head_branch\":\"trunk\",\"head_sha\":\"c265dd86f7b50eb788f7fc9432148a60ea7517f9\",\"path\":\".github/workflows/acceptance.yml\",\"display_title\":\"Acceptance Tests\",\"run_number\":1,\"event\":\"workflow_dispatch\",\"status\":\"completed\",\"conclusion\":\"cancelled\",\"workflow_id\":354871894,\"html_url\":\"https://github.com/cli/cli/actions/runs/34473891330\",\"created_at\":\"2026-09-10T11:55:48Z\",\"updated_at\":\"2026-09-10T11:56:00Z\",\"run_started_at\":\"2026-09-10T11:55:48Z\",\"actor\":{\"login\":\"williammartin\",\"id\":1611510,\"avatar_url\":\"https://avatars.githubusercontent.com/u/1611510?v=4\",\"html_url\":\"https://github.com/williammartin\"}}],\"latest\":[{\"id\":36953500908,\"name\":\"Dependabot PR Triage (skills-driven)\",\"head_branch\":\"trunk\",\"head_sha\":\"fc4b137cdef0a6bd28fd461b7cf9c84a5812a8cd\",\"path\":\".github/workflows/dependabot-triage.lock.yml\",\"display_title\":\"Dependabot PR Triage (skills-driven)\",\"run_number\":1459,\"event\":\"schedule\",\"status\":\"completed\",\"conclusion\":\"success\",\"workflow_id\":323696448,\"html_url\":\"https://github.com/cli/cli/actions/runs/36953500908\",\"created_at\":\"2026-10-02T01:59:16Z\",\"updated_at\":\"2026-10-02T02:02:19Z\",\"run_started_at\":\"2026-10-02T01:59:16Z\",\"actor\":{\"login\":\"sergiou87\",\"id\":1083228,\"avatar_url\":\"https://avatars.githubusercontent.com/u/1083228?v=4\",\"html_url\":\"https://github.com/sergiou87\"}},{\"id\":36951841215,\"name\":\"Triage Scheduled Tasks\",\"head_branch\":\"trunk\",\"head_sha\":\"fc4b137cdef0a6bd28fd461b7cf9c84a5812a8cd\",\"path\":\".github/workflows/triage-scheduled-tasks.yml\",\"display_title\":\"Triage Scheduled Tasks\",\"run_number\":7785,\"event\":\"schedule\",\"status\":\"completed\",\"conclusion\":\"success\",\"workflow_id\":235328803,\"html_url\":\"https://github.com/cli/cli/actions/runs/36951841215\",\"created_at\":\"2026-10-02T01:37:44Z\",\"updated_at\":\"2026-10-02T01:37:55Z\",\"run_started_at\":\"2026-10-02T01:37:44Z\",\"actor\":{\"login\":\"BagToad\",\"id\":47394200,\"avatar_url\":\"https://avatars.githubusercontent.com/u/47394200?v=4\",\"html_url\":\"https://github.com/BagToad\"}},{\"id\":36951547930,\"name\":\"Issue Triaging\",\"head_branch\":\"trunk\",\"head_sha\":\"fc4b137cdef0a6bd28fd461b7cf9c84a5812a8cd\",\"path\":\".github/workflows/triage-issues.yml\",\"display_title\":\"Lu\",\"run_number\":3092,\"event\":\"issues\",\"status\":\"completed\",\"conclusion\":\"success\",\"workflow_id\":235328802,\"html_url\":\"https://github.com/cli/cli/actions/runs/36951547930\",\"created_at\":\"2026-10-02T01:34:04Z\",\"updated_at\":\"2026-10-02T01:34:17Z\",\"run_started_at\":\"2026-10-02T01:34:04Z\",\"actor\":{\"login\":\"cli-triage[bot]\",\"id\":280752616,\"avatar_url\":\"https://avatars.githubusercontent.com/in/3557673?v=4\",\"html_url\":\"https://github.com/apps/cli-triage\"}},{\"id\":35499316172,\"name\":\"Unit and Integration Tests\",\"head_branch\":\"trunk\",\"head_sha\":\"41721911fad290206c5888a6e2fafe7b1141710c\",\"path\":\".github/workflows/go.yml\",\"display_title\":\"Authorship and follow-up\",\"run_number\":22662,\"event\":\"pull_request\",\"status\":\"completed\",\"conclusion\":\"failure\",\"workflow_id\":25016,\"html_url\":\"https://github.com/cli/cli/actions/runs/35499316172\",\"created_at\":\"2026-09-20T08:21:05Z\",\"updated_at\":\"2026-09-20T08:21:12Z\",\"run_started_at\":\"2026-09-20T08:21:05Z\",\"actor\":{\"login\":\"HIHACK1911\",\"id\":118857651,\"avatar_url\":\"https://avatars.githubusercontent.com/u/118857651?v=4\",\"html_url\":\"https://github.com/HIHACK1911\"}},{\"id\":34473891330,\"name\":\"Acceptance Tests\",\"head_branch\":\"trunk\",\"head_sha\":\"c265dd86f7b50eb788f7fc9432148a60ea7517f9\",\"path\":\".github/workflows/acceptance.yml\",\"display_title\":\"Acceptance Tests\",\"run_number\":1,\"event\":\"workflow_dispatch\",\"status\":\"completed\",\"conclusion\":\"cancelled\",\"workflow_id\":354871894,\"html_url\":\"https://github.com/cli/cli/actions/runs/34473891330\",\"created_at\":\"2026-09-10T11:55:48Z\",\"updated_at\":\"2026-09-10T11:56:00Z\",\"run_started_at\":\"2026-09-10T11:55:48Z\",\"actor\":{\"login\":\"williammartin\",\"id\":1611510,\"avatar_url\":\"https://avatars.githubusercontent.com/u/1611510?v=4\",\"html_url\":\"https://github.com/williammartin\"}}]}"
 }

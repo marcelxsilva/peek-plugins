@@ -133,7 +133,7 @@
       "needs": "O gh instalado e autenticado, e o repositório.",
       "needs_en": "gh installed and signed in, and the repository.",
       "file": "plugins/github-actions.json",
-      "logo": "https://github.com/actions.png?size=128"
+      "logo": "https://avatars.githubusercontent.com/u/54465427?v=4"
     },
     {
       "slug": "npm",
