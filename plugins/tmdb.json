@@ -124,8 +124,8 @@
     "title" : "Nos cinemas"
   },
   "icon" : {
-    "kind" : "symbol",
-    "pictureSource" : "",
+    "kind" : "picture",
+    "pictureSource" : "https:\/\/raw.githubusercontent.com\/marcelxsilva\/peek-plugins\/main\/assets\/icons\/tmdb.png",
     "symbolName" : "popcorn.fill",
     "word" : ""
   },

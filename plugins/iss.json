@@ -4,8 +4,9 @@
   "name": "Estação espacial",
   "interval": 120,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "globe.desk.fill"
+    "kind": "picture",
+    "symbolName": "globe.desk.fill",
+    "pictureSource": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/iss.png"
   },
   "source": {
     "kind": "http",

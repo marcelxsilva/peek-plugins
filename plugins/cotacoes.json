@@ -4,8 +4,9 @@
   "name": "Cotações",
   "interval": 600,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "dollarsign.arrow.circlepath"
+    "kind": "picture",
+    "symbolName": "dollarsign.arrow.circlepath",
+    "pictureSource": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/cotacoes.png"
   },
   "source": {
     "kind": "http",

@@ -4,8 +4,9 @@
   "name": "Ping",
   "interval": 120,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "antenna.radiowaves.left.and.right"
+    "kind": "picture",
+    "symbolName": "antenna.radiowaves.left.and.right",
+    "pictureSource": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/ping.png"
   },
   "source": {
     "kind": "command",

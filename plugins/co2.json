@@ -4,8 +4,9 @@
   "name": "CO₂",
   "interval": 86400,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "aqi.high"
+    "kind": "picture",
+    "symbolName": "aqi.high",
+    "pictureSource": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/co2.png"
   },
   "source": {
     "kind": "http",

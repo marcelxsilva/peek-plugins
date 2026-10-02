@@ -5,8 +5,9 @@
   "interval": 300,
   "readsOnItsOwn": false,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "server.rack"
+    "kind": "picture",
+    "symbolName": "server.rack",
+    "pictureSource": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/servidores.png"
   },
   "source": {
     "kind": "panel",

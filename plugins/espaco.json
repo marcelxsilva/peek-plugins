@@ -181,8 +181,8 @@
     "title" : "Espaço"
   },
   "icon" : {
-    "kind" : "symbol",
-    "pictureSource" : "",
+    "kind" : "picture",
+    "pictureSource" : "https:\/\/raw.githubusercontent.com\/marcelxsilva\/peek-plugins\/main\/assets\/icons\/espaco.png",
     "symbolName" : "moon.stars.fill",
     "word" : ""
   },

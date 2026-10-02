@@ -168,8 +168,8 @@
     "title" : "{{title}}"
   },
   "icon" : {
-    "kind" : "symbol",
-    "pictureSource" : "",
+    "kind" : "picture",
+    "pictureSource" : "https:\/\/raw.githubusercontent.com\/marcelxsilva\/peek-plugins\/main\/assets\/icons\/blog.png",
     "symbolName" : "doc.richtext.fill",
     "word" : ""
   },

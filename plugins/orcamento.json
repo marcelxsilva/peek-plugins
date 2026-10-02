@@ -5,8 +5,9 @@
   "interval": 3600,
   "readsOnItsOwn": false,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "chart.pie.fill"
+    "kind": "picture",
+    "symbolName": "chart.pie.fill",
+    "pictureSource": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/orcamento.png"
   },
   "source": {
     "kind": "panel",

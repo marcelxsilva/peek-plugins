@@ -4,8 +4,9 @@
   "name": "Moedas",
   "interval": 600,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "coloncurrencysign.circle.fill"
+    "kind": "picture",
+    "symbolName": "coloncurrencysign.circle.fill",
+    "pictureSource": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/moedas.png"
   },
   "source": {
     "kind": "http",

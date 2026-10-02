@@ -291,8 +291,8 @@
     "title" : "{{page.name}}"
   },
   "icon" : {
-    "kind" : "symbol",
-    "pictureSource" : "",
+    "kind" : "picture",
+    "pictureSource" : "https:\/\/raw.githubusercontent.com\/marcelxsilva\/peek-plugins\/main\/assets\/icons\/status-servicos.png",
     "symbolName" : "waveform.path.ecg",
     "word" : ""
   },

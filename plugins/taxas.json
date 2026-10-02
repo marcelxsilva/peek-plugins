@@ -4,8 +4,9 @@
   "name": "Taxas",
   "interval": 3600,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "percent"
+    "kind": "picture",
+    "symbolName": "percent",
+    "pictureSource": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/taxas.png"
   },
   "source": {
     "kind": "http",

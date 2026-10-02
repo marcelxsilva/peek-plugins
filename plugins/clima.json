@@ -4,8 +4,9 @@
   "name": "Clima",
   "interval": 1800,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "cloud.sun.fill"
+    "kind": "picture",
+    "symbolName": "cloud.sun.fill",
+    "pictureSource": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/clima.png"
   },
   "source": {
     "kind": "http",

@@ -112,8 +112,8 @@
     "title" : "Rádio"
   },
   "icon" : {
-    "kind" : "symbol",
-    "pictureSource" : "",
+    "kind" : "picture",
+    "pictureSource" : "https:\/\/raw.githubusercontent.com\/marcelxsilva\/peek-plugins\/main\/assets\/icons\/radio.png",
     "symbolName" : "dot.radiowaves.left.and.right",
     "word" : ""
   },

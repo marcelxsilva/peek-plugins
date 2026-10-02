@@ -5,8 +5,9 @@
   "interval": 3600,
   "readsOnItsOwn": false,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "person.badge.clock.fill"
+    "kind": "picture",
+    "symbolName": "person.badge.clock.fill",
+    "pictureSource": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/plantao.png"
   },
   "source": {
     "kind": "panel",

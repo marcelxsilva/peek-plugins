@@ -4,8 +4,9 @@
   "name": "Citação do dia",
   "interval": 21600,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "quote.opening"
+    "kind": "picture",
+    "symbolName": "quote.opening",
+    "pictureSource": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/citacao.png"
   },
   "source": {
     "kind": "http",

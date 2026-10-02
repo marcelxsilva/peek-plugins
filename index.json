@@ -91,7 +91,9 @@
       "description_en": "Lists the year's national holidays on a timeline, with the next one always highlighted. A button opens Calendar so you can plan a long weekend.",
       "needs": "",
       "needs_en": "",
-      "file": "plugins/feriados.json"
+      "file": "plugins/feriados.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/feriados.png"
     },
     {
       "slug": "github",
@@ -188,7 +190,9 @@
       "description_en": "Measures how long an address takes to respond and keeps the series to draw the curve. The arc fills as the response gets slower, and blinks when it goes past your limit.",
       "needs": "O endereço que você quer medir.",
       "needs_en": "The address you want to measure.",
-      "file": "plugins/uptime.json"
+      "file": "plugins/uptime.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/uptime.png"
     },
     {
       "slug": "ping",
@@ -201,7 +205,9 @@
       "description_en": "The round trip time to a host, with packet loss and the curve over time. It tells you whether it is your internet or the server.",
       "needs": "O endereço ou IP.",
       "needs_en": "The address or IP.",
-      "file": "plugins/ping.json"
+      "file": "plugins/ping.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/ping.png"
     },
     {
       "slug": "status-servicos",
@@ -214,7 +220,9 @@
       "description_en": "The status page of GitHub, OpenAI, Cloudflare, Slack, Notion or Atlassian in a grid of components. Incidents and maintenance sit in tabs, and the icon uses the color of the overall state.",
       "needs": "Escolher o serviço na lista.",
       "needs_en": "Pick the service from the list.",
-      "file": "plugins/status-servicos.json"
+      "file": "plugins/status-servicos.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/status-servicos.png"
     },
     {
       "slug": "cloudflare",
@@ -269,7 +277,9 @@
       "description_en": "Your public address, provider, city and time zone, with the country's flag at the top of the card. One button copies the IP and another opens the map.",
       "needs": "",
       "needs_en": "",
-      "file": "plugins/rede.json"
+      "file": "plugins/rede.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/rede.png"
     },
     {
       "slug": "servidores",
@@ -282,7 +292,9 @@
       "description_en": "A panel with your servers: one click opens an ssh terminal on each one. It also copies the ready command, if you prefer to paste it.",
       "needs": "Os endereços dos servidores.",
       "needs_en": "The server addresses.",
-      "file": "plugins/servidores.json"
+      "file": "plugins/servidores.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/servidores.png"
     },
     {
       "slug": "linear",
@@ -309,7 +321,8 @@
       "description_en": "The result of a JQL search, with key, assignee and status on each row. Clicking opens the issue in Jira.",
       "needs": "Um token da API do Jira, em Base64 junto com o seu e-mail.",
       "needs_en": "A Jira API token, in Base64 together with your email.",
-      "file": "plugins/jira.json"
+      "file": "plugins/jira.json",
+      "logo": "https://github.com/atlassian.png?size=128"
     },
     {
       "slug": "clickup",
@@ -336,7 +349,9 @@
       "description_en": "Today's Selic, CDI and IPCA in bars and a table, with the Selic on the icon. Straight from BrasilAPI, no sign-up.",
       "needs": "",
       "needs_en": "",
-      "file": "plugins/taxas.json"
+      "file": "plugins/taxas.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/taxas.png"
     },
     {
       "slug": "ipca",
@@ -349,7 +364,9 @@
       "description_en": "The monthly change of IPCA, INPC, IGP-M or CDI over the last 24 months, in bars. The data comes from Brazil's Central Bank.",
       "needs": "",
       "needs_en": "",
-      "file": "plugins/ipca.json"
+      "file": "plugins/ipca.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/ipca.png"
     },
     {
       "slug": "moedas",
@@ -362,7 +379,9 @@
       "description_en": "Several currencies against the real in one table, with the day's change. The icon always shows the dollar.",
       "needs": "",
       "needs_en": "",
-      "file": "plugins/moedas.json"
+      "file": "plugins/moedas.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/moedas.png"
     },
     {
       "slug": "orcamento",
@@ -375,7 +394,9 @@
       "description_en": "The month's spending against the budget, split by line, with the arc filling as you spend. It warns you when it crosses the app's warning threshold.",
       "needs": "",
       "needs_en": "",
-      "file": "plugins/orcamento.json"
+      "file": "plugins/orcamento.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/orcamento.png"
     },
     {
       "slug": "cnpj",
@@ -388,7 +409,9 @@
       "description_en": "Looks up a CNPJ and shows the company name, status, activity, address and partners. The Look up button asks for the number and reloads right away.",
       "needs": "",
       "needs_en": "",
-      "file": "plugins/cnpj.json"
+      "file": "plugins/cnpj.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/cnpj.png"
     },
     {
       "slug": "cep",
@@ -401,7 +424,9 @@
       "description_en": "Looks up a CEP and shows street, neighborhood and city, with a button to copy the whole address. Another button opens the spot on the map.",
       "needs": "",
       "needs_en": "",
-      "file": "plugins/cep.json"
+      "file": "plugins/cep.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/cep.png"
     },
     {
       "slug": "bancos",
@@ -414,7 +439,9 @@
       "description_en": "Every bank with a code in Brazil, in a table you can sort by code, name or ISPB. A quick lookup when you fill in a form.",
       "needs": "",
       "needs_en": "",
-      "file": "plugins/bancos.json"
+      "file": "plugins/bancos.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/bancos.png"
     },
     {
       "slug": "acoes",
@@ -455,7 +482,9 @@
       "description_en": "The closing rate of the dollar, euro, pound or bitcoin, with the last 30 days in a chart and a table. The currency code becomes the icon's mark.",
       "needs": "",
       "needs_en": "",
-      "file": "plugins/cotacoes.json"
+      "file": "plugins/cotacoes.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/cotacoes.png"
     },
     {
       "slug": "cripto",
@@ -468,7 +497,9 @@
       "description_en": "The price of the coins you choose in reais, with each one's image in the table. The icon's mark is the image of the first coin.",
       "needs": "Os ids da CoinGecko.",
       "needs_en": "The CoinGecko ids.",
-      "file": "plugins/cripto.json"
+      "file": "plugins/cripto.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/cripto.png"
     },
     {
       "slug": "cripto-global",
@@ -481,7 +512,9 @@
       "description_en": "The market cap of the whole market, the 24-hour change and Bitcoin dominance. It is the market, not one coin.",
       "needs": "",
       "needs_en": "",
-      "file": "plugins/cripto-global.json"
+      "file": "plugins/cripto-global.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/cripto-global.png"
     },
     {
       "slug": "medo",
@@ -494,7 +527,9 @@
       "description_en": "The crypto market's fear and greed index, from 0 to 100, with the last two weeks. A reading of mood, not advice.",
       "needs": "",
       "needs_en": "",
-      "file": "plugins/medo.json"
+      "file": "plugins/medo.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/medo.png"
     },
     {
       "slug": "renda-fixa",
@@ -507,7 +542,9 @@
       "description_en": "What you hold in fixed income, with each bond's rate and when it matures. The timeline shows the next maturity first.",
       "needs": "",
       "needs_en": "",
-      "file": "plugins/renda-fixa.json"
+      "file": "plugins/renda-fixa.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/renda-fixa.png"
     },
     {
       "slug": "dividendos",
@@ -520,7 +557,9 @@
       "description_en": "What lands in your account this month, stock by stock, with the date of each payment. Income, interest on equity and dividends in one place.",
       "needs": "",
       "needs_en": "",
-      "file": "plugins/dividendos.json"
+      "file": "plugins/dividendos.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/dividendos.png"
     },
     {
       "slug": "hubspot",
@@ -561,7 +600,8 @@
       "description_en": "The channel's subscribers on the icon, with growth drawn from Peek's readings. The channel avatar becomes the mark.",
       "needs": "Uma chave da YouTube Data API v3.",
       "needs_en": "A YouTube Data API v3 key.",
-      "file": "plugins/youtube.json"
+      "file": "plugins/youtube.json",
+      "logo": "https://github.com/youtube.png?size=128"
     },
     {
       "slug": "bluesky",
@@ -588,7 +628,9 @@
       "description_en": "Where your search terms rank today, compared with the previous check. The table shows the search volume of each term.",
       "needs": "",
       "needs_en": "",
-      "file": "plugins/seo.json"
+      "file": "plugins/seo.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/seo.png"
     },
     {
       "slug": "discord",
@@ -657,7 +699,9 @@
       "description_en": "Who is on call now and who comes next, on a timeline schedule. The name of who is on call sits on the icon.",
       "needs": "",
       "needs_en": "",
-      "file": "plugins/plantao.json"
+      "file": "plugins/plantao.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/plantao.png"
     },
     {
       "slug": "nps",
@@ -670,7 +714,9 @@
       "description_en": "The period's NPS, with promoters, passives and detractors in bars. What matters is the direction, not one month's number.",
       "needs": "",
       "needs_en": "",
-      "file": "plugins/nps.json"
+      "file": "plugins/nps.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/nps.png"
     },
     {
       "slug": "casa",
@@ -697,7 +743,9 @@
       "description_en": "The air quality where you live, with PM2.5, PM10 and the next 48 hours. It blinks when the index goes past the limit you choose.",
       "needs": "A coordenada do lugar. São Paulo já vem.",
       "needs_en": "The coordinates of the place. São Paulo comes preset.",
-      "file": "plugins/ar.json"
+      "file": "plugins/ar.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/ar.png"
     },
     {
       "slug": "chuva",
@@ -710,7 +758,9 @@
       "description_en": "The chance of rain in the next hour and through the day. It blinks when the chance goes past your limit, so you don't leave without an umbrella.",
       "needs": "A coordenada do lugar.",
       "needs_en": "The coordinates of the place.",
-      "file": "plugins/chuva.json"
+      "file": "plugins/chuva.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/chuva.png"
     },
     {
       "slug": "mare",
@@ -723,7 +773,9 @@
       "description_en": "The height and period of the waves at a point on the coast, with the next 48 hours. Pick a coordinate at sea, not in the city center.",
       "needs": "A coordenada do ponto.",
       "needs_en": "The coordinates of the point.",
-      "file": "plugins/mare.json"
+      "file": "plugins/mare.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/mare.png"
     },
     {
       "slug": "sol",
@@ -736,7 +788,9 @@
       "description_en": "When the sun rises and sets today, and how many hours of daylight the day has. Includes civil twilight, for photographers.",
       "needs": "A coordenada do lugar.",
       "needs_en": "The coordinates of the place.",
-      "file": "plugins/sol.json"
+      "file": "plugins/sol.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/sol.png"
     },
     {
       "slug": "hackernews",
@@ -791,7 +845,9 @@
       "description_en": "Space exploration news, with the story's image at the top of the card. It blinks when a new story comes out.",
       "needs": "",
       "needs_en": "",
-      "file": "plugins/espaco.json"
+      "file": "plugins/espaco.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/espaco.png"
     },
     {
       "slug": "wikipedia",
@@ -846,7 +902,9 @@
       "description_en": "The quote of the day, with the author and their portrait at the top of the card. A button copies the quote with the credit.",
       "needs": "",
       "needs_en": "",
-      "file": "plugins/citacao.json"
+      "file": "plugins/citacao.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/citacao.png"
     },
     {
       "slug": "blog",
@@ -859,7 +917,9 @@
       "description_en": "Reads any JSON Feed and shows the latest posts with summary, date and cover. For RSS, use the News module, which already reads feeds.",
       "needs": "O endereço do feed.",
       "needs_en": "The feed address.",
-      "file": "plugins/blog.json"
+      "file": "plugins/blog.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/blog.png"
     },
     {
       "slug": "clima",
@@ -872,7 +932,9 @@
       "description_en": "The temperature now, the feels-like temperature, the wind and the next 48 hours in a chart. The icon shows the humidity and blinks when the heat goes past your limit.",
       "needs": "A coordenada do lugar. São Paulo já vem.",
       "needs_en": "The coordinates of the place. São Paulo comes preset.",
-      "file": "plugins/clima.json"
+      "file": "plugins/clima.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/clima.png"
     },
     {
       "slug": "terremotos",
@@ -885,7 +947,9 @@
       "description_en": "Earthquakes in the last 24 hours above the magnitude you choose. Clicking a row opens the event page on USGS.",
       "needs": "",
       "needs_en": "",
-      "file": "plugins/terremotos.json"
+      "file": "plugins/terremotos.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/terremotos.png"
     },
     {
       "slug": "lancamentos",
@@ -898,7 +962,9 @@
       "description_en": "The next rockets to go up, with the company and date of each one. It blinks when a new launch joins the schedule.",
       "needs": "",
       "needs_en": "",
-      "file": "plugins/lancamentos.json"
+      "file": "plugins/lancamentos.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/lancamentos.png"
     },
     {
       "slug": "iss",
@@ -911,7 +977,9 @@
       "description_en": "Where the Space Station is now, at what altitude and at what speed. A button opens the position on the map.",
       "needs": "",
       "needs_en": "",
-      "file": "plugins/iss.json"
+      "file": "plugins/iss.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/iss.png"
     },
     {
       "slug": "marte",
@@ -938,7 +1006,9 @@
       "description_en": "Cataloged asteroids near Earth, with diameter and whether they are considered hazardous. Clicking opens the entry on JPL.",
       "needs": "Nada. Uma chave própria da NASA é opcional.",
       "needs_en": "Nothing. Your own NASA key is optional.",
-      "file": "plugins/asteroides.json"
+      "file": "plugins/asteroides.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/asteroides.png"
     },
     {
       "slug": "aurora",
@@ -951,7 +1021,9 @@
       "description_en": "NOAA's planetary Kp index, which tells you when the aurora reaches lower latitudes. It blinks when a geomagnetic storm starts.",
       "needs": "",
       "needs_en": "",
-      "file": "plugins/aurora.json"
+      "file": "plugins/aurora.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/aurora.png"
     },
     {
       "slug": "uv",
@@ -964,7 +1036,9 @@
       "description_en": "The UV index of the place, hour by hour, with a warning when it goes past the high level. It is also in Home, because it serves both.",
       "needs": "A coordenada do lugar.",
       "needs_en": "The coordinates of the place.",
-      "file": "plugins/uv.json"
+      "file": "plugins/uv.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/uv.png"
     },
     {
       "slug": "co2",
@@ -977,7 +1051,9 @@
       "description_en": "The concentration of CO₂ in the atmosphere in ppm, with the trend without the seasonal swing. Before industrialization it was around 280 ppm.",
       "needs": "",
       "needs_en": "",
-      "file": "plugins/co2.json"
+      "file": "plugins/co2.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/co2.png"
     },
     {
       "slug": "deezer",
@@ -1004,7 +1080,9 @@
       "description_en": "The most listened radio stations in the country you choose, with bitrate and tags. Clicking a row opens the stream.",
       "needs": "",
       "needs_en": "",
-      "file": "plugins/radio.json"
+      "file": "plugins/radio.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/radio.png"
     },
     {
       "slug": "podcast",
@@ -1017,7 +1095,9 @@
       "description_en": "Searches podcasts in Apple's catalog and shows cover, author and number of episodes. Clicking opens the podcast.",
       "needs": "",
       "needs_en": "",
-      "file": "plugins/podcast.json"
+      "file": "plugins/podcast.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/podcast.png"
     },
     {
       "slug": "tvmaze",
@@ -1030,7 +1110,9 @@
       "description_en": "What premieres on TV today in the country you choose, with poster and time. It blinks when a new episode joins the schedule.",
       "needs": "",
       "needs_en": "",
-      "file": "plugins/tvmaze.json"
+      "file": "plugins/tvmaze.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/tvmaze.png"
     },
     {
       "slug": "tmdb",
@@ -1043,7 +1125,9 @@
       "description_en": "Movies showing in Brazil, with poster, rating and a synopsis when you rest the pointer. Show more loads the next page.",
       "needs": "Uma chave da API do TMDB.",
       "needs_en": "A TMDB API key.",
-      "file": "plugins/tmdb.json"
+      "file": "plugins/tmdb.json",
+      "logo_fill": true,
+      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/tmdb.png"
     },
     {
       "slug": "steam",

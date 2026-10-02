@@ -4,8 +4,9 @@
   "name": "Sol",
   "interval": 21600,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "sun.horizon.fill"
+    "kind": "picture",
+    "symbolName": "sun.horizon.fill",
+    "pictureSource": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/sol.png"
   },
   "source": {
     "kind": "http",

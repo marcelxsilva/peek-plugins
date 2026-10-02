@@ -4,8 +4,9 @@
   "name": "No ar",
   "interval": 120,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "waveform.path.ecg"
+    "kind": "picture",
+    "symbolName": "waveform.path.ecg",
+    "pictureSource": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/uptime.png"
   },
   "source": {
     "kind": "command",

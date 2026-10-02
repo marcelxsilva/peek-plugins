@@ -118,8 +118,8 @@
     "title" : "Podcasts"
   },
   "icon" : {
-    "kind" : "symbol",
-    "pictureSource" : "",
+    "kind" : "picture",
+    "pictureSource" : "https:\/\/raw.githubusercontent.com\/marcelxsilva\/peek-plugins\/main\/assets\/icons\/podcast.png",
     "symbolName" : "mic.fill",
     "word" : ""
   },

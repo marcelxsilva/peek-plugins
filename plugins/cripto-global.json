@@ -4,8 +4,9 @@
   "name": "Mercado cripto",
   "interval": 1800,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "bitcoinsign.circle.fill"
+    "kind": "picture",
+    "symbolName": "bitcoinsign.circle.fill",
+    "pictureSource": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/cripto-global.png"
   },
   "source": {
     "kind": "http",

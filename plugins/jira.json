@@ -209,8 +209,8 @@
     "title" : "Jira"
   },
   "icon" : {
-    "kind" : "symbol",
-    "pictureSource" : "",
+    "kind" : "picture",
+    "pictureSource" : "https:\/\/github.com\/atlassian.png?size=128",
     "symbolName" : "ticket.fill",
     "word" : ""
   },

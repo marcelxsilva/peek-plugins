@@ -4,8 +4,9 @@
   "name": "Qualidade do ar",
   "interval": 1800,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "aqi.medium"
+    "kind": "picture",
+    "symbolName": "aqi.medium",
+    "pictureSource": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/ar.png"
   },
   "source": {
     "kind": "http",

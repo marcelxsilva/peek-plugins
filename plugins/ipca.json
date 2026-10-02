@@ -4,8 +4,9 @@
   "name": "Inflação",
   "interval": 21600,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "chart.line.uptrend.xyaxis"
+    "kind": "picture",
+    "symbolName": "chart.line.uptrend.xyaxis",
+    "pictureSource": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/ipca.png"
   },
   "source": {
     "kind": "http",

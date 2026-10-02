@@ -4,8 +4,9 @@
   "name": "Asteroides",
   "interval": 86400,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "circle.dotted.circle"
+    "kind": "picture",
+    "symbolName": "circle.dotted.circle",
+    "pictureSource": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/asteroides.png"
   },
   "source": {
     "kind": "http",

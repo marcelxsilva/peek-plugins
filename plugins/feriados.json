@@ -4,8 +4,9 @@
   "name": "Feriados",
   "interval": 3600,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "calendar"
+    "kind": "picture",
+    "symbolName": "calendar",
+    "pictureSource": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/feriados.png"
   },
   "source": {
     "kind": "http",

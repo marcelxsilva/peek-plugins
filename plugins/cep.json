@@ -5,8 +5,9 @@
   "interval": 3600,
   "readsOnItsOwn": false,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "mappin.circle.fill"
+    "kind": "picture",
+    "symbolName": "mappin.circle.fill",
+    "pictureSource": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/cep.png"
   },
   "source": {
     "kind": "http",

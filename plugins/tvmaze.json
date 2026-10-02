@@ -127,8 +127,8 @@
     "title" : "Na TV hoje"
   },
   "icon" : {
-    "kind" : "symbol",
-    "pictureSource" : "",
+    "kind" : "picture",
+    "pictureSource" : "https:\/\/raw.githubusercontent.com\/marcelxsilva\/peek-plugins\/main\/assets\/icons\/tvmaze.png",
     "symbolName" : "tv.fill",
     "word" : ""
   },

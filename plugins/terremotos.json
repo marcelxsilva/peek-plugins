@@ -4,8 +4,9 @@
   "name": "Terremotos",
   "interval": 1800,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "waveform.path"
+    "kind": "picture",
+    "symbolName": "waveform.path",
+    "pictureSource": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/terremotos.png"
   },
   "source": {
     "kind": "http",

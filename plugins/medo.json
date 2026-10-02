@@ -4,8 +4,9 @@
   "name": "Medo e ganância",
   "interval": 3600,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "gauge.with.needle.fill"
+    "kind": "picture",
+    "symbolName": "gauge.with.needle.fill",
+    "pictureSource": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/medo.png"
   },
   "source": {
     "kind": "http",

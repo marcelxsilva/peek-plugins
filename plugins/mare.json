@@ -4,8 +4,9 @@
   "name": "Maré",
   "interval": 3600,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "water.waves"
+    "kind": "picture",
+    "symbolName": "water.waves",
+    "pictureSource": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/mare.png"
   },
   "source": {
     "kind": "http",

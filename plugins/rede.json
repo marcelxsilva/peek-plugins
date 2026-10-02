@@ -4,8 +4,9 @@
   "name": "Meu IP",
   "interval": 1800,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "globe.americas.fill"
+    "kind": "picture",
+    "symbolName": "globe.americas.fill",
+    "pictureSource": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/rede.png"
   },
   "source": {
     "kind": "http",
