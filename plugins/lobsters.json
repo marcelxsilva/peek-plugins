@@ -27,7 +27,7 @@
     "emptyMessage": "Nada na primeira página.",
     "blocks": [
       {
-        "type": "bars",
+        "type": "stages",
         "title": "Mais votados",
         "path": "$",
         "label": "{{title}}",

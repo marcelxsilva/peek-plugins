@@ -50,7 +50,7 @@
         ]
       },
       {
-        "type": "bars",
+        "type": "stages",
         "path": "$",
         "label": "{{nome}}",
         "value": "{{valor}}",

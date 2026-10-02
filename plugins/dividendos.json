@@ -79,7 +79,7 @@
         "limit": 8
       },
       {
-        "type": "bars",
+        "type": "stages",
         "path": "pagamentos",
         "label": "{{papel}}",
         "value": "{{valor}}",

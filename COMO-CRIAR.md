@@ -30,7 +30,6 @@ Os tokens ficam nas Chaves do Mac, nunca no arquivo. Por isso um plugin pode ser
 | Destaque | Um número importante, a variação e a distância até a meta. |
 | Tendência | Como um valor se moveu ao longo do tempo, em linha, área ou barras. |
 | Mapa de calor | Intensidade por dia e hora, ou por dia do mês. |
-| Barras ranqueadas | Itens ordenados do maior para o menor. |
 | Etapas | Uma contagem por etapa, na ordem. Um clique filtra a lista. |
 | Distribuição | Como os itens de uma lista se dividem entre grupos, em barra, funil ou lista. |
 | Grade de status | Muitos itens de uma vez, cada um bem ou não. |

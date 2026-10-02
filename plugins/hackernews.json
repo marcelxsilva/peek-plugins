@@ -27,7 +27,7 @@
     "emptyMessage": "A primeira página voltou vazia.",
     "blocks": [
       {
-        "type": "bars",
+        "type": "stages",
         "title": "Mais votados",
         "path": "hits",
         "label": "{{title}}",

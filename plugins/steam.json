@@ -49,7 +49,7 @@
         "unit": "minutes"
       },
       {
-        "type": "bars",
+        "type": "stages",
         "path": "response.games",
         "label": "{{name}}",
         "value": "{{playtime_2weeks}}",

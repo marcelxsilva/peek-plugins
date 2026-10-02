@@ -115,7 +115,7 @@
         "prefix": "R$ "
       },
       {
-        "type": "bars",
+        "type": "stages",
         "path": "results",
         "label": "{{properties.dealname}}",
         "value": "{{properties.amount}}",
