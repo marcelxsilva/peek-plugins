@@ -11,7 +11,7 @@
   "source": {
     "kind": "http",
     "method": "GET",
-    "url": "https://brapi.dev/api/quote/{{$settings.tickers}}?token={{$settings.token}}",
+    "url": "https://brapi.dev/api/quote/{{$settings.tickers}}",
     "format": {
       "kind": "json"
     }
@@ -97,12 +97,6 @@
       "default": "PETR4,VALE3,ITUB4",
       "help": "Códigos da B3 separados por vírgula. O primeiro é o que aparece no ícone.",
       "required": true
-    },
-    {
-      "key": "token",
-      "label": "Token da brapi",
-      "type": "secret",
-      "help": "Opcional. Sem ele a brapi atende, mas com limite baixo de chamadas."
     }
   ]
 }

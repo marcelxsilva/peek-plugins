@@ -599,7 +599,7 @@
       "category": "inv",
       "kind": "http",
       "description": "O preço dos papéis que você acompanha, com máxima e mínima do dia e a variação em tabela. O primeiro código vira a marca do ícone.",
-      "needs": "Os códigos da B3. Um token da brapi é opcional.",
+      "needs": "Os códigos da B3.",
       "file": "plugins/acoes.json",
       "logo": "https://github.com/brapi-dev.png?size=128"
     },
