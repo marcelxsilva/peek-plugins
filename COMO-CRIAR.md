@@ -40,7 +40,7 @@ Os tokens ficam nas Chaves do Mac, nunca no arquivo. Por isso um plugin pode ser
 | Botões | Um painel de botões, cada um rodando alguma coisa. |
 | Propriedades | Pares de nome e valor, com botões ao lado de cada um. |
 | Controles | Interruptores e níveis, direto no cartão. |
-| Abas | Abas no topo. Cada aba mostra outro bloco do cartão. |
+| Abas | Abas no topo. Cada aba mostra um ou mais blocos do cartão. |
 
 Quase todo bloco pode ocupar meia largura, e dois blocos de meia largura dividem a mesma linha. A Lista, o Mapa de calor e as Abas ocupam sempre a largura toda. O cartão mostra uma Lista por vez: para ter várias, ponha cada uma numa aba.
 

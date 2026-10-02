@@ -161,28 +161,28 @@
         "id" : "7DC22F21-2E72-40C3-A5DB-3AA0A7B57656",
         "pages" : [
           {
-            "body" : "9D486088-FEA8-43C6-BA06-609674893941",
+            "bodies" : [ "9D486088-FEA8-43C6-BA06-609674893941" ],
             "id" : "E279AAAA-CF4E-40E2-9577-70904B27676F",
             "kind" : "symbol",
             "name" : "Esperando a sua revisão",
             "symbolName" : "eye"
           },
           {
-            "body" : "BCDB0B60-B153-4E40-8C3F-11FC3BE31BB4",
+            "bodies" : [ "BCDB0B60-B153-4E40-8C3F-11FC3BE31BB4" ],
             "id" : "145BC784-C6B4-4689-96B3-A49F6CC1D867",
             "kind" : "symbol",
             "name" : "Abertas por você",
             "symbolName" : "person.fill"
           },
           {
-            "body" : "B84E1264-6AF3-44A2-B4AC-873D71A3143E",
+            "bodies" : [ "B84E1264-6AF3-44A2-B4AC-873D71A3143E" ],
             "id" : "092383CA-320B-42EB-9E00-F429436600F1",
             "kind" : "symbol",
             "name" : "Atribuídas a você",
             "symbolName" : "tray.and.arrow.down.fill"
           },
           {
-            "body" : "E17AE8A9-9DA0-4AD8-87BF-BC0385C533E1",
+            "bodies" : [ "E17AE8A9-9DA0-4AD8-87BF-BC0385C533E1" ],
             "id" : "E0271BF3-C27F-43CC-8E2A-D712B6074753",
             "kind" : "symbol",
             "name" : "Seus repositórios, e o que a busca achar",

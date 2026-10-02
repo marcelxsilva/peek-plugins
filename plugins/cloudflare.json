@@ -26,14 +26,14 @@
         "id" : "9C955E20-0B7F-4255-BB9D-C18861087490",
         "pages" : [
           {
-            "body" : "9C49B15F-4A33-483D-813E-60B4F0B68110",
+            "bodies" : [ "9C49B15F-4A33-483D-813E-60B4F0B68110" ],
             "id" : "6F787A38-B7CC-4C0C-B84C-30DC4F89E3A1",
             "kind" : "symbol",
             "name" : "Incidentes",
             "symbolName" : "exclamationmark.triangle.fill"
           },
           {
-            "body" : "3C3131E3-327C-481C-BCEA-252E771525ED",
+            "bodies" : [ "3C3131E3-327C-481C-BCEA-252E771525ED" ],
             "id" : "64906E77-962F-45FC-9C2E-BCDF47D5059E",
             "kind" : "symbol",
             "name" : "Manutenção",
