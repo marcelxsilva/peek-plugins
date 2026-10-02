@@ -37,7 +37,7 @@ Você para de abrir abas para conferir as mesmas coisas. Passa o cursor e o cart
 
 ## Os plugins
 
-Este repositório é o catálogo oficial de plugins do Peek. Cada plugin é um arquivo JSON que vira um ícone na borda da tela. Há plugins para quem desenvolve, para quem lidera e para o dia a dia: GitHub, Jira, Stripe, Home Assistant, clima, cotações, notícias e muito mais.
+Este repositório é o catálogo oficial de plugins do Peek. Cada plugin é um arquivo JSON que vira um ícone na borda da tela. Há plugins para quem desenvolve, para quem lidera e para o dia a dia: GitHub, Jira, HubSpot, Home Assistant, clima, cotações, notícias e muito mais.
 
 Para instalar:
 

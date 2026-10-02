@@ -51,11 +51,6 @@
       "hue": 60
     },
     {
-      "id": "sistema",
-      "name": "Sistema",
-      "hue": 240
-    },
-    {
       "id": "leitura",
       "name": "Notícias e leitura",
       "hue": 20
@@ -73,46 +68,6 @@
   ],
   "plugins": [
     {
-      "slug": "lembretes",
-      "name": "Lembretes",
-      "icon": "LE",
-      "category": "prod",
-      "kind": "script",
-      "description": "Mostra quantos lembretes estão em aberto na lista que você escolher, e lista cada um com a data no cartão. Pisca quando um lembrete novo aparece, e um botão abre o app Lembretes.",
-      "needs": "O nome da lista. O macOS pede permissão de automação na primeira leitura.",
-      "file": "plugins/lembretes.json"
-    },
-    {
-      "slug": "contagem",
-      "name": "Contagem regressiva",
-      "icon": "CR",
-      "category": "prod",
-      "kind": "panel",
-      "description": "Guarda as datas que importam, como entrega, renovação e férias, e mostra sempre a que vem primeiro. Não lê nada da internet: as datas ficam escritas dentro do próprio arquivo.",
-      "needs": "Nada. Edite as datas na aba Dados.",
-      "file": "plugins/contagem.json"
-    },
-    {
-      "slug": "atalhos",
-      "name": "Atalhos",
-      "icon": "AT",
-      "category": "prod",
-      "kind": "panel",
-      "description": "Um painel de botões para o que você faz toda hora: abrir o Terminal, entrar na reunião, copiar o e-mail, rodar um atalho. Tudo a um clique no ícone, sem sair do que você estava fazendo.",
-      "needs": "O link da reunião, o e-mail e o nome do atalho.",
-      "file": "plugins/atalhos.json"
-    },
-    {
-      "slug": "salvar-pagina",
-      "name": "Salvar a página",
-      "icon": "SP",
-      "category": "prod",
-      "kind": "onTheMac",
-      "description": "Um ícone que é só um botão: clique e a página aberta no navegador vai para a sua lista de Ler mais tarde. Sem cartão, sem leitura periódica, sem ajuste nenhum.",
-      "needs": "Permissão de automação do navegador, pedida na primeira vez.",
-      "file": "plugins/salvar-pagina.json"
-    },
-    {
       "slug": "feriados",
       "name": "Feriados",
       "icon": "FE",
@@ -123,58 +78,6 @@
       "file": "plugins/feriados.json"
     },
     {
-      "slug": "downloads",
-      "name": "Downloads",
-      "icon": "DO",
-      "category": "prod",
-      "kind": "command",
-      "description": "Mostra quantos arquivos entraram na pasta Downloads nos últimos sete dias, com tamanho e data de cada um. Clicar numa linha abre o arquivo; um botão copia o caminho do mais recente.",
-      "needs": "O caminho absoluto da pasta.",
-      "file": "plugins/downloads.json"
-    },
-    {
-      "slug": "colar",
-      "name": "Colar rápido",
-      "icon": "CR",
-      "category": "prod",
-      "kind": "panel",
-      "description": "Os textos que você digita toda semana, como chave Pix, endereço e assinatura, a um clique da área de transferência. Também guarda o que está copiado agora numa variável, para colar de volta depois.",
-      "needs": "Preencher os textos nos ajustes.",
-      "file": "plugins/colar.json"
-    },
-    {
-      "slug": "todoist",
-      "name": "Todoist",
-      "icon": "TO",
-      "category": "prod",
-      "kind": "http",
-      "description": "Traz as tarefas do filtro que você escrever e mostra a contagem no ícone. Um botão pergunta o que precisa ser feito e cria a tarefa sem abrir o app.",
-      "needs": "Um token da API do Todoist.",
-      "file": "plugins/todoist.json",
-      "logo": "https://todoist.com/static/apple-touch-icon.png"
-    },
-    {
-      "slug": "notas",
-      "name": "Notas",
-      "icon": "NO",
-      "category": "prod",
-      "kind": "script",
-      "description": "Lista os títulos das notas de uma pasta do app Notas, com a data da última edição. Serve para achar aquela nota de reunião sem abrir o app.",
-      "needs": "O nome da pasta e permissão de automação do Notas.",
-      "file": "plugins/notas.json"
-    },
-    {
-      "slug": "wakatime",
-      "name": "Tempo de foco",
-      "icon": "TF",
-      "category": "prod",
-      "kind": "http",
-      "description": "Quanto tempo você passou escrevendo código hoje, com barras por projeto e por linguagem. O arco enche conforme o dia avança em direção às oito horas.",
-      "needs": "Uma chave da API do WakaTime.",
-      "file": "plugins/wakatime.json",
-      "logo": "https://github.com/wakatime.png?size=128"
-    },
-    {
       "slug": "github",
       "name": "GitHub",
       "icon": "GH",
@@ -183,17 +86,6 @@
       "description": "As suas pull requests abertas, as que esperam a sua revisão e as que você já revisou, em abas separadas. Cada linha traz o avatar do repositório, o rosto do autor e o estado dos checks.",
       "needs": "O gh instalado e autenticado.",
       "file": "plugins/github.json",
-      "logo": "https://github.com/github.png?size=128"
-    },
-    {
-      "slug": "github-notificacoes",
-      "name": "Notificações do GitHub",
-      "icon": "NG",
-      "category": "dev",
-      "kind": "command",
-      "description": "A sua caixa de notificações do GitHub na borda da tela, com o motivo de cada uma escrito em português. Pisca quando chega algo novo, e clicar abre o repositório.",
-      "needs": "O gh instalado e autenticado.",
-      "file": "plugins/github-notificacoes.json",
       "logo": "https://github.com/github.png?size=128"
     },
     {
@@ -219,16 +111,6 @@
       "logo": "https://github.com/actions.png?size=128"
     },
     {
-      "slug": "linguagens",
-      "name": "Linguagens",
-      "icon": "LI",
-      "category": "dev",
-      "kind": "command",
-      "description": "A divisão de linguagens de um repositório em barras, da maior para a menor. Bom para perceber quando o projeto virou outra coisa.",
-      "needs": "O gh instalado e autenticado, e o repositório.",
-      "file": "plugins/linguagens.json"
-    },
-    {
       "slug": "npm",
       "name": "npm",
       "icon": "NP",
@@ -238,17 +120,6 @@
       "needs": "O nome do pacote.",
       "file": "plugins/npm.json",
       "logo": "https://github.com/npm.png?size=128"
-    },
-    {
-      "slug": "pypi",
-      "name": "PyPI",
-      "icon": "PP",
-      "category": "dev",
-      "kind": "http",
-      "description": "A versão atual de um pacote Python, o resumo, a licença e os arquivos da última publicação. Um botão copia a linha do pip install já com a versão.",
-      "needs": "O nome do pacote.",
-      "file": "plugins/pypi.json",
-      "logo": "https://github.com/pypi.png?size=128"
     },
     {
       "slug": "crates",
@@ -273,17 +144,6 @@
       "logo": "https://github.com/docker.png?size=128"
     },
     {
-      "slug": "git-local",
-      "name": "Git",
-      "icon": "GI",
-      "category": "dev",
-      "kind": "command",
-      "description": "Os últimos commits de uma pasta do seu disco, com autor, mensagem e quando foram feitos. Pisca quando aparece um commit que você ainda não tinha visto.",
-      "needs": "O caminho absoluto do repositório.",
-      "file": "plugins/git-local.json",
-      "logo": "https://github.com/git.png?size=128"
-    },
-    {
       "slug": "uptime",
       "name": "No ar",
       "icon": "AR",
@@ -302,16 +162,6 @@
       "description": "O tempo de ida e volta até um host, com perda de pacotes e a curva ao longo do tempo. Serve para saber se é a sua internet ou o servidor.",
       "needs": "O endereço ou IP.",
       "file": "plugins/ping.json"
-    },
-    {
-      "slug": "dns",
-      "name": "DNS",
-      "icon": "DN",
-      "category": "infra",
-      "kind": "http",
-      "description": "Os registros DNS de um domínio, do tipo que você escolher, com o TTL de cada um. Um botão copia o primeiro registro.",
-      "needs": "O domínio.",
-      "file": "plugins/dns.json"
     },
     {
       "slug": "status-servicos",
@@ -357,17 +207,6 @@
       "logo": "https://github.com/kubernetes.png?size=128"
     },
     {
-      "slug": "prometheus",
-      "name": "Prometheus",
-      "icon": "PR",
-      "category": "infra",
-      "kind": "http",
-      "description": "O resultado de uma consulta PromQL no ícone, com histórico e uma barra por série. Vale para Prometheus em localhost ou num nome .local da sua rede.",
-      "needs": "A consulta. O Peek não fala http com a internet aberta.",
-      "file": "plugins/prometheus.json",
-      "logo": "https://github.com/prometheus.png?size=128"
-    },
-    {
       "slug": "rede",
       "name": "Meu IP",
       "icon": "MI",
@@ -386,28 +225,6 @@
       "description": "Um painel com os seus servidores: um clique abre um terminal por ssh em cada um. Também copia o comando pronto, quando você prefere colar.",
       "needs": "Os endereços dos servidores.",
       "file": "plugins/servidores.json"
-    },
-    {
-      "slug": "trello",
-      "name": "Trello",
-      "icon": "TR",
-      "category": "gestao",
-      "kind": "http",
-      "description": "Os cartões atribuídos a você, com prazo, comentários e checklist em selos. Clicar numa linha abre o cartão no Trello.",
-      "needs": "Uma API key e um token do Trello.",
-      "file": "plugins/trello.json",
-      "logo": "https://github.com/trello.png?size=128"
-    },
-    {
-      "slug": "notion",
-      "name": "Notion",
-      "icon": "NO",
-      "category": "gestao",
-      "kind": "http",
-      "description": "Os itens de um banco de dados do Notion, com status e data. Ajuste os nomes das propriedades se as suas não forem Name, Status e Date.",
-      "needs": "Um token de integração interna do Notion, com o banco compartilhado com ela.",
-      "file": "plugins/notion.json",
-      "logo": "https://github.com/makenotion.png?size=128"
     },
     {
       "slug": "linear",
@@ -431,17 +248,6 @@
       "file": "plugins/jira.json"
     },
     {
-      "slug": "asana",
-      "name": "Asana",
-      "icon": "AS",
-      "category": "gestao",
-      "kind": "http",
-      "description": "As tarefas no seu nome dentro de um workspace, com projeto e prazo. Clicar abre a tarefa.",
-      "needs": "Um token pessoal do Asana e o ID do workspace.",
-      "file": "plugins/asana.json",
-      "logo": "https://github.com/Asana.png?size=128"
-    },
-    {
       "slug": "clickup",
       "name": "ClickUp",
       "icon": "CU",
@@ -451,46 +257,6 @@
       "needs": "Um token pessoal do ClickUp e o ID da lista.",
       "file": "plugins/clickup.json",
       "logo": "https://github.com/clickup.png?size=128"
-    },
-    {
-      "slug": "okr",
-      "name": "Metas do trimestre",
-      "icon": "MT",
-      "category": "gestao",
-      "kind": "panel",
-      "description": "As metas do trimestre e o quanto já andou de cada uma, sem depender de ferramenta nenhuma. Os números moram no próprio arquivo, na aba Dado.",
-      "needs": "",
-      "file": "plugins/okr.json"
-    },
-    {
-      "slug": "capacidade",
-      "name": "Capacidade do time",
-      "icon": "CT",
-      "category": "gestao",
-      "kind": "panel",
-      "description": "Pontos entregues contra o planejado da sprint, com a divisão por pessoa. Atualize na aba Dado ao fim de cada sprint.",
-      "needs": "",
-      "file": "plugins/capacidade.json"
-    },
-    {
-      "slug": "riscos",
-      "name": "Riscos",
-      "icon": "RI",
-      "category": "gestao",
-      "kind": "panel",
-      "description": "O registro de riscos do projeto numa grade por gravidade, com dono e ação de cada um. Um quadro de riscos que ninguém abre não serve; este fica na borda da tela.",
-      "needs": "",
-      "file": "plugins/riscos.json"
-    },
-    {
-      "slug": "ferias",
-      "name": "Férias do time",
-      "icon": "FT",
-      "category": "gestao",
-      "kind": "panel",
-      "description": "Quem sai de férias, quando e quando volta, numa linha do tempo. Serve para não marcar a entrega na semana em que metade do time some.",
-      "needs": "",
-      "file": "plugins/ferias.json"
     },
     {
       "slug": "taxas",
@@ -521,26 +287,6 @@
       "description": "Várias moedas frente ao real na mesma tabela, com a variação do dia. O ícone mostra sempre o dólar.",
       "needs": "",
       "file": "plugins/moedas.json"
-    },
-    {
-      "slug": "contas",
-      "name": "Contas a pagar",
-      "icon": "CP",
-      "category": "fin",
-      "kind": "panel",
-      "description": "As contas do mês numa linha do tempo, com a próxima em destaque e o valor de cada uma. Escrito à mão no arquivo, para quem não tem API do banco.",
-      "needs": "",
-      "file": "plugins/contas.json"
-    },
-    {
-      "slug": "assinaturas",
-      "name": "Assinaturas",
-      "icon": "AS",
-      "category": "fin",
-      "kind": "panel",
-      "description": "Tudo que é cobrado todo mês, somado, com a data de cada cobrança e quem come mais. É a conta que ninguém faz até a fatura chegar.",
-      "needs": "",
-      "file": "plugins/assinaturas.json"
     },
     {
       "slug": "orcamento",
@@ -583,16 +329,6 @@
       "file": "plugins/bancos.json"
     },
     {
-      "slug": "pix",
-      "name": "Pix",
-      "icon": "PI",
-      "category": "fin",
-      "kind": "http",
-      "description": "Quem participa do arranjo Pix, direto do Banco Central, com modalidade e ISPB. Útil para quem trabalha com pagamentos e precisa conferir uma instituição.",
-      "needs": "",
-      "file": "plugins/pix.json"
-    },
-    {
       "slug": "acoes",
       "name": "Ações",
       "icon": "AÇ",
@@ -613,16 +349,6 @@
       "needs": "Um token da brapi.",
       "file": "plugins/fiis.json",
       "logo": "https://github.com/brapi-dev.png?size=128"
-    },
-    {
-      "slug": "ibovespa",
-      "name": "Ibovespa",
-      "icon": "IB",
-      "category": "inv",
-      "kind": "http",
-      "description": "Os pontos do índice agora, a variação do dia e a curva desde que o Peek abriu. Um número só, sempre visível na borda.",
-      "needs": "Um token grátis da brapi.",
-      "file": "plugins/ibovespa.json"
     },
     {
       "slug": "cotacoes",
@@ -665,16 +391,6 @@
       "file": "plugins/medo.json"
     },
     {
-      "slug": "carteira",
-      "name": "Carteira",
-      "icon": "CA",
-      "category": "inv",
-      "kind": "panel",
-      "description": "O patrimônio total contra o que foi aportado, com cada posição em barra e tabela. Escrito no próprio arquivo, sem conectar corretora nenhuma.",
-      "needs": "",
-      "file": "plugins/carteira.json"
-    },
-    {
       "slug": "renda-fixa",
       "name": "Renda fixa",
       "icon": "RF",
@@ -695,27 +411,6 @@
       "file": "plugins/dividendos.json"
     },
     {
-      "slug": "pipeline",
-      "name": "Pipeline",
-      "icon": "PI",
-      "category": "vendas",
-      "kind": "panel",
-      "description": "As etapas do funil com a contagem de cada uma; clicar numa etapa filtra a lista abaixo. A meta do período aparece como barra no número grande.",
-      "needs": "O comando que traz os seus dados.",
-      "file": "plugins/pipeline.json"
-    },
-    {
-      "slug": "pipedrive",
-      "name": "Pipedrive",
-      "icon": "PI",
-      "category": "vendas",
-      "kind": "http",
-      "description": "Os negócios abertos do CRM, com os maiores em barras e a lista com organização e responsável. Pisca quando entra um negócio novo.",
-      "needs": "O subdomínio e o token de API do Pipedrive.",
-      "file": "plugins/pipedrive.json",
-      "logo": "https://github.com/pipedrive.png?size=128"
-    },
-    {
       "slug": "hubspot",
       "name": "HubSpot",
       "icon": "HS",
@@ -725,77 +420,6 @@
       "needs": "Um token de app privado do HubSpot com o escopo de negócios.",
       "file": "plugins/hubspot.json",
       "logo": "https://github.com/HubSpot.png?size=128"
-    },
-    {
-      "slug": "stripe",
-      "name": "Stripe",
-      "icon": "ST",
-      "category": "vendas",
-      "kind": "command",
-      "description": "O saldo disponível e o pendente da sua conta Stripe, já convertido de centavos. A cadeia de dois programas mostra como tratar uma API que responde em centavos.",
-      "needs": "O Stripe CLI instalado e com login feito (stripe login).",
-      "file": "plugins/stripe.json",
-      "logo": "https://github.com/stripe.png?size=128"
-    },
-    {
-      "slug": "meta",
-      "name": "Meta do mês",
-      "icon": "MM",
-      "category": "vendas",
-      "kind": "panel",
-      "description": "O quanto já foi vendido no mês contra a meta, com a divisão por vendedor. O arco enche conforme o mês avança.",
-      "needs": "",
-      "file": "plugins/meta.json"
-    },
-    {
-      "slug": "funil",
-      "name": "Funil",
-      "icon": "FU",
-      "category": "vendas",
-      "kind": "panel",
-      "description": "O funil inteiro escrito à mão: etapas no topo, negócios agrupados por etapa embaixo. Clicar numa etapa filtra a lista.",
-      "needs": "",
-      "file": "plugins/funil.json"
-    },
-    {
-      "slug": "propostas",
-      "name": "Propostas",
-      "icon": "PR",
-      "category": "vendas",
-      "kind": "panel",
-      "description": "As propostas na mesa do cliente, com valor, validade e situação de cada uma. A grade mostra de relance o que ainda é rascunho.",
-      "needs": "",
-      "file": "plugins/propostas.json"
-    },
-    {
-      "slug": "comissoes",
-      "name": "Comissões",
-      "icon": "CO",
-      "category": "vendas",
-      "kind": "panel",
-      "description": "Quanto cada vendedor tem a receber no mês, com o total no número grande. Vendido e comissão lado a lado na tabela.",
-      "needs": "",
-      "file": "plugins/comissoes.json"
-    },
-    {
-      "slug": "leads",
-      "name": "Leads",
-      "icon": "LE",
-      "category": "vendas",
-      "kind": "http",
-      "description": "Lê a lista de leads que o seu próprio sistema publica num endereço JSON. Ajuste os campos da linha para os nomes que a sua API usa.",
-      "needs": "Um endereço https que devolva a lista.",
-      "file": "plugins/leads.json"
-    },
-    {
-      "slug": "agenda-comercial",
-      "name": "Agenda comercial",
-      "icon": "AC",
-      "category": "vendas",
-      "kind": "panel",
-      "description": "As próximas conversas com clientes, com tipo e responsável, numa linha do tempo. Serve como agenda do time comercial sem abrir o calendário.",
-      "needs": "",
-      "file": "plugins/agenda-comercial.json"
     },
     {
       "slug": "plausible",
@@ -819,28 +443,6 @@
       "file": "plugins/youtube.json"
     },
     {
-      "slug": "youtube-videos",
-      "name": "Vídeos",
-      "icon": "VÍ",
-      "category": "mkt",
-      "kind": "http",
-      "description": "Os últimos vídeos publicados no canal, com miniatura e data. Pisca quando um vídeo novo sobe.",
-      "needs": "Uma chave da YouTube Data API v3.",
-      "file": "plugins/youtube-videos.json",
-      "logo": "https://www.google.com/s2/favicons?domain=youtube.com&sz=128"
-    },
-    {
-      "slug": "buttondown",
-      "name": "Newsletter",
-      "icon": "NE",
-      "category": "mkt",
-      "kind": "http",
-      "description": "Quantas pessoas assinam a sua newsletter, com a curva de crescimento. Os últimos inscritos aparecem na lista.",
-      "needs": "Uma chave de API do Buttondown.",
-      "file": "plugins/buttondown.json",
-      "logo": "https://github.com/buttondown.png?size=128"
-    },
-    {
       "slug": "bluesky",
       "name": "Bluesky",
       "icon": "BL",
@@ -850,37 +452,6 @@
       "needs": "O handle da conta.",
       "file": "plugins/bluesky.json",
       "logo": "https://web-cdn.bsky.app/static/apple-touch-icon.png"
-    },
-    {
-      "slug": "mastodon",
-      "name": "Mastodon",
-      "icon": "MA",
-      "category": "mkt",
-      "kind": "http",
-      "description": "Seguidores e posts de uma conta do Mastodon, em qualquer instância. Também sem login: a API pública basta.",
-      "needs": "A instância e o nome da conta.",
-      "file": "plugins/mastodon.json",
-      "logo": "https://github.com/mastodon.png?size=128"
-    },
-    {
-      "slug": "utm",
-      "name": "UTM",
-      "icon": "UT",
-      "category": "mkt",
-      "kind": "panel",
-      "description": "Monta o link da campanha com os parâmetros certos e copia pronto para colar. Um botão para e-mail, um para rede social e um para anúncio.",
-      "needs": "O nome da campanha.",
-      "file": "plugins/utm.json"
-    },
-    {
-      "slug": "campanhas",
-      "name": "Campanhas",
-      "icon": "CA",
-      "category": "mkt",
-      "kind": "panel",
-      "description": "Quanto foi investido em cada canal e quantos leads cada um trouxe. O número grande compara retorno com investimento.",
-      "needs": "",
-      "file": "plugins/campanhas.json"
     },
     {
       "slug": "seo",
@@ -893,16 +464,6 @@
       "file": "plugins/seo.json"
     },
     {
-      "slug": "newsletter",
-      "name": "Crescimento",
-      "icon": "CR",
-      "category": "mkt",
-      "kind": "panel",
-      "description": "Assinantes contra a meta do ano, com os novos de cada mês em barras. O arco enche conforme você se aproxima da meta.",
-      "needs": "",
-      "file": "plugins/newsletter.json"
-    },
-    {
       "slug": "discord",
       "name": "Discord",
       "icon": "DI",
@@ -912,28 +473,6 @@
       "needs": "Ligar o widget nas configurações do servidor.",
       "file": "plugins/discord.json",
       "logo": "https://github.com/discord.png?size=128"
-    },
-    {
-      "slug": "telegram",
-      "name": "Telegram",
-      "icon": "TE",
-      "category": "atend",
-      "kind": "http",
-      "description": "As mensagens que chegaram para o seu bot, com quem mandou e quando. O Telegram guarda apenas as últimas 24 horas.",
-      "needs": "O token de um bot do Telegram.",
-      "file": "plugins/telegram.json",
-      "logo": "https://telegram.org/img/apple-touch-icon.png"
-    },
-    {
-      "slug": "slack",
-      "name": "Slack",
-      "icon": "SL",
-      "category": "atend",
-      "kind": "http",
-      "description": "As últimas mensagens de um canal do Slack, direto na borda da tela. Pisca quando aparece mensagem nova.",
-      "needs": "Um token do Slack com o escopo channels:history.",
-      "file": "plugins/slack.json",
-      "logo": "https://github.com/slackhq.png?size=128"
     },
     {
       "slug": "zendesk",
@@ -969,26 +508,6 @@
       "logo": "https://github.com/chatwoot.png?size=128"
     },
     {
-      "slug": "fila",
-      "name": "Fila de atendimento",
-      "icon": "FA",
-      "category": "atend",
-      "kind": "panel",
-      "description": "As etapas do atendimento com a contagem de cada uma; clicar numa etapa filtra a lista. Funciona sem ferramenta nenhuma por trás.",
-      "needs": "",
-      "file": "plugins/fila.json"
-    },
-    {
-      "slug": "sla",
-      "name": "SLA",
-      "icon": "SL",
-      "category": "atend",
-      "kind": "panel",
-      "description": "O percentual de atendimentos dentro do prazo, contra a meta, com a divisão por fila. O arco obedece aos limiares de aviso do app.",
-      "needs": "",
-      "file": "plugins/sla.json"
-    },
-    {
       "slug": "plantao",
       "name": "Plantão",
       "icon": "PL",
@@ -1018,16 +537,6 @@
       "needs": "O endereço do Home Assistant (https ou .local) e um token de acesso de longa duração.",
       "file": "plugins/casa.json",
       "logo": "https://github.com/home-assistant.png?size=128"
-    },
-    {
-      "slug": "energia",
-      "name": "Energia",
-      "icon": "EN",
-      "category": "casa",
-      "kind": "http",
-      "description": "O consumo de energia agora, lido de um sensor do Home Assistant, com a curva ao longo do tempo. Troque o entity_id pelo sensor da sua casa.",
-      "needs": "Home Assistant em homeassistant.local e um token de acesso de longa duração.",
-      "file": "plugins/energia.json"
     },
     {
       "slug": "ar",
@@ -1068,147 +577,6 @@
       "description": "A que horas o sol nasce e se põe hoje, e quantas horas de luz o dia tem. Inclui o crepúsculo civil, para quem fotografa.",
       "needs": "A coordenada do lugar.",
       "file": "plugins/sol.json"
-    },
-    {
-      "slug": "lixo",
-      "name": "Coleta",
-      "icon": "CO",
-      "category": "casa",
-      "kind": "panel",
-      "description": "Os dias de coleta de cada tipo de lixo, com o próximo em destaque. Escrito no próprio arquivo, porque isso nenhuma API sabe.",
-      "needs": "",
-      "file": "plugins/lixo.json"
-    },
-    {
-      "slug": "mercado",
-      "name": "Compras",
-      "icon": "CO",
-      "category": "casa",
-      "kind": "panel",
-      "description": "A lista de compras agrupada por onde comprar, com um botão que copia tudo. Outro botão anota na hora o que estiver na área de transferência.",
-      "needs": "",
-      "file": "plugins/mercado.json"
-    },
-    {
-      "slug": "plantas",
-      "name": "Plantas",
-      "icon": "PL",
-      "category": "casa",
-      "kind": "panel",
-      "description": "Quando regar cada planta, com o lugar e a quantidade de água. A linha do tempo mostra qual seca primeiro.",
-      "needs": "",
-      "file": "plugins/plantas.json"
-    },
-    {
-      "slug": "pets",
-      "name": "Pets",
-      "icon": "PE",
-      "category": "casa",
-      "kind": "panel",
-      "description": "Vacinas, banho e veterinário dos seus bichos, com data e lugar. O que vem primeiro fica sempre no topo.",
-      "needs": "",
-      "file": "plugins/pets.json"
-    },
-    {
-      "slug": "bateria",
-      "name": "Bateria",
-      "icon": "BA",
-      "category": "sistema",
-      "kind": "command",
-      "description": "A carga da bateria no ícone, com a fonte de energia e o tempo restante no cartão. Avisa quando cai abaixo de 20%.",
-      "needs": "",
-      "file": "plugins/bateria.json"
-    },
-    {
-      "slug": "carga",
-      "name": "Carga do Mac",
-      "icon": "CM",
-      "category": "sistema",
-      "kind": "command",
-      "description": "A média de carga do Mac no último minuto, com a curva ao longo do tempo. Também mostra há quanto tempo a máquina está ligada.",
-      "needs": "",
-      "file": "plugins/carga.json"
-    },
-    {
-      "slug": "processos",
-      "name": "Processos",
-      "icon": "PR",
-      "category": "sistema",
-      "kind": "command",
-      "description": "Quem está comendo a CPU agora, em barras e em tabela com memória. Um botão abre o Monitor de Atividade.",
-      "needs": "",
-      "file": "plugins/processos.json"
-    },
-    {
-      "slug": "disco",
-      "name": "Disco",
-      "icon": "DI",
-      "category": "sistema",
-      "kind": "command",
-      "description": "Quanto do disco está em uso, com o arco obedecendo aos limiares de aviso do app. Lido direto do df, sem depender de nada instalado.",
-      "needs": "",
-      "file": "plugins/disco.json"
-    },
-    {
-      "slug": "swap",
-      "name": "Memória virtual",
-      "icon": "MV",
-      "category": "sistema",
-      "kind": "command",
-      "description": "Quanto o Mac já jogou de memória para o disco, com a curva ao longo do tempo. Swap alto e crescendo é sinal de memória apertada.",
-      "needs": "",
-      "file": "plugins/swap.json"
-    },
-    {
-      "slug": "brew",
-      "name": "Homebrew",
-      "icon": "HO",
-      "category": "sistema",
-      "kind": "command",
-      "description": "Quantas fórmulas e casks do Homebrew estão desatualizados, com a versão de cada um. Um botão copia o brew upgrade.",
-      "needs": "O Homebrew instalado.",
-      "file": "plugins/brew.json",
-      "logo": "https://github.com/Homebrew.png?size=128"
-    },
-    {
-      "slug": "vpn",
-      "name": "VPN",
-      "icon": "VP",
-      "category": "sistema",
-      "kind": "command",
-      "description": "As conexões de rede deste Mac numa grade, com a cor dizendo quem está conectado. Serve para ver a VPN sem abrir os Ajustes.",
-      "needs": "",
-      "file": "plugins/vpn.json"
-    },
-    {
-      "slug": "rede-local",
-      "name": "Rede local",
-      "icon": "RL",
-      "category": "sistema",
-      "kind": "command",
-      "description": "O seu IP nesta rede e o endereço do roteador, com um botão para copiar. O endereço público fica no plugin Meu IP.",
-      "needs": "Escolher a interface, em geral en0.",
-      "file": "plugins/rede-local.json"
-    },
-    {
-      "slug": "lixeira",
-      "name": "Lixeira",
-      "icon": "LI",
-      "category": "sistema",
-      "kind": "command",
-      "description": "O que ainda ocupa espaço na Lixeira, item por item, com tamanho e data. Um botão abre o Finder.",
-      "needs": "O caminho absoluto da Lixeira.",
-      "file": "plugins/lixeira.json"
-    },
-    {
-      "slug": "apps",
-      "name": "Aplicativos",
-      "icon": "AP",
-      "category": "sistema",
-      "kind": "command",
-      "description": "Tudo que está instalado em /Applications, com a data de cada um. Pisca quando um app novo aparece.",
-      "needs": "",
-      "file": "plugins/apps.json"
     },
     {
       "slug": "hackernews",
@@ -1252,17 +620,6 @@
       "description": "As notícias de exploração espacial, com a imagem da matéria no topo do cartão. Pisca quando sai matéria nova.",
       "needs": "",
       "file": "plugins/espaco.json"
-    },
-    {
-      "slug": "noticias-br",
-      "name": "Notícias do IBGE",
-      "icon": "NI",
-      "category": "leitura",
-      "kind": "http",
-      "description": "As notícias e releases oficiais do IBGE, com o tipo de cada uma em selo. Um botão em cada linha guarda para ler depois.",
-      "needs": "",
-      "file": "plugins/noticias-br.json",
-      "logo": "https://www.google.com/s2/favicons?domain=ibge.gov.br&sz=128"
     },
     {
       "slug": "wikipedia",
@@ -1358,17 +715,6 @@
       "file": "plugins/iss.json"
     },
     {
-      "slug": "apod",
-      "name": "Foto do dia da NASA",
-      "icon": "FD",
-      "category": "ciencia",
-      "kind": "http",
-      "description": "A foto astronômica do dia da NASA, em tamanho grande, com a explicação embaixo. Um botão abre a versão em alta resolução.",
-      "needs": "Nada. Uma chave própria da NASA é opcional.",
-      "file": "plugins/apod.json",
-      "logo": "https://github.com/nasa.png?size=128"
-    },
-    {
       "slug": "marte",
       "name": "Marte",
       "icon": "MA",
@@ -1418,27 +764,6 @@
       "description": "A concentração de CO₂ na atmosfera em ppm, com a tendência sem a variação sazonal. Antes da industrialização girava em torno de 280 ppm.",
       "needs": "",
       "file": "plugins/co2.json"
-    },
-    {
-      "slug": "musica",
-      "name": "Tocando agora",
-      "icon": "TA",
-      "category": "midia",
-      "kind": "script",
-      "description": "O que está tocando no app Música agora, com botões de anterior, tocar e próxima. O ícone muda de cor conforme está tocando, parado ou fechado.",
-      "needs": "Permissão de automação do app Música.",
-      "file": "plugins/musica.json"
-    },
-    {
-      "slug": "lastfm",
-      "name": "Last.fm",
-      "icon": "LA",
-      "category": "midia",
-      "kind": "http",
-      "description": "As últimas faixas que você ouviu, com capa e horário de cada uma. Pisca quando você escuta algo novo.",
-      "needs": "Uma chave da API do Last.fm.",
-      "file": "plugins/lastfm.json",
-      "logo": "https://github.com/lastfm.png?size=128"
     },
     {
       "slug": "deezer",
@@ -1492,17 +817,6 @@
       "file": "plugins/tmdb.json"
     },
     {
-      "slug": "estreias",
-      "name": "Estreias",
-      "icon": "ES",
-      "category": "midia",
-      "kind": "http",
-      "description": "Os filmes que ainda vão estrear, numa linha do tempo por data de lançamento. A imagem do primeiro fica no topo do cartão.",
-      "needs": "Uma chave da API do TMDB.",
-      "file": "plugins/estreias.json",
-      "logo": "https://www.google.com/s2/favicons?domain=themoviedb.org&sz=128"
-    },
-    {
       "slug": "steam",
       "name": "Steam",
       "icon": "ST",
@@ -1512,16 +826,6 @@
       "needs": "Uma chave da Web API da Steam.",
       "file": "plugins/steam.json",
       "logo": "https://www.google.com/s2/favicons?domain=store.steampowered.com&sz=128"
-    },
-    {
-      "slug": "xkcd",
-      "name": "xkcd",
-      "icon": "XK",
-      "category": "midia",
-      "kind": "http",
-      "description": "A tirinha mais recente do xkcd, com o texto escondido que aparece no hover do site. Pisca quando sai uma nova, e um botão guarda para ler depois.",
-      "needs": "",
-      "file": "plugins/xkcd.json"
     }
   ]
 }
