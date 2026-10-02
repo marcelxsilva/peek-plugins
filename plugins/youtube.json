@@ -6,7 +6,7 @@
   "icon": {
     "kind": "picture",
     "symbolName": "play.rectangle.fill",
-    "pictureSource": "{{items[0].snippet.thumbnails.default.url}}"
+    "pictureSource": "https://github.com/youtube.png?size=128"
   },
   "source": {
     "kind": "http",

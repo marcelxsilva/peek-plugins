@@ -6,7 +6,7 @@
   "icon": {
     "kind": "picture",
     "symbolName": "bitcoinsign.circle.fill",
-    "pictureSource": "{{[0].image}}"
+    "pictureSource": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/cripto.png"
   },
   "source": {
     "kind": "http",
