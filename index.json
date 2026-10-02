@@ -152,20 +152,6 @@
       "logo": "https://github.com/npm.png?size=128"
     },
     {
-      "slug": "crates",
-      "name": "crates.io",
-      "name_en": "crates.io",
-      "icon": "CR",
-      "category": "dev",
-      "kind": "http",
-      "description": "Os downloads de uma crate do Rust, com as últimas versões publicadas em tabela. Um botão copia a linha pronta para o Cargo.toml.",
-      "description_en": "Downloads of a Rust crate, with the latest published versions in a table. A button copies the line ready for Cargo.toml.",
-      "needs": "O nome da crate.",
-      "needs_en": "The crate name.",
-      "file": "plugins/crates.json",
-      "logo": "https://raw.githubusercontent.com/rust-lang/crates.io/main/svelte/src/lib/assets/cargo.png"
-    },
-    {
       "slug": "docker",
       "name": "Docker",
       "name_en": "Docker",
@@ -280,21 +266,6 @@
       "file": "plugins/rede.json",
       "logo_fill": true,
       "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/rede.png"
-    },
-    {
-      "slug": "servidores",
-      "name": "Servidores",
-      "name_en": "Servers",
-      "icon": "SE",
-      "category": "infra",
-      "kind": "panel",
-      "description": "Um painel com os seus servidores: um clique abre um terminal por ssh em cada um. Também copia o comando pronto, quando você prefere colar.",
-      "description_en": "A panel with your servers: one click opens an ssh terminal on each one. It also copies the ready command, if you prefer to paste it.",
-      "needs": "Os endereços dos servidores.",
-      "needs_en": "The server addresses.",
-      "file": "plugins/servidores.json",
-      "logo_fill": true,
-      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/servidores.png"
     },
     {
       "slug": "linear",
@@ -1068,21 +1039,6 @@
       "needs_en": "",
       "file": "plugins/deezer.json",
       "logo": "https://github.com/deezer.png?size=128"
-    },
-    {
-      "slug": "radio",
-      "name": "Rádio",
-      "name_en": "Radio",
-      "icon": "RÁ",
-      "category": "midia",
-      "kind": "http",
-      "description": "As rádios mais ouvidas do país que você escolher, com bitrate e etiquetas. Clicar numa linha abre o stream.",
-      "description_en": "The most listened radio stations in the country you choose, with bitrate and tags. Clicking a row opens the stream.",
-      "needs": "",
-      "needs_en": "",
-      "file": "plugins/radio.json",
-      "logo_fill": true,
-      "logo": "https://raw.githubusercontent.com/marcelxsilva/peek-plugins/main/assets/icons/radio.png"
     },
     {
       "slug": "podcast",
