@@ -8,23 +8,14 @@
     "symbolName": "play.rectangle.fill"
   },
   "source": {
-    "kind": "http",
-    "method": "GET",
-    "url": "https://api.github.com/repos/{{$settings.repo}}/actions/runs",
-    "query": [
+    "kind": "command",
+    "steps": [
       {
-        "name": "per_page",
-        "value": "12"
-      }
-    ],
-    "headers": [
-      {
-        "name": "Accept",
-        "value": "application/vnd.github+json"
-      },
-      {
-        "name": "Authorization",
-        "value": "Bearer {{secret}}"
+        "program": "/opt/homebrew/bin/gh",
+        "arguments": [
+          "api",
+          "repos/{{$settings.repo}}/actions/runs?per_page=12"
+        ]
       }
     ],
     "format": {
@@ -139,7 +130,7 @@
       "key": "repo",
       "label": "Repositório",
       "type": "text",
-      "help": "Repositório privado precisa de um token no campo de segredo, em Dado.",
+      "help": "Lido pelo gh, com a sua sessão. Funciona com repositório privado.",
       "required": true,
       "placeholder": "dono/nome"
     }

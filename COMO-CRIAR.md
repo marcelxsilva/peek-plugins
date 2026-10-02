@@ -2,6 +2,8 @@
 
 Um plugin é um arquivo JSON que diz ao Peek três coisas: de onde ler, o que mostrar e quais botões oferecer. Você não precisa escrever esse arquivo à mão. O Peek monta tudo com você, com os dados de verdade na tela.
 
+A especificação completa, chave por chave, está no [manifesto](https://peek.marcelxsilva.dev/manifesto).
+
 &nbsp;
 
 ## De onde ele lê
@@ -9,9 +11,9 @@ Um plugin é um arquivo JSON que diz ao Peek três coisas: de onde ler, o que mo
 O plugin lê de uma destas fontes:
 
 - **Endereço**: uma API na internet ou uma máquina da sua rede, com os cabeçalhos e o token que ela pedir.
-- **Programa**: um executável do seu Mac que devolve JSON.
+- **Programa**: um executável do seu Mac, como o `gh` ou o `kubectl`. A resposta pode ser JSON, texto, linhas, colunas ou pares de nome e valor.
 - **Script**: AppleScript ou JavaScript for Automation, para falar com os apps do Mac.
-- **Botões**: não lê nada. O plugin é um painel de botões, e cada botão traz a própria resposta.
+- **Nada**: o plugin é um painel de botões, e cada botão traz a própria resposta.
 
 Os tokens ficam nas Chaves do Mac, nunca no arquivo. Por isso um plugin pode ser compartilhado sem vazar nada.
 
@@ -19,11 +21,30 @@ Os tokens ficam nas Chaves do Mac, nunca no arquivo. Por isso um plugin pode ser
 
 ## O que ele mostra
 
-O ícone na borda da tela mostra um valor curto, como uma contagem, um percentual ou um horário. Ele pode ter um arco de progresso e pode saltar quando algo muda.
+**O ícone** fica na borda da tela. Dentro dele vai um símbolo, uma palavra curta ou uma imagem. Abaixo, um rótulo com um valor curto. Em volta, um arco de progresso, um número, uma cor de status ou um gráfico pequeno das últimas leituras. Quando algo muda, ele salta.
 
-O cartão, que abre quando o cursor para no ícone, é feito de **blocos**. Cada bloco desenha uma parte da resposta: um número em destaque, um gráfico, uma lista, uma tabela, uma grade de status, pares de nome e valor, interruptores, uma divisão por grupos. Você empilha os blocos na ordem que quiser, e dois blocos pequenos podem ficar lado a lado.
+**O cartão** abre quando o cursor para no ícone. Ele é feito de blocos, empilhados na ordem que você quiser:
 
-Todo texto do cartão pode misturar palavras com campos da resposta. Um campo mostra o valor que veio naquela leitura, e um formato ajusta como ele aparece: arredondado, em percentual, em tempo relativo, em tamanho de arquivo.
+| Bloco | O que mostra |
+| --- | --- |
+| Destaque | Um número importante, a variação e a distância até a meta. |
+| Tendência | Como um valor se moveu ao longo do tempo, em linha, área ou barras. |
+| Mapa de calor | Intensidade por dia e hora, ou por dia do mês. |
+| Barras ranqueadas | Itens ordenados do maior para o menor. |
+| Etapas | Uma contagem por etapa, na ordem. Um clique filtra a lista. |
+| Distribuição | Como os itens de uma lista se dividem entre grupos, em barra, funil ou lista. |
+| Grade de status | Muitos itens de uma vez, cada um bem ou não. |
+| Linha do tempo | O que aconteceu e o que vem, por data. |
+| Tabela | Colunas de valores curtos, com imagem, status ou botão por linha. |
+| Texto | Um parágrafo para ler, com um botão de copiar. |
+| Lista | Linhas com título, status, imagem e link, em abas. |
+| Botões | Um painel de botões, cada um rodando alguma coisa. |
+| Propriedades | Pares de nome e valor, com botões ao lado de cada um. |
+| Controles | Interruptores e níveis, direto no cartão. |
+
+Quase todo bloco pode ocupar meia largura, e dois blocos de meia largura dividem a mesma linha.
+
+Todo texto do cartão pode misturar palavras com campos da resposta. Um campo mostra o valor que veio naquela leitura, e um formato ajusta como ele aparece: arredondado, em percentual, como dinheiro, em tempo relativo, em tamanho de arquivo.
 
 Um cartão feito com blocos:
 
@@ -35,19 +56,25 @@ Um cartão feito com blocos:
 
 ## Os botões
 
-Um botão pode ficar no topo do cartão, em cada linha de uma lista ou num painel próprio. Ele chama um endereço, roda um programa, copia um texto ou abre um link. Pode pedir confirmação antes, perguntar um valor e mostrar o que voltou. Depois, o plugin pode se ler de novo para mostrar o estado novo.
+Um botão pode ficar no topo do cartão, em cada linha de uma lista, num painel de botões, numa coluna de tabela, ao lado de uma propriedade ou por trás de um controle.
+
+Ele chama um endereço, roda um programa ou um script, ou faz algo no Mac: copia um texto, abre um link ou um app, manda uma notificação, toca um som, roda um Atalho ou guarda um link em Ler mais tarde.
+
+Antes de rodar, ele pode pedir confirmação ou perguntar um valor. Depois, mostra uma frase, a saída do programa, ou nada. Regras olham a resposta e decidem o resto: mudar a cor do botão, escrever uma linha, mostrar uma imagem, rodar outra chamada ou fazer o ícone saltar. Quando dá certo, o plugin lê de novo e mostra o estado novo.
 
 &nbsp;
 
 ## Passo a passo
 
 1. No Peek, abra **Configurações › Plugins** e clique em **Novo plugin**.
-2. Escolha a fonte e leia uma vez. O Peek mostra o que veio.
-3. Escolha um formato para começar: um número, uma lista, várias listas ou lista com botão.
-4. Arraste os campos da resposta para o cartão. O cartão se atualiza na hora, com os dados de verdade.
-5. Salve. O plugin vira um ícone na borda da tela.
+2. Em **Dados**, escolha a fonte e clique em **Verificar**. O Peek mostra o que veio.
+3. Escolha um começo: uma lista, abas com listas, um número ou um botão. O Peek monta um rascunho já preenchido.
+4. Em **Ícone**, escolha o que fica na borda da tela.
+5. Em **Detalhes**, ajuste o cartão e adicione blocos. Todo campo tem um **+** para escolher um valor da resposta, e o cartão se atualiza na hora.
+6. Em **Notificações**, diga quando o ícone deve chamar você.
+7. Clique em **Criar plugin**. Ele vira um ícone na borda da tela.
 
-Para levar o plugin para outro Mac ou mandar para alguém, exporte o arquivo e importe do outro lado em **Configurações › Plugins › Importar**.
+Para levar o plugin para outro Mac ou mandar para alguém, use **Arquivo › Copiar** no editor e importe do outro lado em **Configurações › Plugins › Importar**.
 
 &nbsp;
 
@@ -59,6 +86,6 @@ Prefere descrever em vez de montar? Na [página do manifesto](https://peek.marce
 
 ## Para se inspirar
 
-Os [plugins deste repositório](plugins/) servem de ponto de partida. Baixe um parecido com o que você quer, importe no Peek e ajuste.
+Os [plugins deste repositório](plugins/) servem de ponto de partida. Instale um parecido com o que você quer pela [página de plugins](https://peek.marcelxsilva.dev/plugins) e ajuste no editor.
 
 Quer ver o seu plugin aqui? Abra um pull request com o arquivo em `plugins/` e uma linha nova em `index.json`.

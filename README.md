@@ -42,8 +42,8 @@ Este repositório é o catálogo oficial de plugins do Peek. Cada plugin é um a
 Para instalar:
 
 1. Encontre o plugin na [página de plugins](https://peek.marcelxsilva.dev/plugins) ou na [pasta `plugins/`](plugins/).
-2. Baixe o arquivo `.json`.
-3. No Peek, abra **Configurações › Plugins › Importar** e escolha o arquivo.
+2. Clique em **Instalar**. O Peek abre com o plugin pronto para revisar.
+3. Ou baixe o arquivo `.json` e importe em **Configurações › Plugins › Importar**.
 
 Antes de instalar, o Peek mostra tudo o que o plugin lê e roda. Nada entra sem você ver.
 
@@ -51,15 +51,15 @@ Antes de instalar, o Peek mostra tudo o que o plugin lê e roda. Nada entra sem 
 
 ## Monte o seu
 
-Não achou o que precisa? Um plugin se monta dentro do próprio Peek, com os dados de verdade na tela enquanto você escolhe o que mostrar. Também dá para descrever o que você quer ao seu modelo de IA e importar o arquivo que ele devolver.
+Não achou o que precisa? Um plugin se monta dentro do próprio Peek, com os dados de verdade na tela enquanto você escolhe o que mostrar. O cartão é feito de blocos: destaque, gráfico, mapa de calor, barras, etapas, distribuição, grade de status, linha do tempo, tabela, texto, lista, botões, propriedades e controles. Também dá para descrever o que você quer ao seu modelo de IA e importar o arquivo que ele devolver.
 
 [Veja como criar um plugin](COMO-CRIAR.md).
 
 &nbsp;
 
-## Experimente por 30 dias
+## Experimente por 15 dias
 
-Baixe o Peek e use tudo, sem limites, por 30 dias. Se ele deixar o seu dia mais leve, compre a licença vitalícia uma única vez.
+Baixe o Peek e use tudo, sem limites, por 15 dias. Se ele deixar o seu dia mais leve, compre a licença vitalícia uma única vez.
 
 **[Baixar o Peek](https://peek.marcelxsilva.dev)** · [Ver o preço](https://peek.marcelxsilva.dev/pricing)
 

@@ -207,9 +207,9 @@
       "name": "GitHub Actions",
       "icon": "GA",
       "category": "dev",
-      "kind": "http",
+      "kind": "command",
       "description": "Uma grade com as últimas execuções do CI e o estado de cada uma, verde ou vermelho. O ícone fica com a cor da execução mais recente.",
-      "needs": "O repositório. Privado exige um token.",
+      "needs": "O gh instalado e autenticado, e o repositório.",
       "file": "plugins/github-actions.json"
     },
     {
