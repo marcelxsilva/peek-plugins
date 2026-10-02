@@ -1,159 +1,282 @@
 {
-  "schema": 11,
-  "id": "plugin.exemplo.vercel",
-  "name": "Vercel",
-  "interval": 300,
-  "icon": {
-    "kind": "picture",
-    "symbolName": "triangle.fill",
-    "pictureSource": "https://github.com/vercel.png?size=128"
+  "actions" : [
+
+  ],
+  "answer" : "{\"deployments\":[{\"uid\":\"dpl_3Fk8Lq2Vn7Rb5Xc1Wd9Ys4Tz\",\"name\":\"loja-web\",\"projectId\":\"prj_7Qb2Lx9Kd4Vn8Rt1Wc3Ys5Zf\",\"url\":\"loja-web-k3j9x2a1p-exemplo.vercel.app\",\"created\":1759327200000,\"createdAt\":1759327200000,\"buildingAt\":1759327201200,\"ready\":null,\"state\":\"BUILDING\",\"readyState\":\"BUILDING\",\"type\":\"LAMBDAS\",\"source\":\"git\",\"target\":\"production\",\"creator\":{\"uid\":\"Kc8Nd2Lq5Vx7Rb3T\",\"username\":\"marina-dev\",\"email\":\"dev@exemplo.com\"},\"meta\":{\"githubCommitMessage\":\"Ajusta o cálculo do frete no checkout\",\"githubCommitRef\":\"main\",\"githubCommitSha\":\"9f3c2a1b7e4d\",\"githubOrg\":\"exemplo\",\"githubRepo\":\"loja-web\"},\"inspectorUrl\":\"https://vercel.com/exemplo/loja-web/3Fk8Lq2Vn7Rb5Xc1Wd9Ys4Tz\"},{\"uid\":\"dpl_8Ht2Mq6Vn1Rb9Xc4Wd3Ys7Lp\",\"name\":\"loja-web\",\"projectId\":\"prj_7Qb2Lx9Kd4Vn8Rt1Wc3Ys5Zf\",\"url\":\"loja-web-p8f2m6q1z-exemplo.vercel.app\",\"created\":1759320000000,\"createdAt\":1759320000000,\"buildingAt\":1759320001200,\"ready\":1759320048000,\"state\":\"READY\",\"readyState\":\"READY\",\"type\":\"LAMBDAS\",\"source\":\"git\",\"target\":\"preview\",\"creator\":{\"uid\":\"Kc8Nd2Lq5Vx7Rb3T\",\"username\":\"joao-silva\",\"email\":\"dev@exemplo.com\"},\"meta\":{\"githubCommitMessage\":\"Adiciona botão de cupom no carrinho\",\"githubCommitRef\":\"feat/checkout\",\"githubCommitSha\":\"9f3c2a1b7e4d\",\"githubOrg\":\"exemplo\",\"githubRepo\":\"loja-web\"},\"inspectorUrl\":\"https://vercel.com/exemplo/loja-web/8Ht2Mq6Vn1Rb9Xc4Wd3Ys7Lp\"},{\"uid\":\"dpl_5Rt9Kq3Vn8Lb2Xc6Wd1Ys4Mn\",\"name\":\"loja-web\",\"projectId\":\"prj_7Qb2Lx9Kd4Vn8Rt1Wc3Ys5Zf\",\"url\":\"loja-web-z5r9k3q8n-exemplo.vercel.app\",\"created\":1759312800000,\"createdAt\":1759312800000,\"buildingAt\":1759312801200,\"ready\":null,\"state\":\"ERROR\",\"readyState\":\"ERROR\",\"type\":\"LAMBDAS\",\"source\":\"git\",\"target\":\"preview\",\"creator\":{\"uid\":\"Kc8Nd2Lq5Vx7Rb3T\",\"username\":\"joao-silva\",\"email\":\"dev@exemplo.com\"},\"meta\":{\"githubCommitMessage\":\"Migra a página de produto para o novo layout\",\"githubCommitRef\":\"feat/checkout\",\"githubCommitSha\":\"9f3c2a1b7e4d\",\"githubOrg\":\"exemplo\",\"githubRepo\":\"loja-web\"},\"inspectorUrl\":\"https://vercel.com/exemplo/loja-web/5Rt9Kq3Vn8Lb2Xc6Wd1Ys4Mn\"},{\"uid\":\"dpl_1Bc7Nq4Vn2Rb8Xc5Wd6Ys3Kp\",\"name\":\"loja-web\",\"projectId\":\"prj_7Qb2Lx9Kd4Vn8Rt1Wc3Ys5Zf\",\"url\":\"loja-web-b1c7n4q2r-exemplo.vercel.app\",\"created\":1759240800000,\"createdAt\":1759240800000,\"buildingAt\":1759240801200,\"ready\":1759240848000,\"state\":\"READY\",\"readyState\":\"READY\",\"type\":\"LAMBDAS\",\"source\":\"git\",\"target\":\"production\",\"creator\":{\"uid\":\"Kc8Nd2Lq5Vx7Rb3T\",\"username\":\"marina-dev\",\"email\":\"dev@exemplo.com\"},\"meta\":{\"githubCommitMessage\":\"Corrige imagens quebradas na vitrine\",\"githubCommitRef\":\"main\",\"githubCommitSha\":\"9f3c2a1b7e4d\",\"githubOrg\":\"exemplo\",\"githubRepo\":\"loja-web\"},\"inspectorUrl\":\"https://vercel.com/exemplo/loja-web/1Bc7Nq4Vn2Rb8Xc5Wd6Ys3Kp\"},{\"uid\":\"dpl_6Wd2Pq9Vn5Rb1Xc8Ys7Lm3Tz\",\"name\":\"loja-web\",\"projectId\":\"prj_7Qb2Lx9Kd4Vn8Rt1Wc3Ys5Zf\",\"url\":\"loja-web-w6d2p9q5v-exemplo.vercel.app\",\"created\":1759237200000,\"createdAt\":1759237200000,\"buildingAt\":1759237201200,\"ready\":null,\"state\":\"CANCELED\",\"readyState\":\"CANCELED\",\"type\":\"LAMBDAS\",\"source\":\"git\",\"target\":\"preview\",\"creator\":{\"uid\":\"Kc8Nd2Lq5Vx7Rb3T\",\"username\":\"marina-dev\",\"email\":\"dev@exemplo.com\"},\"meta\":{\"githubCommitMessage\":\"Teste de cache no CDN\",\"githubCommitRef\":\"feat/checkout\",\"githubCommitSha\":\"9f3c2a1b7e4d\",\"githubOrg\":\"exemplo\",\"githubRepo\":\"loja-web\"},\"inspectorUrl\":\"https://vercel.com/exemplo/loja-web/6Wd2Pq9Vn5Rb1Xc8Ys7Lm3Tz\"}],\"pagination\":{\"count\":5,\"next\":1759237199000,\"prev\":1759327201000}}",
+  "attention" : {
+    "comparison" : "above",
+    "countPath" : "",
+    "listIndex" : 0,
+    "mode" : "newRows",
+    "threshold" : 0
   },
-  "source": {
-    "kind": "http",
-    "method": "GET",
-    "url": "https://api.vercel.com/v7/deployments",
-    "query": [
-      {
-        "name": "limit",
-        "value": "10"
-      },
-      {
-        "name": "projectId",
-        "value": "{{$settings.projeto}}"
-      }
-    ],
-    "headers": [
-      {
-        "name": "Authorization",
-        "value": "Bearer {{$settings.token}}"
-      }
-    ],
-    "format": {
-      "kind": "json"
-    }
+  "button" : {
+    "cancelLabel" : "",
+    "confirms" : false,
+    "failureMessage" : "",
+    "failureReport" : "message",
+    "okLabel" : "",
+    "question" : "",
+    "runningText" : "",
+    "successMessage" : "",
+    "successReport" : "message"
   },
-  "slot": {
-    "label": "{{deployments[0].state | lower}}",
-    "status": "{{deployments[0].state}}",
-    "style": "status",
-    "statusColors": {
-      "READY": "positive",
-      "BUILDING": "attention",
-      "QUEUED": "attention",
-      "ERROR": "negative",
-      "CANCELED": "neutral",
-      "INITIALIZING": "attention",
-      "BLOCKED": "negative"
-    }
-  },
-  "card": {
-    "isEnabled": true,
-    "title": "Vercel",
-    "subtitle": "Últimos deploys",
-    "emptyMessage": "Nenhum deploy neste projeto.",
-    "blocks": [
+  "card" : {
+    "blocks" : [
       {
-        "type": "breakdown",
-        "title": "Por estado",
-        "breakdownStyle": "bar",
-        "path": "deployments",
-        "groupField": "{{state}}",
-        "groupKind": "text",
-        "measure": "count",
-        "shows": "amount",
-        "groups": [
+        "breakdownStyle" : "bar",
+        "groupField" : "{{state}}",
+        "groupKind" : "text",
+        "groups" : [
           {
-            "id": "3E50FA4B-62BE-4C5B-8A64-E8FE8DD281BC",
-            "name": "Pronto",
-            "color": "green",
-            "match": "READY"
+            "color" : "green",
+            "id" : "3E50FA4B-62BE-4C5B-8A64-E8FE8DD281BC",
+            "match" : "READY",
+            "name" : "Pronto",
+            "truth" : true
           },
           {
-            "id": "22273FB6-AEB0-4B7E-9696-7A59E40A5CB4",
-            "name": "Buildando",
-            "color": "yellow",
-            "match": "BUILDING, INITIALIZING"
+            "color" : "yellow",
+            "id" : "22273FB6-AEB0-4B7E-9696-7A59E40A5CB4",
+            "match" : "BUILDING, INITIALIZING",
+            "name" : "Buildando",
+            "truth" : true
           },
           {
-            "id": "F5335275-63A2-4654-A2BC-06065F42C899",
-            "name": "Na fila",
-            "color": "blue",
-            "match": "QUEUED"
+            "color" : "blue",
+            "id" : "F5335275-63A2-4654-A2BC-06065F42C899",
+            "match" : "QUEUED",
+            "name" : "Na fila",
+            "truth" : true
           },
           {
-            "id": "9D79DCF6-33A7-4859-B384-0FA878FB9BFE",
-            "name": "Erro",
-            "color": "red",
-            "match": "ERROR"
+            "color" : "red",
+            "id" : "9D79DCF6-33A7-4859-B384-0FA878FB9BFE",
+            "match" : "ERROR",
+            "name" : "Erro",
+            "truth" : true
           },
           {
-            "id": "C125D7DA-D609-446D-A029-716701BC78DA",
-            "name": "Cancelado",
-            "color": "gray",
-            "match": "CANCELED"
+            "color" : "gray",
+            "id" : "C125D7DA-D609-446D-A029-716701BC78DA",
+            "match" : "CANCELED",
+            "name" : "Cancelado",
+            "truth" : true
           }
         ],
-        "others": {
-          "shows": true,
-          "name": "Outros",
-          "color": "gray"
-        }
+        "id" : "8FA82602-3AB8-4EA7-97A9-39470C4AE4A3",
+        "measure" : "count",
+        "others" : {
+          "color" : "gray",
+          "name" : "Outros",
+          "shows" : true
+        },
+        "path" : "deployments",
+        "shows" : "amount",
+        "title" : "Por estado",
+        "type" : "breakdown"
       },
       {
-        "type": "list",
-        "limit": 5,
-        "tabs": [
+        "columnGap" : 8,
+        "id" : "37F7FADB-49B1-4905-9F6B-BAE1AD31C27E",
+        "limit" : 5,
+        "path" : "deployments",
+        "rowURL" : "https://{{url}}",
+        "structure" : [
           {
-            "title": "Deploys",
-            "path": "deployments",
-            "rowTitle": "{{meta.githubCommitMessage ?? name}}",
-            "rowSubtitle": "{{creator.username}} · {{created | shape dd/MM HH:mm}}",
-            "rowBadge": "{{target}}",
-            "rowStatus": "{{state}}",
-            "rowWrapsTitle": true,
-            "statusWords": {
-              "READY": "pronto",
-              "BUILDING": "buildando",
-              "QUEUED": "na fila",
-              "ERROR": "erro",
-              "CANCELED": "cancelado",
-              "INITIALIZING": "iniciando",
-              "BLOCKED": "bloqueado"
-            },
-            "statusColors": {
-              "READY": "positive",
-              "BUILDING": "attention",
-              "QUEUED": "attention",
-              "ERROR": "negative",
-              "CANCELED": "neutral",
-              "INITIALIZING": "attention",
-              "BLOCKED": "negative"
-            },
-            "rowURL": "https://{{url}}"
+            "id" : "BCA43C6E-255C-4AF4-AF2D-2882ADED4525",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "46EA0F73-A3E8-417C-9A35-F53363F85610",
+                "items" : [
+                  {
+                    "content" : "{{meta.githubCommitMessage ?? name}}",
+                    "fills" : true,
+                    "id" : "54E97F4D-B4D9-4C80-9405-0EA18495D4DA",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 0,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "F4DF8BA2-EB69-4230-81B2-357360A30F7A",
+                "items" : [
+                  {
+                    "content" : "{{creator.username}} · {{created | shape dd/MM HH:mm}}",
+                    "fills" : true,
+                    "id" : "274C68E2-2779-4E88-B56E-77E8926B192D",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "gap" : 8,
+                "id" : "5CCF3559-8EF9-4759-9A15-474B25BEC6DE",
+                "items" : [
+                  {
+                    "id" : "45E166C2-0AF2-48E5-8C9F-0F39368CECBF",
+                    "kind" : "space",
+                    "spaceWidth" : 0
+                  },
+                  {
+                    "content" : "{{state}}",
+                    "id" : "B1805599-49CD-49F3-A8DF-11ECF30BF9CC",
+                    "indicator" : "dotAndText",
+                    "kind" : "indicator",
+                    "rules" : [
+                      {
+                        "label" : "bloqueado",
+                        "tint" : "negative",
+                        "value" : "BLOCKED"
+                      },
+                      {
+                        "label" : "buildando",
+                        "tint" : "attention",
+                        "value" : "BUILDING"
+                      },
+                      {
+                        "label" : "cancelado",
+                        "tint" : "neutral",
+                        "value" : "CANCELED"
+                      },
+                      {
+                        "label" : "erro",
+                        "tint" : "negative",
+                        "value" : "ERROR"
+                      },
+                      {
+                        "label" : "iniciando",
+                        "tint" : "attention",
+                        "value" : "INITIALIZING"
+                      },
+                      {
+                        "label" : "na fila",
+                        "tint" : "attention",
+                        "value" : "QUEUED"
+                      },
+                      {
+                        "label" : "pronto",
+                        "tint" : "positive",
+                        "value" : "READY"
+                      }
+                    ],
+                    "size" : 13
+                  },
+                  {
+                    "content" : "{{target}}",
+                    "id" : "2300D683-3535-4697-B475-02AF6BFCFC99",
+                    "ink" : "secondary",
+                    "kind" : "icon",
+                    "size" : 13,
+                    "symbolName" : ""
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
           }
-        ]
+        ],
+        "type" : "list"
       }
-    ]
+    ],
+    "emptyMessage" : "Nenhum deploy neste projeto.",
+    "isEnabled" : true,
+    "rowLimit" : 5,
+    "subtitle" : "Últimos deploys",
+    "title" : "Vercel"
   },
-  "actions": [],
-  "attention": {
-    "mode": "newRows"
+  "icon" : {
+    "kind" : "picture",
+    "pictureSource" : "https://github.com/vercel.png?size=128",
+    "symbolName" : "triangle.fill",
+    "word" : ""
   },
-  "settings": [
+  "id" : "plugin.exemplo.vercel",
+  "interval" : 300,
+  "name" : "Vercel",
+  "parameters" : [
+
+  ],
+  "readsOnItsOwn" : true,
+  "role" : "reading",
+  "schema" : 12,
+  "settings" : [
     {
-      "key": "projeto",
-      "label": "ID do projeto",
-      "type": "text",
-      "help": "Painel da Vercel › o projeto › Settings › Project ID.",
-      "required": true
+      "help" : "Painel da Vercel › o projeto › Settings › Project ID.",
+      "key" : "projeto",
+      "label" : "ID do projeto",
+      "required" : true,
+      "type" : "text"
     },
     {
-      "key": "token",
-      "label": "Token",
-      "type": "secret",
-      "required": true,
-      "help": "Crie em vercel.com/account/tokens."
+      "help" : "Crie em vercel.com/account/tokens.",
+      "key" : "token",
+      "label" : "Token",
+      "required" : true,
+      "type" : "secret"
     }
   ],
-  "answer": "{\"deployments\":[{\"uid\":\"dpl_3Fk8Lq2Vn7Rb5Xc1Wd9Ys4Tz\",\"name\":\"loja-web\",\"projectId\":\"prj_7Qb2Lx9Kd4Vn8Rt1Wc3Ys5Zf\",\"url\":\"loja-web-k3j9x2a1p-exemplo.vercel.app\",\"created\":1759327200000,\"createdAt\":1759327200000,\"buildingAt\":1759327201200,\"ready\":null,\"state\":\"BUILDING\",\"readyState\":\"BUILDING\",\"type\":\"LAMBDAS\",\"source\":\"git\",\"target\":\"production\",\"creator\":{\"uid\":\"Kc8Nd2Lq5Vx7Rb3T\",\"username\":\"marina-dev\",\"email\":\"dev@exemplo.com\"},\"meta\":{\"githubCommitMessage\":\"Ajusta o cálculo do frete no checkout\",\"githubCommitRef\":\"main\",\"githubCommitSha\":\"9f3c2a1b7e4d\",\"githubOrg\":\"exemplo\",\"githubRepo\":\"loja-web\"},\"inspectorUrl\":\"https://vercel.com/exemplo/loja-web/3Fk8Lq2Vn7Rb5Xc1Wd9Ys4Tz\"},{\"uid\":\"dpl_8Ht2Mq6Vn1Rb9Xc4Wd3Ys7Lp\",\"name\":\"loja-web\",\"projectId\":\"prj_7Qb2Lx9Kd4Vn8Rt1Wc3Ys5Zf\",\"url\":\"loja-web-p8f2m6q1z-exemplo.vercel.app\",\"created\":1759320000000,\"createdAt\":1759320000000,\"buildingAt\":1759320001200,\"ready\":1759320048000,\"state\":\"READY\",\"readyState\":\"READY\",\"type\":\"LAMBDAS\",\"source\":\"git\",\"target\":\"preview\",\"creator\":{\"uid\":\"Kc8Nd2Lq5Vx7Rb3T\",\"username\":\"joao-silva\",\"email\":\"dev@exemplo.com\"},\"meta\":{\"githubCommitMessage\":\"Adiciona botão de cupom no carrinho\",\"githubCommitRef\":\"feat/checkout\",\"githubCommitSha\":\"9f3c2a1b7e4d\",\"githubOrg\":\"exemplo\",\"githubRepo\":\"loja-web\"},\"inspectorUrl\":\"https://vercel.com/exemplo/loja-web/8Ht2Mq6Vn1Rb9Xc4Wd3Ys7Lp\"},{\"uid\":\"dpl_5Rt9Kq3Vn8Lb2Xc6Wd1Ys4Mn\",\"name\":\"loja-web\",\"projectId\":\"prj_7Qb2Lx9Kd4Vn8Rt1Wc3Ys5Zf\",\"url\":\"loja-web-z5r9k3q8n-exemplo.vercel.app\",\"created\":1759312800000,\"createdAt\":1759312800000,\"buildingAt\":1759312801200,\"ready\":null,\"state\":\"ERROR\",\"readyState\":\"ERROR\",\"type\":\"LAMBDAS\",\"source\":\"git\",\"target\":\"preview\",\"creator\":{\"uid\":\"Kc8Nd2Lq5Vx7Rb3T\",\"username\":\"joao-silva\",\"email\":\"dev@exemplo.com\"},\"meta\":{\"githubCommitMessage\":\"Migra a página de produto para o novo layout\",\"githubCommitRef\":\"feat/checkout\",\"githubCommitSha\":\"9f3c2a1b7e4d\",\"githubOrg\":\"exemplo\",\"githubRepo\":\"loja-web\"},\"inspectorUrl\":\"https://vercel.com/exemplo/loja-web/5Rt9Kq3Vn8Lb2Xc6Wd1Ys4Mn\"},{\"uid\":\"dpl_1Bc7Nq4Vn2Rb8Xc5Wd6Ys3Kp\",\"name\":\"loja-web\",\"projectId\":\"prj_7Qb2Lx9Kd4Vn8Rt1Wc3Ys5Zf\",\"url\":\"loja-web-b1c7n4q2r-exemplo.vercel.app\",\"created\":1759240800000,\"createdAt\":1759240800000,\"buildingAt\":1759240801200,\"ready\":1759240848000,\"state\":\"READY\",\"readyState\":\"READY\",\"type\":\"LAMBDAS\",\"source\":\"git\",\"target\":\"production\",\"creator\":{\"uid\":\"Kc8Nd2Lq5Vx7Rb3T\",\"username\":\"marina-dev\",\"email\":\"dev@exemplo.com\"},\"meta\":{\"githubCommitMessage\":\"Corrige imagens quebradas na vitrine\",\"githubCommitRef\":\"main\",\"githubCommitSha\":\"9f3c2a1b7e4d\",\"githubOrg\":\"exemplo\",\"githubRepo\":\"loja-web\"},\"inspectorUrl\":\"https://vercel.com/exemplo/loja-web/1Bc7Nq4Vn2Rb8Xc5Wd6Ys3Kp\"},{\"uid\":\"dpl_6Wd2Pq9Vn5Rb1Xc8Ys7Lm3Tz\",\"name\":\"loja-web\",\"projectId\":\"prj_7Qb2Lx9Kd4Vn8Rt1Wc3Ys5Zf\",\"url\":\"loja-web-w6d2p9q5v-exemplo.vercel.app\",\"created\":1759237200000,\"createdAt\":1759237200000,\"buildingAt\":1759237201200,\"ready\":null,\"state\":\"CANCELED\",\"readyState\":\"CANCELED\",\"type\":\"LAMBDAS\",\"source\":\"git\",\"target\":\"preview\",\"creator\":{\"uid\":\"Kc8Nd2Lq5Vx7Rb3T\",\"username\":\"marina-dev\",\"email\":\"dev@exemplo.com\"},\"meta\":{\"githubCommitMessage\":\"Teste de cache no CDN\",\"githubCommitRef\":\"feat/checkout\",\"githubCommitSha\":\"9f3c2a1b7e4d\",\"githubOrg\":\"exemplo\",\"githubRepo\":\"loja-web\"},\"inspectorUrl\":\"https://vercel.com/exemplo/loja-web/6Wd2Pq9Vn5Rb1Xc8Ys7Lm3Tz\"}],\"pagination\":{\"count\":5,\"next\":1759237199000,\"prev\":1759327201000}}"
+  "slot" : {
+    "alertsOnThreshold" : false,
+    "label" : "{{deployments[0].state | lower}}",
+    "status" : "{{deployments[0].state}}",
+    "statusColors" : {
+      "BLOCKED" : "negative",
+      "BUILDING" : "attention",
+      "CANCELED" : "neutral",
+      "ERROR" : "negative",
+      "INITIALIZING" : "attention",
+      "QUEUED" : "attention",
+      "READY" : "positive"
+    },
+    "style" : "status",
+    "total" : "",
+    "value" : ""
+  },
+  "source" : {
+    "body" : "",
+    "errand" : "copy",
+    "format" : {
+      "all" : false,
+      "hasHeader" : false,
+      "kind" : "json",
+      "pattern" : "",
+      "separator" : "whitespace",
+      "skip" : 0
+    },
+    "headers" : [
+      {
+        "id" : "F9BBCE44-D8B3-4DE2-98B8-E823612A1BD3",
+        "name" : "Authorization",
+        "value" : "Bearer {{$settings.token}}"
+      }
+    ],
+    "kind" : "http",
+    "language" : "applescript",
+    "method" : "GET",
+    "query" : [
+      {
+        "id" : "7494DDD8-52D4-4792-A47E-385BFDC1F2FA",
+        "name" : "limit",
+        "value" : "10"
+      },
+      {
+        "id" : "A22B8F92-31D2-4025-A486-7F1B19C94FBF",
+        "name" : "projectId",
+        "value" : "{{$settings.projeto}}"
+      }
+    ],
+    "script" : "",
+    "steps" : [
+
+    ],
+    "text" : "",
+    "url" : "https://api.vercel.com/v7/deployments"
+  }
 }

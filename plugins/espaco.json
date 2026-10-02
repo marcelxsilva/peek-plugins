@@ -1,84 +1,235 @@
 {
-  "schema": 6,
-  "id": "plugin.exemplo.espaco",
-  "name": "Espaço",
-  "interval": 1800,
-  "icon": {
-    "kind": "symbol",
-    "symbolName": "moon.stars.fill"
-  },
-  "source": {
-    "kind": "http",
-    "method": "GET",
-    "url": "https://api.spaceflightnewsapi.net/v4/articles/?limit=10",
-    "format": {
-      "kind": "json"
-    },
-    "pagination": {
-      "kind": "nextURL",
-      "nextURLPath": "next",
-      "listPath": "results",
-      "buttonText": "Ver mais"
-    }
-  },
-  "slot": {
-    "label": "{{results | count}}",
-    "style": "arc"
-  },
-  "card": {
-    "isEnabled": true,
-    "picture": {
-      "kind": "address",
-      "value": "{{results[0].image_url}}",
-      "shape": "rounded",
-      "scale": 1.6
-    },
-    "title": "Espaço",
-    "subtitle": "Notícias de voo espacial",
-    "headline": "{{results | count}}",
-    "emptyMessage": "Nenhuma notícia agora.",
-    "blocks": [
-      {
-        "type": "text",
-        "title": "Destaque",
-        "value": "**{{results[0].title}}**\n\n{{results[0].summary}}",
-        "maxHeight": "small"
-      },
-      {
-        "type": "list",
-        "limit": 6,
-        "tabs": [
-          {
-            "title": "Artigos",
-            "path": "results",
-            "rowTitle": "{{title}}",
-            "rowWrapsTitle": true,
-            "rowSubtitle": "{{news_site ?? authors[0].name}}",
-            "rowMeta": "{{published_at | ago}}",
-            "rowURL": "{{url}}",
-            "rowImage": "{{image_url}}",
-            "rowImageShape": "rounded"
-          }
-        ]
-      }
-    ]
-  },
-  "actions": [
+  "actions" : [
     {
-      "name": "Ler depois",
-      "symbolName": "bookmark",
-      "place": "row",
-      "listIndex": 0,
-      "run": {
-        "kind": "onTheMac",
-        "errand": "readLater",
-        "text": "{{url}}"
+      "asksForValue" : false,
+      "confirmText" : "",
+      "confirms" : false,
+      "failureMessage" : "",
+      "failureReport" : "message",
+      "id" : "E7D72412-BC17-44F7-9C77-D3C320107267",
+      "isProminent" : false,
+      "listIndex" : 0,
+      "mark" : {
+        "kind" : "symbol",
+        "value" : "bookmark"
       },
-      "successMessage": "Guardado."
+      "name" : "Ler depois",
+      "place" : "row",
+      "question" : "",
+      "run" : {
+        "body" : "",
+        "errand" : "readLater",
+        "format" : {
+          "all" : false,
+          "hasHeader" : false,
+          "kind" : "json",
+          "pattern" : "",
+          "separator" : "whitespace",
+          "skip" : 0
+        },
+        "headers" : [
+
+        ],
+        "kind" : "onTheMac",
+        "language" : "applescript",
+        "method" : "GET",
+        "script" : "",
+        "steps" : [
+
+        ],
+        "text" : "{{url}}",
+        "url" : ""
+      },
+      "runningText" : "",
+      "successMessage" : "Guardado.",
+      "successReport" : "message"
     }
   ],
-  "attention": {
-    "mode": "newRows",
-    "listIndex": 0
+  "attention" : {
+    "comparison" : "above",
+    "countPath" : "",
+    "listIndex" : 0,
+    "mode" : "newRows",
+    "threshold" : 0
+  },
+  "button" : {
+    "cancelLabel" : "",
+    "confirms" : false,
+    "failureMessage" : "",
+    "failureReport" : "message",
+    "okLabel" : "",
+    "question" : "",
+    "runningText" : "",
+    "successMessage" : "",
+    "successReport" : "message"
+  },
+  "card" : {
+    "blocks" : [
+      {
+        "id" : "16469321-447B-4951-BCCE-FE54219930D0",
+        "maxHeight" : "small",
+        "title" : "Destaque",
+        "type" : "text",
+        "value" : "**{{results[0].title}}**\n\n{{results[0].summary}}"
+      },
+      {
+        "columnGap" : 8,
+        "id" : "125028BD-7F9F-4B08-8B7C-E29B9665DF59",
+        "limit" : 5,
+        "path" : "results",
+        "rowURL" : "{{url}}",
+        "structure" : [
+          {
+            "id" : "9DE8EE29-EEA3-446A-BE02-B95AEFD3F896",
+            "lines" : [
+              {
+                "id" : "AF155837-D505-415F-8935-C8ACA6FE8B46",
+                "items" : [
+                  {
+                    "form" : "rounded",
+                    "id" : "93C36814-393B-48F3-B015-29679A32654F",
+                    "kind" : "image",
+                    "picture" : {
+                      "kind" : "address",
+                      "shape" : "rounded",
+                      "value" : "{{image_url}}"
+                    },
+                    "size" : 44
+                  }
+                ]
+              }
+            ],
+            "width" : "auto"
+          },
+          {
+            "id" : "98D5ACE9-C81B-4E0E-BCCC-75F92CA8D4C1",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "E5CCD941-DD21-433E-B107-39473FD4D860",
+                "items" : [
+                  {
+                    "content" : "{{title}}",
+                    "fills" : true,
+                    "id" : "DF52B606-C39B-4193-94F3-63B864F07DC6",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 0,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "1710CCDD-868D-487E-9E47-F385CE70AEED",
+                "items" : [
+                  {
+                    "action" : "E7D72412-BC17-44F7-9C77-D3C320107267",
+                    "buttonSize" : "medium",
+                    "id" : "2B796549-F0CD-47B9-9EB4-5A739F18B9A6",
+                    "ink" : "secondary",
+                    "kind" : "button",
+                    "look" : "circle"
+                  },
+                  {
+                    "id" : "9C1F59B7-6A56-4EFD-AFD7-E821DF8B183B",
+                    "kind" : "space",
+                    "spaceWidth" : 0
+                  },
+                  {
+                    "content" : "{{news_site ?? authors[0].name}}",
+                    "id" : "37A60821-8E56-4C31-B790-21A1F756BF77",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "gap" : 8,
+                "id" : "C8F5E12F-E9D5-413F-A8A7-F611F16A17A4",
+                "items" : [
+                  {
+                    "content" : "{{published_at | ago}}",
+                    "fills" : true,
+                    "id" : "8DA960C2-FF2B-413F-80B7-65C7C4904CB8",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
+          }
+        ],
+        "type" : "list"
+      }
+    ],
+    "emptyMessage" : "Nenhuma notícia agora.",
+    "headline" : "{{results | count}}",
+    "isEnabled" : true,
+    "picture" : {
+      "kind" : "address",
+      "scale" : 1.6,
+      "shape" : "rounded",
+      "value" : "{{results[0].image_url}}"
+    },
+    "rowLimit" : 5,
+    "subtitle" : "Notícias de voo espacial",
+    "title" : "Espaço"
+  },
+  "icon" : {
+    "kind" : "symbol",
+    "pictureSource" : "",
+    "symbolName" : "moon.stars.fill",
+    "word" : ""
+  },
+  "id" : "plugin.exemplo.espaco",
+  "interval" : 1800,
+  "name" : "Espaço",
+  "parameters" : [
+
+  ],
+  "readsOnItsOwn" : true,
+  "role" : "reading",
+  "schema" : 12,
+  "slot" : {
+    "alertsOnThreshold" : false,
+    "label" : "{{results | count}}",
+    "total" : "",
+    "value" : ""
+  },
+  "source" : {
+    "body" : "",
+    "errand" : "copy",
+    "format" : {
+      "all" : false,
+      "hasHeader" : false,
+      "kind" : "json",
+      "pattern" : "",
+      "separator" : "whitespace",
+      "skip" : 0
+    },
+    "headers" : [
+
+    ],
+    "kind" : "http",
+    "language" : "applescript",
+    "method" : "GET",
+    "pagination" : {
+      "buttonText" : "Ver mais",
+      "kind" : "nextURL",
+      "listPath" : "results",
+      "maxPages" : 10,
+      "nextURLPath" : "next"
+    },
+    "script" : "",
+    "steps" : [
+
+    ],
+    "text" : "",
+    "url" : "https://api.spaceflightnewsapi.net/v4/articles/?limit=10"
   }
 }

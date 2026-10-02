@@ -1,19 +1,897 @@
 {
-  "schema": 5,
-  "id": "plugin.exemplo.github",
-  "name": "GitHub",
-  "interval": 300,
-  "icon": {
-    "kind": "picture",
-    "symbolName": "chevron.left.forwardslash.chevron.right",
-    "pictureSource": "https://github.com/github.png?size=128"
+  "actions" : [
+    {
+      "asksForValue" : true,
+      "confirmText" : "",
+      "confirms" : false,
+      "failureMessage" : "",
+      "failureReport" : "message",
+      "hint" : "Buscar nos seus repositórios",
+      "id" : "C63EC7A1-29D1-4FD8-8913-DAC381617964",
+      "isProminent" : false,
+      "listIndex" : 0,
+      "mark" : {
+        "kind" : "symbol",
+        "value" : "magnifyingglass"
+      },
+      "name" : "Buscar",
+      "place" : "card",
+      "question" : "Buscar repositórios",
+      "run" : {
+        "body" : "",
+        "errand" : "remember",
+        "format" : {
+          "all" : false,
+          "hasHeader" : false,
+          "kind" : "json",
+          "pattern" : "",
+          "separator" : "whitespace",
+          "skip" : 0
+        },
+        "headers" : [
+
+        ],
+        "kind" : "onTheMac",
+        "language" : "applescript",
+        "method" : "GET",
+        "script" : "",
+        "steps" : [
+
+        ],
+        "text" : "{{$input}}",
+        "url" : "",
+        "variable" : "github_busca"
+      },
+      "runningText" : "",
+      "successMessage" : "",
+      "successReport" : "message"
+    },
+    {
+      "asksForValue" : false,
+      "confirmText" : "",
+      "confirms" : false,
+      "failureMessage" : "",
+      "failureReport" : "message",
+      "hint" : "Voltar a listar tudo",
+      "id" : "6CBC0F4D-66FB-4F7B-95B8-E936E0C53689",
+      "isProminent" : false,
+      "listIndex" : 0,
+      "mark" : {
+        "kind" : "symbol",
+        "value" : "xmark.circle"
+      },
+      "name" : "Limpar a busca",
+      "place" : "card",
+      "question" : "",
+      "run" : {
+        "body" : "",
+        "errand" : "remember",
+        "format" : {
+          "all" : false,
+          "hasHeader" : false,
+          "kind" : "json",
+          "pattern" : "",
+          "separator" : "whitespace",
+          "skip" : 0
+        },
+        "headers" : [
+
+        ],
+        "kind" : "onTheMac",
+        "language" : "applescript",
+        "method" : "GET",
+        "script" : "",
+        "steps" : [
+
+        ],
+        "text" : "",
+        "url" : "",
+        "variable" : "github_busca"
+      },
+      "runningText" : "",
+      "successMessage" : "",
+      "successReport" : "message"
+    },
+    {
+      "asksForValue" : false,
+      "confirmText" : "",
+      "confirms" : false,
+      "failureMessage" : "",
+      "failureReport" : "message",
+      "id" : "89B71D4D-0458-4082-83B0-E7EA815D36A3",
+      "isProminent" : false,
+      "listIndex" : 0,
+      "mark" : {
+        "kind" : "symbol",
+        "value" : "arrow.up.right.square"
+      },
+      "name" : "Abrir no GitHub",
+      "place" : "card",
+      "question" : "",
+      "run" : {
+        "body" : "",
+        "errand" : "openLink",
+        "format" : {
+          "all" : false,
+          "hasHeader" : false,
+          "kind" : "json",
+          "pattern" : "",
+          "separator" : "whitespace",
+          "skip" : 0
+        },
+        "headers" : [
+
+        ],
+        "kind" : "onTheMac",
+        "language" : "applescript",
+        "method" : "GET",
+        "script" : "",
+        "steps" : [
+
+        ],
+        "text" : "https://github.com/pulls",
+        "url" : ""
+      },
+      "runningText" : "",
+      "successMessage" : "",
+      "successReport" : "message"
+    }
+  ],
+  "attention" : {
+    "comparison" : "above",
+    "countPath" : "",
+    "listIndex" : 0,
+    "mode" : "newRows",
+    "threshold" : 0
   },
-  "source": {
-    "kind": "command",
-    "steps": [
+  "button" : {
+    "cancelLabel" : "",
+    "confirms" : false,
+    "failureMessage" : "",
+    "failureReport" : "message",
+    "okLabel" : "",
+    "question" : "",
+    "runningText" : "",
+    "successMessage" : "",
+    "successReport" : "message"
+  },
+  "card" : {
+    "blocks" : [
       {
-        "program": "/usr/bin/env",
-        "arguments": [
+        "id" : "7DC22F21-2E72-40C3-A5DB-3AA0A7B57656",
+        "pages" : [
+          {
+            "body" : "9D486088-FEA8-43C6-BA06-609674893941",
+            "id" : "E279AAAA-CF4E-40E2-9577-70904B27676F",
+            "kind" : "symbol",
+            "name" : "Esperando a sua revisão",
+            "symbolName" : "eye"
+          },
+          {
+            "body" : "BCDB0B60-B153-4E40-8C3F-11FC3BE31BB4",
+            "id" : "145BC784-C6B4-4689-96B3-A49F6CC1D867",
+            "kind" : "symbol",
+            "name" : "Abertas por você",
+            "symbolName" : "person.fill"
+          },
+          {
+            "body" : "B84E1264-6AF3-44A2-B4AC-873D71A3143E",
+            "id" : "092383CA-320B-42EB-9E00-F429436600F1",
+            "kind" : "symbol",
+            "name" : "Atribuídas a você",
+            "symbolName" : "tray.and.arrow.down.fill"
+          },
+          {
+            "body" : "E17AE8A9-9DA0-4AD8-87BF-BC0385C533E1",
+            "id" : "E0271BF3-C27F-43CC-8E2A-D712B6074753",
+            "kind" : "symbol",
+            "name" : "Seus repositórios, e o que a busca achar",
+            "symbolName" : "folder.fill"
+          }
+        ],
+        "type" : "tabs"
+      },
+      {
+        "columnGap" : 8,
+        "id" : "9D486088-FEA8-43C6-BA06-609674893941",
+        "limit" : 5,
+        "path" : "data.reviewRequested.nodes",
+        "rowDetail" : "{{bodyText}}",
+        "rowURL" : "{{url}}",
+        "structure" : [
+          {
+            "id" : "F2E53D69-7EC1-4859-B971-5FEC40AA9223",
+            "lines" : [
+              {
+                "id" : "CB8DC145-4293-4B70-90EE-E176E309472B",
+                "items" : [
+                  {
+                    "form" : "rounded",
+                    "id" : "B624B2A8-73E0-491A-82AE-EAA1E8BD5AD3",
+                    "kind" : "image",
+                    "picture" : {
+                      "kind" : "address",
+                      "shape" : "rounded",
+                      "value" : "{{repository.owner.avatarUrl}}"
+                    },
+                    "size" : 44
+                  }
+                ]
+              }
+            ],
+            "width" : "auto"
+          },
+          {
+            "id" : "0CB6F438-4A2E-405A-9566-A35187E85CBE",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "AD04BE5C-186F-4625-AAE8-CE708833B332",
+                "items" : [
+                  {
+                    "content" : "{{title}}",
+                    "fills" : true,
+                    "id" : "6DDC3024-8ECA-4F0E-BA6E-24F741FC1A4C",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "BD853C4B-7D85-4CE5-BC52-5F8F4887DA06",
+                "items" : [
+                  {
+                    "content" : "{{repository.nameWithOwner}} #{{number}}",
+                    "fills" : true,
+                    "id" : "15A40A57-A201-419F-B3FF-C7DB0DED05A6",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "gap" : 8,
+                "id" : "CCF55CBA-FCB4-4EC5-8803-4DB38C5CB711",
+                "items" : [
+                  {
+                    "form" : "circle",
+                    "id" : "58FCE420-24AA-42C8-93EF-170AB64C3C39",
+                    "kind" : "image",
+                    "picture" : {
+                      "kind" : "address",
+                      "shape" : "rounded",
+                      "value" : "{{author.avatarUrl}}"
+                    },
+                    "size" : 16
+                  },
+                  {
+                    "content" : "@{{author.login}}",
+                    "fills" : true,
+                    "id" : "1C563E01-46F5-4582-81F6-C296BFA19935",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  },
+                  {
+                    "content" : "{{reviewDecision ?? \"REVIEW_REQUIRED\"}}",
+                    "id" : "C224EF2F-45B3-400E-8DB1-E98EDB9854BB",
+                    "indicator" : "dotAndText",
+                    "kind" : "indicator",
+                    "rules" : [
+                      {
+                        "label" : "aprovada",
+                        "tint" : "positive",
+                        "value" : "APPROVED"
+                      },
+                      {
+                        "label" : "mudanças",
+                        "tint" : "negative",
+                        "value" : "CHANGES_REQUESTED"
+                      },
+                      {
+                        "label" : "revisão",
+                        "tint" : "attention",
+                        "value" : "REVIEW_REQUIRED"
+                      }
+                    ],
+                    "size" : 13
+                  },
+                  {
+                    "content" : "{{approvals.totalCount}}/{{askedFrom.totalCount}}",
+                    "id" : "D9CCDED3-2D10-426E-97FA-BB181E360A83",
+                    "ink" : "secondary",
+                    "kind" : "icon",
+                    "rules" : [
+                      {
+                        "tint" : "positive",
+                        "value" : "APPROVED"
+                      },
+                      {
+                        "tint" : "negative",
+                        "value" : "CHANGES_REQUESTED"
+                      },
+                      {
+                        "tint" : "attention",
+                        "value" : "REVIEW_REQUIRED"
+                      }
+                    ],
+                    "size" : 13,
+                    "symbolName" : "eye",
+                    "tintFrom" : "{{reviewDecision ?? \"REVIEW_REQUIRED\"}}"
+                  },
+                  {
+                    "content" : "{{commits.nodes[0].commit.statusCheckRollup.contexts.checkRunCountsByState[state=SUCCESS].count}}/{{commits.nodes[0].commit.statusCheckRollup.contexts.totalCount}}",
+                    "id" : "1B3D3CB1-1AAD-4E0E-B584-4E9FCC572285",
+                    "ink" : "secondary",
+                    "kind" : "icon",
+                    "rules" : [
+                      {
+                        "tint" : "negative",
+                        "value" : "ERROR"
+                      },
+                      {
+                        "tint" : "negative",
+                        "value" : "FAILURE"
+                      },
+                      {
+                        "tint" : "attention",
+                        "value" : "PENDING"
+                      },
+                      {
+                        "tint" : "positive",
+                        "value" : "SUCCESS"
+                      }
+                    ],
+                    "size" : 13,
+                    "symbolName" : "checkmark.circle",
+                    "tintFrom" : "{{commits.nodes[0].commit.statusCheckRollup.state}}"
+                  },
+                  {
+                    "content" : "{{totalCommentsCount}}",
+                    "id" : "4A62826B-CCD2-4B2F-9F83-6A8B1F408E47",
+                    "ink" : "secondary",
+                    "kind" : "icon",
+                    "size" : 13,
+                    "symbolName" : "bubble.left"
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
+          }
+        ],
+        "type" : "list"
+      },
+      {
+        "columnGap" : 8,
+        "id" : "BCDB0B60-B153-4E40-8C3F-11FC3BE31BB4",
+        "limit" : 5,
+        "path" : "data.authored.nodes",
+        "rowDetail" : "{{bodyText}}",
+        "rowURL" : "{{url}}",
+        "structure" : [
+          {
+            "id" : "B868C768-0ABD-4192-A264-E3980D1BF30C",
+            "lines" : [
+              {
+                "id" : "668D85B3-5835-4D92-A172-5BFBA44DD720",
+                "items" : [
+                  {
+                    "form" : "rounded",
+                    "id" : "BF30C560-EDE6-4C43-8FED-7B661537F8D0",
+                    "kind" : "image",
+                    "picture" : {
+                      "kind" : "address",
+                      "shape" : "rounded",
+                      "value" : "{{repository.owner.avatarUrl}}"
+                    },
+                    "size" : 44
+                  }
+                ]
+              }
+            ],
+            "width" : "auto"
+          },
+          {
+            "id" : "1F6E4861-57E1-441B-ABA0-24FD689DDFC5",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "5176886E-5B67-4B09-850D-D5FE1EEF6D6A",
+                "items" : [
+                  {
+                    "content" : "{{title}}",
+                    "fills" : true,
+                    "id" : "A1A8E930-9C8A-48C4-AA42-E452F4A65861",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "327E6F37-B462-480E-B0AD-D15A60A03EDF",
+                "items" : [
+                  {
+                    "content" : "{{repository.nameWithOwner}} #{{number}}",
+                    "fills" : true,
+                    "id" : "90A64208-B4A5-407A-953D-5D96D3F24E1C",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "gap" : 8,
+                "id" : "78F475D5-BC61-4658-8B3D-E465B7E16E15",
+                "items" : [
+                  {
+                    "form" : "circle",
+                    "id" : "3B433375-B780-4CC4-BEC7-9CEA7D86476A",
+                    "kind" : "image",
+                    "picture" : {
+                      "kind" : "address",
+                      "shape" : "rounded",
+                      "value" : "{{author.avatarUrl}}"
+                    },
+                    "size" : 16
+                  },
+                  {
+                    "content" : "@{{author.login}}",
+                    "fills" : true,
+                    "id" : "C1648475-CCE9-4A9F-8D79-C42C04EA3F36",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  },
+                  {
+                    "content" : "{{reviewDecision ?? \"REVIEW_REQUIRED\"}}",
+                    "id" : "D995D11D-35ED-47B7-9860-1F165398AF0E",
+                    "indicator" : "dotAndText",
+                    "kind" : "indicator",
+                    "rules" : [
+                      {
+                        "label" : "aprovada",
+                        "tint" : "positive",
+                        "value" : "APPROVED"
+                      },
+                      {
+                        "label" : "mudanças",
+                        "tint" : "negative",
+                        "value" : "CHANGES_REQUESTED"
+                      },
+                      {
+                        "label" : "revisão",
+                        "tint" : "attention",
+                        "value" : "REVIEW_REQUIRED"
+                      }
+                    ],
+                    "size" : 13
+                  },
+                  {
+                    "content" : "{{approvals.totalCount}}/{{askedFrom.totalCount}}",
+                    "id" : "D25CCF2D-039A-4834-A8CE-6EBAF75108DC",
+                    "ink" : "secondary",
+                    "kind" : "icon",
+                    "rules" : [
+                      {
+                        "tint" : "positive",
+                        "value" : "APPROVED"
+                      },
+                      {
+                        "tint" : "negative",
+                        "value" : "CHANGES_REQUESTED"
+                      },
+                      {
+                        "tint" : "attention",
+                        "value" : "REVIEW_REQUIRED"
+                      }
+                    ],
+                    "size" : 13,
+                    "symbolName" : "eye",
+                    "tintFrom" : "{{reviewDecision ?? \"REVIEW_REQUIRED\"}}"
+                  },
+                  {
+                    "content" : "{{commits.nodes[0].commit.statusCheckRollup.contexts.checkRunCountsByState[state=SUCCESS].count}}/{{commits.nodes[0].commit.statusCheckRollup.contexts.totalCount}}",
+                    "id" : "E5F87E79-234F-435C-A789-97376848D6E0",
+                    "ink" : "secondary",
+                    "kind" : "icon",
+                    "rules" : [
+                      {
+                        "tint" : "negative",
+                        "value" : "ERROR"
+                      },
+                      {
+                        "tint" : "negative",
+                        "value" : "FAILURE"
+                      },
+                      {
+                        "tint" : "attention",
+                        "value" : "PENDING"
+                      },
+                      {
+                        "tint" : "positive",
+                        "value" : "SUCCESS"
+                      }
+                    ],
+                    "size" : 13,
+                    "symbolName" : "checkmark.circle",
+                    "tintFrom" : "{{commits.nodes[0].commit.statusCheckRollup.state}}"
+                  },
+                  {
+                    "content" : "{{totalCommentsCount}}",
+                    "id" : "DB7CE29C-0851-43C8-B795-58CE247096D6",
+                    "ink" : "secondary",
+                    "kind" : "icon",
+                    "size" : 13,
+                    "symbolName" : "bubble.left"
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
+          }
+        ],
+        "type" : "list"
+      },
+      {
+        "columnGap" : 8,
+        "id" : "B84E1264-6AF3-44A2-B4AC-873D71A3143E",
+        "limit" : 5,
+        "path" : "data.assigned.nodes",
+        "rowDetail" : "{{bodyText}}",
+        "rowURL" : "{{url}}",
+        "structure" : [
+          {
+            "id" : "EA6A31D7-4BA8-4C52-84C0-696E174A28F6",
+            "lines" : [
+              {
+                "id" : "604A820F-CED2-4601-8AFB-D626EF87D282",
+                "items" : [
+                  {
+                    "form" : "rounded",
+                    "id" : "08056DF0-DE00-4D06-B173-DCF8AB4D1FBE",
+                    "kind" : "image",
+                    "picture" : {
+                      "kind" : "address",
+                      "shape" : "rounded",
+                      "value" : "{{repository.owner.avatarUrl}}"
+                    },
+                    "size" : 44
+                  }
+                ]
+              }
+            ],
+            "width" : "auto"
+          },
+          {
+            "id" : "AFA5B46E-7C90-4BFA-8D8B-B94315943587",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "1705FB69-D963-41C6-85B6-28F59EC8F4B7",
+                "items" : [
+                  {
+                    "content" : "{{title}}",
+                    "fills" : true,
+                    "id" : "499039E2-0EAA-4BDE-8244-C5E72CFC68C1",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "94E94D83-A987-46E4-ACDF-5B4FF50EAD42",
+                "items" : [
+                  {
+                    "content" : "{{repository.nameWithOwner}} #{{number}}",
+                    "fills" : true,
+                    "id" : "09C355E1-C996-441F-94A6-2F58B9FD39EB",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "gap" : 8,
+                "id" : "4C25759F-8047-4730-AA3D-39CEC473A2C8",
+                "items" : [
+                  {
+                    "form" : "circle",
+                    "id" : "E3656C89-72A2-4DA5-BFC9-39F293EE3A38",
+                    "kind" : "image",
+                    "picture" : {
+                      "kind" : "address",
+                      "shape" : "rounded",
+                      "value" : "{{author.avatarUrl}}"
+                    },
+                    "size" : 16
+                  },
+                  {
+                    "content" : "@{{author.login}}",
+                    "fills" : true,
+                    "id" : "4C8AE4E4-8D84-41F1-9735-42E67D39413B",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  },
+                  {
+                    "content" : "{{reviewDecision ?? \"REVIEW_REQUIRED\"}}",
+                    "id" : "322DDB15-C8C2-445A-AF5F-DA2800AE38F2",
+                    "indicator" : "dotAndText",
+                    "kind" : "indicator",
+                    "rules" : [
+                      {
+                        "label" : "aprovada",
+                        "tint" : "positive",
+                        "value" : "APPROVED"
+                      },
+                      {
+                        "label" : "mudanças",
+                        "tint" : "negative",
+                        "value" : "CHANGES_REQUESTED"
+                      },
+                      {
+                        "label" : "revisão",
+                        "tint" : "attention",
+                        "value" : "REVIEW_REQUIRED"
+                      }
+                    ],
+                    "size" : 13
+                  },
+                  {
+                    "content" : "{{approvals.totalCount}}/{{askedFrom.totalCount}}",
+                    "id" : "CC81EB08-B299-4EA9-8565-AD05CDB3531B",
+                    "ink" : "secondary",
+                    "kind" : "icon",
+                    "rules" : [
+                      {
+                        "tint" : "positive",
+                        "value" : "APPROVED"
+                      },
+                      {
+                        "tint" : "negative",
+                        "value" : "CHANGES_REQUESTED"
+                      },
+                      {
+                        "tint" : "attention",
+                        "value" : "REVIEW_REQUIRED"
+                      }
+                    ],
+                    "size" : 13,
+                    "symbolName" : "eye",
+                    "tintFrom" : "{{reviewDecision ?? \"REVIEW_REQUIRED\"}}"
+                  },
+                  {
+                    "content" : "{{commits.nodes[0].commit.statusCheckRollup.contexts.checkRunCountsByState[state=SUCCESS].count}}/{{commits.nodes[0].commit.statusCheckRollup.contexts.totalCount}}",
+                    "id" : "4E2E5036-18C8-4051-8A73-264C10E2B1E0",
+                    "ink" : "secondary",
+                    "kind" : "icon",
+                    "rules" : [
+                      {
+                        "tint" : "negative",
+                        "value" : "ERROR"
+                      },
+                      {
+                        "tint" : "negative",
+                        "value" : "FAILURE"
+                      },
+                      {
+                        "tint" : "attention",
+                        "value" : "PENDING"
+                      },
+                      {
+                        "tint" : "positive",
+                        "value" : "SUCCESS"
+                      }
+                    ],
+                    "size" : 13,
+                    "symbolName" : "checkmark.circle",
+                    "tintFrom" : "{{commits.nodes[0].commit.statusCheckRollup.state}}"
+                  },
+                  {
+                    "content" : "{{totalCommentsCount}}",
+                    "id" : "EBC55E29-5E6E-446E-B182-2F3FE8BF375A",
+                    "ink" : "secondary",
+                    "kind" : "icon",
+                    "size" : 13,
+                    "symbolName" : "bubble.left"
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
+          }
+        ],
+        "type" : "list"
+      },
+      {
+        "columnGap" : 8,
+        "id" : "E17AE8A9-9DA0-4AD8-87BF-BC0385C533E1",
+        "limit" : 5,
+        "path" : "data.repos.nodes",
+        "rowURL" : "{{url}}",
+        "structure" : [
+          {
+            "id" : "20C4CC8A-5F96-472C-9F7A-78191EEA2A77",
+            "lines" : [
+              {
+                "id" : "40F2C6CD-FD6B-48AC-BA5F-D3FC5A6D72D6",
+                "items" : [
+                  {
+                    "form" : "rounded",
+                    "id" : "345189E4-6336-420C-9348-48F7DBE6DDFE",
+                    "kind" : "image",
+                    "picture" : {
+                      "kind" : "address",
+                      "shape" : "rounded",
+                      "value" : "{{owner.avatarUrl}}"
+                    },
+                    "size" : 44
+                  }
+                ]
+              }
+            ],
+            "width" : "auto"
+          },
+          {
+            "id" : "F56DB93C-AAFC-40E7-A1AD-4C8D8A154ECB",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "2A6678F4-5CA6-4D88-9819-624E49D259F7",
+                "items" : [
+                  {
+                    "content" : "{{nameWithOwner}}",
+                    "fills" : true,
+                    "id" : "62A8ACA4-B89A-4D6F-A6B9-753E4EBA06F1",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "31409DE4-7953-48DC-9724-BB5445A75747",
+                "items" : [
+                  {
+                    "content" : "{{description}}",
+                    "fills" : true,
+                    "id" : "3F6B5542-1E8C-4FB9-B82B-91B62DF135C9",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "gap" : 8,
+                "id" : "FAB6E4ED-F81F-4C5E-A1D6-B7434B4A30E8",
+                "items" : [
+                  {
+                    "content" : "{{primaryLanguage.name}}",
+                    "fills" : true,
+                    "id" : "895667E8-C431-4B4B-B77F-27F571F7A048",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  },
+                  {
+                    "content" : "{{isPrivate}}",
+                    "id" : "A2E31C2B-5B6F-4E39-868B-7C7C3817A6D2",
+                    "indicator" : "dotAndText",
+                    "kind" : "indicator",
+                    "rules" : [
+                      {
+                        "label" : "público",
+                        "tint" : "positive",
+                        "value" : "false"
+                      },
+                      {
+                        "label" : "privado",
+                        "tint" : "attention",
+                        "value" : "true"
+                      }
+                    ],
+                    "size" : 13
+                  },
+                  {
+                    "content" : "{{stargazerCount}}",
+                    "id" : "014585E1-223A-4FCC-A608-846C3D23E10C",
+                    "ink" : "secondary",
+                    "kind" : "icon",
+                    "size" : 13,
+                    "symbolName" : "star"
+                  },
+                  {
+                    "content" : "{{pushedAt | ago}}",
+                    "id" : "A1942208-8F37-4338-B7F5-8F57806EFAFE",
+                    "ink" : "secondary",
+                    "kind" : "icon",
+                    "size" : 13,
+                    "symbolName" : "clock"
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
+          }
+        ],
+        "type" : "list"
+      }
+    ],
+    "emptyMessage" : "Nada esperando você.",
+    "headline" : "{{data.reviewRequested.nodes | count}}",
+    "isEnabled" : true,
+    "picture" : {
+      "kind" : "address",
+      "scale" : 1.9,
+      "shape" : "round",
+      "value" : "{{data.viewer.avatarUrl}}"
+    },
+    "rowLimit" : 5,
+    "subtitle" : "@{{data.viewer.login}} · {{data.viewer.followers.totalCount}} seguidores · {{data.viewer.contributionsCollection.contributionCalendar.totalContributions}} contribuições",
+    "title" : "{{data.viewer.name ?? data.viewer.login}}"
+  },
+  "icon" : {
+    "kind" : "picture",
+    "pictureSource" : "https://github.com/github.png?size=128",
+    "symbolName" : "chevron.left.forwardslash.chevron.right",
+    "word" : ""
+  },
+  "id" : "plugin.exemplo.github",
+  "interval" : 300,
+  "name" : "GitHub",
+  "parameters" : [
+
+  ],
+  "readsOnItsOwn" : true,
+  "role" : "reading",
+  "schema" : 12,
+  "slot" : {
+    "alertsOnThreshold" : false,
+    "label" : "{{data.reviewRequested.nodes | count}} PRs",
+    "total" : "",
+    "value" : ""
+  },
+  "source" : {
+    "body" : "",
+    "errand" : "copy",
+    "format" : {
+      "all" : false,
+      "hasHeader" : false,
+      "kind" : "json",
+      "pattern" : "",
+      "separator" : "whitespace",
+      "skip" : 0
+    },
+    "headers" : [
+
+    ],
+    "kind" : "command",
+    "language" : "applescript",
+    "method" : "GET",
+    "script" : "",
+    "steps" : [
+      {
+        "arguments" : [
           "PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin",
           "gh",
           "api",
@@ -22,294 +900,13 @@
           "query=query($q: String!) {\n  viewer {\n    login name avatarUrl(size: 128)\n    followers { totalCount }\n    following { totalCount }\n    contributionsCollection { contributionCalendar { totalContributions } }\n  }\n  reviewRequested: search(query: \"is:open is:pr review-requested:@me archived:false\", type: ISSUE, first: 25) { nodes { ...pr } }\n  authored: search(query: \"is:open is:pr author:@me archived:false\", type: ISSUE, first: 25) { nodes { ...pr } }\n  assigned: search(query: \"is:open is:pr assignee:@me archived:false\", type: ISSUE, first: 25) { nodes { ...pr } }\n  repos: search(query: $q, type: REPOSITORY, first: 25) {\n    repositoryCount\n    nodes { ... on Repository {\n      nameWithOwner description url isPrivate stargazerCount pushedAt\n      primaryLanguage { name }\n      owner { avatarUrl(size: 128) }\n    } }\n  }\n}\nfragment pr on PullRequest {\n  number title url updatedAt isDraft bodyText totalCommentsCount\n  reviewDecision\n  approvals: reviews(states: APPROVED) { totalCount }\n  askedFrom: reviewRequests { totalCount }\n  author { login avatarUrl(size: 64) }\n  repository { nameWithOwner owner { avatarUrl(size: 128) } }\n  commits(last: 1) { nodes { commit { statusCheckRollup {\n    state\n    contexts(first: 1) { totalCount checkRunCountsByState { state count } }\n  } } } }\n}",
           "-f",
           "q=user:@me sort:updated {{$global.github_busca}}"
-        ]
+        ],
+        "id" : "81266EB0-60D6-4705-B807-16F46830B291",
+        "isEnabled" : true,
+        "program" : "/usr/bin/env"
       }
     ],
-    "format": {
-      "kind": "json"
-    }
-  },
-  "slot": {
-    "label": "{{data.reviewRequested.nodes | count}} PRs"
-  },
-  "card": {
-    "isEnabled": true,
-    "picture": {
-      "kind": "address",
-      "value": "{{data.viewer.avatarUrl}}",
-      "shape": "round",
-      "scale": 1.9
-    },
-    "title": "{{data.viewer.name ?? data.viewer.login}}",
-    "headline": "{{data.reviewRequested.nodes | count}}",
-    "subtitle": "@{{data.viewer.login}} · {{data.viewer.followers.totalCount}} seguidores · {{data.viewer.contributionsCollection.contributionCalendar.totalContributions}} contribuições",
-    "emptyMessage": "Nada esperando você.",
-    "blocks": [
-      {
-        "type": "list",
-        "limit": 6,
-        "tabs": [
-          {
-            "title": "Revisão",
-            "path": "data.reviewRequested.nodes",
-            "face": {
-              "kind": "symbol",
-              "value": "eye"
-            },
-            "tabHint": "Esperando a sua revisão",
-            "rowTitle": "{{title}}",
-            "rowWrapsTitle": false,
-            "rowSubtitle": "{{repository.nameWithOwner}} #{{number}}",
-            "rowMeta": "@{{author.login}}",
-            "rowMetaImage": "{{author.avatarUrl}}",
-            "rowMetaImageShape": "round",
-            "rowImage": "{{repository.owner.avatarUrl}}",
-            "rowImageShape": "rounded",
-            "rowStatus": "{{reviewDecision ?? \"REVIEW_REQUIRED\"}}",
-            "statusWords": {
-              "APPROVED": "aprovada",
-              "CHANGES_REQUESTED": "mudanças",
-              "REVIEW_REQUIRED": "revisão"
-            },
-            "statusColors": {
-              "APPROVED": "positive",
-              "CHANGES_REQUESTED": "negative",
-              "REVIEW_REQUIRED": "attention"
-            },
-            "badges": [
-              {
-                "value": "{{approvals.totalCount}}/{{askedFrom.totalCount}}",
-                "symbolName": "eye",
-                "tintFrom": "{{reviewDecision ?? \"REVIEW_REQUIRED\"}}",
-                "colors": {
-                  "APPROVED": "positive",
-                  "CHANGES_REQUESTED": "negative",
-                  "REVIEW_REQUIRED": "attention"
-                }
-              },
-              {
-                "value": "{{commits.nodes[0].commit.statusCheckRollup.contexts.checkRunCountsByState[state=SUCCESS].count}}/{{commits.nodes[0].commit.statusCheckRollup.contexts.totalCount}}",
-                "symbolName": "checkmark.circle",
-                "tintFrom": "{{commits.nodes[0].commit.statusCheckRollup.state}}",
-                "colors": {
-                  "SUCCESS": "positive",
-                  "FAILURE": "negative",
-                  "ERROR": "negative",
-                  "PENDING": "attention"
-                }
-              },
-              {
-                "value": "{{totalCommentsCount}}",
-                "symbolName": "bubble.left"
-              }
-            ],
-            "rowDetail": "{{bodyText}}",
-            "rowEvent": "open",
-            "rowURL": "{{url}}"
-          },
-          {
-            "title": "Minhas",
-            "path": "data.authored.nodes",
-            "face": {
-              "kind": "symbol",
-              "value": "person.fill"
-            },
-            "tabHint": "Abertas por você",
-            "rowTitle": "{{title}}",
-            "rowWrapsTitle": false,
-            "rowSubtitle": "{{repository.nameWithOwner}} #{{number}}",
-            "rowMeta": "@{{author.login}}",
-            "rowMetaImage": "{{author.avatarUrl}}",
-            "rowMetaImageShape": "round",
-            "rowImage": "{{repository.owner.avatarUrl}}",
-            "rowImageShape": "rounded",
-            "rowStatus": "{{reviewDecision ?? \"REVIEW_REQUIRED\"}}",
-            "statusWords": {
-              "APPROVED": "aprovada",
-              "CHANGES_REQUESTED": "mudanças",
-              "REVIEW_REQUIRED": "revisão"
-            },
-            "statusColors": {
-              "APPROVED": "positive",
-              "CHANGES_REQUESTED": "negative",
-              "REVIEW_REQUIRED": "attention"
-            },
-            "badges": [
-              {
-                "value": "{{approvals.totalCount}}/{{askedFrom.totalCount}}",
-                "symbolName": "eye",
-                "tintFrom": "{{reviewDecision ?? \"REVIEW_REQUIRED\"}}",
-                "colors": {
-                  "APPROVED": "positive",
-                  "CHANGES_REQUESTED": "negative",
-                  "REVIEW_REQUIRED": "attention"
-                }
-              },
-              {
-                "value": "{{commits.nodes[0].commit.statusCheckRollup.contexts.checkRunCountsByState[state=SUCCESS].count}}/{{commits.nodes[0].commit.statusCheckRollup.contexts.totalCount}}",
-                "symbolName": "checkmark.circle",
-                "tintFrom": "{{commits.nodes[0].commit.statusCheckRollup.state}}",
-                "colors": {
-                  "SUCCESS": "positive",
-                  "FAILURE": "negative",
-                  "ERROR": "negative",
-                  "PENDING": "attention"
-                }
-              },
-              {
-                "value": "{{totalCommentsCount}}",
-                "symbolName": "bubble.left"
-              }
-            ],
-            "rowDetail": "{{bodyText}}",
-            "rowEvent": "open",
-            "rowURL": "{{url}}"
-          },
-          {
-            "title": "Atribuídas",
-            "path": "data.assigned.nodes",
-            "face": {
-              "kind": "symbol",
-              "value": "tray.and.arrow.down.fill"
-            },
-            "tabHint": "Atribuídas a você",
-            "rowTitle": "{{title}}",
-            "rowWrapsTitle": false,
-            "rowSubtitle": "{{repository.nameWithOwner}} #{{number}}",
-            "rowMeta": "@{{author.login}}",
-            "rowMetaImage": "{{author.avatarUrl}}",
-            "rowMetaImageShape": "round",
-            "rowImage": "{{repository.owner.avatarUrl}}",
-            "rowImageShape": "rounded",
-            "rowStatus": "{{reviewDecision ?? \"REVIEW_REQUIRED\"}}",
-            "statusWords": {
-              "APPROVED": "aprovada",
-              "CHANGES_REQUESTED": "mudanças",
-              "REVIEW_REQUIRED": "revisão"
-            },
-            "statusColors": {
-              "APPROVED": "positive",
-              "CHANGES_REQUESTED": "negative",
-              "REVIEW_REQUIRED": "attention"
-            },
-            "badges": [
-              {
-                "value": "{{approvals.totalCount}}/{{askedFrom.totalCount}}",
-                "symbolName": "eye",
-                "tintFrom": "{{reviewDecision ?? \"REVIEW_REQUIRED\"}}",
-                "colors": {
-                  "APPROVED": "positive",
-                  "CHANGES_REQUESTED": "negative",
-                  "REVIEW_REQUIRED": "attention"
-                }
-              },
-              {
-                "value": "{{commits.nodes[0].commit.statusCheckRollup.contexts.checkRunCountsByState[state=SUCCESS].count}}/{{commits.nodes[0].commit.statusCheckRollup.contexts.totalCount}}",
-                "symbolName": "checkmark.circle",
-                "tintFrom": "{{commits.nodes[0].commit.statusCheckRollup.state}}",
-                "colors": {
-                  "SUCCESS": "positive",
-                  "FAILURE": "negative",
-                  "ERROR": "negative",
-                  "PENDING": "attention"
-                }
-              },
-              {
-                "value": "{{totalCommentsCount}}",
-                "symbolName": "bubble.left"
-              }
-            ],
-            "rowDetail": "{{bodyText}}",
-            "rowEvent": "open",
-            "rowURL": "{{url}}"
-          },
-          {
-            "title": "Repos",
-            "path": "data.repos.nodes",
-            "face": {
-              "kind": "symbol",
-              "value": "folder.fill"
-            },
-            "tabHint": "Seus repositórios, e o que a busca achar",
-            "rowTitle": "{{nameWithOwner}}",
-            "rowSubtitle": "{{description}}",
-            "rowMeta": "{{primaryLanguage.name}}",
-            "rowImage": "{{owner.avatarUrl}}",
-            "rowImageShape": "rounded",
-            "rowStatus": "{{isPrivate}}",
-            "statusWords": {
-              "true": "privado",
-              "false": "público"
-            },
-            "statusColors": {
-              "true": "attention",
-              "false": "positive"
-            },
-            "badges": [
-              {
-                "value": "{{stargazerCount}}",
-                "symbolName": "star"
-              },
-              {
-                "value": "{{pushedAt | ago}}",
-                "symbolName": "clock"
-              }
-            ],
-            "rowEvent": "open",
-            "rowURL": "{{url}}"
-          }
-        ],
-        "everyTab": {
-          "title": "Tudo",
-          "face": {
-            "kind": "symbol",
-            "value": "tray.full.fill"
-          },
-          "tabHint": "Todas as três listas juntas"
-        }
-      }
-    ]
-  },
-  "actions": [
-    {
-      "name": "Buscar",
-      "symbolName": "magnifyingglass",
-      "place": "card",
-      "hint": "Buscar nos seus repositórios",
-      "asksForValue": true,
-      "question": "Buscar repositórios",
-      "run": {
-        "kind": "onTheMac",
-        "errand": "remember",
-        "variable": "github_busca",
-        "text": "{{$input}}"
-      }
-    },
-    {
-      "name": "Limpar a busca",
-      "symbolName": "xmark.circle",
-      "place": "card",
-      "hint": "Voltar a listar tudo",
-      "run": {
-        "kind": "onTheMac",
-        "errand": "remember",
-        "variable": "github_busca",
-        "text": ""
-      }
-    },
-    {
-      "name": "Abrir no GitHub",
-      "symbolName": "arrow.up.right.square",
-      "place": "card",
-      "run": {
-        "kind": "onTheMac",
-        "errand": "openLink",
-        "text": "https://github.com/pulls"
-      }
-    }
-  ],
-  "attention": {
-    "mode": "newRows",
-    "listIndex": 0
+    "text" : "",
+    "url" : ""
   }
 }

@@ -1,127 +1,294 @@
 {
-  "schema": 11,
-  "id": "plugin.exemplo.clickup",
-  "name": "ClickUp",
-  "interval": 600,
-  "icon": {
-    "kind": "picture",
-    "symbolName": "checklist",
-    "pictureSource": "https://github.com/clickup.png?size=128"
+  "actions" : [
+
+  ],
+  "answer" : "{\"tasks\":[{\"id\":\"86b1x2a3c\",\"custom_id\":null,\"name\":\"Ajustar o fluxo de cadastro no app\",\"status\":{\"id\":\"p901_in_progress\",\"status\":\"in progress\",\"color\":\"#4194f6\",\"type\":\"custom\",\"orderindex\":1},\"assignees\":[{\"id\":48201101,\"username\":\"Ana Lima\",\"color\":\"#7b68ee\",\"initials\":\"AL\",\"email\":\"ana@exemplo.com\",\"profilePicture\":null}],\"due_date\":\"1759449600000\",\"url\":\"https://app.clickup.com/t/86b1x2a3c\",\"list\":{\"id\":\"901234567890\",\"name\":\"Sprint 42\"}},{\"id\":\"86b1x2a3d\",\"custom_id\":null,\"name\":\"Revisar textos da página de preços\",\"status\":{\"id\":\"p901_review\",\"status\":\"review\",\"color\":\"#a875ff\",\"type\":\"custom\",\"orderindex\":1},\"assignees\":[{\"id\":48201102,\"username\":\"Bruno Costa\",\"color\":\"#7b68ee\",\"initials\":\"BC\",\"email\":\"bruno@exemplo.com\",\"profilePicture\":null}],\"due_date\":\"1759536000000\",\"url\":\"https://app.clickup.com/t/86b1x2a3d\",\"list\":{\"id\":\"901234567890\",\"name\":\"Sprint 42\"}},{\"id\":\"86b1x2a3e\",\"custom_id\":null,\"name\":\"Corrigir o relatório de vendas por região\",\"status\":{\"id\":\"p901_to_do\",\"status\":\"to do\",\"color\":\"#d3d3d3\",\"type\":\"open\",\"orderindex\":1},\"assignees\":[{\"id\":48201103,\"username\":\"Carla Souza\",\"color\":\"#7b68ee\",\"initials\":\"CS\",\"email\":\"carla@exemplo.com\",\"profilePicture\":null}],\"due_date\":\"1759795200000\",\"url\":\"https://app.clickup.com/t/86b1x2a3e\",\"list\":{\"id\":\"901234567890\",\"name\":\"Sprint 42\"}},{\"id\":\"86b1x2a3f\",\"custom_id\":null,\"name\":\"Configurar alertas de erro em produção\",\"status\":{\"id\":\"p901_in_progress\",\"status\":\"in progress\",\"color\":\"#4194f6\",\"type\":\"custom\",\"orderindex\":1},\"assignees\":[{\"id\":48201101,\"username\":\"Ana Lima\",\"color\":\"#7b68ee\",\"initials\":\"AL\",\"email\":\"ana@exemplo.com\",\"profilePicture\":null}],\"due_date\":\"1759363200000\",\"url\":\"https://app.clickup.com/t/86b1x2a3f\",\"list\":{\"id\":\"901234567890\",\"name\":\"Sprint 42\"}},{\"id\":\"86b1x2a3g\",\"custom_id\":null,\"name\":\"Planejar a pesquisa com clientes\",\"status\":{\"id\":\"p901_to_do\",\"status\":\"to do\",\"color\":\"#d3d3d3\",\"type\":\"open\",\"orderindex\":1},\"assignees\":[{\"id\":48201104,\"username\":\"Diego Alves\",\"color\":\"#7b68ee\",\"initials\":\"DA\",\"email\":\"diego@exemplo.com\",\"profilePicture\":null}],\"due_date\":\"1760054400000\",\"url\":\"https://app.clickup.com/t/86b1x2a3g\",\"list\":{\"id\":\"901234567890\",\"name\":\"Sprint 42\"}},{\"id\":\"86b1x2a3h\",\"custom_id\":null,\"name\":\"Atualizar a documentação da API\",\"status\":{\"id\":\"p901_review\",\"status\":\"review\",\"color\":\"#a875ff\",\"type\":\"custom\",\"orderindex\":1},\"assignees\":[{\"id\":48201102,\"username\":\"Bruno Costa\",\"color\":\"#7b68ee\",\"initials\":\"BC\",\"email\":\"bruno@exemplo.com\",\"profilePicture\":null}],\"due_date\":\"1759622400000\",\"url\":\"https://app.clickup.com/t/86b1x2a3h\",\"list\":{\"id\":\"901234567890\",\"name\":\"Sprint 42\"}}],\"last_page\":true}",
+  "attention" : {
+    "comparison" : "above",
+    "countPath" : "",
+    "listIndex" : 0,
+    "mode" : "newRows",
+    "threshold" : 0
   },
-  "source": {
-    "kind": "http",
-    "method": "GET",
-    "url": "https://api.clickup.com/api/v2/list/{{$settings.lista}}/task",
-    "query": [
+  "button" : {
+    "cancelLabel" : "",
+    "confirms" : false,
+    "failureMessage" : "",
+    "failureReport" : "message",
+    "okLabel" : "",
+    "question" : "",
+    "runningText" : "",
+    "successMessage" : "",
+    "successReport" : "message"
+  },
+  "card" : {
+    "blocks" : [
       {
-        "name": "subtasks",
-        "value": "false"
+        "caption" : "Tarefas abertas",
+        "format" : "integer",
+        "goodDirection" : "down",
+        "id" : "2255E222-71F4-4200-A44A-79934B77F289",
+        "type" : "hero",
+        "value" : "{{tasks | count}}"
       },
       {
-        "name": "include_closed",
-        "value": "false"
-      }
-    ],
-    "headers": [
-      {
-        "name": "Authorization",
-        "value": "{{$settings.token}}"
-      }
-    ],
-    "format": {
-      "kind": "json"
-    }
-  },
-  "slot": {
-    "label": "{{tasks | count}}",
-    "style": "number"
-  },
-  "card": {
-    "isEnabled": true,
-    "title": "ClickUp",
-    "subtitle": "Tarefas da lista",
-    "emptyMessage": "Nada em aberto nesta lista.",
-    "blocks": [
-      {
-        "type": "hero",
-        "value": "{{tasks | count}}",
-        "caption": "Tarefas abertas",
-        "goodDirection": "down",
-        "format": "integer"
-      },
-      {
-        "type": "breakdown",
-        "title": "Por status",
-        "breakdownStyle": "bar",
-        "path": "tasks",
-        "groupField": "{{status.status}}",
-        "groupKind": "text",
-        "measure": "count",
-        "shows": "amount",
-        "groups": [
+        "breakdownStyle" : "bar",
+        "groupField" : "{{status.status}}",
+        "groupKind" : "text",
+        "groups" : [
           {
-            "id": "EBE620ED-DAFD-41E6-B1DF-A12AB6B739B3",
-            "name": "A fazer",
-            "color": "gray",
-            "match": "to do, open, a fazer, aberto"
+            "color" : "gray",
+            "id" : "EBE620ED-DAFD-41E6-B1DF-A12AB6B739B3",
+            "match" : "to do, open, a fazer, aberto",
+            "name" : "A fazer",
+            "truth" : true
           },
           {
-            "id": "3805360C-7E49-48D2-AC71-09CFB20E06A8",
-            "name": "Em andamento",
-            "color": "blue",
-            "match": "in progress, em andamento"
+            "color" : "blue",
+            "id" : "3805360C-7E49-48D2-AC71-09CFB20E06A8",
+            "match" : "in progress, em andamento",
+            "name" : "Em andamento",
+            "truth" : true
           },
           {
-            "id": "E59380F8-94EE-47F4-B8A9-C50047AB7762",
-            "name": "Em revisão",
-            "color": "purple",
-            "match": "review, in review, em revisão"
+            "color" : "purple",
+            "id" : "E59380F8-94EE-47F4-B8A9-C50047AB7762",
+            "match" : "review, in review, em revisão",
+            "name" : "Em revisão",
+            "truth" : true
           }
         ],
-        "others": {
-          "shows": true,
-          "name": "Outros",
-          "color": "teal"
-        }
+        "id" : "517DE232-1F44-480D-BB63-A9537C84BE5A",
+        "measure" : "count",
+        "others" : {
+          "color" : "teal",
+          "name" : "Outros",
+          "shows" : true
+        },
+        "path" : "tasks",
+        "shows" : "amount",
+        "title" : "Por status",
+        "type" : "breakdown"
       },
       {
-        "type": "list",
-        "limit": 6,
-        "tabs": [
+        "columnGap" : 8,
+        "id" : "F599FB28-B7A1-47AB-A18E-8F625277A7C3",
+        "limit" : 5,
+        "path" : "tasks",
+        "rowURL" : "{{url}}",
+        "structure" : [
           {
-            "title": "Tarefas",
-            "path": "tasks",
-            "rowTitle": "{{name}}",
-            "rowSubtitle": "{{assignees[0].username}}",
-            "rowMetaImage": "{{assignees[0].profilePicture}}",
-            "rowMeta": "{{due_date | shape dd/MM}}",
-            "rowWrapsTitle": true,
-            "rowStatus": "{{status.status}}",
-            "rowURL": "{{url}}"
+            "id" : "B33EC71F-2364-47C5-AC06-E3A84C517937",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "872EE24E-B949-4CF5-BD9C-B414288A640E",
+                "items" : [
+                  {
+                    "content" : "{{name}}",
+                    "fills" : true,
+                    "id" : "15D018C7-D3CE-4518-893C-853ED4B4C3E6",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 0,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "BAE1F88D-6C35-4B7B-8610-2A213F5777F1",
+                "items" : [
+                  {
+                    "content" : "{{assignees[0].username}}",
+                    "fills" : true,
+                    "id" : "EB4302E0-B77A-4358-A299-B95B4C491CD7",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "gap" : 8,
+                "id" : "3A8682CE-0D1B-4DF6-9620-E1D749BAB96A",
+                "items" : [
+                  {
+                    "form" : "circle",
+                    "id" : "31C136FF-A0A2-4D32-99D1-5769E13A7337",
+                    "kind" : "image",
+                    "picture" : {
+                      "kind" : "address",
+                      "shape" : "rounded",
+                      "value" : "{{assignees[0].profilePicture}}"
+                    },
+                    "size" : 16
+                  },
+                  {
+                    "content" : "{{due_date | shape dd/MM}}",
+                    "fills" : true,
+                    "id" : "9ED27508-A3C9-4752-B15F-567048ACB42D",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  },
+                  {
+                    "content" : "{{status.status}}",
+                    "id" : "522AFDE1-8796-43D9-8381-5FF70C0068EF",
+                    "indicator" : "dotAndText",
+                    "kind" : "indicator",
+                    "rules" : [
+                      {
+                        "tint" : "positive",
+                        "value" : "positive"
+                      },
+                      {
+                        "tint" : "positive",
+                        "value" : "ok"
+                      },
+                      {
+                        "tint" : "positive",
+                        "value" : "green"
+                      },
+                      {
+                        "tint" : "positive",
+                        "value" : "success"
+                      },
+                      {
+                        "tint" : "positive",
+                        "value" : "up"
+                      },
+                      {
+                        "tint" : "attention",
+                        "value" : "attention"
+                      },
+                      {
+                        "tint" : "attention",
+                        "value" : "warn"
+                      },
+                      {
+                        "tint" : "attention",
+                        "value" : "warning"
+                      },
+                      {
+                        "tint" : "attention",
+                        "value" : "yellow"
+                      },
+                      {
+                        "tint" : "negative",
+                        "value" : "negative"
+                      },
+                      {
+                        "tint" : "negative",
+                        "value" : "bad"
+                      },
+                      {
+                        "tint" : "negative",
+                        "value" : "red"
+                      },
+                      {
+                        "tint" : "negative",
+                        "value" : "error"
+                      },
+                      {
+                        "tint" : "negative",
+                        "value" : "down"
+                      }
+                    ],
+                    "size" : 13
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
           }
-        ]
+        ],
+        "type" : "list"
       }
-    ]
+    ],
+    "emptyMessage" : "Nada em aberto nesta lista.",
+    "isEnabled" : true,
+    "rowLimit" : 5,
+    "subtitle" : "Tarefas da lista",
+    "title" : "ClickUp"
   },
-  "actions": [],
-  "attention": {
-    "mode": "newRows"
+  "icon" : {
+    "kind" : "picture",
+    "pictureSource" : "https://github.com/clickup.png?size=128",
+    "symbolName" : "checklist",
+    "word" : ""
   },
-  "settings": [
+  "id" : "plugin.exemplo.clickup",
+  "interval" : 600,
+  "name" : "ClickUp",
+  "parameters" : [
+
+  ],
+  "readsOnItsOwn" : true,
+  "role" : "reading",
+  "schema" : 12,
+  "settings" : [
     {
-      "key": "lista",
-      "label": "ID da lista",
-      "type": "text",
-      "help": "O número no fim da URL da lista.",
-      "required": true
+      "help" : "O número no fim da URL da lista.",
+      "key" : "lista",
+      "label" : "ID da lista",
+      "required" : true,
+      "type" : "text"
     },
     {
-      "key": "token",
-      "label": "Token",
-      "type": "secret",
-      "required": true,
-      "help": "Crie em Configurações › Apps › Token de API."
+      "help" : "Crie em Configurações › Apps › Token de API.",
+      "key" : "token",
+      "label" : "Token",
+      "required" : true,
+      "type" : "secret"
     }
   ],
-  "answer": "{\"tasks\":[{\"id\":\"86b1x2a3c\",\"custom_id\":null,\"name\":\"Ajustar o fluxo de cadastro no app\",\"status\":{\"id\":\"p901_in_progress\",\"status\":\"in progress\",\"color\":\"#4194f6\",\"type\":\"custom\",\"orderindex\":1},\"assignees\":[{\"id\":48201101,\"username\":\"Ana Lima\",\"color\":\"#7b68ee\",\"initials\":\"AL\",\"email\":\"ana@exemplo.com\",\"profilePicture\":null}],\"due_date\":\"1759449600000\",\"url\":\"https://app.clickup.com/t/86b1x2a3c\",\"list\":{\"id\":\"901234567890\",\"name\":\"Sprint 42\"}},{\"id\":\"86b1x2a3d\",\"custom_id\":null,\"name\":\"Revisar textos da página de preços\",\"status\":{\"id\":\"p901_review\",\"status\":\"review\",\"color\":\"#a875ff\",\"type\":\"custom\",\"orderindex\":1},\"assignees\":[{\"id\":48201102,\"username\":\"Bruno Costa\",\"color\":\"#7b68ee\",\"initials\":\"BC\",\"email\":\"bruno@exemplo.com\",\"profilePicture\":null}],\"due_date\":\"1759536000000\",\"url\":\"https://app.clickup.com/t/86b1x2a3d\",\"list\":{\"id\":\"901234567890\",\"name\":\"Sprint 42\"}},{\"id\":\"86b1x2a3e\",\"custom_id\":null,\"name\":\"Corrigir o relatório de vendas por região\",\"status\":{\"id\":\"p901_to_do\",\"status\":\"to do\",\"color\":\"#d3d3d3\",\"type\":\"open\",\"orderindex\":1},\"assignees\":[{\"id\":48201103,\"username\":\"Carla Souza\",\"color\":\"#7b68ee\",\"initials\":\"CS\",\"email\":\"carla@exemplo.com\",\"profilePicture\":null}],\"due_date\":\"1759795200000\",\"url\":\"https://app.clickup.com/t/86b1x2a3e\",\"list\":{\"id\":\"901234567890\",\"name\":\"Sprint 42\"}},{\"id\":\"86b1x2a3f\",\"custom_id\":null,\"name\":\"Configurar alertas de erro em produção\",\"status\":{\"id\":\"p901_in_progress\",\"status\":\"in progress\",\"color\":\"#4194f6\",\"type\":\"custom\",\"orderindex\":1},\"assignees\":[{\"id\":48201101,\"username\":\"Ana Lima\",\"color\":\"#7b68ee\",\"initials\":\"AL\",\"email\":\"ana@exemplo.com\",\"profilePicture\":null}],\"due_date\":\"1759363200000\",\"url\":\"https://app.clickup.com/t/86b1x2a3f\",\"list\":{\"id\":\"901234567890\",\"name\":\"Sprint 42\"}},{\"id\":\"86b1x2a3g\",\"custom_id\":null,\"name\":\"Planejar a pesquisa com clientes\",\"status\":{\"id\":\"p901_to_do\",\"status\":\"to do\",\"color\":\"#d3d3d3\",\"type\":\"open\",\"orderindex\":1},\"assignees\":[{\"id\":48201104,\"username\":\"Diego Alves\",\"color\":\"#7b68ee\",\"initials\":\"DA\",\"email\":\"diego@exemplo.com\",\"profilePicture\":null}],\"due_date\":\"1760054400000\",\"url\":\"https://app.clickup.com/t/86b1x2a3g\",\"list\":{\"id\":\"901234567890\",\"name\":\"Sprint 42\"}},{\"id\":\"86b1x2a3h\",\"custom_id\":null,\"name\":\"Atualizar a documentação da API\",\"status\":{\"id\":\"p901_review\",\"status\":\"review\",\"color\":\"#a875ff\",\"type\":\"custom\",\"orderindex\":1},\"assignees\":[{\"id\":48201102,\"username\":\"Bruno Costa\",\"color\":\"#7b68ee\",\"initials\":\"BC\",\"email\":\"bruno@exemplo.com\",\"profilePicture\":null}],\"due_date\":\"1759622400000\",\"url\":\"https://app.clickup.com/t/86b1x2a3h\",\"list\":{\"id\":\"901234567890\",\"name\":\"Sprint 42\"}}],\"last_page\":true}"
+  "slot" : {
+    "alertsOnThreshold" : false,
+    "label" : "{{tasks | count}}",
+    "style" : "number",
+    "total" : "",
+    "value" : ""
+  },
+  "source" : {
+    "body" : "",
+    "errand" : "copy",
+    "format" : {
+      "all" : false,
+      "hasHeader" : false,
+      "kind" : "json",
+      "pattern" : "",
+      "separator" : "whitespace",
+      "skip" : 0
+    },
+    "headers" : [
+      {
+        "id" : "0C146446-4BBE-453B-913F-00182D87830E",
+        "name" : "Authorization",
+        "value" : "{{$settings.token}}"
+      }
+    ],
+    "kind" : "http",
+    "language" : "applescript",
+    "method" : "GET",
+    "query" : [
+      {
+        "id" : "41450A03-B225-4657-B499-01C451F38B33",
+        "name" : "subtasks",
+        "value" : "false"
+      },
+      {
+        "id" : "B88D1888-EA70-4416-9CC8-0C992687A3F3",
+        "name" : "include_closed",
+        "value" : "false"
+      }
+    ],
+    "script" : "",
+    "steps" : [
+
+    ],
+    "text" : "",
+    "url" : "https://api.clickup.com/api/v2/list/{{$settings.lista}}/task"
+  }
 }

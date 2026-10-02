@@ -1,199 +1,381 @@
 {
-  "schema": 11,
-  "id": "plugin.exemplo.status-servicos",
-  "name": "Status dos serviços",
-  "interval": 300,
-  "icon": {
-    "kind": "symbol",
-    "symbolName": "waveform.path.ecg"
-  },
-  "source": {
-    "kind": "http",
-    "method": "GET",
-    "url": "https://{{$settings.pagina}}/api/v2/summary.json",
-    "format": {
-      "kind": "json"
-    }
-  },
-  "slot": {
-    "label": "{{components | count}}",
-    "status": "{{status.indicator}}",
-    "style": "status",
-    "statusColors": {
-      "none": "positive",
-      "minor": "attention",
-      "major": "negative",
-      "critical": "negative"
-    }
-  },
-  "card": {
-    "isEnabled": true,
-    "title": "{{page.name}}",
-    "subtitle": "{{status.description}}",
-    "emptyMessage": "Nada a relatar.",
-    "blocks": [
-      {
-        "type": "breakdown",
-        "title": "Componentes",
-        "breakdownStyle": "bar",
-        "path": "components",
-        "groupField": "{{status}}",
-        "groupKind": "text",
-        "measure": "count",
-        "shows": "amount",
-        "groups": [
-          {
-            "id": "AEB50E8D-E2A1-4A6A-889D-FD3BAEC67CB9",
-            "name": "Operando",
-            "color": "green",
-            "match": "operational"
-          },
-          {
-            "id": "C8D78462-A2FE-4962-949B-E87664DCD93A",
-            "name": "Lento",
-            "color": "yellow",
-            "match": "degraded_performance"
-          },
-          {
-            "id": "3D01E721-E5EF-4189-8F0D-D098FE3BF3EC",
-            "name": "Falha parcial",
-            "color": "orange",
-            "match": "partial_outage"
-          },
-          {
-            "id": "F6AA0BBE-007B-4EED-860F-36C847E74955",
-            "name": "Fora do ar",
-            "color": "red",
-            "match": "major_outage"
-          },
-          {
-            "id": "A4669090-7D2C-43F5-B484-B56ACFDB41AC",
-            "name": "Manutenção",
-            "color": "blue",
-            "match": "under_maintenance"
-          }
-        ],
-        "others": {
-          "shows": true,
-          "name": "Outros",
-          "color": "gray"
-        }
-      },
-      {
-        "type": "grid",
-        "path": "components",
-        "label": "{{name}}",
-        "status": "{{status}}",
-        "statusColors": {
-          "operational": "positive",
-          "degraded_performance": "attention",
-          "partial_outage": "attention",
-          "major_outage": "negative",
-          "under_maintenance": "neutral"
-        },
-        "limit": 36
-      },
-      {
-        "type": "list",
-        "limit": 4,
-        "tabs": [
-          {
-            "title": "Incidentes",
-            "path": "incidents",
-            "rowTitle": "{{name}}",
-            "rowSubtitle": "{{updated_at | ago}}",
-            "rowStatus": "{{impact}}",
-            "rowWrapsTitle": true,
-            "statusWords": {
-              "none": "nenhum",
-              "minor": "pequeno",
-              "major": "grande",
-              "critical": "crítico"
-            },
-            "statusColors": {
-              "none": "neutral",
-              "minor": "attention",
-              "major": "negative",
-              "critical": "negative"
-            },
-            "rowURL": "{{shortlink}}",
-            "face": {
-              "kind": "symbol",
-              "value": "exclamationmark.triangle.fill"
-            }
-          },
-          {
-            "title": "Manutenção",
-            "path": "scheduled_maintenances",
-            "rowTitle": "{{name}}",
-            "rowSubtitle": "{{scheduled_for | date}}",
-            "rowWrapsTitle": true,
-            "rowURL": "{{shortlink}}",
-            "face": {
-              "kind": "symbol",
-              "value": "wrench.and.screwdriver.fill"
-            }
-          }
-        ],
-        "everyTab": {
-          "title": "Tudo",
-          "face": {
-            "kind": "symbol",
-            "value": "tray.full.fill"
-          }
-        }
-      }
-    ]
-  },
-  "actions": [
+  "actions" : [
     {
-      "name": "Abrir a página",
-      "symbolName": "arrow.up.forward.square",
-      "place": "card",
-      "run": {
-        "kind": "onTheMac",
-        "errand": "openLink",
-        "text": "https://{{$settings.pagina}}"
+      "asksForValue" : false,
+      "confirmText" : "",
+      "confirms" : false,
+      "failureMessage" : "",
+      "failureReport" : "message",
+      "id" : "1ECAA480-E93B-4A28-8B53-6BAEF32C5FFE",
+      "isProminent" : false,
+      "listIndex" : 0,
+      "mark" : {
+        "kind" : "symbol",
+        "value" : "arrow.up.forward.square"
       },
-      "successReport": "nothing"
+      "name" : "Abrir a página",
+      "place" : "card",
+      "question" : "",
+      "run" : {
+        "body" : "",
+        "errand" : "openLink",
+        "format" : {
+          "all" : false,
+          "hasHeader" : false,
+          "kind" : "json",
+          "pattern" : "",
+          "separator" : "whitespace",
+          "skip" : 0
+        },
+        "headers" : [
+
+        ],
+        "kind" : "onTheMac",
+        "language" : "applescript",
+        "method" : "GET",
+        "script" : "",
+        "steps" : [
+
+        ],
+        "text" : "https://{{$settings.pagina}}",
+        "url" : ""
+      },
+      "runningText" : "",
+      "successMessage" : "",
+      "successReport" : "nothing"
     }
   ],
-  "attention": {
-    "mode": "newRows"
+  "attention" : {
+    "comparison" : "above",
+    "countPath" : "",
+    "listIndex" : 0,
+    "mode" : "newRows",
+    "threshold" : 0
   },
-  "settings": [
+  "button" : {
+    "cancelLabel" : "",
+    "confirms" : false,
+    "failureMessage" : "",
+    "failureReport" : "message",
+    "okLabel" : "",
+    "question" : "",
+    "runningText" : "",
+    "successMessage" : "",
+    "successReport" : "message"
+  },
+  "card" : {
+    "blocks" : [
+      {
+        "breakdownStyle" : "bar",
+        "groupField" : "{{status}}",
+        "groupKind" : "text",
+        "groups" : [
+          {
+            "color" : "green",
+            "id" : "AEB50E8D-E2A1-4A6A-889D-FD3BAEC67CB9",
+            "match" : "operational",
+            "name" : "Operando",
+            "truth" : true
+          },
+          {
+            "color" : "yellow",
+            "id" : "C8D78462-A2FE-4962-949B-E87664DCD93A",
+            "match" : "degraded_performance",
+            "name" : "Lento",
+            "truth" : true
+          },
+          {
+            "color" : "orange",
+            "id" : "3D01E721-E5EF-4189-8F0D-D098FE3BF3EC",
+            "match" : "partial_outage",
+            "name" : "Falha parcial",
+            "truth" : true
+          },
+          {
+            "color" : "red",
+            "id" : "F6AA0BBE-007B-4EED-860F-36C847E74955",
+            "match" : "major_outage",
+            "name" : "Fora do ar",
+            "truth" : true
+          },
+          {
+            "color" : "blue",
+            "id" : "A4669090-7D2C-43F5-B484-B56ACFDB41AC",
+            "match" : "under_maintenance",
+            "name" : "Manutenção",
+            "truth" : true
+          }
+        ],
+        "id" : "41728ABF-996D-45E9-88D2-5F0C70882254",
+        "measure" : "count",
+        "others" : {
+          "color" : "gray",
+          "name" : "Outros",
+          "shows" : true
+        },
+        "path" : "components",
+        "shows" : "amount",
+        "title" : "Componentes",
+        "type" : "breakdown"
+      },
+      {
+        "id" : "7F46E09C-FEBA-4A8A-9A21-3CF516376317",
+        "label" : "{{name}}",
+        "limit" : 36,
+        "path" : "components",
+        "status" : "{{status}}",
+        "statusColors" : {
+          "degraded_performance" : "attention",
+          "major_outage" : "negative",
+          "operational" : "positive",
+          "partial_outage" : "attention",
+          "under_maintenance" : "neutral"
+        },
+        "type" : "grid"
+      },
+      {
+        "id" : "78C7B948-A9A2-43D0-B6F3-702CA6B828FC",
+        "pages" : [
+          {
+            "body" : "1C5CEB6F-FFA4-422B-8200-C5ED74ED8B68",
+            "id" : "F1EEF397-B427-4576-9E65-941FF6F01104",
+            "kind" : "symbol",
+            "name" : "Incidentes",
+            "symbolName" : "exclamationmark.triangle.fill"
+          },
+          {
+            "body" : "44B7A6A6-4FFB-45AA-A0E5-949FDD5C4F29",
+            "id" : "895775B1-F357-4B55-B1E9-C85B540050D1",
+            "kind" : "symbol",
+            "name" : "Manutenção",
+            "symbolName" : "wrench.and.screwdriver.fill"
+          }
+        ],
+        "type" : "tabs"
+      },
+      {
+        "columnGap" : 8,
+        "id" : "1C5CEB6F-FFA4-422B-8200-C5ED74ED8B68",
+        "limit" : 5,
+        "path" : "incidents",
+        "rowURL" : "{{shortlink}}",
+        "structure" : [
+          {
+            "id" : "63287157-1F43-47D7-8763-D256BB6BA5DB",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "C5D0A2D6-0960-486B-960E-5FC14D2427A5",
+                "items" : [
+                  {
+                    "content" : "{{name}}",
+                    "fills" : true,
+                    "id" : "DD9702EA-7C2C-42F9-865F-0B24C6944902",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 0,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "9459D068-BB35-44BA-85AB-CEE441EE8501",
+                "items" : [
+                  {
+                    "content" : "{{updated_at | ago}}",
+                    "fills" : true,
+                    "id" : "2FE6FA59-4805-4DF8-8E5A-8D4ECDEB0059",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "gap" : 8,
+                "id" : "1EA57ECA-E8B7-46D2-B1B6-39F2473C524D",
+                "items" : [
+                  {
+                    "id" : "B8D7C7B7-C1F7-4938-AF89-AC64CBCC942D",
+                    "kind" : "space",
+                    "spaceWidth" : 0
+                  },
+                  {
+                    "content" : "{{impact}}",
+                    "id" : "FA56F4A7-582C-4ECB-85D9-3C7503C75AAA",
+                    "indicator" : "dotAndText",
+                    "kind" : "indicator",
+                    "rules" : [
+                      {
+                        "label" : "crítico",
+                        "tint" : "negative",
+                        "value" : "critical"
+                      },
+                      {
+                        "label" : "grande",
+                        "tint" : "negative",
+                        "value" : "major"
+                      },
+                      {
+                        "label" : "pequeno",
+                        "tint" : "attention",
+                        "value" : "minor"
+                      },
+                      {
+                        "label" : "nenhum",
+                        "tint" : "neutral",
+                        "value" : "none"
+                      }
+                    ],
+                    "size" : 13
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
+          }
+        ],
+        "type" : "list"
+      },
+      {
+        "columnGap" : 8,
+        "id" : "44B7A6A6-4FFB-45AA-A0E5-949FDD5C4F29",
+        "limit" : 5,
+        "path" : "scheduled_maintenances",
+        "rowURL" : "{{shortlink}}",
+        "structure" : [
+          {
+            "id" : "AA1AEBBB-4D1B-45BE-87FE-A94768C4B10A",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "A11B340F-30D6-4E36-9B99-BDC05D608A74",
+                "items" : [
+                  {
+                    "content" : "{{name}}",
+                    "fills" : true,
+                    "id" : "424B3FBC-3CDB-4CE6-B089-1EFD79F24A21",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 0,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "24E716D2-2332-469B-A659-5043481790EC",
+                "items" : [
+                  {
+                    "content" : "{{scheduled_for | date}}",
+                    "fills" : true,
+                    "id" : "50800E77-A1B0-4AB6-93A4-1F10B957DF46",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
+          }
+        ],
+        "type" : "list"
+      }
+    ],
+    "emptyMessage" : "Nada a relatar.",
+    "isEnabled" : true,
+    "rowLimit" : 5,
+    "subtitle" : "{{status.description}}",
+    "title" : "{{page.name}}"
+  },
+  "icon" : {
+    "kind" : "symbol",
+    "pictureSource" : "",
+    "symbolName" : "waveform.path.ecg",
+    "word" : ""
+  },
+  "id" : "plugin.exemplo.status-servicos",
+  "interval" : 300,
+  "name" : "Status dos serviços",
+  "parameters" : [
+
+  ],
+  "readsOnItsOwn" : true,
+  "role" : "reading",
+  "schema" : 12,
+  "settings" : [
     {
-      "key": "pagina",
-      "label": "Serviço",
-      "type": "choice",
-      "default": "www.githubstatus.com",
-      "help": "Qualquer página de status feita com Statuspage serve. Cole o domínio dela.",
-      "options": [
+      "default" : "www.githubstatus.com",
+      "help" : "Qualquer página de status feita com Statuspage serve. Cole o domínio dela.",
+      "key" : "pagina",
+      "label" : "Serviço",
+      "options" : [
         {
-          "value": "www.githubstatus.com",
-          "label": "GitHub"
+          "label" : "GitHub",
+          "value" : "www.githubstatus.com"
         },
         {
-          "value": "status.openai.com",
-          "label": "OpenAI"
+          "label" : "OpenAI",
+          "value" : "status.openai.com"
         },
         {
-          "value": "www.cloudflarestatus.com",
-          "label": "Cloudflare"
+          "label" : "Cloudflare",
+          "value" : "www.cloudflarestatus.com"
         },
         {
-          "value": "status.slack.com",
-          "label": "Slack"
+          "label" : "Slack",
+          "value" : "status.slack.com"
         },
         {
-          "value": "status.notion.so",
-          "label": "Notion"
+          "label" : "Notion",
+          "value" : "status.notion.so"
         },
         {
-          "value": "status.atlassian.com",
-          "label": "Atlassian"
+          "label" : "Atlassian",
+          "value" : "status.atlassian.com"
         }
-      ]
+      ],
+      "type" : "choice"
     }
-  ]
+  ],
+  "slot" : {
+    "alertsOnThreshold" : false,
+    "label" : "{{components | count}}",
+    "status" : "{{status.indicator}}",
+    "statusColors" : {
+      "critical" : "negative",
+      "major" : "negative",
+      "minor" : "attention",
+      "none" : "positive"
+    },
+    "style" : "status",
+    "total" : "",
+    "value" : ""
+  },
+  "source" : {
+    "body" : "",
+    "errand" : "copy",
+    "format" : {
+      "all" : false,
+      "hasHeader" : false,
+      "kind" : "json",
+      "pattern" : "",
+      "separator" : "whitespace",
+      "skip" : 0
+    },
+    "headers" : [
+
+    ],
+    "kind" : "http",
+    "language" : "applescript",
+    "method" : "GET",
+    "script" : "",
+    "steps" : [
+
+    ],
+    "text" : "",
+    "url" : "https://{{$settings.pagina}}/api/v2/summary.json"
+  }
 }

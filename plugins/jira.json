@@ -1,141 +1,305 @@
 {
-  "schema": 11,
-  "id": "plugin.exemplo.jira",
-  "name": "Jira",
-  "interval": 600,
-  "icon": {
-    "kind": "symbol",
-    "symbolName": "ticket.fill"
+  "actions" : [
+
+  ],
+  "answer" : "{\"issues\":[{\"expand\":\"\",\"id\":\"10482\",\"self\":\"https://exemplo.atlassian.net/rest/api/3/issue/10482\",\"key\":\"APP-312\",\"fields\":{\"summary\":\"Erro ao salvar o endereço de entrega no app\",\"status\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/status/3\",\"description\":\"\",\"name\":\"Em andamento\",\"id\":\"3\",\"statusCategory\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/statuscategory/4\",\"id\":4,\"key\":\"indeterminate\",\"colorName\":\"yellow\",\"name\":\"In Progress\"}},\"priority\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/priority/2\",\"name\":\"High\",\"id\":\"2\"},\"assignee\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/user?accountId=5b10ac8d82e05b22cc7d4ef5\",\"accountId\":\"5b10ac8d82e05b22cc7d4ef5\",\"displayName\":\"Ana Souza\",\"active\":true,\"timeZone\":\"America/Sao_Paulo\",\"accountType\":\"atlassian\"},\"updated\":\"2026-10-01T16:48:22.104-0300\"}},{\"expand\":\"\",\"id\":\"10479\",\"self\":\"https://exemplo.atlassian.net/rest/api/3/issue/10479\",\"key\":\"APP-309\",\"fields\":{\"summary\":\"Botão de pagamento some no iPhone SE\",\"status\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/status/3\",\"description\":\"\",\"name\":\"Em revisão\",\"id\":\"3\",\"statusCategory\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/statuscategory/4\",\"id\":4,\"key\":\"indeterminate\",\"colorName\":\"yellow\",\"name\":\"In Progress\"}},\"priority\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/priority/2\",\"name\":\"Highest\",\"id\":\"2\"},\"assignee\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/user?accountId=5b10ac8d82e05b22cc7d4ef5\",\"accountId\":\"5b10ac8d82e05b22cc7d4ef5\",\"displayName\":\"Bruno Lima\",\"active\":true,\"timeZone\":\"America/Sao_Paulo\",\"accountType\":\"atlassian\"},\"updated\":\"2026-10-01T11:02:05.330-0300\"}},{\"expand\":\"\",\"id\":\"10475\",\"self\":\"https://exemplo.atlassian.net/rest/api/3/issue/10475\",\"key\":\"APP-305\",\"fields\":{\"summary\":\"Traduzir as mensagens de erro do cadastro\",\"status\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/status/3\",\"description\":\"\",\"name\":\"Tarefas pendentes\",\"id\":\"3\",\"statusCategory\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/statuscategory/2\",\"id\":2,\"key\":\"new\",\"colorName\":\"blue-gray\",\"name\":\"To Do\"}},\"priority\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/priority/2\",\"name\":\"Medium\",\"id\":\"2\"},\"assignee\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/user?accountId=5b10ac8d82e05b22cc7d4ef5\",\"accountId\":\"5b10ac8d82e05b22cc7d4ef5\",\"displayName\":\"Carla Mendes\",\"active\":true,\"timeZone\":\"America/Sao_Paulo\",\"accountType\":\"atlassian\"},\"updated\":\"2026-09-30T17:25:41.877-0300\"}},{\"expand\":\"\",\"id\":\"10471\",\"self\":\"https://exemplo.atlassian.net/rest/api/3/issue/10471\",\"key\":\"APP-301\",\"fields\":{\"summary\":\"Relatório de vendas por região\",\"status\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/status/3\",\"description\":\"\",\"name\":\"Tarefas pendentes\",\"id\":\"3\",\"statusCategory\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/statuscategory/2\",\"id\":2,\"key\":\"new\",\"colorName\":\"blue-gray\",\"name\":\"To Do\"}},\"priority\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/priority/2\",\"name\":\"Low\",\"id\":\"2\"},\"assignee\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/user?accountId=5b10ac8d82e05b22cc7d4ef5\",\"accountId\":\"5b10ac8d82e05b22cc7d4ef5\",\"displayName\":\"Ana Souza\",\"active\":true,\"timeZone\":\"America/Sao_Paulo\",\"accountType\":\"atlassian\"},\"updated\":\"2026-09-30T09:14:10.552-0300\"}},{\"expand\":\"\",\"id\":\"10466\",\"self\":\"https://exemplo.atlassian.net/rest/api/3/issue/10466\",\"key\":\"APP-296\",\"fields\":{\"summary\":\"Atualizar o SDK de notificações\",\"status\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/status/3\",\"description\":\"\",\"name\":\"Concluído\",\"id\":\"3\",\"statusCategory\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/statuscategory/3\",\"id\":3,\"key\":\"done\",\"colorName\":\"green\",\"name\":\"Done\"}},\"priority\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/priority/2\",\"name\":\"Medium\",\"id\":\"2\"},\"assignee\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/user?accountId=5b10ac8d82e05b22cc7d4ef5\",\"accountId\":\"5b10ac8d82e05b22cc7d4ef5\",\"displayName\":\"Bruno Lima\",\"active\":true,\"timeZone\":\"America/Sao_Paulo\",\"accountType\":\"atlassian\"},\"updated\":\"2026-09-29T18:39:57.019-0300\"}}],\"isLast\":true}",
+  "attention" : {
+    "comparison" : "above",
+    "countPath" : "",
+    "listIndex" : 0,
+    "mode" : "newRows",
+    "threshold" : 0
   },
-  "source": {
-    "kind": "http",
-    "method": "GET",
-    "url": "https://{{$settings.dominio}}/rest/api/3/search/jql",
-    "query": [
-      {
-        "name": "jql",
-        "value": "{{$settings.jql}}"
-      },
-      {
-        "name": "maxResults",
-        "value": "20"
-      },
-      {
-        "name": "fields",
-        "value": "summary,status,priority,assignee,updated"
-      }
-    ],
-    "headers": [
-      {
-        "name": "Authorization",
-        "value": "Basic {{$settings.token}}"
-      },
-      {
-        "name": "Accept",
-        "value": "application/json"
-      }
-    ],
-    "format": {
-      "kind": "json"
-    }
+  "button" : {
+    "cancelLabel" : "",
+    "confirms" : false,
+    "failureMessage" : "",
+    "failureReport" : "message",
+    "okLabel" : "",
+    "question" : "",
+    "runningText" : "",
+    "successMessage" : "",
+    "successReport" : "message"
   },
-  "slot": {
-    "label": "{{issues | count}}",
-    "style": "number"
-  },
-  "card": {
-    "isEnabled": true,
-    "title": "Jira",
-    "subtitle": "{{$settings.jql}}",
-    "emptyMessage": "Nenhuma issue com esse JQL.",
-    "blocks": [
+  "card" : {
+    "blocks" : [
       {
-        "type": "hero",
-        "value": "{{issues | count}}",
-        "caption": "Issues nesta busca",
-        "goodDirection": "down",
-        "format": "integer",
-        "width": "half"
+        "caption" : "Issues nesta busca",
+        "format" : "integer",
+        "goodDirection" : "down",
+        "id" : "C5D26B80-24BE-4922-A127-093FB33B97DB",
+        "type" : "hero",
+        "value" : "{{issues | count}}",
+        "width" : "half"
       },
       {
-        "type": "breakdown",
-        "title": "Andamento",
-        "breakdownStyle": "list",
-        "path": "issues",
-        "groupField": "{{fields.status.statusCategory.key}}",
-        "groupKind": "text",
-        "measure": "count",
-        "shows": "amount",
-        "groups": [
+        "breakdownStyle" : "list",
+        "groupField" : "{{fields.status.statusCategory.key}}",
+        "groupKind" : "text",
+        "groups" : [
           {
-            "id": "C68E4972-0D03-4DDF-89A0-DCD43E6ED938",
-            "name": "A fazer",
-            "color": "blue",
-            "match": "new"
+            "color" : "blue",
+            "id" : "C68E4972-0D03-4DDF-89A0-DCD43E6ED938",
+            "match" : "new",
+            "name" : "A fazer",
+            "truth" : true
           },
           {
-            "id": "EB8F9294-B6D3-40F4-B89B-05148725BD87",
-            "name": "Fazendo",
-            "color": "yellow",
-            "match": "indeterminate"
+            "color" : "yellow",
+            "id" : "EB8F9294-B6D3-40F4-B89B-05148725BD87",
+            "match" : "indeterminate",
+            "name" : "Fazendo",
+            "truth" : true
           },
           {
-            "id": "BC7FA2C0-1ABB-46D3-B977-6632BE76775C",
-            "name": "Feito",
-            "color": "green",
-            "match": "done"
+            "color" : "green",
+            "id" : "BC7FA2C0-1ABB-46D3-B977-6632BE76775C",
+            "match" : "done",
+            "name" : "Feito",
+            "truth" : true
           }
         ],
-        "others": {
-          "shows": false,
-          "name": "Outros",
-          "color": "gray"
+        "id" : "C43933F2-F271-452D-BC9D-F20C3A5F9DA5",
+        "measure" : "count",
+        "others" : {
+          "color" : "gray",
+          "name" : "Outros",
+          "shows" : false
         },
-        "width": "half"
+        "path" : "issues",
+        "shows" : "amount",
+        "title" : "Andamento",
+        "type" : "breakdown",
+        "width" : "half"
       },
       {
-        "type": "list",
-        "limit": 6,
-        "tabs": [
+        "columnGap" : 8,
+        "id" : "C208DB2E-B7F6-411E-BDA2-D09F1B5B02CE",
+        "limit" : 5,
+        "path" : "issues",
+        "rowURL" : "https://{{$settings.dominio}}/browse/{{key}}",
+        "structure" : [
           {
-            "title": "Issues",
-            "path": "issues",
-            "rowTitle": "{{fields.summary}}",
-            "rowSubtitle": "{{fields.assignee.displayName}} · {{fields.updated | ago}}",
-            "rowBadge": "{{key}}",
-            "rowWrapsTitle": true,
-            "rowStatus": "{{fields.status.name}}",
-            "rowURL": "https://{{$settings.dominio}}/browse/{{key}}"
+            "id" : "3F0CD239-CC72-4EE9-AB3D-A482295B46C8",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "404B90F1-150A-4872-8105-B90AB195C5A3",
+                "items" : [
+                  {
+                    "content" : "{{fields.summary}}",
+                    "fills" : true,
+                    "id" : "6BF6CB50-DA94-4517-B795-FB737CD68071",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 0,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "3CB12B2B-F00D-4A5E-BF41-BC1049583FC8",
+                "items" : [
+                  {
+                    "content" : "{{fields.assignee.displayName}} · {{fields.updated | ago}}",
+                    "fills" : true,
+                    "id" : "105B2429-0B9D-40BC-B77C-B313F5463752",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "gap" : 8,
+                "id" : "E7DDE8FF-A321-4989-ACF2-AF41A3B1FA42",
+                "items" : [
+                  {
+                    "id" : "A5B4D6A6-DBCB-458D-8817-91F3915F96EB",
+                    "kind" : "space",
+                    "spaceWidth" : 0
+                  },
+                  {
+                    "content" : "{{fields.status.name}}",
+                    "id" : "A979F58A-9511-4BE2-9629-F7AFC043B96A",
+                    "indicator" : "dotAndText",
+                    "kind" : "indicator",
+                    "rules" : [
+                      {
+                        "tint" : "positive",
+                        "value" : "positive"
+                      },
+                      {
+                        "tint" : "positive",
+                        "value" : "ok"
+                      },
+                      {
+                        "tint" : "positive",
+                        "value" : "green"
+                      },
+                      {
+                        "tint" : "positive",
+                        "value" : "success"
+                      },
+                      {
+                        "tint" : "positive",
+                        "value" : "up"
+                      },
+                      {
+                        "tint" : "attention",
+                        "value" : "attention"
+                      },
+                      {
+                        "tint" : "attention",
+                        "value" : "warn"
+                      },
+                      {
+                        "tint" : "attention",
+                        "value" : "warning"
+                      },
+                      {
+                        "tint" : "attention",
+                        "value" : "yellow"
+                      },
+                      {
+                        "tint" : "negative",
+                        "value" : "negative"
+                      },
+                      {
+                        "tint" : "negative",
+                        "value" : "bad"
+                      },
+                      {
+                        "tint" : "negative",
+                        "value" : "red"
+                      },
+                      {
+                        "tint" : "negative",
+                        "value" : "error"
+                      },
+                      {
+                        "tint" : "negative",
+                        "value" : "down"
+                      }
+                    ],
+                    "size" : 13
+                  },
+                  {
+                    "content" : "{{key}}",
+                    "id" : "687A85DA-3DCF-44DA-AA4C-A38486032EC1",
+                    "ink" : "secondary",
+                    "kind" : "icon",
+                    "size" : 13,
+                    "symbolName" : ""
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
           }
-        ]
+        ],
+        "type" : "list"
       }
-    ]
+    ],
+    "emptyMessage" : "Nenhuma issue com esse JQL.",
+    "isEnabled" : true,
+    "rowLimit" : 5,
+    "subtitle" : "{{$settings.jql}}",
+    "title" : "Jira"
   },
-  "actions": [],
-  "attention": {
-    "mode": "newRows"
+  "icon" : {
+    "kind" : "symbol",
+    "pictureSource" : "",
+    "symbolName" : "ticket.fill",
+    "word" : ""
   },
-  "settings": [
+  "id" : "plugin.exemplo.jira",
+  "interval" : 600,
+  "name" : "Jira",
+  "parameters" : [
+
+  ],
+  "readsOnItsOwn" : true,
+  "role" : "reading",
+  "schema" : 12,
+  "settings" : [
     {
-      "key": "dominio",
-      "label": "Domínio do Jira",
-      "type": "text",
-      "required": true,
-      "placeholder": "minhaempresa.atlassian.net"
+      "key" : "dominio",
+      "label" : "Domínio do Jira",
+      "placeholder" : "minhaempresa.atlassian.net",
+      "required" : true,
+      "type" : "text"
     },
     {
-      "key": "jql",
-      "label": "Busca JQL",
-      "type": "text",
-      "default": "assignee = currentUser() AND statusCategory != Done ORDER BY updated DESC"
+      "default" : "assignee = currentUser() AND statusCategory != Done ORDER BY updated DESC",
+      "key" : "jql",
+      "label" : "Busca JQL",
+      "type" : "text"
     },
     {
-      "key": "token",
-      "label": "Token",
-      "type": "secret",
-      "required": true,
-      "help": "Crie o token em id.atlassian.com e cole o Base64 de «seu-email:token»."
+      "help" : "Crie o token em id.atlassian.com e cole o Base64 de «seu-email:token».",
+      "key" : "token",
+      "label" : "Token",
+      "required" : true,
+      "type" : "secret"
     }
   ],
-  "answer": "{\"issues\":[{\"expand\":\"\",\"id\":\"10482\",\"self\":\"https://exemplo.atlassian.net/rest/api/3/issue/10482\",\"key\":\"APP-312\",\"fields\":{\"summary\":\"Erro ao salvar o endereço de entrega no app\",\"status\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/status/3\",\"description\":\"\",\"name\":\"Em andamento\",\"id\":\"3\",\"statusCategory\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/statuscategory/4\",\"id\":4,\"key\":\"indeterminate\",\"colorName\":\"yellow\",\"name\":\"In Progress\"}},\"priority\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/priority/2\",\"name\":\"High\",\"id\":\"2\"},\"assignee\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/user?accountId=5b10ac8d82e05b22cc7d4ef5\",\"accountId\":\"5b10ac8d82e05b22cc7d4ef5\",\"displayName\":\"Ana Souza\",\"active\":true,\"timeZone\":\"America/Sao_Paulo\",\"accountType\":\"atlassian\"},\"updated\":\"2026-10-01T16:48:22.104-0300\"}},{\"expand\":\"\",\"id\":\"10479\",\"self\":\"https://exemplo.atlassian.net/rest/api/3/issue/10479\",\"key\":\"APP-309\",\"fields\":{\"summary\":\"Botão de pagamento some no iPhone SE\",\"status\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/status/3\",\"description\":\"\",\"name\":\"Em revisão\",\"id\":\"3\",\"statusCategory\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/statuscategory/4\",\"id\":4,\"key\":\"indeterminate\",\"colorName\":\"yellow\",\"name\":\"In Progress\"}},\"priority\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/priority/2\",\"name\":\"Highest\",\"id\":\"2\"},\"assignee\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/user?accountId=5b10ac8d82e05b22cc7d4ef5\",\"accountId\":\"5b10ac8d82e05b22cc7d4ef5\",\"displayName\":\"Bruno Lima\",\"active\":true,\"timeZone\":\"America/Sao_Paulo\",\"accountType\":\"atlassian\"},\"updated\":\"2026-10-01T11:02:05.330-0300\"}},{\"expand\":\"\",\"id\":\"10475\",\"self\":\"https://exemplo.atlassian.net/rest/api/3/issue/10475\",\"key\":\"APP-305\",\"fields\":{\"summary\":\"Traduzir as mensagens de erro do cadastro\",\"status\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/status/3\",\"description\":\"\",\"name\":\"Tarefas pendentes\",\"id\":\"3\",\"statusCategory\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/statuscategory/2\",\"id\":2,\"key\":\"new\",\"colorName\":\"blue-gray\",\"name\":\"To Do\"}},\"priority\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/priority/2\",\"name\":\"Medium\",\"id\":\"2\"},\"assignee\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/user?accountId=5b10ac8d82e05b22cc7d4ef5\",\"accountId\":\"5b10ac8d82e05b22cc7d4ef5\",\"displayName\":\"Carla Mendes\",\"active\":true,\"timeZone\":\"America/Sao_Paulo\",\"accountType\":\"atlassian\"},\"updated\":\"2026-09-30T17:25:41.877-0300\"}},{\"expand\":\"\",\"id\":\"10471\",\"self\":\"https://exemplo.atlassian.net/rest/api/3/issue/10471\",\"key\":\"APP-301\",\"fields\":{\"summary\":\"Relatório de vendas por região\",\"status\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/status/3\",\"description\":\"\",\"name\":\"Tarefas pendentes\",\"id\":\"3\",\"statusCategory\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/statuscategory/2\",\"id\":2,\"key\":\"new\",\"colorName\":\"blue-gray\",\"name\":\"To Do\"}},\"priority\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/priority/2\",\"name\":\"Low\",\"id\":\"2\"},\"assignee\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/user?accountId=5b10ac8d82e05b22cc7d4ef5\",\"accountId\":\"5b10ac8d82e05b22cc7d4ef5\",\"displayName\":\"Ana Souza\",\"active\":true,\"timeZone\":\"America/Sao_Paulo\",\"accountType\":\"atlassian\"},\"updated\":\"2026-09-30T09:14:10.552-0300\"}},{\"expand\":\"\",\"id\":\"10466\",\"self\":\"https://exemplo.atlassian.net/rest/api/3/issue/10466\",\"key\":\"APP-296\",\"fields\":{\"summary\":\"Atualizar o SDK de notificações\",\"status\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/status/3\",\"description\":\"\",\"name\":\"Concluído\",\"id\":\"3\",\"statusCategory\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/statuscategory/3\",\"id\":3,\"key\":\"done\",\"colorName\":\"green\",\"name\":\"Done\"}},\"priority\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/priority/2\",\"name\":\"Medium\",\"id\":\"2\"},\"assignee\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/user?accountId=5b10ac8d82e05b22cc7d4ef5\",\"accountId\":\"5b10ac8d82e05b22cc7d4ef5\",\"displayName\":\"Bruno Lima\",\"active\":true,\"timeZone\":\"America/Sao_Paulo\",\"accountType\":\"atlassian\"},\"updated\":\"2026-09-29T18:39:57.019-0300\"}}],\"isLast\":true}"
+  "slot" : {
+    "alertsOnThreshold" : false,
+    "label" : "{{issues | count}}",
+    "style" : "number",
+    "total" : "",
+    "value" : ""
+  },
+  "source" : {
+    "body" : "",
+    "errand" : "copy",
+    "format" : {
+      "all" : false,
+      "hasHeader" : false,
+      "kind" : "json",
+      "pattern" : "",
+      "separator" : "whitespace",
+      "skip" : 0
+    },
+    "headers" : [
+      {
+        "id" : "8555AE33-2934-4821-9AB5-9E440AF72A4F",
+        "name" : "Authorization",
+        "value" : "Basic {{$settings.token}}"
+      },
+      {
+        "id" : "E0D3B904-0296-4D2D-BAA2-1777161F3DC8",
+        "name" : "Accept",
+        "value" : "application/json"
+      }
+    ],
+    "kind" : "http",
+    "language" : "applescript",
+    "method" : "GET",
+    "query" : [
+      {
+        "id" : "19327C19-07F0-4DAA-ACDE-8309165E0B53",
+        "name" : "jql",
+        "value" : "{{$settings.jql}}"
+      },
+      {
+        "id" : "5835E1BE-44CB-4414-B872-05FA22073ECE",
+        "name" : "maxResults",
+        "value" : "20"
+      },
+      {
+        "id" : "DD573C0B-D5A5-4DD4-880A-D954CE439BAB",
+        "name" : "fields",
+        "value" : "summary,status,priority,assignee,updated"
+      }
+    ],
+    "script" : "",
+    "steps" : [
+
+    ],
+    "text" : "",
+    "url" : "https://{{$settings.dominio}}/rest/api/3/search/jql"
+  }
 }

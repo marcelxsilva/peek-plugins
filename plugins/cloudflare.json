@@ -1,124 +1,317 @@
 {
-  "schema": 5,
-  "id": "plugin.exemplo.cloudflare",
-  "name": "Cloudflare",
-  "interval": 600,
-  "icon": {
-    "kind": "picture",
-    "symbolName": "cloud.fill",
-    "pictureSource": "https://github.com/cloudflare.png?size=128"
+  "actions" : [
+
+  ],
+  "attention" : {
+    "comparison" : "above",
+    "countPath" : "",
+    "listIndex" : 0,
+    "mode" : "newRows",
+    "threshold" : 0
   },
-  "source": {
-    "kind": "http",
-    "method": "GET",
-    "url": "https://www.cloudflarestatus.com/api/v2/summary.json",
-    "format": {
-      "kind": "json"
-    }
+  "button" : {
+    "cancelLabel" : "",
+    "confirms" : false,
+    "failureMessage" : "",
+    "failureReport" : "message",
+    "okLabel" : "",
+    "question" : "",
+    "runningText" : "",
+    "successMessage" : "",
+    "successReport" : "message"
   },
-  "slot": {
-    "style": "status",
-    "status": "{{status.indicator}}",
-    "statusColors": {
-      "none": "positive",
-      "minor": "attention",
-      "major": "negative",
-      "critical": "negative",
-      "maintenance": "neutral"
-    }
-  },
-  "card": {
-    "isEnabled": true,
-    "title": "Cloudflare",
-    "subtitle": "{{status.description}}",
-    "headline": "{{incidents | count}}",
-    "emptyMessage": "Nada acontecendo agora.",
-    "blocks": [
+  "card" : {
+    "blocks" : [
       {
-        "type": "list",
-        "limit": 5,
-        "tabs": [
+        "id" : "9C955E20-0B7F-4255-BB9D-C18861087490",
+        "pages" : [
           {
-            "title": "Incidentes",
-            "path": "incidents",
-            "rowTitle": "{{name}}",
-            "rowWrapsTitle": true,
-            "rowSubtitle": "{{updated_at | ago}}",
-            "rowStatus": "{{status}}",
-            "badges": [
-              {
-                "value": "{{impact}}",
-                "symbolName": "bolt.fill",
-                "colors": {
-                  "none": "neutral",
-                  "minor": "attention",
-                  "major": "negative",
-                  "critical": "negative"
-                }
-              }
-            ],
-            "rowURL": "{{shortlink}}",
-            "statusColors": {
-              "investigating": "negative",
-              "identified": "attention",
-              "monitoring": "attention",
-              "resolved": "positive",
-              "postmortem": "neutral"
-            },
-            "face": {
-              "kind": "symbol",
-              "value": "exclamationmark.triangle.fill"
-            }
+            "body" : "9C49B15F-4A33-483D-813E-60B4F0B68110",
+            "id" : "6F787A38-B7CC-4C0C-B84C-30DC4F89E3A1",
+            "kind" : "symbol",
+            "name" : "Incidentes",
+            "symbolName" : "exclamationmark.triangle.fill"
           },
           {
-            "title": "Manutenção",
-            "path": "scheduled_maintenances",
-            "rowTitle": "{{name}}",
-            "rowWrapsTitle": true,
-            "rowSubtitle": "{{scheduled_for | date}}",
-            "rowStatus": "{{status}}",
-            "rowURL": "{{shortlink}}",
-            "statusColors": {
-              "scheduled": "neutral",
-              "in_progress": "attention",
-              "verifying": "attention",
-              "completed": "positive"
-            },
-            "face": {
-              "kind": "symbol",
-              "value": "wrench.and.screwdriver.fill"
-            }
+            "body" : "3C3131E3-327C-481C-BCEA-252E771525ED",
+            "id" : "64906E77-962F-45FC-9C2E-BCDF47D5059E",
+            "kind" : "symbol",
+            "name" : "Manutenção",
+            "symbolName" : "wrench.and.screwdriver.fill"
           }
         ],
-        "everyTab": {
-          "title": "Tudo",
-          "face": {
-            "kind": "symbol",
-            "value": "tray.full.fill"
-          }
-        }
+        "type" : "tabs"
       },
       {
-        "type": "grid",
-        "title": "Pontos de presença",
-        "path": "components",
-        "label": "{{name}}",
-        "status": "{{status}}",
-        "limit": 36,
-        "rowURL": "https://www.cloudflarestatus.com",
-        "statusColors": {
-          "operational": "positive",
-          "degraded_performance": "attention",
-          "partial_outage": "attention",
-          "major_outage": "negative",
-          "under_maintenance": "neutral"
-        }
+        "columnGap" : 8,
+        "id" : "9C49B15F-4A33-483D-813E-60B4F0B68110",
+        "limit" : 5,
+        "path" : "incidents",
+        "rowURL" : "{{shortlink}}",
+        "structure" : [
+          {
+            "id" : "5C28E099-81D5-4D70-B6A6-1609DDDC5BFE",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "C0D85C11-8A6A-4998-A7C8-7BB114EE811F",
+                "items" : [
+                  {
+                    "content" : "{{name}}",
+                    "fills" : true,
+                    "id" : "ECB6B3C6-0647-446F-A2F1-47EF2941C325",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 0,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "15093826-7E18-4A85-9669-8F318D14A1AD",
+                "items" : [
+                  {
+                    "content" : "{{updated_at | ago}}",
+                    "fills" : true,
+                    "id" : "6578B95A-9FA8-4020-ADA0-2AA60B1F5835",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "gap" : 8,
+                "id" : "9AA79550-4CC5-4A4A-86DC-0487A8989397",
+                "items" : [
+                  {
+                    "id" : "963ECD9C-ED26-4F6E-A2F2-9B285823696E",
+                    "kind" : "space",
+                    "spaceWidth" : 0
+                  },
+                  {
+                    "content" : "{{status}}",
+                    "id" : "B5D70327-D854-4742-BBD9-D5616C4E67CF",
+                    "indicator" : "dotAndText",
+                    "kind" : "indicator",
+                    "rules" : [
+                      {
+                        "tint" : "attention",
+                        "value" : "identified"
+                      },
+                      {
+                        "tint" : "negative",
+                        "value" : "investigating"
+                      },
+                      {
+                        "tint" : "attention",
+                        "value" : "monitoring"
+                      },
+                      {
+                        "tint" : "neutral",
+                        "value" : "postmortem"
+                      },
+                      {
+                        "tint" : "positive",
+                        "value" : "resolved"
+                      }
+                    ],
+                    "size" : 13
+                  },
+                  {
+                    "content" : "{{impact}}",
+                    "id" : "A97CE786-90A0-4C18-AB93-B9EDF3ADAF29",
+                    "ink" : "secondary",
+                    "kind" : "icon",
+                    "rules" : [
+                      {
+                        "tint" : "negative",
+                        "value" : "critical"
+                      },
+                      {
+                        "tint" : "negative",
+                        "value" : "major"
+                      },
+                      {
+                        "tint" : "attention",
+                        "value" : "minor"
+                      },
+                      {
+                        "tint" : "neutral",
+                        "value" : "none"
+                      }
+                    ],
+                    "size" : 13,
+                    "symbolName" : "bolt.fill",
+                    "tintFrom" : "{{impact}}"
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
+          }
+        ],
+        "type" : "list"
+      },
+      {
+        "columnGap" : 8,
+        "id" : "3C3131E3-327C-481C-BCEA-252E771525ED",
+        "limit" : 5,
+        "path" : "scheduled_maintenances",
+        "rowURL" : "{{shortlink}}",
+        "structure" : [
+          {
+            "id" : "CA9FC1FE-535E-47AC-9EB8-3164BE2E772F",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "0F83642A-A7CB-4F6A-ADB3-E0DE3A88DD34",
+                "items" : [
+                  {
+                    "content" : "{{name}}",
+                    "fills" : true,
+                    "id" : "AADB43D7-76E3-4F9F-BD11-14273222AC73",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 0,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "F2096DE8-2951-4011-9C73-A32CCE3BBAB7",
+                "items" : [
+                  {
+                    "content" : "{{scheduled_for | date}}",
+                    "fills" : true,
+                    "id" : "A84D89B6-1F9E-422E-B56F-FADEE8EF44DB",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "gap" : 8,
+                "id" : "D1B8B0B9-0A49-4995-A7A3-21C1137FD700",
+                "items" : [
+                  {
+                    "id" : "3B8D1599-23DA-4421-99EE-B0BDA816EB96",
+                    "kind" : "space",
+                    "spaceWidth" : 0
+                  },
+                  {
+                    "content" : "{{status}}",
+                    "id" : "49274133-1891-4DE5-B394-9ACF402B73A0",
+                    "indicator" : "dotAndText",
+                    "kind" : "indicator",
+                    "rules" : [
+                      {
+                        "tint" : "positive",
+                        "value" : "completed"
+                      },
+                      {
+                        "tint" : "attention",
+                        "value" : "in_progress"
+                      },
+                      {
+                        "tint" : "neutral",
+                        "value" : "scheduled"
+                      },
+                      {
+                        "tint" : "attention",
+                        "value" : "verifying"
+                      }
+                    ],
+                    "size" : 13
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
+          }
+        ],
+        "type" : "list"
+      },
+      {
+        "id" : "050B2F88-BC05-48D9-B05B-F3E0ADF51E28",
+        "label" : "{{name}}",
+        "limit" : 36,
+        "path" : "components",
+        "rowURL" : "https://www.cloudflarestatus.com",
+        "status" : "{{status}}",
+        "statusColors" : {
+          "degraded_performance" : "attention",
+          "major_outage" : "negative",
+          "operational" : "positive",
+          "partial_outage" : "attention",
+          "under_maintenance" : "neutral"
+        },
+        "title" : "Pontos de presença",
+        "type" : "grid"
       }
-    ]
+    ],
+    "emptyMessage" : "Nada acontecendo agora.",
+    "headline" : "{{incidents | count}}",
+    "isEnabled" : true,
+    "rowLimit" : 5,
+    "subtitle" : "{{status.description}}",
+    "title" : "Cloudflare"
   },
-  "actions": [],
-  "attention": {
-    "mode": "newRows",
-    "listIndex": 0
+  "icon" : {
+    "kind" : "picture",
+    "pictureSource" : "https://github.com/cloudflare.png?size=128",
+    "symbolName" : "cloud.fill",
+    "word" : ""
+  },
+  "id" : "plugin.exemplo.cloudflare",
+  "interval" : 600,
+  "name" : "Cloudflare",
+  "parameters" : [
+
+  ],
+  "readsOnItsOwn" : true,
+  "role" : "reading",
+  "schema" : 12,
+  "slot" : {
+    "alertsOnThreshold" : false,
+    "label" : "",
+    "status" : "{{status.indicator}}",
+    "statusColors" : {
+      "critical" : "negative",
+      "maintenance" : "neutral",
+      "major" : "negative",
+      "minor" : "attention",
+      "none" : "positive"
+    },
+    "style" : "status",
+    "total" : "",
+    "value" : ""
+  },
+  "source" : {
+    "body" : "",
+    "errand" : "copy",
+    "format" : {
+      "all" : false,
+      "hasHeader" : false,
+      "kind" : "json",
+      "pattern" : "",
+      "separator" : "whitespace",
+      "skip" : 0
+    },
+    "headers" : [
+
+    ],
+    "kind" : "http",
+    "language" : "applescript",
+    "method" : "GET",
+    "script" : "",
+    "steps" : [
+
+    ],
+    "text" : "",
+    "url" : "https://www.cloudflarestatus.com/api/v2/summary.json"
   }
 }

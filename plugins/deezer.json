@@ -1,63 +1,173 @@
 {
-  "schema": 5,
-  "id": "plugin.exemplo.deezer",
-  "name": "Mais tocadas",
-  "interval": 21600,
-  "icon": {
-    "kind": "picture",
-    "symbolName": "music.note.list",
-    "pictureSource": "https://github.com/deezer.png?size=128"
+  "actions" : [
+
+  ],
+  "attention" : {
+    "comparison" : "above",
+    "countPath" : "",
+    "listIndex" : 0,
+    "mode" : "never",
+    "threshold" : 0
   },
-  "source": {
-    "kind": "http",
-    "method": "GET",
-    "url": "https://api.deezer.com/chart/0/tracks",
-    "query": [
+  "button" : {
+    "cancelLabel" : "",
+    "confirms" : false,
+    "failureMessage" : "",
+    "failureReport" : "message",
+    "okLabel" : "",
+    "question" : "",
+    "runningText" : "",
+    "successMessage" : "",
+    "successReport" : "message"
+  },
+  "card" : {
+    "blocks" : [
       {
-        "name": "limit",
-        "value": "12"
+        "columnGap" : 8,
+        "id" : "E85BB8B5-31F7-4ECD-AFB0-25ACF7526DE8",
+        "limit" : 10,
+        "path" : "data",
+        "rowURL" : "{{link}}",
+        "structure" : [
+          {
+            "id" : "3B997EA8-C993-4141-8769-3C12EBC098DD",
+            "lines" : [
+              {
+                "id" : "906D3447-8977-47C3-BA28-29FDC9B82397",
+                "items" : [
+                  {
+                    "form" : "rounded",
+                    "id" : "330A5DA4-6DE9-46EE-B668-02E5FAAF2C49",
+                    "kind" : "image",
+                    "picture" : {
+                      "kind" : "address",
+                      "shape" : "rounded",
+                      "value" : "{{album.cover_small}}"
+                    },
+                    "size" : 44
+                  }
+                ]
+              }
+            ],
+            "width" : "auto"
+          },
+          {
+            "id" : "0B34E209-80E5-4D6C-A041-E700F5533E92",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "3F403038-E59F-4DF1-9752-5494E7DCB2B9",
+                "items" : [
+                  {
+                    "content" : "{{title}}",
+                    "fills" : true,
+                    "id" : "5CA02C7B-E0FB-43BB-8F31-0BC85A04BFE6",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 0,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "583FAADF-D8AF-4EEF-8287-44F64CD4E739",
+                "items" : [
+                  {
+                    "content" : "{{artist.name}}",
+                    "fills" : true,
+                    "id" : "8FD02230-A581-4CB8-9AF5-1D0BBC6FD4BE",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "gap" : 8,
+                "id" : "A60738DB-C528-4108-B72F-6C482AE38493",
+                "items" : [
+                  {
+                    "content" : "{{duration | clock}}",
+                    "fills" : true,
+                    "id" : "F48B60D0-8355-4748-88BF-78E6BBC2F005",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
+          }
+        ],
+        "type" : "list"
       }
     ],
-    "format": {
-      "kind": "json"
-    }
-  },
-  "slot": {
-    "label": "{{data | count}}",
-    "style": "number"
-  },
-  "card": {
-    "isEnabled": true,
-    "picture": {
-      "kind": "address",
-      "value": "{{data[0].album.cover_medium}}",
-      "shape": "rounded",
-      "scale": 1.6
+    "emptyMessage" : "O Deezer não respondeu.",
+    "isEnabled" : true,
+    "picture" : {
+      "kind" : "address",
+      "scale" : 1.6,
+      "shape" : "rounded",
+      "value" : "{{data[0].album.cover_medium}}"
     },
-    "title": "Mais tocadas",
-    "subtitle": "O ranking do Deezer agora",
-    "emptyMessage": "O Deezer não respondeu.",
-    "blocks": [
-      {
-        "type": "list",
-        "limit": 8,
-        "tabs": [
-          {
-            "title": "Faixas",
-            "path": "data",
-            "rowTitle": "{{title}}",
-            "rowSubtitle": "{{artist.name}}",
-            "rowMeta": "{{duration | clock}}",
-            "rowImage": "{{album.cover_small}}",
-            "rowWrapsTitle": true,
-            "rowURL": "{{link}}"
-          }
-        ]
-      }
-    ]
+    "rowLimit" : 5,
+    "subtitle" : "O ranking do Deezer agora",
+    "title" : "Mais tocadas"
   },
-  "actions": [],
-  "attention": {
-    "mode": "never"
+  "icon" : {
+    "kind" : "picture",
+    "pictureSource" : "https://github.com/deezer.png?size=128",
+    "symbolName" : "music.note.list",
+    "word" : ""
+  },
+  "id" : "plugin.exemplo.deezer",
+  "interval" : 21600,
+  "name" : "Mais tocadas",
+  "parameters" : [
+
+  ],
+  "readsOnItsOwn" : true,
+  "role" : "reading",
+  "schema" : 12,
+  "slot" : {
+    "alertsOnThreshold" : false,
+    "label" : "{{data | count}}",
+    "style" : "number",
+    "total" : "",
+    "value" : ""
+  },
+  "source" : {
+    "body" : "",
+    "errand" : "copy",
+    "format" : {
+      "all" : false,
+      "hasHeader" : false,
+      "kind" : "json",
+      "pattern" : "",
+      "separator" : "whitespace",
+      "skip" : 0
+    },
+    "headers" : [
+
+    ],
+    "kind" : "http",
+    "language" : "applescript",
+    "method" : "GET",
+    "query" : [
+      {
+        "id" : "B5AE8AD3-AB06-4D93-819B-4E844950C72A",
+        "name" : "limit",
+        "value" : "12"
+      }
+    ],
+    "script" : "",
+    "steps" : [
+
+    ],
+    "text" : "",
+    "url" : "https://api.deezer.com/chart/0/tracks"
   }
 }

@@ -1,90 +1,229 @@
 {
-  "schema": 5,
-  "id": "plugin.exemplo.livros",
-  "name": "Livros",
-  "interval": 3600,
-  "readsOnItsOwn": false,
-  "icon": {
-    "kind": "picture",
-    "symbolName": "books.vertical.fill",
-    "pictureSource": "https://www.google.com/s2/favicons?domain=openlibrary.org&sz=128"
-  },
-  "source": {
-    "kind": "http",
-    "method": "GET",
-    "url": "https://openlibrary.org/search.json",
-    "query": [
-      {
-        "name": "q",
-        "value": "{{$global.peek_livro ?? $settings.padrao}}"
-      },
-      {
-        "name": "limit",
-        "value": "12"
-      },
-      {
-        "name": "fields",
-        "value": "title,author_name,first_publish_year,cover_i,key"
-      }
-    ],
-    "format": {
-      "kind": "json"
-    }
-  },
-  "slot": {
-    "label": "{{docs | count}}",
-    "style": "number"
-  },
-  "card": {
-    "isEnabled": true,
-    "title": "Livros",
-    "subtitle": "{{numFound}} resultados na Open Library",
-    "emptyMessage": "Nada encontrado. Toque em Buscar.",
-    "blocks": [
-      {
-        "type": "list",
-        "limit": 6,
-        "tabs": [
-          {
-            "title": "Resultados",
-            "path": "docs",
-            "rowTitle": "{{title}}",
-            "rowSubtitle": "{{author_name[0]}}",
-            "rowMeta": "{{first_publish_year}}",
-            "rowImage": "https://covers.openlibrary.org/b/id/{{cover_i}}-M.jpg",
-            "rowWrapsTitle": true,
-            "rowURL": "https://openlibrary.org{{key}}"
-          }
-        ]
-      }
-    ]
-  },
-  "actions": [
+  "actions" : [
     {
-      "name": "Buscar",
-      "symbolName": "magnifyingglass",
-      "place": "card",
-      "isProminent": true,
-      "asksForValue": true,
-      "question": "Buscar um livro",
-      "run": {
-        "kind": "onTheMac",
-        "errand": "remember",
-        "variable": "peek_livro",
-        "text": "{{$input}}"
+      "asksForValue" : true,
+      "confirmText" : "",
+      "confirms" : false,
+      "failureMessage" : "",
+      "failureReport" : "message",
+      "id" : "67AD2947-BD03-40EA-B12B-C48D3EF54F7C",
+      "isProminent" : true,
+      "listIndex" : 0,
+      "mark" : {
+        "kind" : "symbol",
+        "value" : "magnifyingglass"
       },
-      "successMessage": "Buscando {{$input}}."
+      "name" : "Buscar",
+      "place" : "card",
+      "question" : "Buscar um livro",
+      "run" : {
+        "body" : "",
+        "errand" : "remember",
+        "format" : {
+          "all" : false,
+          "hasHeader" : false,
+          "kind" : "json",
+          "pattern" : "",
+          "separator" : "whitespace",
+          "skip" : 0
+        },
+        "headers" : [
+
+        ],
+        "kind" : "onTheMac",
+        "language" : "applescript",
+        "method" : "GET",
+        "script" : "",
+        "steps" : [
+
+        ],
+        "text" : "{{$input}}",
+        "url" : "",
+        "variable" : "peek_livro"
+      },
+      "runningText" : "",
+      "successMessage" : "Buscando {{$input}}.",
+      "successReport" : "message"
     }
   ],
-  "attention": {
-    "mode": "never"
+  "attention" : {
+    "comparison" : "above",
+    "countPath" : "",
+    "listIndex" : 0,
+    "mode" : "never",
+    "threshold" : 0
   },
-  "settings": [
+  "button" : {
+    "cancelLabel" : "",
+    "confirms" : false,
+    "failureMessage" : "",
+    "failureReport" : "message",
+    "okLabel" : "",
+    "question" : "",
+    "runningText" : "",
+    "successMessage" : "",
+    "successReport" : "message"
+  },
+  "card" : {
+    "blocks" : [
+      {
+        "columnGap" : 8,
+        "id" : "03A7514C-B307-45D4-A2B0-989369D8256A",
+        "limit" : 5,
+        "path" : "docs",
+        "rowURL" : "https://openlibrary.org{{key}}",
+        "structure" : [
+          {
+            "id" : "F52A9F7B-52D1-4471-99B0-B3DA4B860E21",
+            "lines" : [
+              {
+                "id" : "D417B6FE-5767-4E77-8FD7-26719D7E7E63",
+                "items" : [
+                  {
+                    "form" : "rounded",
+                    "id" : "62395F5F-9C7A-4189-B099-674A13359338",
+                    "kind" : "image",
+                    "picture" : {
+                      "kind" : "address",
+                      "shape" : "rounded",
+                      "value" : "https://covers.openlibrary.org/b/id/{{cover_i}}-M.jpg"
+                    },
+                    "size" : 44
+                  }
+                ]
+              }
+            ],
+            "width" : "auto"
+          },
+          {
+            "id" : "62A09585-83A7-4FDC-A13F-5D87AF7BDC82",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "7A4590A9-F519-45DB-9D43-94AC409AE519",
+                "items" : [
+                  {
+                    "content" : "{{title}}",
+                    "fills" : true,
+                    "id" : "E9AF7AE4-5DFF-4A06-94A8-61D9A83969F1",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 0,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "DA8BA40C-4850-4C47-B569-A6CE408CAE11",
+                "items" : [
+                  {
+                    "content" : "{{author_name[0]}}",
+                    "fills" : true,
+                    "id" : "937632BA-04EA-4B59-936B-A94FEDF421D0",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "gap" : 8,
+                "id" : "F41A67A4-3290-4F07-AC61-BCAC302EDCBD",
+                "items" : [
+                  {
+                    "content" : "{{first_publish_year}}",
+                    "fills" : true,
+                    "id" : "BAE8DA2E-E1E6-4836-9C80-323C059431CF",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
+          }
+        ],
+        "type" : "list"
+      }
+    ],
+    "emptyMessage" : "Nada encontrado. Toque em Buscar.",
+    "isEnabled" : true,
+    "rowLimit" : 5,
+    "subtitle" : "{{numFound}} resultados na Open Library",
+    "title" : "Livros"
+  },
+  "icon" : {
+    "kind" : "picture",
+    "pictureSource" : "https://www.google.com/s2/favicons?domain=openlibrary.org&sz=128",
+    "symbolName" : "books.vertical.fill",
+    "word" : ""
+  },
+  "id" : "plugin.exemplo.livros",
+  "interval" : 3600,
+  "name" : "Livros",
+  "parameters" : [
+
+  ],
+  "readsOnItsOwn" : false,
+  "role" : "reading",
+  "schema" : 12,
+  "settings" : [
     {
-      "key": "padrao",
-      "label": "Busca inicial",
-      "type": "text",
-      "default": "clean architecture"
+      "default" : "clean architecture",
+      "key" : "padrao",
+      "label" : "Busca inicial",
+      "type" : "text"
     }
-  ]
+  ],
+  "slot" : {
+    "alertsOnThreshold" : false,
+    "label" : "{{docs | count}}",
+    "style" : "number",
+    "total" : "",
+    "value" : ""
+  },
+  "source" : {
+    "body" : "",
+    "errand" : "copy",
+    "format" : {
+      "all" : false,
+      "hasHeader" : false,
+      "kind" : "json",
+      "pattern" : "",
+      "separator" : "whitespace",
+      "skip" : 0
+    },
+    "headers" : [
+
+    ],
+    "kind" : "http",
+    "language" : "applescript",
+    "method" : "GET",
+    "query" : [
+      {
+        "id" : "9B358D33-E219-46F3-AB4C-907840A87806",
+        "name" : "q",
+        "value" : "{{$global.peek_livro ?? $settings.padrao}}"
+      },
+      {
+        "id" : "763BBB96-7832-48A4-B22F-2474336BDC82",
+        "name" : "limit",
+        "value" : "12"
+      },
+      {
+        "id" : "EC09A568-0116-45DD-837A-1FAF261492CB",
+        "name" : "fields",
+        "value" : "title,author_name,first_publish_year,cover_i,key"
+      }
+    ],
+    "script" : "",
+    "steps" : [
+
+    ],
+    "text" : "",
+    "url" : "https://openlibrary.org/search.json"
+  }
 }

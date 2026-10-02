@@ -1,95 +1,208 @@
 {
-  "schema": 5,
-  "id": "plugin.exemplo.radio",
-  "name": "Rádio",
-  "interval": 21600,
-  "icon": {
-    "kind": "symbol",
-    "symbolName": "dot.radiowaves.left.and.right"
+  "actions" : [
+
+  ],
+  "attention" : {
+    "comparison" : "above",
+    "countPath" : "",
+    "listIndex" : 0,
+    "mode" : "never",
+    "threshold" : 0
   },
-  "source": {
-    "kind": "http",
-    "method": "GET",
-    "url": "https://de1.api.radio-browser.info/json/stations/bycountrycodeexact/{{$settings.pais}}",
-    "query": [
+  "button" : {
+    "cancelLabel" : "",
+    "confirms" : false,
+    "failureMessage" : "",
+    "failureReport" : "message",
+    "okLabel" : "",
+    "question" : "",
+    "runningText" : "",
+    "successMessage" : "",
+    "successReport" : "message"
+  },
+  "card" : {
+    "blocks" : [
       {
-        "name": "order",
-        "value": "clickcount"
-      },
-      {
-        "name": "reverse",
-        "value": "true"
-      },
-      {
-        "name": "limit",
-        "value": "12"
-      },
-      {
-        "name": "hidebroken",
-        "value": "true"
+        "columnGap" : 8,
+        "id" : "BD4BE8B2-E156-496C-A28F-F2DB23289ECA",
+        "limit" : 10,
+        "path" : "$",
+        "rowURL" : "{{url_resolved}}",
+        "structure" : [
+          {
+            "id" : "397A21C0-E812-45B6-A75A-93397E64255F",
+            "lines" : [
+              {
+                "id" : "C11E2AD3-79C2-4DDB-873E-5F5FD1FAAFD3",
+                "items" : [
+                  {
+                    "form" : "circle",
+                    "id" : "ADC2C33C-8DD6-49BB-89FB-F4177AED7FBF",
+                    "kind" : "image",
+                    "picture" : {
+                      "kind" : "address",
+                      "shape" : "rounded",
+                      "value" : "{{favicon}}"
+                    },
+                    "size" : 44
+                  }
+                ]
+              }
+            ],
+            "width" : "auto"
+          },
+          {
+            "id" : "9A27421E-B3B4-4F1D-A70E-6C7FB1281B15",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "9413281A-2081-4EA2-A99F-0083AD39DB63",
+                "items" : [
+                  {
+                    "content" : "{{name}}",
+                    "fills" : true,
+                    "id" : "7B0FB387-19AC-4855-9918-78F975694B21",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 0,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "A6E8472F-2619-4152-A467-FCB64651B435",
+                "items" : [
+                  {
+                    "content" : "{{tags}}",
+                    "fills" : true,
+                    "id" : "A40A7DEC-D5D9-4FD7-8394-5079F29450DC",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "gap" : 8,
+                "id" : "025859B0-6F52-4FD5-B373-7F66B42DC33D",
+                "items" : [
+                  {
+                    "content" : "{{bitrate}} kbps",
+                    "fills" : true,
+                    "id" : "A2003472-14D6-48F6-8C71-CA0D3492CC04",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
+          }
+        ],
+        "type" : "list"
       }
     ],
-    "format": {
-      "kind": "json"
-    }
+    "emptyMessage" : "Nenhuma estação.",
+    "isEnabled" : true,
+    "rowLimit" : 5,
+    "subtitle" : "As mais ouvidas agora",
+    "title" : "Rádio"
   },
-  "slot": {
-    "label": "{{$ | count}}",
-    "style": "number"
+  "icon" : {
+    "kind" : "symbol",
+    "pictureSource" : "",
+    "symbolName" : "dot.radiowaves.left.and.right",
+    "word" : ""
   },
-  "card": {
-    "isEnabled": true,
-    "title": "Rádio",
-    "subtitle": "As mais ouvidas agora",
-    "emptyMessage": "Nenhuma estação.",
-    "blocks": [
-      {
-        "type": "list",
-        "limit": 8,
-        "tabs": [
-          {
-            "title": "Estações",
-            "path": "$",
-            "rowTitle": "{{name}}",
-            "rowSubtitle": "{{tags}}",
-            "rowMeta": "{{bitrate}} kbps",
-            "rowImage": "{{favicon}}",
-            "rowImageShape": "round",
-            "rowWrapsTitle": true,
-            "rowURL": "{{url_resolved}}"
-          }
-        ]
-      }
-    ]
-  },
-  "actions": [],
-  "attention": {
-    "mode": "never"
-  },
-  "settings": [
+  "id" : "plugin.exemplo.radio",
+  "interval" : 21600,
+  "name" : "Rádio",
+  "parameters" : [
+
+  ],
+  "readsOnItsOwn" : true,
+  "role" : "reading",
+  "schema" : 12,
+  "settings" : [
     {
-      "key": "pais",
-      "label": "País",
-      "type": "choice",
-      "default": "BR",
-      "options": [
+      "default" : "BR",
+      "key" : "pais",
+      "label" : "País",
+      "options" : [
         {
-          "value": "BR",
-          "label": "Brasil"
+          "label" : "Brasil",
+          "value" : "BR"
         },
         {
-          "value": "PT",
-          "label": "Portugal"
+          "label" : "Portugal",
+          "value" : "PT"
         },
         {
-          "value": "US",
-          "label": "Estados Unidos"
+          "label" : "Estados Unidos",
+          "value" : "US"
         },
         {
-          "value": "GB",
-          "label": "Reino Unido"
+          "label" : "Reino Unido",
+          "value" : "GB"
         }
-      ]
+      ],
+      "type" : "choice"
     }
-  ]
+  ],
+  "slot" : {
+    "alertsOnThreshold" : false,
+    "label" : "{{$ | count}}",
+    "style" : "number",
+    "total" : "",
+    "value" : ""
+  },
+  "source" : {
+    "body" : "",
+    "errand" : "copy",
+    "format" : {
+      "all" : false,
+      "hasHeader" : false,
+      "kind" : "json",
+      "pattern" : "",
+      "separator" : "whitespace",
+      "skip" : 0
+    },
+    "headers" : [
+
+    ],
+    "kind" : "http",
+    "language" : "applescript",
+    "method" : "GET",
+    "query" : [
+      {
+        "id" : "5DFE917E-FB72-4D75-BDC4-7F5E4CBA6559",
+        "name" : "order",
+        "value" : "clickcount"
+      },
+      {
+        "id" : "3DFBF590-A756-42EB-8E4D-70A90DED7F8E",
+        "name" : "reverse",
+        "value" : "true"
+      },
+      {
+        "id" : "4E18D9F2-4979-4A34-9AEC-B0CFF1FC595B",
+        "name" : "limit",
+        "value" : "12"
+      },
+      {
+        "id" : "FF049265-AD93-44A5-84E6-1F0C92F6D781",
+        "name" : "hidebroken",
+        "value" : "true"
+      }
+    ],
+    "script" : "",
+    "steps" : [
+
+    ],
+    "text" : "",
+    "url" : "https://de1.api.radio-browser.info/json/stations/bycountrycodeexact/{{$settings.pais}}"
+  }
 }

@@ -1,97 +1,205 @@
 {
-  "schema": 7,
-  "id": "plugin.exemplo.chatwoot",
-  "name": "Chatwoot",
-  "interval": 300,
-  "icon": {
-    "kind": "picture",
-    "symbolName": "bubble.left.and.bubble.right.fill",
-    "pictureSource": "https://github.com/chatwoot.png?size=128"
+  "actions" : [
+
+  ],
+  "answer" : "{\"data\":{\"meta\":{\"mine_count\":2,\"assigned_count\":3,\"unassigned_count\":2,\"all_count\":5},\"payload\":[{\"id\":412,\"account_id\":1,\"inbox_id\":2,\"status\":\"open\",\"unread_count\":1,\"last_activity_at\":1790678520,\"timestamp\":1790678520,\"meta\":{\"sender\":{\"id\":512,\"name\":\"Mariana Teixeira\",\"email\":null,\"phone_number\":null,\"thumbnail\":\"https://www.gravatar.com/avatar/a1b2c3d4e5f60718293a4b5c6d7e8f90?d=identicon&s=128&f=y\",\"type\":\"contact\"},\"channel\":\"Channel::WebWidget\",\"assignee\":null},\"messages\":[{\"id\":5412,\"content\":\"Oi! Meu pedido 18342 ainda não saiu para entrega, consegue ver para mim?\",\"message_type\":0,\"created_at\":1790678520,\"conversation_id\":412,\"sender_type\":\"Contact\"}]},{\"id\":411,\"account_id\":1,\"inbox_id\":2,\"status\":\"open\",\"unread_count\":1,\"last_activity_at\":1790676240,\"timestamp\":1790676240,\"meta\":{\"sender\":{\"id\":511,\"name\":\"Rafael Monteiro\",\"email\":null,\"phone_number\":null,\"thumbnail\":\"https://www.gravatar.com/avatar/b2c3d4e5f60718293a4b5c6d7e8f90a1?d=identicon&s=128&f=y\",\"type\":\"contact\"},\"channel\":\"Channel::WebWidget\",\"assignee\":{\"id\":3,\"name\":\"Equipe de suporte\",\"available_name\":\"Suporte\",\"role\":\"agent\"}},\"messages\":[{\"id\":5411,\"content\":\"Preciso trocar o cartão da assinatura, onde faço isso?\",\"message_type\":0,\"created_at\":1790676240,\"conversation_id\":411,\"sender_type\":\"Contact\"}]},{\"id\":409,\"account_id\":1,\"inbox_id\":2,\"status\":\"open\",\"unread_count\":1,\"last_activity_at\":1790671800,\"timestamp\":1790671800,\"meta\":{\"sender\":{\"id\":509,\"name\":\"Juliana Prado\",\"email\":null,\"phone_number\":null,\"thumbnail\":\"https://www.gravatar.com/avatar/c3d4e5f60718293a4b5c6d7e8f90a1b2?d=identicon&s=128&f=y\",\"type\":\"contact\"},\"channel\":\"Channel::WebWidget\",\"assignee\":{\"id\":3,\"name\":\"Equipe de suporte\",\"available_name\":\"Suporte\",\"role\":\"agent\"}},\"messages\":[{\"id\":5409,\"content\":\"A nota fiscal veio com o CNPJ errado.\",\"message_type\":0,\"created_at\":1790671800,\"conversation_id\":409,\"sender_type\":\"Contact\"}]},{\"id\":406,\"account_id\":1,\"inbox_id\":2,\"status\":\"open\",\"unread_count\":1,\"last_activity_at\":1790665080,\"timestamp\":1790665080,\"meta\":{\"sender\":{\"id\":506,\"name\":\"Thiago Ramos\",\"email\":null,\"phone_number\":null,\"thumbnail\":\"https://www.gravatar.com/avatar/d4e5f60718293a4b5c6d7e8f90a1b2c3?d=identicon&s=128&f=y\",\"type\":\"contact\"},\"channel\":\"Channel::WebWidget\",\"assignee\":null},\"messages\":[{\"id\":5406,\"content\":\"Vocês entregam em Florianópolis no mesmo dia?\",\"message_type\":0,\"created_at\":1790665080,\"conversation_id\":406,\"sender_type\":\"Contact\"}]},{\"id\":403,\"account_id\":1,\"inbox_id\":2,\"status\":\"open\",\"unread_count\":1,\"last_activity_at\":1790659200,\"timestamp\":1790659200,\"meta\":{\"sender\":{\"id\":503,\"name\":\"Patrícia Gomes\",\"email\":null,\"phone_number\":null,\"thumbnail\":\"https://www.gravatar.com/avatar/e5f60718293a4b5c6d7e8f90a1b2c3d4?d=identicon&s=128&f=y\",\"type\":\"contact\"},\"channel\":\"Channel::WebWidget\",\"assignee\":{\"id\":3,\"name\":\"Equipe de suporte\",\"available_name\":\"Suporte\",\"role\":\"agent\"}},\"messages\":[{\"id\":5403,\"content\":\"Obrigada, deu certo! Só mais uma dúvida sobre o prazo de troca.\",\"message_type\":0,\"created_at\":1790659200,\"conversation_id\":403,\"sender_type\":\"Contact\"}]}]}}",
+  "attention" : {
+    "comparison" : "above",
+    "countPath" : "",
+    "listIndex" : 0,
+    "mode" : "newRows",
+    "threshold" : 0
   },
-  "source": {
-    "kind": "http",
-    "method": "GET",
-    "url": "{{$settings.endereco}}/api/v1/accounts/{{$settings.conta}}/conversations",
-    "query": [
-      {
-        "name": "status",
-        "value": "open"
-      }
-    ],
-    "headers": [
-      {
-        "name": "api_access_token",
-        "value": "{{$settings.token}}"
-      }
-    ],
-    "format": {
-      "kind": "json"
-    }
+  "button" : {
+    "cancelLabel" : "",
+    "confirms" : false,
+    "failureMessage" : "",
+    "failureReport" : "message",
+    "okLabel" : "",
+    "question" : "",
+    "runningText" : "",
+    "successMessage" : "",
+    "successReport" : "message"
   },
-  "slot": {
-    "label": "{{data.meta.all_count}}",
-    "style": "number"
-  },
-  "card": {
-    "isEnabled": true,
-    "title": "Chatwoot",
-    "subtitle": "Conversas abertas",
-    "emptyMessage": "Nenhuma conversa aberta.",
-    "blocks": [
+  "card" : {
+    "blocks" : [
       {
-        "type": "hero",
-        "value": "{{data.meta.all_count}}",
-        "caption": "Abertas · {{data.meta.unassigned_count}} sem dono",
-        "goodDirection": "down",
-        "format": "integer"
+        "caption" : "Abertas · {{data.meta.unassigned_count}} sem dono",
+        "format" : "integer",
+        "goodDirection" : "down",
+        "id" : "1EC5AC9D-48A5-44B6-A6DA-DB7C30553356",
+        "type" : "hero",
+        "value" : "{{data.meta.all_count}}"
       },
       {
-        "type": "list",
-        "limit": 6,
-        "tabs": [
+        "columnGap" : 8,
+        "id" : "13DBA8FF-3C44-4ED8-9BF2-F986E8C95F12",
+        "limit" : 5,
+        "path" : "data.payload",
+        "rowEvent" : "none",
+        "structure" : [
           {
-            "title": "Conversas",
-            "path": "data.payload",
-            "rowTitle": "{{meta.sender.name}}",
-            "rowSubtitle": "{{messages[0].content}}",
-            "rowImage": "{{meta.sender.thumbnail}}",
-            "rowImageShape": "round",
-            "rowMeta": "{{last_activity_at | shape dd/MM HH:mm}}",
-            "rowWrapsTitle": true,
-            "rowEvent": "none"
+            "id" : "A5DB32F4-C371-4B27-A700-A8BD3503DE55",
+            "lines" : [
+              {
+                "id" : "49C7D786-00D9-42DB-8AB2-B38B5264D26F",
+                "items" : [
+                  {
+                    "form" : "circle",
+                    "id" : "8D94248F-D100-4415-A0BA-8F3B32C2D6F7",
+                    "kind" : "image",
+                    "picture" : {
+                      "kind" : "address",
+                      "shape" : "rounded",
+                      "value" : "{{meta.sender.thumbnail}}"
+                    },
+                    "size" : 44
+                  }
+                ]
+              }
+            ],
+            "width" : "auto"
+          },
+          {
+            "id" : "D490F237-1A57-4F96-A523-66C46F1C4A3F",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "613DBCFD-56B4-4BCA-8AD2-6D7C80B9E0E5",
+                "items" : [
+                  {
+                    "content" : "{{meta.sender.name}}",
+                    "fills" : true,
+                    "id" : "3EEE8A91-0B4D-42C6-82F5-2D0ABC99E77F",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 0,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "4DBF9B00-5525-4FBE-861E-32A61EFCB8DC",
+                "items" : [
+                  {
+                    "content" : "{{messages[0].content}}",
+                    "fills" : true,
+                    "id" : "E33A9ABA-1C34-4DFE-876D-6E3981841802",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "gap" : 8,
+                "id" : "6D615E69-7284-401B-A81C-E41769B75C79",
+                "items" : [
+                  {
+                    "content" : "{{last_activity_at | shape dd/MM HH:mm}}",
+                    "fills" : true,
+                    "id" : "AE446FD6-FCA8-4242-967F-F06A99A72A43",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
           }
-        ]
+        ],
+        "type" : "list"
       }
-    ]
+    ],
+    "emptyMessage" : "Nenhuma conversa aberta.",
+    "isEnabled" : true,
+    "rowLimit" : 5,
+    "subtitle" : "Conversas abertas",
+    "title" : "Chatwoot"
   },
-  "actions": [],
-  "attention": {
-    "mode": "newRows"
+  "icon" : {
+    "kind" : "picture",
+    "pictureSource" : "https://github.com/chatwoot.png?size=128",
+    "symbolName" : "bubble.left.and.bubble.right.fill",
+    "word" : ""
   },
-  "settings": [
+  "id" : "plugin.exemplo.chatwoot",
+  "interval" : 300,
+  "name" : "Chatwoot",
+  "parameters" : [
+
+  ],
+  "readsOnItsOwn" : true,
+  "role" : "reading",
+  "schema" : 12,
+  "settings" : [
     {
-      "key": "endereco",
-      "label": "Endereço",
-      "type": "text",
-      "default": "https://app.chatwoot.com",
-      "required": true,
-      "help": "Troque se o seu Chatwoot for próprio."
+      "default" : "https://app.chatwoot.com",
+      "help" : "Troque se o seu Chatwoot for próprio.",
+      "key" : "endereco",
+      "label" : "Endereço",
+      "required" : true,
+      "type" : "text"
     },
     {
-      "key": "conta",
-      "label": "ID da conta",
-      "type": "text",
-      "default": "1",
-      "required": true,
-      "help": "O número na URL do Chatwoot, depois de accounts."
+      "default" : "1",
+      "help" : "O número na URL do Chatwoot, depois de accounts.",
+      "key" : "conta",
+      "label" : "ID da conta",
+      "required" : true,
+      "type" : "text"
     },
     {
-      "key": "token",
-      "label": "Token",
-      "type": "secret",
-      "required": true,
-      "help": "Copie em Configurações do perfil › Token de acesso."
+      "help" : "Copie em Configurações do perfil › Token de acesso.",
+      "key" : "token",
+      "label" : "Token",
+      "required" : true,
+      "type" : "secret"
     }
   ],
-  "answer": "{\"data\":{\"meta\":{\"mine_count\":2,\"assigned_count\":3,\"unassigned_count\":2,\"all_count\":5},\"payload\":[{\"id\":412,\"account_id\":1,\"inbox_id\":2,\"status\":\"open\",\"unread_count\":1,\"last_activity_at\":1790678520,\"timestamp\":1790678520,\"meta\":{\"sender\":{\"id\":512,\"name\":\"Mariana Teixeira\",\"email\":null,\"phone_number\":null,\"thumbnail\":\"https://www.gravatar.com/avatar/a1b2c3d4e5f60718293a4b5c6d7e8f90?d=identicon&s=128&f=y\",\"type\":\"contact\"},\"channel\":\"Channel::WebWidget\",\"assignee\":null},\"messages\":[{\"id\":5412,\"content\":\"Oi! Meu pedido 18342 ainda não saiu para entrega, consegue ver para mim?\",\"message_type\":0,\"created_at\":1790678520,\"conversation_id\":412,\"sender_type\":\"Contact\"}]},{\"id\":411,\"account_id\":1,\"inbox_id\":2,\"status\":\"open\",\"unread_count\":1,\"last_activity_at\":1790676240,\"timestamp\":1790676240,\"meta\":{\"sender\":{\"id\":511,\"name\":\"Rafael Monteiro\",\"email\":null,\"phone_number\":null,\"thumbnail\":\"https://www.gravatar.com/avatar/b2c3d4e5f60718293a4b5c6d7e8f90a1?d=identicon&s=128&f=y\",\"type\":\"contact\"},\"channel\":\"Channel::WebWidget\",\"assignee\":{\"id\":3,\"name\":\"Equipe de suporte\",\"available_name\":\"Suporte\",\"role\":\"agent\"}},\"messages\":[{\"id\":5411,\"content\":\"Preciso trocar o cartão da assinatura, onde faço isso?\",\"message_type\":0,\"created_at\":1790676240,\"conversation_id\":411,\"sender_type\":\"Contact\"}]},{\"id\":409,\"account_id\":1,\"inbox_id\":2,\"status\":\"open\",\"unread_count\":1,\"last_activity_at\":1790671800,\"timestamp\":1790671800,\"meta\":{\"sender\":{\"id\":509,\"name\":\"Juliana Prado\",\"email\":null,\"phone_number\":null,\"thumbnail\":\"https://www.gravatar.com/avatar/c3d4e5f60718293a4b5c6d7e8f90a1b2?d=identicon&s=128&f=y\",\"type\":\"contact\"},\"channel\":\"Channel::WebWidget\",\"assignee\":{\"id\":3,\"name\":\"Equipe de suporte\",\"available_name\":\"Suporte\",\"role\":\"agent\"}},\"messages\":[{\"id\":5409,\"content\":\"A nota fiscal veio com o CNPJ errado.\",\"message_type\":0,\"created_at\":1790671800,\"conversation_id\":409,\"sender_type\":\"Contact\"}]},{\"id\":406,\"account_id\":1,\"inbox_id\":2,\"status\":\"open\",\"unread_count\":1,\"last_activity_at\":1790665080,\"timestamp\":1790665080,\"meta\":{\"sender\":{\"id\":506,\"name\":\"Thiago Ramos\",\"email\":null,\"phone_number\":null,\"thumbnail\":\"https://www.gravatar.com/avatar/d4e5f60718293a4b5c6d7e8f90a1b2c3?d=identicon&s=128&f=y\",\"type\":\"contact\"},\"channel\":\"Channel::WebWidget\",\"assignee\":null},\"messages\":[{\"id\":5406,\"content\":\"Vocês entregam em Florianópolis no mesmo dia?\",\"message_type\":0,\"created_at\":1790665080,\"conversation_id\":406,\"sender_type\":\"Contact\"}]},{\"id\":403,\"account_id\":1,\"inbox_id\":2,\"status\":\"open\",\"unread_count\":1,\"last_activity_at\":1790659200,\"timestamp\":1790659200,\"meta\":{\"sender\":{\"id\":503,\"name\":\"Patrícia Gomes\",\"email\":null,\"phone_number\":null,\"thumbnail\":\"https://www.gravatar.com/avatar/e5f60718293a4b5c6d7e8f90a1b2c3d4?d=identicon&s=128&f=y\",\"type\":\"contact\"},\"channel\":\"Channel::WebWidget\",\"assignee\":{\"id\":3,\"name\":\"Equipe de suporte\",\"available_name\":\"Suporte\",\"role\":\"agent\"}},\"messages\":[{\"id\":5403,\"content\":\"Obrigada, deu certo! Só mais uma dúvida sobre o prazo de troca.\",\"message_type\":0,\"created_at\":1790659200,\"conversation_id\":403,\"sender_type\":\"Contact\"}]}]}}"
+  "slot" : {
+    "alertsOnThreshold" : false,
+    "label" : "{{data.meta.all_count}}",
+    "style" : "number",
+    "total" : "",
+    "value" : ""
+  },
+  "source" : {
+    "body" : "",
+    "errand" : "copy",
+    "format" : {
+      "all" : false,
+      "hasHeader" : false,
+      "kind" : "json",
+      "pattern" : "",
+      "separator" : "whitespace",
+      "skip" : 0
+    },
+    "headers" : [
+      {
+        "id" : "411811A7-73D9-494E-B1D8-19A97F861553",
+        "name" : "api_access_token",
+        "value" : "{{$settings.token}}"
+      }
+    ],
+    "kind" : "http",
+    "language" : "applescript",
+    "method" : "GET",
+    "query" : [
+      {
+        "id" : "E613BB05-7E0D-40CD-B21A-5227F476BEFF",
+        "name" : "status",
+        "value" : "open"
+      }
+    ],
+    "script" : "",
+    "steps" : [
+
+    ],
+    "text" : "",
+    "url" : "{{$settings.endereco}}/api/v1/accounts/{{$settings.conta}}/conversations"
+  }
 }

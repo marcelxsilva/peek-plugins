@@ -1,126 +1,293 @@
 {
-  "schema": 6,
-  "id": "plugin.exemplo.devto",
-  "name": "DEV",
-  "interval": 3600,
-  "icon": {
-    "kind": "picture",
-    "symbolName": "newspaper.fill",
-    "pictureSource": "https://github.com/thepracticaldev.png?size=128"
-  },
-  "source": {
-    "kind": "http",
-    "method": "GET",
-    "url": "https://dev.to/api/articles",
-    "query": [
-      {
-        "name": "per_page",
-        "value": "10"
-      },
-      {
-        "name": "top",
-        "value": "{{$settings.dias}}"
-      },
-      {
-        "name": "page",
-        "value": "{{$page}}"
-      }
-    ],
-    "format": {
-      "kind": "json"
-    },
-    "pagination": {
-      "kind": "page",
-      "start": 1,
-      "maxPages": 5,
-      "buttonText": "Mais artigos"
-    }
-  },
-  "slot": {
-    "label": "{{$ | count}}",
-    "style": "number"
-  },
-  "card": {
-    "isEnabled": true,
-    "picture": {
-      "kind": "address",
-      "value": "{{[0].cover_image}}",
-      "shape": "rounded",
-      "scale": 1.4
-    },
-    "title": "DEV",
-    "subtitle": "O que subiu nos últimos {{$settings.dias}} dias",
-    "emptyMessage": "Nada publicado no período.",
-    "blocks": [
-      {
-        "type": "list",
-        "limit": 5,
-        "tabs": [
-          {
-            "title": "Artigos",
-            "path": "$",
-            "rowTitle": "{{title}}",
-            "rowSubtitle": "{{user.name}} · {{published_timestamp | ago}}",
-            "rowMeta": "{{tag_list[0]}}",
-            "rowMetaImage": "{{user.profile_image_90}}",
-            "rowWrapsTitle": true,
-            "rowImage": "{{cover_image}}",
-            "rowImageShape": "rounded",
-            "rowURL": "{{url}}",
-            "badges": [
-              {
-                "value": "{{public_reactions_count}}",
-                "symbolName": "heart.fill",
-                "tint": "negative"
-              },
-              {
-                "value": "{{reading_time_minutes}} min",
-                "symbolName": "clock",
-                "tint": "neutral"
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  "actions": [
+  "actions" : [
     {
-      "name": "Ler depois",
-      "symbolName": "bookmark",
-      "place": "row",
-      "listIndex": 0,
-      "run": {
-        "kind": "onTheMac",
-        "errand": "readLater",
-        "text": "{{url}}"
+      "asksForValue" : false,
+      "confirmText" : "",
+      "confirms" : false,
+      "failureMessage" : "",
+      "failureReport" : "message",
+      "id" : "F065E1BD-B898-41FA-B62D-4AB8EB051BDA",
+      "isProminent" : false,
+      "listIndex" : 0,
+      "mark" : {
+        "kind" : "symbol",
+        "value" : "bookmark"
       },
-      "successMessage": "Guardado."
+      "name" : "Ler depois",
+      "place" : "row",
+      "question" : "",
+      "run" : {
+        "body" : "",
+        "errand" : "readLater",
+        "format" : {
+          "all" : false,
+          "hasHeader" : false,
+          "kind" : "json",
+          "pattern" : "",
+          "separator" : "whitespace",
+          "skip" : 0
+        },
+        "headers" : [
+
+        ],
+        "kind" : "onTheMac",
+        "language" : "applescript",
+        "method" : "GET",
+        "script" : "",
+        "steps" : [
+
+        ],
+        "text" : "{{url}}",
+        "url" : ""
+      },
+      "runningText" : "",
+      "successMessage" : "Guardado.",
+      "successReport" : "message"
     }
   ],
-  "attention": {
-    "mode": "newRows"
+  "attention" : {
+    "comparison" : "above",
+    "countPath" : "",
+    "listIndex" : 0,
+    "mode" : "newRows",
+    "threshold" : 0
   },
-  "settings": [
+  "button" : {
+    "cancelLabel" : "",
+    "confirms" : false,
+    "failureMessage" : "",
+    "failureReport" : "message",
+    "okLabel" : "",
+    "question" : "",
+    "runningText" : "",
+    "successMessage" : "",
+    "successReport" : "message"
+  },
+  "card" : {
+    "blocks" : [
+      {
+        "columnGap" : 8,
+        "id" : "73562174-2FCB-400E-9D3C-29DD4C412A74",
+        "limit" : 5,
+        "path" : "$",
+        "rowURL" : "{{url}}",
+        "structure" : [
+          {
+            "id" : "62951E40-5AEB-493C-BE96-4D3A06A2A964",
+            "lines" : [
+              {
+                "id" : "7D509503-B795-4209-A44C-EDBF12DA28E8",
+                "items" : [
+                  {
+                    "form" : "rounded",
+                    "id" : "1D621E96-D50F-440E-8A65-F726AF72E6BB",
+                    "kind" : "image",
+                    "picture" : {
+                      "kind" : "address",
+                      "shape" : "rounded",
+                      "value" : "{{cover_image}}"
+                    },
+                    "size" : 44
+                  }
+                ]
+              }
+            ],
+            "width" : "auto"
+          },
+          {
+            "id" : "DA486560-2D9E-43A8-8EAC-D51C71B8E9EB",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "95AEBE6D-3973-4F55-9874-A50DC3AB1E2A",
+                "items" : [
+                  {
+                    "content" : "{{title}}",
+                    "fills" : true,
+                    "id" : "FAD340D4-96B9-43AF-8B2C-C91D99C0830D",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 0,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "16E3232C-437E-4B7B-A06F-A6C1DC87EB63",
+                "items" : [
+                  {
+                    "action" : "F065E1BD-B898-41FA-B62D-4AB8EB051BDA",
+                    "buttonSize" : "medium",
+                    "id" : "4ACC12ED-2940-4624-8D50-1749695446BB",
+                    "ink" : "secondary",
+                    "kind" : "button",
+                    "look" : "circle"
+                  },
+                  {
+                    "id" : "F730A8CE-7AB3-4450-AB3A-04D4654C8B1A",
+                    "kind" : "space",
+                    "spaceWidth" : 0
+                  },
+                  {
+                    "content" : "{{user.name}} · {{published_timestamp | ago}}",
+                    "id" : "F4E42D2C-A630-494F-9F90-DD80701404F6",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "gap" : 8,
+                "id" : "DBB19E75-D9DA-4475-8967-3F5AB31B3102",
+                "items" : [
+                  {
+                    "form" : "circle",
+                    "id" : "9300A55C-5416-498B-8236-3862D8A39F58",
+                    "kind" : "image",
+                    "picture" : {
+                      "kind" : "address",
+                      "shape" : "rounded",
+                      "value" : "{{user.profile_image_90}}"
+                    },
+                    "size" : 16
+                  },
+                  {
+                    "content" : "{{tag_list[0]}}",
+                    "fills" : true,
+                    "id" : "233EC2A7-DC40-4240-AF9C-A01C8186E766",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  },
+                  {
+                    "content" : "{{public_reactions_count}}",
+                    "id" : "672399B7-E1A2-4B48-8B68-3AF0FF0253D8",
+                    "ink" : "negative",
+                    "kind" : "icon",
+                    "size" : 13,
+                    "symbolName" : "heart.fill"
+                  },
+                  {
+                    "content" : "{{reading_time_minutes}} min",
+                    "id" : "04B33C8A-6960-4A0D-B0F6-EB8F86255C56",
+                    "ink" : "secondary",
+                    "kind" : "icon",
+                    "size" : 13,
+                    "symbolName" : "clock"
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
+          }
+        ],
+        "type" : "list"
+      }
+    ],
+    "emptyMessage" : "Nada publicado no período.",
+    "isEnabled" : true,
+    "picture" : {
+      "kind" : "address",
+      "scale" : 1.4,
+      "shape" : "rounded",
+      "value" : "{{[0].cover_image}}"
+    },
+    "rowLimit" : 5,
+    "subtitle" : "O que subiu nos últimos {{$settings.dias}} dias",
+    "title" : "DEV"
+  },
+  "icon" : {
+    "kind" : "picture",
+    "pictureSource" : "https://github.com/thepracticaldev.png?size=128",
+    "symbolName" : "newspaper.fill",
+    "word" : ""
+  },
+  "id" : "plugin.exemplo.devto",
+  "interval" : 3600,
+  "name" : "DEV",
+  "parameters" : [
+
+  ],
+  "readsOnItsOwn" : true,
+  "role" : "reading",
+  "schema" : 12,
+  "settings" : [
     {
-      "key": "dias",
-      "label": "Período",
-      "type": "choice",
-      "default": "7",
-      "options": [
+      "default" : "7",
+      "key" : "dias",
+      "label" : "Período",
+      "options" : [
         {
-          "value": "1",
-          "label": "Hoje"
+          "label" : "Hoje",
+          "value" : "1"
         },
         {
-          "value": "7",
-          "label": "Semana"
+          "label" : "Semana",
+          "value" : "7"
         },
         {
-          "value": "30",
-          "label": "Mês"
+          "label" : "Mês",
+          "value" : "30"
         }
-      ]
+      ],
+      "type" : "choice"
     }
-  ]
+  ],
+  "slot" : {
+    "alertsOnThreshold" : false,
+    "label" : "{{$ | count}}",
+    "style" : "number",
+    "total" : "",
+    "value" : ""
+  },
+  "source" : {
+    "body" : "",
+    "errand" : "copy",
+    "format" : {
+      "all" : false,
+      "hasHeader" : false,
+      "kind" : "json",
+      "pattern" : "",
+      "separator" : "whitespace",
+      "skip" : 0
+    },
+    "headers" : [
+
+    ],
+    "kind" : "http",
+    "language" : "applescript",
+    "method" : "GET",
+    "pagination" : {
+      "buttonText" : "Mais artigos",
+      "kind" : "page",
+      "maxPages" : 5,
+      "start" : 1
+    },
+    "query" : [
+      {
+        "id" : "796A4602-BE5B-4E8D-A803-5B587E23F584",
+        "name" : "per_page",
+        "value" : "10"
+      },
+      {
+        "id" : "A23AF98F-1D5A-4E28-859F-7D2436990EB4",
+        "name" : "top",
+        "value" : "{{$settings.dias}}"
+      },
+      {
+        "id" : "F1CDB4B2-5C8B-4531-B431-F426A7C62032",
+        "name" : "page",
+        "value" : "{{$page}}"
+      }
+    ],
+    "script" : "",
+    "steps" : [
+
+    ],
+    "text" : "",
+    "url" : "https://dev.to/api/articles"
+  }
 }

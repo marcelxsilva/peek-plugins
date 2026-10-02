@@ -36,12 +36,13 @@ Os tokens ficam nas Chaves do Mac, nunca no arquivo. Por isso um plugin pode ser
 | Linha do tempo | O que aconteceu e o que vem, por data. |
 | Tabela | Colunas de valores curtos, com imagem, status ou botão por linha. |
 | Texto | Um parágrafo para ler, com um botão de copiar. |
-| Lista | Linhas com título, status, imagem e link, em abas. |
+| Lista | Os itens de uma lista, cada um montado com textos, imagens, ícones, botões e indicadores. |
 | Botões | Um painel de botões, cada um rodando alguma coisa. |
 | Propriedades | Pares de nome e valor, com botões ao lado de cada um. |
 | Controles | Interruptores e níveis, direto no cartão. |
+| Abas | Abas no topo. Cada aba mostra outro bloco do cartão. |
 
-Quase todo bloco pode ocupar meia largura, e dois blocos de meia largura dividem a mesma linha.
+Quase todo bloco pode ocupar meia largura, e dois blocos de meia largura dividem a mesma linha. A Lista, o Mapa de calor e as Abas ocupam sempre a largura toda. O cartão mostra uma Lista por vez: para ter várias, ponha cada uma numa aba.
 
 Todo texto do cartão pode misturar palavras com campos da resposta. Um campo mostra o valor que veio naquela leitura, e um formato ajusta como ele aparece: arredondado, em percentual, como dinheiro, em tempo relativo, em tamanho de arquivo.
 

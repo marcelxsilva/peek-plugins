@@ -1,100 +1,210 @@
 {
-  "schema": 7,
-  "id": "plugin.exemplo.tmdb",
-  "name": "Nos cinemas",
-  "interval": 21600,
-  "icon": {
-    "kind": "symbol",
-    "symbolName": "popcorn.fill"
+  "actions" : [
+
+  ],
+  "answer" : "{\"dates\":{\"maximum\":\"2026-10-08\",\"minimum\":\"2026-08-27\"},\"page\":1,\"results\":[{\"adult\":false,\"backdrop_path\":\"/fH4kQ8Yb1cLq2mZx7dVwP3nR9tA.jpg\",\"genre_ids\":[28,12],\"id\":1184918,\"original_language\":\"en\",\"original_title\":\"The Last Signal\",\"overview\":\"Uma equipe de resgate atravessa o deserto atrás de um sinal de rádio que não deveria existir.\",\"popularity\":412.7,\"poster_path\":\"/a8Xc3pQe9LmR2vT5nY7kD1sW4uB.jpg\",\"release_date\":\"2026-09-25\",\"title\":\"O Último Sinal\",\"video\":false,\"vote_average\":7.4,\"vote_count\":318},{\"adult\":false,\"backdrop_path\":\"/k2Lm9pRt4vXb8nQy1cZs6dWe3fH.jpg\",\"genre_ids\":[16,10751],\"id\":1022789,\"original_language\":\"en\",\"original_title\":\"Paper Boats\",\"overview\":\"Duas irmãs descobrem que os barquinhos de papel que soltam no rio chegam a outro mundo.\",\"popularity\":288.1,\"poster_path\":\"/q7Vn2bLx5sKp8mRt3wYc9dZf1hJ.jpg\",\"release_date\":\"2026-09-18\",\"title\":\"Barcos de Papel\",\"video\":false,\"vote_average\":8.1,\"vote_count\":524},{\"adult\":false,\"backdrop_path\":\"/t9Rw3xLm7pKb2nVq5cYs8dZe1fG.jpg\",\"genre_ids\":[18],\"id\":1311402,\"original_language\":\"pt\",\"original_title\":\"Maré Baixa\",\"overview\":\"Um pescador volta à vila onde cresceu para vender a casa da família.\",\"popularity\":96.3,\"poster_path\":\"/m4Ks8nPq2vLx7bRt5wYc3dZf9hJ.jpg\",\"release_date\":\"2026-10-01\",\"title\":\"Maré Baixa\",\"video\":false,\"vote_average\":6.9,\"vote_count\":41},{\"adult\":false,\"backdrop_path\":\"/w5Tn1yLm3pKb9nVq7cXs2dZe8fR.jpg\",\"genre_ids\":[27,53],\"id\":1198034,\"original_language\":\"en\",\"original_title\":\"Night Shift\",\"overview\":\"Na primeira noite como vigia de um hospital desativado, Lia ouve alguém chamar o seu nome.\",\"popularity\":201.5,\"poster_path\":\"/z1Bp6nKq4vLx2bRt8wYc5dZf3hM.jpg\",\"release_date\":\"2026-09-11\",\"title\":\"Plantão Noturno\",\"video\":false,\"vote_average\":6.2,\"vote_count\":207}],\"total_pages\":3,\"total_results\":54}",
+  "attention" : {
+    "comparison" : "above",
+    "countPath" : "",
+    "listIndex" : 0,
+    "mode" : "newRows",
+    "threshold" : 0
   },
-  "source": {
-    "kind": "http",
-    "method": "GET",
-    "url": "https://api.themoviedb.org/3/movie/now_playing",
-    "query": [
+  "button" : {
+    "cancelLabel" : "",
+    "confirms" : false,
+    "failureMessage" : "",
+    "failureReport" : "message",
+    "okLabel" : "",
+    "question" : "",
+    "runningText" : "",
+    "successMessage" : "",
+    "successReport" : "message"
+  },
+  "card" : {
+    "blocks" : [
       {
-        "name": "api_key",
-        "value": "{{$settings.token}}"
-      },
-      {
-        "name": "language",
-        "value": "pt-BR"
-      },
-      {
-        "name": "region",
-        "value": "BR"
-      },
-      {
-        "name": "page",
-        "value": "{{$page}}"
+        "columnGap" : 8,
+        "id" : "A1689182-1684-42C8-A67A-1E75FD6F971B",
+        "limit" : 5,
+        "path" : "results",
+        "rowDetail" : "{{overview}}",
+        "rowURL" : "https://www.themoviedb.org/movie/{{id}}",
+        "structure" : [
+          {
+            "id" : "0BCD6B32-18BC-4F37-A61D-DB0D5C3F9004",
+            "lines" : [
+              {
+                "id" : "151890C0-1130-4861-AC43-93427EB2850F",
+                "items" : [
+                  {
+                    "form" : "rounded",
+                    "id" : "F4B1A8F2-9189-4017-B929-177113377825",
+                    "kind" : "image",
+                    "picture" : {
+                      "kind" : "address",
+                      "shape" : "rounded",
+                      "value" : "https://image.tmdb.org/t/p/w185{{poster_path}}"
+                    },
+                    "size" : 56
+                  }
+                ]
+              }
+            ],
+            "width" : "auto"
+          },
+          {
+            "id" : "B816FFE8-4BAB-4A50-9F04-0B108C222CF0",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "3542CF46-F3E9-4023-BC41-A67D20DF42B1",
+                "items" : [
+                  {
+                    "content" : "{{title}}",
+                    "fills" : true,
+                    "id" : "7D6E6740-6AD0-4F94-8C8E-D7392E751112",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 0,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "55302969-28C8-4D09-BB64-0055F4666E0A",
+                "items" : [
+                  {
+                    "content" : "Estreia {{release_date | date}}",
+                    "fills" : true,
+                    "id" : "92E3006D-8ABE-4EAF-AB36-129A61C8E513",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "gap" : 8,
+                "id" : "3ACA5D60-D876-4105-9643-DA29312F864B",
+                "items" : [
+                  {
+                    "id" : "EA841C92-2BC4-4A5B-9A2A-A79FECEE7873",
+                    "kind" : "space",
+                    "spaceWidth" : 0
+                  },
+                  {
+                    "content" : "{{vote_average}}",
+                    "id" : "33AAAA75-575F-4CF8-A1B8-86C137744667",
+                    "ink" : "attention",
+                    "kind" : "icon",
+                    "size" : 13,
+                    "symbolName" : "star.fill"
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
+          }
+        ],
+        "type" : "list"
       }
     ],
-    "format": {
-      "kind": "json"
+    "emptyMessage" : "Nada em cartaz, ou a chave da API está faltando.",
+    "isEnabled" : true,
+    "picture" : {
+      "kind" : "address",
+      "scale" : 2,
+      "shape" : "rounded",
+      "value" : "https://image.tmdb.org/t/p/w500{{results[0].backdrop_path}}"
     },
-    "pagination": {
-      "kind": "page",
-      "listPath": "results",
-      "start": 1,
-      "maxPages": 4,
-      "buttonText": "Mais filmes"
-    }
+    "rowLimit" : 5,
+    "subtitle" : "Em cartaz no Brasil",
+    "title" : "Nos cinemas"
   },
-  "slot": {
-    "label": "{{results | count}}",
-    "style": "number"
+  "icon" : {
+    "kind" : "symbol",
+    "pictureSource" : "",
+    "symbolName" : "popcorn.fill",
+    "word" : ""
   },
-  "card": {
-    "isEnabled": true,
-    "picture": {
-      "kind": "address",
-      "value": "https://image.tmdb.org/t/p/w500{{results[0].backdrop_path}}",
-      "shape": "rounded",
-      "scale": 2
-    },
-    "title": "Nos cinemas",
-    "subtitle": "Em cartaz no Brasil",
-    "emptyMessage": "Nada em cartaz, ou a chave da API está faltando.",
-    "blocks": [
-      {
-        "type": "list",
-        "limit": 5,
-        "tabs": [
-          {
-            "title": "Em cartaz",
-            "path": "results",
-            "rowTitle": "{{title}}",
-            "rowSubtitle": "Estreia {{release_date | date}}",
-            "rowImage": "https://image.tmdb.org/t/p/w185{{poster_path}}",
-            "rowImageShape": "rounded",
-            "rowImageScale": 1.3,
-            "rowWrapsTitle": true,
-            "rowDetail": "{{overview}}",
-            "rowURL": "https://www.themoviedb.org/movie/{{id}}",
-            "badges": [
-              {
-                "value": "{{vote_average}}",
-                "symbolName": "star.fill",
-                "tint": "attention"
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  "actions": [],
-  "attention": {
-    "mode": "newRows"
-  },
-  "settings": [
+  "id" : "plugin.exemplo.tmdb",
+  "interval" : 21600,
+  "name" : "Nos cinemas",
+  "parameters" : [
+
+  ],
+  "readsOnItsOwn" : true,
+  "role" : "reading",
+  "schema" : 12,
+  "settings" : [
     {
-      "key": "token",
-      "label": "Token",
-      "type": "secret",
-      "required": true,
-      "help": "Crie a chave da API (v3) em themoviedb.org › Configurações › API."
+      "help" : "Crie a chave da API (v3) em themoviedb.org › Configurações › API.",
+      "key" : "token",
+      "label" : "Token",
+      "required" : true,
+      "type" : "secret"
     }
   ],
-  "answer": "{\"dates\":{\"maximum\":\"2026-10-08\",\"minimum\":\"2026-08-27\"},\"page\":1,\"results\":[{\"adult\":false,\"backdrop_path\":\"/fH4kQ8Yb1cLq2mZx7dVwP3nR9tA.jpg\",\"genre_ids\":[28,12],\"id\":1184918,\"original_language\":\"en\",\"original_title\":\"The Last Signal\",\"overview\":\"Uma equipe de resgate atravessa o deserto atrás de um sinal de rádio que não deveria existir.\",\"popularity\":412.7,\"poster_path\":\"/a8Xc3pQe9LmR2vT5nY7kD1sW4uB.jpg\",\"release_date\":\"2026-09-25\",\"title\":\"O Último Sinal\",\"video\":false,\"vote_average\":7.4,\"vote_count\":318},{\"adult\":false,\"backdrop_path\":\"/k2Lm9pRt4vXb8nQy1cZs6dWe3fH.jpg\",\"genre_ids\":[16,10751],\"id\":1022789,\"original_language\":\"en\",\"original_title\":\"Paper Boats\",\"overview\":\"Duas irmãs descobrem que os barquinhos de papel que soltam no rio chegam a outro mundo.\",\"popularity\":288.1,\"poster_path\":\"/q7Vn2bLx5sKp8mRt3wYc9dZf1hJ.jpg\",\"release_date\":\"2026-09-18\",\"title\":\"Barcos de Papel\",\"video\":false,\"vote_average\":8.1,\"vote_count\":524},{\"adult\":false,\"backdrop_path\":\"/t9Rw3xLm7pKb2nVq5cYs8dZe1fG.jpg\",\"genre_ids\":[18],\"id\":1311402,\"original_language\":\"pt\",\"original_title\":\"Maré Baixa\",\"overview\":\"Um pescador volta à vila onde cresceu para vender a casa da família.\",\"popularity\":96.3,\"poster_path\":\"/m4Ks8nPq2vLx7bRt5wYc3dZf9hJ.jpg\",\"release_date\":\"2026-10-01\",\"title\":\"Maré Baixa\",\"video\":false,\"vote_average\":6.9,\"vote_count\":41},{\"adult\":false,\"backdrop_path\":\"/w5Tn1yLm3pKb9nVq7cXs2dZe8fR.jpg\",\"genre_ids\":[27,53],\"id\":1198034,\"original_language\":\"en\",\"original_title\":\"Night Shift\",\"overview\":\"Na primeira noite como vigia de um hospital desativado, Lia ouve alguém chamar o seu nome.\",\"popularity\":201.5,\"poster_path\":\"/z1Bp6nKq4vLx2bRt8wYc5dZf3hM.jpg\",\"release_date\":\"2026-09-11\",\"title\":\"Plantão Noturno\",\"video\":false,\"vote_average\":6.2,\"vote_count\":207}],\"total_pages\":3,\"total_results\":54}"
+  "slot" : {
+    "alertsOnThreshold" : false,
+    "label" : "{{results | count}}",
+    "style" : "number",
+    "total" : "",
+    "value" : ""
+  },
+  "source" : {
+    "body" : "",
+    "errand" : "copy",
+    "format" : {
+      "all" : false,
+      "hasHeader" : false,
+      "kind" : "json",
+      "pattern" : "",
+      "separator" : "whitespace",
+      "skip" : 0
+    },
+    "headers" : [
+
+    ],
+    "kind" : "http",
+    "language" : "applescript",
+    "method" : "GET",
+    "pagination" : {
+      "buttonText" : "Mais filmes",
+      "kind" : "page",
+      "listPath" : "results",
+      "maxPages" : 4,
+      "start" : 1
+    },
+    "query" : [
+      {
+        "id" : "2E7635A5-A789-4918-90EA-059D70DA21BF",
+        "name" : "api_key",
+        "value" : "{{$settings.token}}"
+      },
+      {
+        "id" : "54C1C398-4F7E-42CC-8C60-912B48B9C71D",
+        "name" : "language",
+        "value" : "pt-BR"
+      },
+      {
+        "id" : "54842433-5301-4B5A-B8DA-B46DFBA0279F",
+        "name" : "region",
+        "value" : "BR"
+      },
+      {
+        "id" : "EEE3F18D-5A27-49CF-AF02-BA818E1EFC96",
+        "name" : "page",
+        "value" : "{{$page}}"
+      }
+    ],
+    "script" : "",
+    "steps" : [
+
+    ],
+    "text" : "",
+    "url" : "https://api.themoviedb.org/3/movie/now_playing"
+  }
 }

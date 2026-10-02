@@ -1,83 +1,197 @@
 {
-  "schema": 5,
-  "id": "plugin.exemplo.podcast",
-  "name": "Podcasts",
-  "interval": 21600,
-  "icon": {
-    "kind": "symbol",
-    "symbolName": "mic.fill"
+  "actions" : [
+
+  ],
+  "attention" : {
+    "comparison" : "above",
+    "countPath" : "",
+    "listIndex" : 0,
+    "mode" : "never",
+    "threshold" : 0
   },
-  "source": {
-    "kind": "http",
-    "method": "GET",
-    "url": "https://itunes.apple.com/search",
-    "query": [
+  "button" : {
+    "cancelLabel" : "",
+    "confirms" : false,
+    "failureMessage" : "",
+    "failureReport" : "message",
+    "okLabel" : "",
+    "question" : "",
+    "runningText" : "",
+    "successMessage" : "",
+    "successReport" : "message"
+  },
+  "card" : {
+    "blocks" : [
       {
-        "name": "term",
-        "value": "{{$settings.busca}}"
-      },
-      {
-        "name": "entity",
-        "value": "podcast"
-      },
-      {
-        "name": "limit",
-        "value": "12"
-      },
-      {
-        "name": "country",
-        "value": "BR"
+        "columnGap" : 8,
+        "id" : "01875E5C-3E85-49E4-916A-4E6094DD1D6E",
+        "limit" : 5,
+        "path" : "results",
+        "rowURL" : "{{collectionViewUrl}}",
+        "structure" : [
+          {
+            "id" : "DC6F985E-5430-4672-A22C-E1481FADC930",
+            "lines" : [
+              {
+                "id" : "3C8057B0-7E76-4F77-AD43-F51ED5776BB3",
+                "items" : [
+                  {
+                    "form" : "rounded",
+                    "id" : "295A815D-9B0D-4FA9-812B-2F0C3C86AF5D",
+                    "kind" : "image",
+                    "picture" : {
+                      "kind" : "address",
+                      "shape" : "rounded",
+                      "value" : "{{artworkUrl100}}"
+                    },
+                    "size" : 44
+                  }
+                ]
+              }
+            ],
+            "width" : "auto"
+          },
+          {
+            "id" : "88B5416E-4DE5-4909-8382-5ACB85AF2410",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "BD20CDD4-22BF-431F-8C21-5CEEF40E65B2",
+                "items" : [
+                  {
+                    "content" : "{{collectionName}}",
+                    "fills" : true,
+                    "id" : "D3F34AE4-6E8C-4160-9C12-E0ACEB228B4D",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 0,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "F535A7DE-6F89-412A-B097-7844C04D8ABB",
+                "items" : [
+                  {
+                    "content" : "{{artistName}}",
+                    "fills" : true,
+                    "id" : "572E1AF5-A20D-47FC-B4F1-B6D134B91EE6",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "gap" : 8,
+                "id" : "C0C2066C-6AE0-4ECF-9D48-52ACEEA3DA06",
+                "items" : [
+                  {
+                    "content" : "{{trackCount | plural episódio/episódios}}",
+                    "fills" : true,
+                    "id" : "07981011-35C5-446A-9913-C257436EF4BB",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
+          }
+        ],
+        "type" : "list"
       }
     ],
-    "format": {
-      "kind": "json"
-    }
-  },
-  "slot": {
-    "label": "{{resultCount}}",
-    "style": "number"
-  },
-  "card": {
-    "isEnabled": true,
-    "picture": {
-      "kind": "address",
-      "value": "{{results[0].artworkUrl600}}",
-      "shape": "rounded",
-      "scale": 1.6
+    "emptyMessage" : "Nada encontrado.",
+    "isEnabled" : true,
+    "picture" : {
+      "kind" : "address",
+      "scale" : 1.6,
+      "shape" : "rounded",
+      "value" : "{{results[0].artworkUrl600}}"
     },
-    "title": "Podcasts",
-    "subtitle": "Buscando por {{$settings.busca}}",
-    "emptyMessage": "Nada encontrado.",
-    "blocks": [
-      {
-        "type": "list",
-        "limit": 6,
-        "tabs": [
-          {
-            "title": "Podcasts",
-            "path": "results",
-            "rowTitle": "{{collectionName}}",
-            "rowSubtitle": "{{artistName}}",
-            "rowMeta": "{{trackCount | plural episódio/episódios}}",
-            "rowImage": "{{artworkUrl100}}",
-            "rowWrapsTitle": true,
-            "rowURL": "{{collectionViewUrl}}"
-          }
-        ]
-      }
-    ]
+    "rowLimit" : 5,
+    "subtitle" : "Buscando por {{$settings.busca}}",
+    "title" : "Podcasts"
   },
-  "actions": [],
-  "attention": {
-    "mode": "never"
+  "icon" : {
+    "kind" : "symbol",
+    "pictureSource" : "",
+    "symbolName" : "mic.fill",
+    "word" : ""
   },
-  "settings": [
+  "id" : "plugin.exemplo.podcast",
+  "interval" : 21600,
+  "name" : "Podcasts",
+  "parameters" : [
+
+  ],
+  "readsOnItsOwn" : true,
+  "role" : "reading",
+  "schema" : 12,
+  "settings" : [
     {
-      "key": "busca",
-      "label": "Buscar por",
-      "type": "text",
-      "default": "tecnologia",
-      "required": true
+      "default" : "tecnologia",
+      "key" : "busca",
+      "label" : "Buscar por",
+      "required" : true,
+      "type" : "text"
     }
-  ]
+  ],
+  "slot" : {
+    "alertsOnThreshold" : false,
+    "label" : "{{resultCount}}",
+    "style" : "number",
+    "total" : "",
+    "value" : ""
+  },
+  "source" : {
+    "body" : "",
+    "errand" : "copy",
+    "format" : {
+      "all" : false,
+      "hasHeader" : false,
+      "kind" : "json",
+      "pattern" : "",
+      "separator" : "whitespace",
+      "skip" : 0
+    },
+    "headers" : [
+
+    ],
+    "kind" : "http",
+    "language" : "applescript",
+    "method" : "GET",
+    "query" : [
+      {
+        "id" : "12670CCB-A167-42B7-A987-48D3A98C2D0F",
+        "name" : "term",
+        "value" : "{{$settings.busca}}"
+      },
+      {
+        "id" : "953D2AEB-85B1-4F35-959E-781C2A64F054",
+        "name" : "entity",
+        "value" : "podcast"
+      },
+      {
+        "id" : "76E83C22-E33D-49D1-BF2D-A4055EABED82",
+        "name" : "limit",
+        "value" : "12"
+      },
+      {
+        "id" : "4109F251-3098-4AFD-95F0-7C0A0CD6A4FD",
+        "name" : "country",
+        "value" : "BR"
+      }
+    ],
+    "script" : "",
+    "steps" : [
+
+    ],
+    "text" : "",
+    "url" : "https://itunes.apple.com/search"
+  }
 }

@@ -1,57 +1,166 @@
 {
-  "schema": 5,
-  "id": "plugin.exemplo.destaque",
-  "name": "Mais lidas",
-  "interval": 21600,
-  "icon": {
-    "kind": "picture",
-    "symbolName": "book.fill",
-    "pictureSource": "https://pt.wikipedia.org/static/apple-touch/wikipedia.png"
+  "actions" : [
+
+  ],
+  "attention" : {
+    "comparison" : "above",
+    "countPath" : "",
+    "listIndex" : 0,
+    "mode" : "never",
+    "threshold" : 0
   },
-  "source": {
-    "kind": "http",
-    "method": "GET",
-    "url": "https://pt.wikipedia.org/api/rest_v1/feed/featured/{{$now | shape yyyy}}/{{$now | shape MM}}/{{$now | shape dd}}",
-    "format": {
-      "kind": "json"
-    }
+  "button" : {
+    "cancelLabel" : "",
+    "confirms" : false,
+    "failureMessage" : "",
+    "failureReport" : "message",
+    "okLabel" : "",
+    "question" : "",
+    "runningText" : "",
+    "successMessage" : "",
+    "successReport" : "message"
   },
-  "slot": {
-    "label": "{{mostread.articles | count}}",
-    "style": "number"
-  },
-  "card": {
-    "isEnabled": true,
-    "picture": {
-      "kind": "address",
-      "value": "{{mostread.articles[0].thumbnail.source}}",
-      "shape": "rounded",
-      "scale": 1.4
-    },
-    "title": "Mais lidas",
-    "subtitle": "O que o Brasil procurou na Wikipédia",
-    "emptyMessage": "A Wikipédia não trouxe nada para hoje.",
-    "blocks": [
+  "card" : {
+    "blocks" : [
       {
-        "type": "list",
-        "limit": 6,
-        "tabs": [
+        "columnGap" : 8,
+        "id" : "71F3B6D4-A03F-4484-8069-4DF01E905379",
+        "limit" : 5,
+        "path" : "mostread.articles",
+        "rowURL" : "{{content_urls.desktop.page}}",
+        "structure" : [
           {
-            "title": "Artigos",
-            "path": "mostread.articles",
-            "rowTitle": "{{titles.normalized}}",
-            "rowSubtitle": "{{extract}}",
-            "rowMeta": "{{views}} visitas",
-            "rowImage": "{{thumbnail.source}}",
-            "rowWrapsTitle": true,
-            "rowURL": "{{content_urls.desktop.page}}"
+            "id" : "DC1AE463-07EE-45F2-8158-74C17B744229",
+            "lines" : [
+              {
+                "id" : "E0855CBD-812D-4B6A-ABE0-DED67CA04354",
+                "items" : [
+                  {
+                    "form" : "rounded",
+                    "id" : "60E87426-61D3-468E-9BCB-4C73858F3DE8",
+                    "kind" : "image",
+                    "picture" : {
+                      "kind" : "address",
+                      "shape" : "rounded",
+                      "value" : "{{thumbnail.source}}"
+                    },
+                    "size" : 44
+                  }
+                ]
+              }
+            ],
+            "width" : "auto"
+          },
+          {
+            "id" : "C5BF1D25-AA4A-448A-A264-A24E6004F14E",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "D93B3B11-1AF7-4E4B-ACDC-E168C560C6B6",
+                "items" : [
+                  {
+                    "content" : "{{titles.normalized}}",
+                    "fills" : true,
+                    "id" : "B99C8666-E7E5-4613-8477-4203988B3F70",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 0,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "1CED7FFF-3924-4413-9BFC-12D10B40749B",
+                "items" : [
+                  {
+                    "content" : "{{extract}}",
+                    "fills" : true,
+                    "id" : "A1C9F292-473F-4F9A-A572-526FB99ADB3E",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "gap" : 8,
+                "id" : "7B92346E-48E1-46B1-B032-1FC031B3FC8E",
+                "items" : [
+                  {
+                    "content" : "{{views}} visitas",
+                    "fills" : true,
+                    "id" : "A883CA08-3A82-485B-80F4-03044F0D709F",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
           }
-        ]
+        ],
+        "type" : "list"
       }
-    ]
+    ],
+    "emptyMessage" : "A Wikipédia não trouxe nada para hoje.",
+    "isEnabled" : true,
+    "picture" : {
+      "kind" : "address",
+      "scale" : 1.4,
+      "shape" : "rounded",
+      "value" : "{{mostread.articles[0].thumbnail.source}}"
+    },
+    "rowLimit" : 5,
+    "subtitle" : "O que o Brasil procurou na Wikipédia",
+    "title" : "Mais lidas"
   },
-  "actions": [],
-  "attention": {
-    "mode": "never"
+  "icon" : {
+    "kind" : "picture",
+    "pictureSource" : "https://pt.wikipedia.org/static/apple-touch/wikipedia.png",
+    "symbolName" : "book.fill",
+    "word" : ""
+  },
+  "id" : "plugin.exemplo.destaque",
+  "interval" : 21600,
+  "name" : "Mais lidas",
+  "parameters" : [
+
+  ],
+  "readsOnItsOwn" : true,
+  "role" : "reading",
+  "schema" : 12,
+  "slot" : {
+    "alertsOnThreshold" : false,
+    "label" : "{{mostread.articles | count}}",
+    "style" : "number",
+    "total" : "",
+    "value" : ""
+  },
+  "source" : {
+    "body" : "",
+    "errand" : "copy",
+    "format" : {
+      "all" : false,
+      "hasHeader" : false,
+      "kind" : "json",
+      "pattern" : "",
+      "separator" : "whitespace",
+      "skip" : 0
+    },
+    "headers" : [
+
+    ],
+    "kind" : "http",
+    "language" : "applescript",
+    "method" : "GET",
+    "script" : "",
+    "steps" : [
+
+    ],
+    "text" : "",
+    "url" : "https://pt.wikipedia.org/api/rest_v1/feed/featured/{{$now | shape yyyy}}/{{$now | shape MM}}/{{$now | shape dd}}"
   }
 }

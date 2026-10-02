@@ -1,99 +1,200 @@
 {
-  "schema": 7,
-  "id": "plugin.exemplo.steam",
-  "name": "Steam",
-  "interval": 3600,
-  "icon": {
-    "kind": "picture",
-    "symbolName": "gamecontroller.fill",
-    "pictureSource": "https://www.google.com/s2/favicons?domain=store.steampowered.com&sz=128"
+  "actions" : [
+
+  ],
+  "answer" : "{\"response\":{\"total_count\":5,\"games\":[{\"appid\":1086940,\"name\":\"Baldur's Gate 3\",\"playtime_2weeks\":742,\"playtime_forever\":9310,\"img_icon_url\":\"d866cae7ea1e471fdbc206287111f1b642373bd9\",\"playtime_windows_forever\":0,\"playtime_mac_forever\":9310,\"playtime_linux_forever\":0,\"playtime_deck_forever\":0},{\"appid\":413150,\"name\":\"Stardew Valley\",\"playtime_2weeks\":385,\"playtime_forever\":12840,\"img_icon_url\":\"35d1377200084a4034238c05b0c8930451e2fb40\",\"playtime_windows_forever\":0,\"playtime_mac_forever\":12840,\"playtime_linux_forever\":0,\"playtime_deck_forever\":0},{\"appid\":1145360,\"name\":\"Hades\",\"playtime_2weeks\":214,\"playtime_forever\":3120,\"img_icon_url\":\"8a3fca36a00883e8066263ad35dd15d77a1f9abc\",\"playtime_windows_forever\":0,\"playtime_mac_forever\":3120,\"playtime_linux_forever\":0,\"playtime_deck_forever\":0},{\"appid\":892970,\"name\":\"Valheim\",\"playtime_2weeks\":96,\"playtime_forever\":5475,\"img_icon_url\":\"2f64c9a826e2c6cf3253fea4834c2e612db09143\",\"playtime_windows_forever\":0,\"playtime_mac_forever\":5475,\"playtime_linux_forever\":0,\"playtime_deck_forever\":0},{\"appid\":570,\"name\":\"Dota 2\",\"playtime_2weeks\":41,\"playtime_forever\":20110,\"img_icon_url\":\"48eb825bb93787945065b460bdc109e395384ebf\",\"playtime_windows_forever\":0,\"playtime_mac_forever\":20110,\"playtime_linux_forever\":0,\"playtime_deck_forever\":0}]}}",
+  "attention" : {
+    "comparison" : "above",
+    "countPath" : "",
+    "listIndex" : 0,
+    "mode" : "never",
+    "threshold" : 0
   },
-  "source": {
-    "kind": "http",
-    "method": "GET",
-    "url": "https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v1/",
-    "query": [
+  "button" : {
+    "cancelLabel" : "",
+    "confirms" : false,
+    "failureMessage" : "",
+    "failureReport" : "message",
+    "okLabel" : "",
+    "question" : "",
+    "runningText" : "",
+    "successMessage" : "",
+    "successReport" : "message"
+  },
+  "card" : {
+    "blocks" : [
       {
-        "name": "key",
-        "value": "{{$settings.token}}"
+        "caption" : "Nas duas semanas · {{response.games[0].name}}",
+        "format" : "duration",
+        "goodDirection" : "up",
+        "id" : "1E5BCD3E-C29D-4D5E-BD0C-06AB3CEE8D09",
+        "type" : "hero",
+        "unit" : "minutes",
+        "value" : "{{response.games[0].playtime_2weeks}}"
       },
       {
-        "name": "steamid",
-        "value": "{{$settings.steamid}}"
+        "format" : "duration",
+        "id" : "3C8208C3-3B99-4C4F-A3B2-583DB534A528",
+        "label" : "{{name}}",
+        "limit" : 6,
+        "path" : "response.games",
+        "title" : "Tempo por jogo",
+        "type" : "stages",
+        "unit" : "minutes",
+        "value" : "{{playtime_2weeks}}"
       },
       {
-        "name": "format",
-        "value": "json"
+        "columnGap" : 8,
+        "id" : "F14A3546-7C6E-4830-B3A4-7EF1CD46FC37",
+        "limit" : 5,
+        "path" : "response.games",
+        "rowURL" : "https://store.steampowered.com/app/{{appid}}",
+        "structure" : [
+          {
+            "id" : "0EDE9601-A560-4BF2-8D40-37B6280E2379",
+            "lines" : [
+              {
+                "id" : "B1586868-5693-4DF9-9670-9D85ECB6529A",
+                "items" : [
+                  {
+                    "form" : "rounded",
+                    "id" : "DB7623BA-C075-4B65-9001-846CF875DBD2",
+                    "kind" : "image",
+                    "picture" : {
+                      "kind" : "address",
+                      "shape" : "rounded",
+                      "value" : "https://media.steampowered.com/steamcommunity/public/images/apps/{{appid}}/{{img_icon_url}}.jpg"
+                    },
+                    "size" : 44
+                  }
+                ]
+              }
+            ],
+            "width" : "auto"
+          },
+          {
+            "id" : "DDC4A185-B9C7-41D7-805C-D1F061DCFD4E",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "D8486EFA-4C8C-4BDA-B78E-761EAE311A74",
+                "items" : [
+                  {
+                    "content" : "{{name}}",
+                    "fills" : true,
+                    "id" : "B9E85C19-A1AF-4743-80FF-8907B807E0F7",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "35D311BE-C943-4BC8-91D8-48260D5488DC",
+                "items" : [
+                  {
+                    "content" : "{{playtime_forever | duration minutes}} no total",
+                    "fills" : true,
+                    "id" : "3683BCE1-C383-49D8-9273-6F8750F61C8E",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
+          }
+        ],
+        "type" : "list"
       }
     ],
-    "format": {
-      "kind": "json"
-    }
+    "emptyMessage" : "Nada jogado, ou o perfil está privado.",
+    "isEnabled" : true,
+    "rowLimit" : 5,
+    "subtitle" : "O que você jogou nas últimas duas semanas",
+    "title" : "Steam"
   },
-  "slot": {
-    "label": "{{response.total_count}}",
-    "style": "number"
+  "icon" : {
+    "kind" : "picture",
+    "pictureSource" : "https://www.google.com/s2/favicons?domain=store.steampowered.com&sz=128",
+    "symbolName" : "gamecontroller.fill",
+    "word" : ""
   },
-  "card": {
-    "isEnabled": true,
-    "title": "Steam",
-    "subtitle": "O que você jogou nas últimas duas semanas",
-    "emptyMessage": "Nada jogado, ou o perfil está privado.",
-    "blocks": [
-      {
-        "type": "hero",
-        "value": "{{response.games[0].playtime_2weeks}}",
-        "caption": "Nas duas semanas · {{response.games[0].name}}",
-        "goodDirection": "up",
-        "format": "duration",
-        "unit": "minutes"
-      },
-      {
-        "type": "stages",
-        "path": "response.games",
-        "label": "{{name}}",
-        "value": "{{playtime_2weeks}}",
-        "limit": 6,
-        "format": "duration",
-        "title": "Tempo por jogo",
-        "unit": "minutes"
-      },
-      {
-        "type": "list",
-        "limit": 5,
-        "tabs": [
-          {
-            "title": "Jogos",
-            "path": "response.games",
-            "rowTitle": "{{name}}",
-            "rowSubtitle": "{{playtime_forever | duration minutes}} no total",
-            "rowImage": "https://media.steampowered.com/steamcommunity/public/images/apps/{{appid}}/{{img_icon_url}}.jpg",
-            "rowURL": "https://store.steampowered.com/app/{{appid}}"
-          }
-        ]
-      }
-    ]
-  },
-  "actions": [],
-  "attention": {
-    "mode": "never"
-  },
-  "settings": [
+  "id" : "plugin.exemplo.steam",
+  "interval" : 3600,
+  "name" : "Steam",
+  "parameters" : [
+
+  ],
+  "readsOnItsOwn" : true,
+  "role" : "reading",
+  "schema" : 12,
+  "settings" : [
     {
-      "key": "steamid",
-      "label": "SteamID64",
-      "type": "text",
-      "help": "O número de 17 dígitos do seu perfil.",
-      "required": true,
-      "placeholder": "7656119…"
+      "help" : "O número de 17 dígitos do seu perfil.",
+      "key" : "steamid",
+      "label" : "SteamID64",
+      "placeholder" : "7656119…",
+      "required" : true,
+      "type" : "text"
     },
     {
-      "key": "token",
-      "label": "Token",
-      "type": "secret",
-      "required": true,
-      "help": "Crie em steamcommunity.com/dev/apikey."
+      "help" : "Crie em steamcommunity.com/dev/apikey.",
+      "key" : "token",
+      "label" : "Token",
+      "required" : true,
+      "type" : "secret"
     }
   ],
-  "answer": "{\"response\":{\"total_count\":5,\"games\":[{\"appid\":1086940,\"name\":\"Baldur's Gate 3\",\"playtime_2weeks\":742,\"playtime_forever\":9310,\"img_icon_url\":\"d866cae7ea1e471fdbc206287111f1b642373bd9\",\"playtime_windows_forever\":0,\"playtime_mac_forever\":9310,\"playtime_linux_forever\":0,\"playtime_deck_forever\":0},{\"appid\":413150,\"name\":\"Stardew Valley\",\"playtime_2weeks\":385,\"playtime_forever\":12840,\"img_icon_url\":\"35d1377200084a4034238c05b0c8930451e2fb40\",\"playtime_windows_forever\":0,\"playtime_mac_forever\":12840,\"playtime_linux_forever\":0,\"playtime_deck_forever\":0},{\"appid\":1145360,\"name\":\"Hades\",\"playtime_2weeks\":214,\"playtime_forever\":3120,\"img_icon_url\":\"8a3fca36a00883e8066263ad35dd15d77a1f9abc\",\"playtime_windows_forever\":0,\"playtime_mac_forever\":3120,\"playtime_linux_forever\":0,\"playtime_deck_forever\":0},{\"appid\":892970,\"name\":\"Valheim\",\"playtime_2weeks\":96,\"playtime_forever\":5475,\"img_icon_url\":\"2f64c9a826e2c6cf3253fea4834c2e612db09143\",\"playtime_windows_forever\":0,\"playtime_mac_forever\":5475,\"playtime_linux_forever\":0,\"playtime_deck_forever\":0},{\"appid\":570,\"name\":\"Dota 2\",\"playtime_2weeks\":41,\"playtime_forever\":20110,\"img_icon_url\":\"48eb825bb93787945065b460bdc109e395384ebf\",\"playtime_windows_forever\":0,\"playtime_mac_forever\":20110,\"playtime_linux_forever\":0,\"playtime_deck_forever\":0}]}}"
+  "slot" : {
+    "alertsOnThreshold" : false,
+    "label" : "{{response.total_count}}",
+    "style" : "number",
+    "total" : "",
+    "value" : ""
+  },
+  "source" : {
+    "body" : "",
+    "errand" : "copy",
+    "format" : {
+      "all" : false,
+      "hasHeader" : false,
+      "kind" : "json",
+      "pattern" : "",
+      "separator" : "whitespace",
+      "skip" : 0
+    },
+    "headers" : [
+
+    ],
+    "kind" : "http",
+    "language" : "applescript",
+    "method" : "GET",
+    "query" : [
+      {
+        "id" : "C570EAFE-5C65-4441-AD3F-5EF80ED521E6",
+        "name" : "key",
+        "value" : "{{$settings.token}}"
+      },
+      {
+        "id" : "BFCA77E3-920D-405C-AB34-FA7A7C8DFD2D",
+        "name" : "steamid",
+        "value" : "{{$settings.steamid}}"
+      },
+      {
+        "id" : "E61420B0-5790-4C8D-9D22-0C7A0B67E100",
+        "name" : "format",
+        "value" : "json"
+      }
+    ],
+    "script" : "",
+    "steps" : [
+
+    ],
+    "text" : "",
+    "url" : "https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v1/"
+  }
 }

@@ -1,154 +1,285 @@
 {
-  "schema": 11,
-  "id": "plugin.exemplo.zendesk",
-  "name": "Zendesk",
-  "interval": 600,
-  "icon": {
-    "kind": "picture",
-    "symbolName": "headphones",
-    "pictureSource": "https://github.com/zendesk.png?size=128"
+  "actions" : [
+
+  ],
+  "answer" : "{\"results\":[{\"url\":\"https://minhaempresa.zendesk.com/api/v2/tickets/4821.json\",\"id\":4821,\"created_at\":\"2026-10-01T11:42:18Z\",\"updated_at\":\"2026-10-01T11:42:18Z\",\"type\":\"question\",\"subject\":\"Não consigo acessar minha conta depois da troca de senha\",\"raw_subject\":\"Não consigo acessar minha conta depois da troca de senha\",\"priority\":\"urgent\",\"status\":\"new\",\"requester_id\":36120198451,\"assignee_id\":36120198452,\"group_id\":36120198460,\"tags\":[],\"via\":{\"channel\":\"email\"},\"result_type\":\"ticket\"},{\"url\":\"https://minhaempresa.zendesk.com/api/v2/tickets/4819.json\",\"id\":4819,\"created_at\":\"2026-10-01T09:05:51Z\",\"updated_at\":\"2026-10-01T09:05:51Z\",\"type\":\"question\",\"subject\":\"Cobrança duplicada no cartão\",\"raw_subject\":\"Cobrança duplicada no cartão\",\"priority\":\"high\",\"status\":\"open\",\"requester_id\":36120198451,\"assignee_id\":36120198452,\"group_id\":36120198460,\"tags\":[],\"via\":{\"channel\":\"email\"},\"result_type\":\"ticket\"},{\"url\":\"https://minhaempresa.zendesk.com/api/v2/tickets/4815.json\",\"id\":4815,\"created_at\":\"2026-09-30T17:30:02Z\",\"updated_at\":\"2026-09-30T17:30:02Z\",\"type\":\"question\",\"subject\":\"Como emitir a segunda via da nota fiscal?\",\"raw_subject\":\"Como emitir a segunda via da nota fiscal?\",\"priority\":\"normal\",\"status\":\"pending\",\"requester_id\":36120198451,\"assignee_id\":36120198452,\"group_id\":36120198460,\"tags\":[],\"via\":{\"channel\":\"email\"},\"result_type\":\"ticket\"},{\"url\":\"https://minhaempresa.zendesk.com/api/v2/tickets/4810.json\",\"id\":4810,\"created_at\":\"2026-09-30T13:12:44Z\",\"updated_at\":\"2026-09-30T13:12:44Z\",\"type\":\"question\",\"subject\":\"Pedido chegou com item faltando\",\"raw_subject\":\"Pedido chegou com item faltando\",\"priority\":null,\"status\":\"open\",\"requester_id\":36120198451,\"assignee_id\":36120198452,\"group_id\":36120198460,\"tags\":[],\"via\":{\"channel\":\"email\"},\"result_type\":\"ticket\"},{\"url\":\"https://minhaempresa.zendesk.com/api/v2/tickets/4802.json\",\"id\":4802,\"created_at\":\"2026-09-29T10:01:09Z\",\"updated_at\":\"2026-09-29T10:01:09Z\",\"type\":\"question\",\"subject\":\"Sugestão: exportar relatório em PDF\",\"raw_subject\":\"Sugestão: exportar relatório em PDF\",\"priority\":\"low\",\"status\":\"hold\",\"requester_id\":36120198451,\"assignee_id\":36120198452,\"group_id\":36120198460,\"tags\":[],\"via\":{\"channel\":\"email\"},\"result_type\":\"ticket\"}],\"facets\":null,\"next_page\":null,\"previous_page\":null,\"count\":5}",
+  "attention" : {
+    "comparison" : "above",
+    "countPath" : "",
+    "listIndex" : 0,
+    "mode" : "newRows",
+    "threshold" : 0
   },
-  "source": {
-    "kind": "http",
-    "method": "GET",
-    "url": "https://{{$settings.dominio}}/api/v2/search.json",
-    "query": [
+  "button" : {
+    "cancelLabel" : "",
+    "confirms" : false,
+    "failureMessage" : "",
+    "failureReport" : "message",
+    "okLabel" : "",
+    "question" : "",
+    "runningText" : "",
+    "successMessage" : "",
+    "successReport" : "message"
+  },
+  "card" : {
+    "blocks" : [
       {
-        "name": "query",
-        "value": "type:ticket status<solved"
+        "caption" : "Em aberto agora",
+        "format" : "integer",
+        "goodDirection" : "down",
+        "id" : "4CAEA00E-0D67-4DA3-95A3-77DF83E541C7",
+        "type" : "hero",
+        "value" : "{{count}}",
+        "width" : "half"
       },
       {
-        "name": "sort_by",
-        "value": "created_at"
-      },
-      {
-        "name": "sort_order",
-        "value": "desc"
-      }
-    ],
-    "headers": [
-      {
-        "name": "Authorization",
-        "value": "Basic {{$settings.token}}"
-      }
-    ],
-    "format": {
-      "kind": "json"
-    }
-  },
-  "slot": {
-    "label": "{{count}}",
-    "style": "number"
-  },
-  "card": {
-    "isEnabled": true,
-    "title": "Zendesk",
-    "subtitle": "Chamados em aberto",
-    "emptyMessage": "Nenhum chamado em aberto.",
-    "blocks": [
-      {
-        "type": "hero",
-        "value": "{{count}}",
-        "caption": "Em aberto agora",
-        "goodDirection": "down",
-        "format": "integer",
-        "width": "half"
-      },
-      {
-        "type": "breakdown",
-        "title": "Por status",
-        "width": "half",
-        "breakdownStyle": "list",
-        "path": "results",
-        "groupField": "{{status}}",
-        "groupKind": "text",
-        "measure": "count",
-        "shows": "amount",
-        "groups": [
+        "breakdownStyle" : "list",
+        "groupField" : "{{status}}",
+        "groupKind" : "text",
+        "groups" : [
           {
-            "id": "9EA69900-99AA-4BF7-9510-2ECCCFC42C78",
-            "name": "Novo",
-            "color": "blue",
-            "match": "new"
+            "color" : "blue",
+            "id" : "9EA69900-99AA-4BF7-9510-2ECCCFC42C78",
+            "match" : "new",
+            "name" : "Novo",
+            "truth" : true
           },
           {
-            "id": "30CD0450-3C56-461A-9636-77E1A18130AD",
-            "name": "Aberto",
-            "color": "orange",
-            "match": "open"
+            "color" : "orange",
+            "id" : "30CD0450-3C56-461A-9636-77E1A18130AD",
+            "match" : "open",
+            "name" : "Aberto",
+            "truth" : true
           },
           {
-            "id": "0C11EC16-5494-452E-9544-7A1F9784B13E",
-            "name": "Pendente",
-            "color": "yellow",
-            "match": "pending"
+            "color" : "yellow",
+            "id" : "0C11EC16-5494-452E-9544-7A1F9784B13E",
+            "match" : "pending",
+            "name" : "Pendente",
+            "truth" : true
           },
           {
-            "id": "0F1B9651-DCB2-459C-AD99-146CCB568980",
-            "name": "Em espera",
-            "color": "gray",
-            "match": "hold"
+            "color" : "gray",
+            "id" : "0F1B9651-DCB2-459C-AD99-146CCB568980",
+            "match" : "hold",
+            "name" : "Em espera",
+            "truth" : true
           }
         ],
-        "others": {
-          "shows": false,
-          "name": "Outros",
-          "color": "gray"
-        }
+        "id" : "950CCC6E-8601-4C4F-BFAF-722DFCC439FA",
+        "measure" : "count",
+        "others" : {
+          "color" : "gray",
+          "name" : "Outros",
+          "shows" : false
+        },
+        "path" : "results",
+        "shows" : "amount",
+        "title" : "Por status",
+        "type" : "breakdown",
+        "width" : "half"
       },
       {
-        "type": "list",
-        "limit": 6,
-        "tabs": [
+        "columnGap" : 8,
+        "id" : "B37B8934-52F5-4396-A052-080CF8F2151F",
+        "limit" : 5,
+        "path" : "results",
+        "rowURL" : "https://{{$settings.dominio}}/agent/tickets/{{id}}",
+        "structure" : [
           {
-            "title": "Chamados",
-            "path": "results",
-            "rowTitle": "{{subject}}",
-            "rowSubtitle": "{{created_at | ago}}",
-            "rowBadge": "#{{id}}",
-            "rowStatus": "{{priority ?? status}}",
-            "rowWrapsTitle": true,
-            "statusColors": {
-              "urgent": "negative",
-              "high": "attention",
-              "normal": "neutral",
-              "low": "neutral"
-            },
-            "rowURL": "https://{{$settings.dominio}}/agent/tickets/{{id}}",
-            "statusWords": {
-              "urgent": "urgente",
-              "high": "alta",
-              "normal": "normal",
-              "low": "baixa",
-              "new": "novo",
-              "open": "aberto",
-              "pending": "pendente",
-              "hold": "em espera"
-            }
+            "id" : "D3C65683-2244-499D-919A-ACD13B31C284",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "25A0B6FA-EC6A-4082-A12E-ACAE3822EF94",
+                "items" : [
+                  {
+                    "content" : "{{subject}}",
+                    "fills" : true,
+                    "id" : "75F51EE1-EEBD-457C-AF4F-B8AB4D191E6C",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 0,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "D72CB70B-082F-450D-8E05-515EB1C2EBA9",
+                "items" : [
+                  {
+                    "content" : "{{created_at | ago}}",
+                    "fills" : true,
+                    "id" : "62A4311D-050C-4F9A-B497-C7D7E6AA4657",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "gap" : 8,
+                "id" : "B039515E-FD64-46C3-9242-4E0754002314",
+                "items" : [
+                  {
+                    "id" : "C103706A-AEC8-4434-A6D7-6D29158265EC",
+                    "kind" : "space",
+                    "spaceWidth" : 0
+                  },
+                  {
+                    "content" : "{{priority ?? status}}",
+                    "id" : "98EEACEF-1FBB-497C-8B9B-B08A9BC459ED",
+                    "indicator" : "dotAndText",
+                    "kind" : "indicator",
+                    "rules" : [
+                      {
+                        "label" : "alta",
+                        "tint" : "attention",
+                        "value" : "high"
+                      },
+                      {
+                        "label" : "baixa",
+                        "tint" : "neutral",
+                        "value" : "low"
+                      },
+                      {
+                        "label" : "normal",
+                        "tint" : "neutral",
+                        "value" : "normal"
+                      },
+                      {
+                        "label" : "urgente",
+                        "tint" : "negative",
+                        "value" : "urgent"
+                      },
+                      {
+                        "label" : "em espera",
+                        "tint" : "neutral",
+                        "value" : "hold"
+                      },
+                      {
+                        "label" : "novo",
+                        "tint" : "neutral",
+                        "value" : "new"
+                      },
+                      {
+                        "label" : "aberto",
+                        "tint" : "neutral",
+                        "value" : "open"
+                      },
+                      {
+                        "label" : "pendente",
+                        "tint" : "neutral",
+                        "value" : "pending"
+                      }
+                    ],
+                    "size" : 13
+                  },
+                  {
+                    "content" : "#{{id}}",
+                    "id" : "977A7A72-68D9-4ED2-8CE7-0DBB5C01A737",
+                    "ink" : "secondary",
+                    "kind" : "icon",
+                    "size" : 13,
+                    "symbolName" : ""
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
           }
-        ]
+        ],
+        "type" : "list"
       }
-    ]
+    ],
+    "emptyMessage" : "Nenhum chamado em aberto.",
+    "isEnabled" : true,
+    "rowLimit" : 5,
+    "subtitle" : "Chamados em aberto",
+    "title" : "Zendesk"
   },
-  "actions": [],
-  "attention": {
-    "mode": "newRows"
+  "icon" : {
+    "kind" : "picture",
+    "pictureSource" : "https://github.com/zendesk.png?size=128",
+    "symbolName" : "headphones",
+    "word" : ""
   },
-  "settings": [
+  "id" : "plugin.exemplo.zendesk",
+  "interval" : 600,
+  "name" : "Zendesk",
+  "parameters" : [
+
+  ],
+  "readsOnItsOwn" : true,
+  "role" : "reading",
+  "schema" : 12,
+  "settings" : [
     {
-      "key": "dominio",
-      "label": "Domínio do Zendesk",
-      "type": "text",
-      "required": true,
-      "placeholder": "minhaempresa.zendesk.com"
+      "key" : "dominio",
+      "label" : "Domínio do Zendesk",
+      "placeholder" : "minhaempresa.zendesk.com",
+      "required" : true,
+      "type" : "text"
     },
     {
-      "key": "token",
-      "label": "Token",
-      "type": "secret",
-      "required": true,
-      "help": "Cole o Base64 de «seu-email/token:token-da-api»."
+      "help" : "Cole o Base64 de «seu-email/token:token-da-api».",
+      "key" : "token",
+      "label" : "Token",
+      "required" : true,
+      "type" : "secret"
     }
   ],
-  "answer": "{\"results\":[{\"url\":\"https://minhaempresa.zendesk.com/api/v2/tickets/4821.json\",\"id\":4821,\"created_at\":\"2026-10-01T11:42:18Z\",\"updated_at\":\"2026-10-01T11:42:18Z\",\"type\":\"question\",\"subject\":\"Não consigo acessar minha conta depois da troca de senha\",\"raw_subject\":\"Não consigo acessar minha conta depois da troca de senha\",\"priority\":\"urgent\",\"status\":\"new\",\"requester_id\":36120198451,\"assignee_id\":36120198452,\"group_id\":36120198460,\"tags\":[],\"via\":{\"channel\":\"email\"},\"result_type\":\"ticket\"},{\"url\":\"https://minhaempresa.zendesk.com/api/v2/tickets/4819.json\",\"id\":4819,\"created_at\":\"2026-10-01T09:05:51Z\",\"updated_at\":\"2026-10-01T09:05:51Z\",\"type\":\"question\",\"subject\":\"Cobrança duplicada no cartão\",\"raw_subject\":\"Cobrança duplicada no cartão\",\"priority\":\"high\",\"status\":\"open\",\"requester_id\":36120198451,\"assignee_id\":36120198452,\"group_id\":36120198460,\"tags\":[],\"via\":{\"channel\":\"email\"},\"result_type\":\"ticket\"},{\"url\":\"https://minhaempresa.zendesk.com/api/v2/tickets/4815.json\",\"id\":4815,\"created_at\":\"2026-09-30T17:30:02Z\",\"updated_at\":\"2026-09-30T17:30:02Z\",\"type\":\"question\",\"subject\":\"Como emitir a segunda via da nota fiscal?\",\"raw_subject\":\"Como emitir a segunda via da nota fiscal?\",\"priority\":\"normal\",\"status\":\"pending\",\"requester_id\":36120198451,\"assignee_id\":36120198452,\"group_id\":36120198460,\"tags\":[],\"via\":{\"channel\":\"email\"},\"result_type\":\"ticket\"},{\"url\":\"https://minhaempresa.zendesk.com/api/v2/tickets/4810.json\",\"id\":4810,\"created_at\":\"2026-09-30T13:12:44Z\",\"updated_at\":\"2026-09-30T13:12:44Z\",\"type\":\"question\",\"subject\":\"Pedido chegou com item faltando\",\"raw_subject\":\"Pedido chegou com item faltando\",\"priority\":null,\"status\":\"open\",\"requester_id\":36120198451,\"assignee_id\":36120198452,\"group_id\":36120198460,\"tags\":[],\"via\":{\"channel\":\"email\"},\"result_type\":\"ticket\"},{\"url\":\"https://minhaempresa.zendesk.com/api/v2/tickets/4802.json\",\"id\":4802,\"created_at\":\"2026-09-29T10:01:09Z\",\"updated_at\":\"2026-09-29T10:01:09Z\",\"type\":\"question\",\"subject\":\"Sugestão: exportar relatório em PDF\",\"raw_subject\":\"Sugestão: exportar relatório em PDF\",\"priority\":\"low\",\"status\":\"hold\",\"requester_id\":36120198451,\"assignee_id\":36120198452,\"group_id\":36120198460,\"tags\":[],\"via\":{\"channel\":\"email\"},\"result_type\":\"ticket\"}],\"facets\":null,\"next_page\":null,\"previous_page\":null,\"count\":5}"
+  "slot" : {
+    "alertsOnThreshold" : false,
+    "label" : "{{count}}",
+    "style" : "number",
+    "total" : "",
+    "value" : ""
+  },
+  "source" : {
+    "body" : "",
+    "errand" : "copy",
+    "format" : {
+      "all" : false,
+      "hasHeader" : false,
+      "kind" : "json",
+      "pattern" : "",
+      "separator" : "whitespace",
+      "skip" : 0
+    },
+    "headers" : [
+      {
+        "id" : "AE1D1D43-F9EB-4D5B-8E9D-3BBB828B754F",
+        "name" : "Authorization",
+        "value" : "Basic {{$settings.token}}"
+      }
+    ],
+    "kind" : "http",
+    "language" : "applescript",
+    "method" : "GET",
+    "query" : [
+      {
+        "id" : "465C86B5-4AB0-4AEA-94B5-51FDE981B82C",
+        "name" : "query",
+        "value" : "type:ticket status<solved"
+      },
+      {
+        "id" : "CD33C919-95E0-4A93-8B7D-FCC7FD8F7ADD",
+        "name" : "sort_by",
+        "value" : "created_at"
+      },
+      {
+        "id" : "5D199998-A66F-4398-83B6-86AE47755649",
+        "name" : "sort_order",
+        "value" : "desc"
+      }
+    ],
+    "script" : "",
+    "steps" : [
+
+    ],
+    "text" : "",
+    "url" : "https://{{$settings.dominio}}/api/v2/search.json"
+  }
 }

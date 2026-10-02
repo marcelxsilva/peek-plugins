@@ -1,148 +1,297 @@
 {
-  "schema": 11,
-  "id": "plugin.exemplo.linear",
-  "name": "Linear",
-  "interval": 600,
-  "icon": {
-    "kind": "picture",
-    "symbolName": "line.3.horizontal.decrease.circle.fill",
-    "pictureSource": "https://github.com/linear.png?size=128"
-  },
-  "source": {
-    "kind": "http",
-    "method": "POST",
-    "url": "https://api.linear.app/graphql",
-    "headers": [
-      {
-        "name": "Authorization",
-        "value": "{{$settings.token}}"
+  "actions" : [
+    {
+      "asksForValue" : false,
+      "confirmText" : "",
+      "confirms" : false,
+      "failureMessage" : "",
+      "failureReport" : "message",
+      "id" : "9B2CE928-2C60-45E5-94A3-65BEF0F42FAF",
+      "isProminent" : false,
+      "listIndex" : 0,
+      "mark" : {
+        "kind" : "symbol",
+        "value" : "arrow.up.forward.square"
       },
-      {
-        "name": "Content-Type",
-        "value": "application/json"
-      }
-    ],
-    "body": "{\"query\": \"query { viewer { assignedIssues(first: 20, filter: { completedAt: { null: true }, canceledAt: { null: true } }) { nodes { identifier title url priorityLabel updatedAt state { name } project { name } } } } }\"}",
-    "format": {
-      "kind": "json"
+      "name" : "Abrir o Linear",
+      "place" : "card",
+      "question" : "",
+      "run" : {
+        "body" : "",
+        "errand" : "openLink",
+        "format" : {
+          "all" : false,
+          "hasHeader" : false,
+          "kind" : "json",
+          "pattern" : "",
+          "separator" : "whitespace",
+          "skip" : 0
+        },
+        "headers" : [
+
+        ],
+        "kind" : "onTheMac",
+        "language" : "applescript",
+        "method" : "GET",
+        "script" : "",
+        "steps" : [
+
+        ],
+        "text" : "https://linear.app/",
+        "url" : ""
+      },
+      "runningText" : "",
+      "successMessage" : "",
+      "successReport" : "nothing"
     }
+  ],
+  "answer" : "{\"data\":{\"viewer\":{\"assignedIssues\":{\"nodes\":[{\"identifier\":\"ENG-412\",\"title\":\"Pagamento via Pix falha quando o valor tem centavos\",\"url\":\"https://linear.app/exemplo/issue/ENG-412\",\"priorityLabel\":\"Urgent\",\"updatedAt\":\"2026-10-01T10:12:44.318Z\",\"state\":{\"name\":\"In Progress\"},\"project\":{\"name\":\"Checkout\"}},{\"identifier\":\"ENG-405\",\"title\":\"Revisar limites de requisição da API pública\",\"url\":\"https://linear.app/exemplo/issue/ENG-405\",\"priorityLabel\":\"High\",\"updatedAt\":\"2026-09-30T19:40:02.120Z\",\"state\":{\"name\":\"In Progress\"},\"project\":{\"name\":\"Plataforma\"}},{\"identifier\":\"ENG-398\",\"title\":\"Exportar relatório mensal em CSV\",\"url\":\"https://linear.app/exemplo/issue/ENG-398\",\"priorityLabel\":\"Medium\",\"updatedAt\":\"2026-09-30T13:05:51.904Z\",\"state\":{\"name\":\"Todo\"},\"project\":{\"name\":\"Relatórios\"}},{\"identifier\":\"ENG-391\",\"title\":\"Ajustar textos do e-mail de boas-vindas\",\"url\":\"https://linear.app/exemplo/issue/ENG-391\",\"priorityLabel\":\"Low\",\"updatedAt\":\"2026-09-29T17:22:10.003Z\",\"state\":{\"name\":\"Todo\"},\"project\":{\"name\":\"Onboarding\"}},{\"identifier\":\"ENG-387\",\"title\":\"Trocar biblioteca de gráficos do painel\",\"url\":\"https://linear.app/exemplo/issue/ENG-387\",\"priorityLabel\":\"No priority\",\"updatedAt\":\"2026-09-26T11:48:37.551Z\",\"state\":{\"name\":\"Backlog\"},\"project\":{\"name\":\"Relatórios\"}},{\"identifier\":\"ENG-379\",\"title\":\"Cache das consultas de estoque expira cedo demais\",\"url\":\"https://linear.app/exemplo/issue/ENG-379\",\"priorityLabel\":\"High\",\"updatedAt\":\"2026-09-25T09:31:19.770Z\",\"state\":{\"name\":\"Todo\"},\"project\":{\"name\":\"Plataforma\"}}]}}}}",
+  "attention" : {
+    "comparison" : "above",
+    "countPath" : "",
+    "listIndex" : 0,
+    "mode" : "newRows",
+    "threshold" : 0
   },
-  "slot": {
-    "label": "{{data.viewer.assignedIssues.nodes | count}}",
-    "style": "number"
+  "button" : {
+    "cancelLabel" : "",
+    "confirms" : false,
+    "failureMessage" : "",
+    "failureReport" : "message",
+    "okLabel" : "",
+    "question" : "",
+    "runningText" : "",
+    "successMessage" : "",
+    "successReport" : "message"
   },
-  "card": {
-    "isEnabled": true,
-    "title": "Linear",
-    "subtitle": "Issues atribuídas a você",
-    "emptyMessage": "Nenhuma issue aberta no seu nome.",
-    "blocks": [
+  "card" : {
+    "blocks" : [
       {
-        "type": "hero",
-        "value": "{{data.viewer.assignedIssues.nodes | count}}",
-        "caption": "Em aberto",
-        "format": "integer",
-        "goodDirection": "down",
-        "width": "half"
+        "caption" : "Em aberto",
+        "format" : "integer",
+        "goodDirection" : "down",
+        "id" : "7E0AE8D8-945F-4B13-A59E-1A4A2B1C78AA",
+        "type" : "hero",
+        "value" : "{{data.viewer.assignedIssues.nodes | count}}",
+        "width" : "half"
       },
       {
-        "type": "breakdown",
-        "title": "Prioridade",
-        "breakdownStyle": "list",
-        "path": "data.viewer.assignedIssues.nodes",
-        "groupField": "{{priorityLabel}}",
-        "groupKind": "text",
-        "measure": "count",
-        "shows": "amount",
-        "groups": [
+        "breakdownStyle" : "list",
+        "groupField" : "{{priorityLabel}}",
+        "groupKind" : "text",
+        "groups" : [
           {
-            "id": "C20288DB-3259-4FD0-8CA6-5C00BCA75530",
-            "name": "Urgente",
-            "color": "red",
-            "match": "Urgent"
+            "color" : "red",
+            "id" : "C20288DB-3259-4FD0-8CA6-5C00BCA75530",
+            "match" : "Urgent",
+            "name" : "Urgente",
+            "truth" : true
           },
           {
-            "id": "7DF6F02D-97A4-4A5F-94DE-EE31311AA34D",
-            "name": "Alta",
-            "color": "orange",
-            "match": "High"
+            "color" : "orange",
+            "id" : "7DF6F02D-97A4-4A5F-94DE-EE31311AA34D",
+            "match" : "High",
+            "name" : "Alta",
+            "truth" : true
           },
           {
-            "id": "4665AE17-2C2A-4EBC-B705-F1FF7732C337",
-            "name": "Média",
-            "color": "yellow",
-            "match": "Medium"
+            "color" : "yellow",
+            "id" : "4665AE17-2C2A-4EBC-B705-F1FF7732C337",
+            "match" : "Medium",
+            "name" : "Média",
+            "truth" : true
           },
           {
-            "id": "ABF6509A-541F-48FA-ABA0-24E6CC96D0D8",
-            "name": "Baixa",
-            "color": "blue",
-            "match": "Low"
+            "color" : "blue",
+            "id" : "ABF6509A-541F-48FA-ABA0-24E6CC96D0D8",
+            "match" : "Low",
+            "name" : "Baixa",
+            "truth" : true
           },
           {
-            "id": "DDA4EA0F-B7EF-49F8-8D84-EA590238E2CC",
-            "name": "Sem prioridade",
-            "color": "gray",
-            "match": "No priority"
+            "color" : "gray",
+            "id" : "DDA4EA0F-B7EF-49F8-8D84-EA590238E2CC",
+            "match" : "No priority",
+            "name" : "Sem prioridade",
+            "truth" : true
           }
         ],
-        "others": {
-          "shows": false,
-          "name": "Outros",
-          "color": "gray"
+        "id" : "0096B5FB-33B8-45D3-9AAC-A9692CA71CF3",
+        "measure" : "count",
+        "others" : {
+          "color" : "gray",
+          "name" : "Outros",
+          "shows" : false
         },
-        "width": "half"
+        "path" : "data.viewer.assignedIssues.nodes",
+        "shows" : "amount",
+        "title" : "Prioridade",
+        "type" : "breakdown",
+        "width" : "half"
       },
       {
-        "type": "list",
-        "limit": 6,
-        "tabs": [
+        "columnGap" : 8,
+        "id" : "1B5B06D7-D53E-4117-B8C6-F22F7B807115",
+        "limit" : 5,
+        "path" : "data.viewer.assignedIssues.nodes",
+        "rowURL" : "{{url}}",
+        "sections" : "{{state.name}}",
+        "structure" : [
           {
-            "title": "Minhas issues",
-            "path": "data.viewer.assignedIssues.nodes",
-            "rowTitle": "{{title}}",
-            "rowSubtitle": "{{project.name}} · {{updatedAt | ago}}",
-            "rowBadge": "{{identifier}}",
-            "rowStatus": "{{priorityLabel}}",
-            "rowWrapsTitle": true,
-            "sections": "{{state.name}}",
-            "statusColors": {
-              "Urgent": "negative",
-              "High": "attention",
-              "Medium": "neutral",
-              "Low": "neutral",
-              "No priority": "neutral"
-            },
-            "rowURL": "{{url}}"
+            "id" : "BBA9E6CE-9FD6-4856-B314-CFC5EF416501",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "C3C19B2A-09FB-4F44-A0B1-04D7D6A51C4F",
+                "items" : [
+                  {
+                    "content" : "{{title}}",
+                    "fills" : true,
+                    "id" : "3FEF3D70-8C85-4487-8D7F-9ED3E429A699",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 0,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "C392354D-B76F-4EEE-BFF1-2F58B3D1247A",
+                "items" : [
+                  {
+                    "content" : "{{project.name}} · {{updatedAt | ago}}",
+                    "fills" : true,
+                    "id" : "7A65AB45-EDCC-48EE-AC73-86592EC373B7",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "gap" : 8,
+                "id" : "C2D59F8D-A0BE-46D6-859E-9B162F288FFD",
+                "items" : [
+                  {
+                    "id" : "23A3E583-CBD9-417E-BD4A-DF94E103EC34",
+                    "kind" : "space",
+                    "spaceWidth" : 0
+                  },
+                  {
+                    "content" : "{{priorityLabel}}",
+                    "id" : "B20811CB-BF82-4770-91EB-6368C4DFEFDD",
+                    "indicator" : "dotAndText",
+                    "kind" : "indicator",
+                    "rules" : [
+                      {
+                        "tint" : "attention",
+                        "value" : "High"
+                      },
+                      {
+                        "tint" : "neutral",
+                        "value" : "Low"
+                      },
+                      {
+                        "tint" : "neutral",
+                        "value" : "Medium"
+                      },
+                      {
+                        "tint" : "neutral",
+                        "value" : "No priority"
+                      },
+                      {
+                        "tint" : "negative",
+                        "value" : "Urgent"
+                      }
+                    ],
+                    "size" : 13
+                  },
+                  {
+                    "content" : "{{identifier}}",
+                    "id" : "8D2DE424-0739-4271-8267-FB69C020A62D",
+                    "ink" : "secondary",
+                    "kind" : "icon",
+                    "size" : 13,
+                    "symbolName" : ""
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
           }
-        ]
+        ],
+        "type" : "list"
       }
-    ]
+    ],
+    "emptyMessage" : "Nenhuma issue aberta no seu nome.",
+    "isEnabled" : true,
+    "rowLimit" : 5,
+    "subtitle" : "Issues atribuídas a você",
+    "title" : "Linear"
   },
-  "actions": [
+  "icon" : {
+    "kind" : "picture",
+    "pictureSource" : "https://github.com/linear.png?size=128",
+    "symbolName" : "line.3.horizontal.decrease.circle.fill",
+    "word" : ""
+  },
+  "id" : "plugin.exemplo.linear",
+  "interval" : 600,
+  "name" : "Linear",
+  "parameters" : [
+
+  ],
+  "readsOnItsOwn" : true,
+  "role" : "reading",
+  "schema" : 12,
+  "settings" : [
     {
-      "name": "Abrir o Linear",
-      "symbolName": "arrow.up.forward.square",
-      "place": "card",
-      "run": {
-        "kind": "onTheMac",
-        "errand": "openLink",
-        "text": "https://linear.app/"
+      "help" : "Crie em Linear › Settings › Security & access › Personal API keys.",
+      "key" : "token",
+      "label" : "Chave da API",
+      "required" : true,
+      "type" : "secret"
+    }
+  ],
+  "slot" : {
+    "alertsOnThreshold" : false,
+    "label" : "{{data.viewer.assignedIssues.nodes | count}}",
+    "style" : "number",
+    "total" : "",
+    "value" : ""
+  },
+  "source" : {
+    "body" : "{\"query\": \"query { viewer { assignedIssues(first: 20, filter: { completedAt: { null: true }, canceledAt: { null: true } }) { nodes { identifier title url priorityLabel updatedAt state { name } project { name } } } } }\"}",
+    "errand" : "copy",
+    "format" : {
+      "all" : false,
+      "hasHeader" : false,
+      "kind" : "json",
+      "pattern" : "",
+      "separator" : "whitespace",
+      "skip" : 0
+    },
+    "headers" : [
+      {
+        "id" : "DD918C06-0DE5-418C-BDA8-A60AE56DEBC8",
+        "name" : "Authorization",
+        "value" : "{{$settings.token}}"
       },
-      "successReport": "nothing"
-    }
-  ],
-  "attention": {
-    "mode": "newRows"
-  },
-  "settings": [
-    {
-      "key": "token",
-      "label": "Chave da API",
-      "type": "secret",
-      "required": true,
-      "help": "Crie em Linear › Settings › Security & access › Personal API keys."
-    }
-  ],
-  "answer": "{\"data\":{\"viewer\":{\"assignedIssues\":{\"nodes\":[{\"identifier\":\"ENG-412\",\"title\":\"Pagamento via Pix falha quando o valor tem centavos\",\"url\":\"https://linear.app/exemplo/issue/ENG-412\",\"priorityLabel\":\"Urgent\",\"updatedAt\":\"2026-10-01T10:12:44.318Z\",\"state\":{\"name\":\"In Progress\"},\"project\":{\"name\":\"Checkout\"}},{\"identifier\":\"ENG-405\",\"title\":\"Revisar limites de requisição da API pública\",\"url\":\"https://linear.app/exemplo/issue/ENG-405\",\"priorityLabel\":\"High\",\"updatedAt\":\"2026-09-30T19:40:02.120Z\",\"state\":{\"name\":\"In Progress\"},\"project\":{\"name\":\"Plataforma\"}},{\"identifier\":\"ENG-398\",\"title\":\"Exportar relatório mensal em CSV\",\"url\":\"https://linear.app/exemplo/issue/ENG-398\",\"priorityLabel\":\"Medium\",\"updatedAt\":\"2026-09-30T13:05:51.904Z\",\"state\":{\"name\":\"Todo\"},\"project\":{\"name\":\"Relatórios\"}},{\"identifier\":\"ENG-391\",\"title\":\"Ajustar textos do e-mail de boas-vindas\",\"url\":\"https://linear.app/exemplo/issue/ENG-391\",\"priorityLabel\":\"Low\",\"updatedAt\":\"2026-09-29T17:22:10.003Z\",\"state\":{\"name\":\"Todo\"},\"project\":{\"name\":\"Onboarding\"}},{\"identifier\":\"ENG-387\",\"title\":\"Trocar biblioteca de gráficos do painel\",\"url\":\"https://linear.app/exemplo/issue/ENG-387\",\"priorityLabel\":\"No priority\",\"updatedAt\":\"2026-09-26T11:48:37.551Z\",\"state\":{\"name\":\"Backlog\"},\"project\":{\"name\":\"Relatórios\"}},{\"identifier\":\"ENG-379\",\"title\":\"Cache das consultas de estoque expira cedo demais\",\"url\":\"https://linear.app/exemplo/issue/ENG-379\",\"priorityLabel\":\"High\",\"updatedAt\":\"2026-09-25T09:31:19.770Z\",\"state\":{\"name\":\"Todo\"},\"project\":{\"name\":\"Plataforma\"}}]}}}}"
+      {
+        "id" : "2D362B28-C21F-4B60-B634-08D3F9FF7BE5",
+        "name" : "Content-Type",
+        "value" : "application/json"
+      }
+    ],
+    "kind" : "http",
+    "language" : "applescript",
+    "method" : "POST",
+    "script" : "",
+    "steps" : [
+
+    ],
+    "text" : "",
+    "url" : "https://api.linear.app/graphql"
+  }
 }

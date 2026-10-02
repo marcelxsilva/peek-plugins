@@ -1,58 +1,152 @@
 {
-  "schema": 5,
-  "id": "plugin.exemplo.wikipedia",
-  "name": "Hoje na história",
-  "interval": 21600,
-  "icon": {
-    "kind": "picture",
-    "symbolName": "book.closed.fill",
-    "pictureSource": "https://pt.wikipedia.org/static/apple-touch/wikipedia.png"
+  "actions" : [
+
+  ],
+  "attention" : {
+    "comparison" : "above",
+    "countPath" : "",
+    "listIndex" : 0,
+    "mode" : "never",
+    "threshold" : 0
   },
-  "source": {
-    "kind": "http",
-    "method": "GET",
-    "url": "https://pt.wikipedia.org/api/rest_v1/feed/onthisday/events/{{$now | shape MM}}/{{$now | shape dd}}",
-    "format": {
-      "kind": "json"
-    }
+  "button" : {
+    "cancelLabel" : "",
+    "confirms" : false,
+    "failureMessage" : "",
+    "failureReport" : "message",
+    "okLabel" : "",
+    "question" : "",
+    "runningText" : "",
+    "successMessage" : "",
+    "successReport" : "message"
   },
-  "slot": {
-    "label": "{{events | count}}",
-    "style": "number"
-  },
-  "card": {
-    "isEnabled": true,
-    "picture": {
-      "kind": "address",
-      "value": "{{events[0].pages[0].thumbnail.source}}",
-      "shape": "rounded",
-      "scale": 1.4
-    },
-    "title": "Hoje na história",
-    "subtitle": "{{$now | shape dd 'de' MMMM}}",
-    "emptyMessage": "A Wikipédia não trouxe nada para hoje.",
-    "blocks": [
+  "card" : {
+    "blocks" : [
       {
-        "type": "list",
-        "limit": 6,
-        "tabs": [
+        "columnGap" : 8,
+        "id" : "21EDB50A-6977-4F26-ACC0-3D8C792B8450",
+        "limit" : 5,
+        "path" : "events",
+        "rowDetail" : "{{pages[0].extract}}",
+        "rowURL" : "{{pages[0].content_urls.desktop.page}}",
+        "structure" : [
           {
-            "title": "Aconteceu",
-            "path": "events",
-            "rowTitle": "{{text}}",
-            "rowSubtitle": "{{year}}",
-            "rowWrapsTitle": true,
-            "rowImage": "{{pages[0].thumbnail.source}}",
-            "rowImageShape": "rounded",
-            "rowURL": "{{pages[0].content_urls.desktop.page}}",
-            "rowDetail": "{{pages[0].extract}}"
+            "id" : "455628C1-87DF-47B6-93A3-D85C29158843",
+            "lines" : [
+              {
+                "id" : "96B37B42-8EC9-4EDA-B3D1-CD786198F5BC",
+                "items" : [
+                  {
+                    "form" : "rounded",
+                    "id" : "C5FF6E1C-3736-42E0-9B2F-FC2B4A0AC1C7",
+                    "kind" : "image",
+                    "picture" : {
+                      "kind" : "address",
+                      "shape" : "rounded",
+                      "value" : "{{pages[0].thumbnail.source}}"
+                    },
+                    "size" : 44
+                  }
+                ]
+              }
+            ],
+            "width" : "auto"
+          },
+          {
+            "id" : "94C4ABD3-5EC2-4880-8F94-B14C435571B2",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "047B67B0-49B0-42CA-839D-412111A3F28C",
+                "items" : [
+                  {
+                    "content" : "{{text}}",
+                    "fills" : true,
+                    "id" : "9FAE772A-B01D-41A7-B526-DAA7F6741951",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 0,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "CFAF7AEB-8C5D-43B9-B855-573C07A3A5EA",
+                "items" : [
+                  {
+                    "content" : "{{year}}",
+                    "fills" : true,
+                    "id" : "8C22C1E1-C0C5-4905-8B96-BC31F7C221C3",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
           }
-        ]
+        ],
+        "type" : "list"
       }
-    ]
+    ],
+    "emptyMessage" : "A Wikipédia não trouxe nada para hoje.",
+    "isEnabled" : true,
+    "picture" : {
+      "kind" : "address",
+      "scale" : 1.4,
+      "shape" : "rounded",
+      "value" : "{{events[0].pages[0].thumbnail.source}}"
+    },
+    "rowLimit" : 5,
+    "subtitle" : "{{$now | shape dd 'de' MMMM}}",
+    "title" : "Hoje na história"
   },
-  "actions": [],
-  "attention": {
-    "mode": "never"
+  "icon" : {
+    "kind" : "picture",
+    "pictureSource" : "https://pt.wikipedia.org/static/apple-touch/wikipedia.png",
+    "symbolName" : "book.closed.fill",
+    "word" : ""
+  },
+  "id" : "plugin.exemplo.wikipedia",
+  "interval" : 21600,
+  "name" : "Hoje na história",
+  "parameters" : [
+
+  ],
+  "readsOnItsOwn" : true,
+  "role" : "reading",
+  "schema" : 12,
+  "slot" : {
+    "alertsOnThreshold" : false,
+    "label" : "{{events | count}}",
+    "style" : "number",
+    "total" : "",
+    "value" : ""
+  },
+  "source" : {
+    "body" : "",
+    "errand" : "copy",
+    "format" : {
+      "all" : false,
+      "hasHeader" : false,
+      "kind" : "json",
+      "pattern" : "",
+      "separator" : "whitespace",
+      "skip" : 0
+    },
+    "headers" : [
+
+    ],
+    "kind" : "http",
+    "language" : "applescript",
+    "method" : "GET",
+    "script" : "",
+    "steps" : [
+
+    ],
+    "text" : "",
+    "url" : "https://pt.wikipedia.org/api/rest_v1/feed/onthisday/events/{{$now | shape MM}}/{{$now | shape dd}}"
   }
 }

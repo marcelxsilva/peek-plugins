@@ -1,130 +1,288 @@
 {
-  "schema": 11,
-  "id": "plugin.exemplo.discord",
-  "name": "Discord",
-  "interval": 300,
-  "icon": {
-    "kind": "picture",
-    "symbolName": "bubble.left.and.bubble.right.fill",
-    "pictureSource": "https://github.com/discord.png?size=128"
-  },
-  "source": {
-    "kind": "http",
-    "method": "GET",
-    "url": "https://discord.com/api/guilds/{{$settings.servidor}}/widget.json",
-    "format": {
-      "kind": "json"
+  "actions" : [
+    {
+      "asksForValue" : false,
+      "confirmText" : "",
+      "confirms" : false,
+      "failureMessage" : "",
+      "failureReport" : "message",
+      "id" : "89BF2154-8F0D-4F56-A63C-79AE643CD2B5",
+      "isProminent" : false,
+      "listIndex" : 0,
+      "mark" : {
+        "kind" : "symbol",
+        "value" : "arrow.up.forward.square"
+      },
+      "name" : "Entrar",
+      "needs" : "{{instant_invite}}",
+      "place" : "card",
+      "question" : "",
+      "run" : {
+        "body" : "",
+        "errand" : "openLink",
+        "format" : {
+          "all" : false,
+          "hasHeader" : false,
+          "kind" : "json",
+          "pattern" : "",
+          "separator" : "whitespace",
+          "skip" : 0
+        },
+        "headers" : [
+
+        ],
+        "kind" : "onTheMac",
+        "language" : "applescript",
+        "method" : "GET",
+        "script" : "",
+        "steps" : [
+
+        ],
+        "text" : "{{instant_invite}}",
+        "url" : ""
+      },
+      "runningText" : "",
+      "successMessage" : "",
+      "successReport" : "nothing"
     }
+  ],
+  "answer" : "{\"id\":\"1187654321098765432\",\"name\":\"Comunidade Dev BR\",\"instant_invite\":\"https://discord.com/invite/exemploDevBR\",\"channels\":[{\"id\":\"1187654321098765433\",\"name\":\"Geral\",\"position\":0},{\"id\":\"1187654321098765434\",\"name\":\"Pareando\",\"position\":1}],\"members\":[{\"id\":\"0\",\"username\":\"ana.dev\",\"discriminator\":\"0000\",\"avatar\":null,\"status\":\"online\",\"avatar_url\":\"https://cdn.discordapp.com/embed/avatars/0.png\",\"game\":{\"name\":\"Visual Studio Code\"}},{\"id\":\"1\",\"username\":\"brunocosta\",\"discriminator\":\"0000\",\"avatar\":null,\"status\":\"online\",\"avatar_url\":\"https://cdn.discordapp.com/embed/avatars/1.png\",\"game\":{\"name\":\"Terminal\"}},{\"id\":\"2\",\"username\":\"carla_s\",\"discriminator\":\"0000\",\"avatar\":null,\"status\":\"idle\",\"avatar_url\":\"https://cdn.discordapp.com/embed/avatars/2.png\",\"game\":{\"name\":\"Spotify\"}},{\"id\":\"3\",\"username\":\"diego.alves\",\"discriminator\":\"0000\",\"avatar\":null,\"status\":\"dnd\",\"avatar_url\":\"https://cdn.discordapp.com/embed/avatars/3.png\",\"game\":{\"name\":\"Xcode\"}},{\"id\":\"4\",\"username\":\"elisa\",\"discriminator\":\"0000\",\"avatar\":null,\"status\":\"online\",\"avatar_url\":\"https://cdn.discordapp.com/embed/avatars/4.png\",\"game\":{\"name\":\"Figma\"}},{\"id\":\"5\",\"username\":\"fabio.m\",\"discriminator\":\"0000\",\"avatar\":null,\"status\":\"idle\",\"avatar_url\":\"https://cdn.discordapp.com/embed/avatars/5.png\",\"game\":{\"name\":\"Notion\"}}],\"presence_count\":37}",
+  "attention" : {
+    "comparison" : "above",
+    "countPath" : "",
+    "listIndex" : 0,
+    "mode" : "never",
+    "threshold" : 0
   },
-  "slot": {
-    "label": "{{presence_count}}",
-    "style": "number"
+  "button" : {
+    "cancelLabel" : "",
+    "confirms" : false,
+    "failureMessage" : "",
+    "failureReport" : "message",
+    "okLabel" : "",
+    "question" : "",
+    "runningText" : "",
+    "successMessage" : "",
+    "successReport" : "message"
   },
-  "card": {
-    "isEnabled": true,
-    "title": "{{name}}",
-    "subtitle": "Quem está por aí agora",
-    "emptyMessage": "Ninguém online, ou o widget do servidor está desligado.",
-    "blocks": [
+  "card" : {
+    "blocks" : [
       {
-        "type": "hero",
-        "value": "{{presence_count}}",
-        "caption": "Pessoas online no servidor",
-        "format": "integer",
-        "goodDirection": "up",
-        "width": "half"
+        "caption" : "Pessoas online no servidor",
+        "format" : "integer",
+        "goodDirection" : "up",
+        "id" : "8DCF23ED-DBC9-46DE-A5A8-D70033764148",
+        "type" : "hero",
+        "value" : "{{presence_count}}",
+        "width" : "half"
       },
       {
-        "type": "breakdown",
-        "title": "Por status",
-        "breakdownStyle": "list",
-        "path": "members",
-        "groupField": "{{status}}",
-        "groupKind": "text",
-        "measure": "count",
-        "shows": "amount",
-        "groups": [
+        "breakdownStyle" : "list",
+        "groupField" : "{{status}}",
+        "groupKind" : "text",
+        "groups" : [
           {
-            "id": "F9D61D58-B22C-45AA-8B6C-621AB6BA4E3F",
-            "name": "Online",
-            "color": "green",
-            "match": "online"
+            "color" : "green",
+            "id" : "F9D61D58-B22C-45AA-8B6C-621AB6BA4E3F",
+            "match" : "online",
+            "name" : "Online",
+            "truth" : true
           },
           {
-            "id": "25C6BCD5-E991-42F0-BE9D-FB265E50527A",
-            "name": "Ausente",
-            "color": "yellow",
-            "match": "idle"
+            "color" : "yellow",
+            "id" : "25C6BCD5-E991-42F0-BE9D-FB265E50527A",
+            "match" : "idle",
+            "name" : "Ausente",
+            "truth" : true
           },
           {
-            "id": "22FCBE15-5EF9-45E5-B72A-FC4860DF37E3",
-            "name": "Ocupado",
-            "color": "red",
-            "match": "dnd"
+            "color" : "red",
+            "id" : "22FCBE15-5EF9-45E5-B72A-FC4860DF37E3",
+            "match" : "dnd",
+            "name" : "Ocupado",
+            "truth" : true
           }
         ],
-        "others": {
-          "shows": false,
-          "name": "Outros",
-          "color": "gray"
+        "id" : "93E6FCB2-4C2E-42A5-84CB-E6E8D888FEEE",
+        "measure" : "count",
+        "others" : {
+          "color" : "gray",
+          "name" : "Outros",
+          "shows" : false
         },
-        "width": "half"
+        "path" : "members",
+        "shows" : "amount",
+        "title" : "Por status",
+        "type" : "breakdown",
+        "width" : "half"
       },
       {
-        "type": "list",
-        "limit": 8,
-        "tabs": [
+        "columnGap" : 8,
+        "id" : "80CFB730-AEE5-4E38-A999-8C9E6DAE6F28",
+        "limit" : 10,
+        "path" : "members",
+        "rowEvent" : "none",
+        "structure" : [
           {
-            "title": "Online",
-            "path": "members",
-            "rowTitle": "{{username}}",
-            "rowSubtitle": "{{game.name}}",
-            "rowImage": "{{avatar_url}}",
-            "rowImageShape": "round",
-            "rowStatus": "{{status}}",
-            "rowEvent": "none",
-            "statusWords": {
-              "online": "online",
-              "idle": "ausente",
-              "dnd": "ocupado",
-              "offline": "offline"
-            },
-            "statusColors": {
-              "online": "positive",
-              "idle": "attention",
-              "dnd": "negative",
-              "offline": "neutral"
-            }
+            "id" : "C01E7633-518A-4C50-A151-F8BCC673B452",
+            "lines" : [
+              {
+                "id" : "DC38E0FB-3390-4816-9818-8AF7253D822A",
+                "items" : [
+                  {
+                    "form" : "circle",
+                    "id" : "DD9A29D2-5D9A-4C03-B9D9-70E9BAAC4FA3",
+                    "kind" : "image",
+                    "picture" : {
+                      "kind" : "address",
+                      "shape" : "rounded",
+                      "value" : "{{avatar_url}}"
+                    },
+                    "size" : 44
+                  }
+                ]
+              }
+            ],
+            "width" : "auto"
+          },
+          {
+            "id" : "7D7C35C1-9549-40C1-9EE5-42D35A65B792",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "2CE9B78A-2D02-457D-88BE-BBF3895FE635",
+                "items" : [
+                  {
+                    "content" : "{{username}}",
+                    "fills" : true,
+                    "id" : "39639821-63C6-416C-862D-83CDAD0C3E35",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "C2C3054B-0F9A-4604-AB56-A167CA478DBB",
+                "items" : [
+                  {
+                    "content" : "{{game.name}}",
+                    "fills" : true,
+                    "id" : "C1BD9D7C-E58C-48CF-94FF-C10F13CE5D49",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "gap" : 8,
+                "id" : "6586FA27-5C47-499D-AAEB-9C45B00540C5",
+                "items" : [
+                  {
+                    "id" : "CED46ED1-F16F-4E96-BA6C-1B32D5665E96",
+                    "kind" : "space",
+                    "spaceWidth" : 0
+                  },
+                  {
+                    "content" : "{{status}}",
+                    "id" : "9A2D739A-820C-4F9D-B10B-AB62FAB357B0",
+                    "indicator" : "dotAndText",
+                    "kind" : "indicator",
+                    "rules" : [
+                      {
+                        "label" : "ocupado",
+                        "tint" : "negative",
+                        "value" : "dnd"
+                      },
+                      {
+                        "label" : "ausente",
+                        "tint" : "attention",
+                        "value" : "idle"
+                      },
+                      {
+                        "label" : "offline",
+                        "tint" : "neutral",
+                        "value" : "offline"
+                      },
+                      {
+                        "label" : "online",
+                        "tint" : "positive",
+                        "value" : "online"
+                      }
+                    ],
+                    "size" : 13
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
           }
-        ]
+        ],
+        "type" : "list"
       }
-    ]
+    ],
+    "emptyMessage" : "Ninguém online, ou o widget do servidor está desligado.",
+    "isEnabled" : true,
+    "rowLimit" : 5,
+    "subtitle" : "Quem está por aí agora",
+    "title" : "{{name}}"
   },
-  "actions": [
+  "icon" : {
+    "kind" : "picture",
+    "pictureSource" : "https://github.com/discord.png?size=128",
+    "symbolName" : "bubble.left.and.bubble.right.fill",
+    "word" : ""
+  },
+  "id" : "plugin.exemplo.discord",
+  "interval" : 300,
+  "name" : "Discord",
+  "parameters" : [
+
+  ],
+  "readsOnItsOwn" : true,
+  "role" : "reading",
+  "schema" : 12,
+  "settings" : [
     {
-      "name": "Entrar",
-      "symbolName": "arrow.up.forward.square",
-      "place": "card",
-      "needs": "{{instant_invite}}",
-      "run": {
-        "kind": "onTheMac",
-        "errand": "openLink",
-        "text": "{{instant_invite}}"
-      },
-      "successReport": "nothing"
+      "help" : "Configurações do servidor › Widget › ligue o widget e copie o ID do servidor.",
+      "key" : "servidor",
+      "label" : "ID do servidor",
+      "required" : true,
+      "type" : "text"
     }
   ],
-  "attention": {
-    "mode": "never"
+  "slot" : {
+    "alertsOnThreshold" : false,
+    "label" : "{{presence_count}}",
+    "style" : "number",
+    "total" : "",
+    "value" : ""
   },
-  "settings": [
-    {
-      "key": "servidor",
-      "label": "ID do servidor",
-      "type": "text",
-      "help": "Configurações do servidor › Widget › ligue o widget e copie o ID do servidor.",
-      "required": true
-    }
-  ],
-  "answer": "{\"id\":\"1187654321098765432\",\"name\":\"Comunidade Dev BR\",\"instant_invite\":\"https://discord.com/invite/exemploDevBR\",\"channels\":[{\"id\":\"1187654321098765433\",\"name\":\"Geral\",\"position\":0},{\"id\":\"1187654321098765434\",\"name\":\"Pareando\",\"position\":1}],\"members\":[{\"id\":\"0\",\"username\":\"ana.dev\",\"discriminator\":\"0000\",\"avatar\":null,\"status\":\"online\",\"avatar_url\":\"https://cdn.discordapp.com/embed/avatars/0.png\",\"game\":{\"name\":\"Visual Studio Code\"}},{\"id\":\"1\",\"username\":\"brunocosta\",\"discriminator\":\"0000\",\"avatar\":null,\"status\":\"online\",\"avatar_url\":\"https://cdn.discordapp.com/embed/avatars/1.png\",\"game\":{\"name\":\"Terminal\"}},{\"id\":\"2\",\"username\":\"carla_s\",\"discriminator\":\"0000\",\"avatar\":null,\"status\":\"idle\",\"avatar_url\":\"https://cdn.discordapp.com/embed/avatars/2.png\",\"game\":{\"name\":\"Spotify\"}},{\"id\":\"3\",\"username\":\"diego.alves\",\"discriminator\":\"0000\",\"avatar\":null,\"status\":\"dnd\",\"avatar_url\":\"https://cdn.discordapp.com/embed/avatars/3.png\",\"game\":{\"name\":\"Xcode\"}},{\"id\":\"4\",\"username\":\"elisa\",\"discriminator\":\"0000\",\"avatar\":null,\"status\":\"online\",\"avatar_url\":\"https://cdn.discordapp.com/embed/avatars/4.png\",\"game\":{\"name\":\"Figma\"}},{\"id\":\"5\",\"username\":\"fabio.m\",\"discriminator\":\"0000\",\"avatar\":null,\"status\":\"idle\",\"avatar_url\":\"https://cdn.discordapp.com/embed/avatars/5.png\",\"game\":{\"name\":\"Notion\"}}],\"presence_count\":37}"
+  "source" : {
+    "body" : "",
+    "errand" : "copy",
+    "format" : {
+      "all" : false,
+      "hasHeader" : false,
+      "kind" : "json",
+      "pattern" : "",
+      "separator" : "whitespace",
+      "skip" : 0
+    },
+    "headers" : [
+
+    ],
+    "kind" : "http",
+    "language" : "applescript",
+    "method" : "GET",
+    "script" : "",
+    "steps" : [
+
+    ],
+    "text" : "",
+    "url" : "https://discord.com/api/guilds/{{$settings.servidor}}/widget.json"
+  }
 }

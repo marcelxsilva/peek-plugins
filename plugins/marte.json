@@ -1,78 +1,177 @@
 {
-  "schema": 5,
-  "id": "plugin.exemplo.marte",
-  "name": "Marte",
-  "interval": 86400,
-  "icon": {
-    "kind": "picture",
-    "symbolName": "camera.fill",
-    "pictureSource": "https://github.com/nasa.png?size=128"
+  "actions" : [
+
+  ],
+  "attention" : {
+    "comparison" : "above",
+    "countPath" : "",
+    "listIndex" : 0,
+    "mode" : "never",
+    "threshold" : 0
   },
-  "source": {
-    "kind": "http",
-    "method": "GET",
-    "url": "https://mars.nasa.gov/api/v1/raw_image_items/",
-    "query": [
+  "button" : {
+    "cancelLabel" : "",
+    "confirms" : false,
+    "failureMessage" : "",
+    "failureReport" : "message",
+    "okLabel" : "",
+    "question" : "",
+    "runningText" : "",
+    "successMessage" : "",
+    "successReport" : "message"
+  },
+  "card" : {
+    "blocks" : [
       {
-        "name": "order",
-        "value": "sol desc,date_taken desc"
-      },
-      {
-        "name": "per_page",
-        "value": "12"
-      },
-      {
-        "name": "page",
-        "value": "0"
-      },
-      {
-        "name": "condition_1",
-        "value": "msl:mission"
-      },
-      {
-        "name": "extended",
-        "value": "thumbnail::sample_type::noteq,"
+        "columnGap" : 8,
+        "id" : "74842059-DB7F-4209-B192-5F67E2ABF058",
+        "limit" : 5,
+        "path" : "items",
+        "rowURL" : "https://mars.nasa.gov{{link}}",
+        "structure" : [
+          {
+            "id" : "D0D48754-6B60-45D5-BBC1-FB95ECAA23A6",
+            "lines" : [
+              {
+                "id" : "E2D7C708-C518-4BB0-BF1C-9539159CE65F",
+                "items" : [
+                  {
+                    "form" : "rounded",
+                    "id" : "76AD2FD2-EE91-4D4E-A0AE-B73C974A558B",
+                    "kind" : "image",
+                    "picture" : {
+                      "kind" : "address",
+                      "shape" : "rounded",
+                      "value" : "{{https_url}}"
+                    },
+                    "size" : 44
+                  }
+                ]
+              }
+            ],
+            "width" : "auto"
+          },
+          {
+            "id" : "8DCFD56D-ED2F-4D1F-B76B-0E622A53B201",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "184A68A9-EF09-466F-93D5-143611EC0C8F",
+                "items" : [
+                  {
+                    "content" : "{{title}}",
+                    "fills" : true,
+                    "id" : "5C6D8151-F7DD-4603-9D33-EC83D91614AD",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 0,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "264B6152-C639-42E0-AEF7-FDCDC50FD51E",
+                "items" : [
+                  {
+                    "content" : "{{date_taken | date}}",
+                    "fills" : true,
+                    "id" : "5C866F45-FC48-4B8B-8C92-518A468CCCBD",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
+          }
+        ],
+        "type" : "list"
       }
     ],
-    "format": {
-      "kind": "json"
-    }
-  },
-  "slot": {
-    "label": "{{items[0].sol}}",
-    "style": "arc"
-  },
-  "card": {
-    "isEnabled": true,
-    "picture": {
-      "kind": "address",
-      "value": "{{items[0].https_url}}",
-      "shape": "rounded",
-      "scale": 2.2
+    "emptyMessage" : "A NASA não respondeu.",
+    "isEnabled" : true,
+    "picture" : {
+      "kind" : "address",
+      "scale" : 2.2,
+      "shape" : "rounded",
+      "value" : "{{items[0].https_url}}"
     },
-    "title": "Marte",
-    "subtitle": "Fotos mais recentes do Curiosity, sol {{items[0].sol}}",
-    "emptyMessage": "A NASA não respondeu.",
-    "blocks": [
-      {
-        "type": "list",
-        "limit": 6,
-        "tabs": [
-          {
-            "title": "Fotos",
-            "path": "items",
-            "rowTitle": "{{title}}",
-            "rowSubtitle": "{{date_taken | date}}",
-            "rowImage": "{{https_url}}",
-            "rowWrapsTitle": true,
-            "rowURL": "https://mars.nasa.gov{{link}}"
-          }
-        ]
-      }
-    ]
+    "rowLimit" : 5,
+    "subtitle" : "Fotos mais recentes do Curiosity, sol {{items[0].sol}}",
+    "title" : "Marte"
   },
-  "actions": [],
-  "attention": {
-    "mode": "never"
+  "icon" : {
+    "kind" : "picture",
+    "pictureSource" : "https://github.com/nasa.png?size=128",
+    "symbolName" : "camera.fill",
+    "word" : ""
+  },
+  "id" : "plugin.exemplo.marte",
+  "interval" : 86400,
+  "name" : "Marte",
+  "parameters" : [
+
+  ],
+  "readsOnItsOwn" : true,
+  "role" : "reading",
+  "schema" : 12,
+  "slot" : {
+    "alertsOnThreshold" : false,
+    "label" : "{{items[0].sol}}",
+    "total" : "",
+    "value" : ""
+  },
+  "source" : {
+    "body" : "",
+    "errand" : "copy",
+    "format" : {
+      "all" : false,
+      "hasHeader" : false,
+      "kind" : "json",
+      "pattern" : "",
+      "separator" : "whitespace",
+      "skip" : 0
+    },
+    "headers" : [
+
+    ],
+    "kind" : "http",
+    "language" : "applescript",
+    "method" : "GET",
+    "query" : [
+      {
+        "id" : "19D0805D-2C12-42CC-9F96-89F09741D1BB",
+        "name" : "order",
+        "value" : "sol desc,date_taken desc"
+      },
+      {
+        "id" : "E2783239-BCB2-4A64-B2BE-A5C74BA7FE7F",
+        "name" : "per_page",
+        "value" : "12"
+      },
+      {
+        "id" : "1C7C7202-F3E0-4747-B75F-FD455F6DB170",
+        "name" : "page",
+        "value" : "0"
+      },
+      {
+        "id" : "9BE5376E-546F-4880-9E21-34ABCCD0E5F3",
+        "name" : "condition_1",
+        "value" : "msl:mission"
+      },
+      {
+        "id" : "93C318DC-654E-4A73-B008-BC8E6A8E1DFE",
+        "name" : "extended",
+        "value" : "thumbnail::sample_type::noteq,"
+      }
+    ],
+    "script" : "",
+    "steps" : [
+
+    ],
+    "text" : "",
+    "url" : "https://mars.nasa.gov/api/v1/raw_image_items/"
   }
 }

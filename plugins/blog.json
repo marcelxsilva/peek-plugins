@@ -1,74 +1,226 @@
 {
-  "schema": 7,
-  "id": "plugin.exemplo.blog",
-  "name": "Blog",
-  "interval": 3600,
-  "icon": {
-    "kind": "symbol",
-    "symbolName": "doc.richtext.fill"
-  },
-  "source": {
-    "kind": "http",
-    "method": "GET",
-    "url": "{{$settings.endereco}}",
-    "format": {
-      "kind": "json"
-    }
-  },
-  "slot": {
-    "label": "{{items | count}}",
-    "style": "number"
-  },
-  "card": {
-    "isEnabled": true,
-    "title": "{{title}}",
-    "subtitle": "{{description}}",
-    "emptyMessage": "Nenhum item, ou o endereço ainda não foi preenchido.",
-    "blocks": [
-      {
-        "type": "list",
-        "limit": 6,
-        "tabs": [
-          {
-            "title": "Posts",
-            "path": "items",
-            "rowTitle": "{{title}}",
-            "rowSubtitle": "{{summary ?? content_text}}",
-            "rowMeta": "{{date_published | ago}}",
-            "rowImage": "{{image}}",
-            "rowWrapsTitle": true,
-            "rowURL": "{{url}}"
-          }
-        ]
-      }
-    ]
-  },
-  "actions": [
+  "actions" : [
     {
-      "name": "Ler depois",
-      "symbolName": "bookmark",
-      "place": "row",
-      "listIndex": 0,
-      "run": {
-        "kind": "onTheMac",
-        "errand": "readLater",
-        "text": "{{url}}"
+      "asksForValue" : false,
+      "confirmText" : "",
+      "confirms" : false,
+      "failureMessage" : "",
+      "failureReport" : "message",
+      "id" : "01D636E6-1EA3-4FBA-A7A0-305511AF7B13",
+      "isProminent" : false,
+      "listIndex" : 0,
+      "mark" : {
+        "kind" : "symbol",
+        "value" : "bookmark"
       },
-      "successMessage": "Guardado."
+      "name" : "Ler depois",
+      "place" : "row",
+      "question" : "",
+      "run" : {
+        "body" : "",
+        "errand" : "readLater",
+        "format" : {
+          "all" : false,
+          "hasHeader" : false,
+          "kind" : "json",
+          "pattern" : "",
+          "separator" : "whitespace",
+          "skip" : 0
+        },
+        "headers" : [
+
+        ],
+        "kind" : "onTheMac",
+        "language" : "applescript",
+        "method" : "GET",
+        "script" : "",
+        "steps" : [
+
+        ],
+        "text" : "{{url}}",
+        "url" : ""
+      },
+      "runningText" : "",
+      "successMessage" : "Guardado.",
+      "successReport" : "message"
     }
   ],
-  "attention": {
-    "mode": "newRows"
+  "answer" : "{\"version\":\"https://jsonfeed.org/version/1.1\",\"title\":\"Diário de bordo\",\"description\":\"Notas sobre produto, código e o dia a dia de um time pequeno\",\"home_page_url\":\"https://exemplo.dev/\",\"feed_url\":\"https://exemplo.dev/feed.json\",\"items\":[{\"id\":\"https://exemplo.dev/C/1\",\"url\":\"https://exemplo.dev/posts/1\",\"title\":\"Como cortamos o tempo de build pela metade\",\"summary\":\"Três mudanças pequenas no cache e uma grande na ordem dos passos.\",\"image\":\"https://picsum.photos/seed/peek-blog-1/640/360\",\"date_published\":\"2026-09-30T09:12:00-03:00\"},{\"id\":\"https://exemplo.dev/O/2\",\"url\":\"https://exemplo.dev/posts/2\",\"title\":\"O que aprendemos em um ano de releases semanais\",\"summary\":\"Um calendário fixo mudou mais a equipe do que o código.\",\"image\":\"https://picsum.photos/seed/peek-blog-2/640/360\",\"date_published\":\"2026-09-26T14:40:00-03:00\"},{\"id\":\"https://exemplo.dev/E/3\",\"url\":\"https://exemplo.dev/posts/3\",\"title\":\"Escrevendo mensagens de erro que ajudam\",\"summary\":\"Dizer o que houve e o que fazer, nessa ordem.\",\"image\":\"https://picsum.photos/seed/peek-blog-3/640/360\",\"date_published\":\"2026-09-19T10:05:00-03:00\"},{\"id\":\"https://exemplo.dev/N/4\",\"url\":\"https://exemplo.dev/posts/4\",\"title\":\"Nosso guia de revisão de código\",\"summary\":\"O que olhamos primeiro numa PR, e o que deixamos para depois.\",\"image\":\"https://picsum.photos/seed/peek-blog-4/640/360\",\"date_published\":\"2026-09-12T16:20:00-03:00\"},{\"id\":\"https://exemplo.dev/M/5\",\"url\":\"https://exemplo.dev/posts/5\",\"title\":\"Migrando do cron para filas\",\"summary\":\"Por que o job das três da manhã finalmente parou de falhar.\",\"image\":\"https://picsum.photos/seed/peek-blog-5/640/360\",\"date_published\":\"2026-09-05T08:30:00-03:00\"}]}",
+  "attention" : {
+    "comparison" : "above",
+    "countPath" : "",
+    "listIndex" : 0,
+    "mode" : "newRows",
+    "threshold" : 0
   },
-  "settings": [
+  "button" : {
+    "cancelLabel" : "",
+    "confirms" : false,
+    "failureMessage" : "",
+    "failureReport" : "message",
+    "okLabel" : "",
+    "question" : "",
+    "runningText" : "",
+    "successMessage" : "",
+    "successReport" : "message"
+  },
+  "card" : {
+    "blocks" : [
+      {
+        "columnGap" : 8,
+        "id" : "2A8A4D99-D961-429E-8918-02C5A5B7BBB7",
+        "limit" : 5,
+        "path" : "items",
+        "rowURL" : "{{url}}",
+        "structure" : [
+          {
+            "id" : "795BA181-CF0E-4C8C-AC62-C55653DB25F3",
+            "lines" : [
+              {
+                "id" : "7E89B7B8-7F51-436C-924F-228B8BFB88D0",
+                "items" : [
+                  {
+                    "form" : "rounded",
+                    "id" : "31696B94-D759-45C0-B948-918B9464588E",
+                    "kind" : "image",
+                    "picture" : {
+                      "kind" : "address",
+                      "shape" : "rounded",
+                      "value" : "{{image}}"
+                    },
+                    "size" : 44
+                  }
+                ]
+              }
+            ],
+            "width" : "auto"
+          },
+          {
+            "id" : "24C84BA7-7E2E-4E71-AB7D-D660291BF38C",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "A87C80CE-3000-48E6-B9BB-6D2BB2E47AB7",
+                "items" : [
+                  {
+                    "content" : "{{title}}",
+                    "fills" : true,
+                    "id" : "39012105-E164-4B06-88FF-49452951E8CA",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 0,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "7EF3B131-4C9F-4336-911E-4ED64924AA70",
+                "items" : [
+                  {
+                    "action" : "01D636E6-1EA3-4FBA-A7A0-305511AF7B13",
+                    "buttonSize" : "medium",
+                    "id" : "8F538E26-103A-488F-A7D5-1A44507F2FE3",
+                    "ink" : "secondary",
+                    "kind" : "button",
+                    "look" : "circle"
+                  },
+                  {
+                    "id" : "47FD3855-460C-4CD0-86E8-A0CEFE7FA6A4",
+                    "kind" : "space",
+                    "spaceWidth" : 0
+                  },
+                  {
+                    "content" : "{{summary ?? content_text}}",
+                    "id" : "FB52768E-401C-4E3B-A97A-77D22E236660",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "gap" : 8,
+                "id" : "83604C61-152C-4925-8CF4-ABF99F7AC757",
+                "items" : [
+                  {
+                    "content" : "{{date_published | ago}}",
+                    "fills" : true,
+                    "id" : "B92E5911-F916-413F-A223-A06656211142",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
+          }
+        ],
+        "type" : "list"
+      }
+    ],
+    "emptyMessage" : "Nenhum item, ou o endereço ainda não foi preenchido.",
+    "isEnabled" : true,
+    "rowLimit" : 5,
+    "subtitle" : "{{description}}",
+    "title" : "{{title}}"
+  },
+  "icon" : {
+    "kind" : "symbol",
+    "pictureSource" : "",
+    "symbolName" : "doc.richtext.fill",
+    "word" : ""
+  },
+  "id" : "plugin.exemplo.blog",
+  "interval" : 3600,
+  "name" : "Blog",
+  "parameters" : [
+
+  ],
+  "readsOnItsOwn" : true,
+  "role" : "reading",
+  "schema" : 12,
+  "settings" : [
     {
-      "key": "endereco",
-      "label": "Endereço do JSON Feed",
-      "type": "text",
-      "help": "Um JSON Feed (jsonfeed.org). Para RSS, use o módulo Notícias, que já entende feed.",
-      "required": true,
-      "placeholder": "https://exemplo.dev/feed.json"
+      "help" : "Um JSON Feed (jsonfeed.org). Para RSS, use o módulo Notícias, que já entende feed.",
+      "key" : "endereco",
+      "label" : "Endereço do JSON Feed",
+      "placeholder" : "https://exemplo.dev/feed.json",
+      "required" : true,
+      "type" : "text"
     }
   ],
-  "answer": "{\"version\":\"https://jsonfeed.org/version/1.1\",\"title\":\"Diário de bordo\",\"description\":\"Notas sobre produto, código e o dia a dia de um time pequeno\",\"home_page_url\":\"https://exemplo.dev/\",\"feed_url\":\"https://exemplo.dev/feed.json\",\"items\":[{\"id\":\"https://exemplo.dev/C/1\",\"url\":\"https://exemplo.dev/posts/1\",\"title\":\"Como cortamos o tempo de build pela metade\",\"summary\":\"Três mudanças pequenas no cache e uma grande na ordem dos passos.\",\"image\":\"https://picsum.photos/seed/peek-blog-1/640/360\",\"date_published\":\"2026-09-30T09:12:00-03:00\"},{\"id\":\"https://exemplo.dev/O/2\",\"url\":\"https://exemplo.dev/posts/2\",\"title\":\"O que aprendemos em um ano de releases semanais\",\"summary\":\"Um calendário fixo mudou mais a equipe do que o código.\",\"image\":\"https://picsum.photos/seed/peek-blog-2/640/360\",\"date_published\":\"2026-09-26T14:40:00-03:00\"},{\"id\":\"https://exemplo.dev/E/3\",\"url\":\"https://exemplo.dev/posts/3\",\"title\":\"Escrevendo mensagens de erro que ajudam\",\"summary\":\"Dizer o que houve e o que fazer, nessa ordem.\",\"image\":\"https://picsum.photos/seed/peek-blog-3/640/360\",\"date_published\":\"2026-09-19T10:05:00-03:00\"},{\"id\":\"https://exemplo.dev/N/4\",\"url\":\"https://exemplo.dev/posts/4\",\"title\":\"Nosso guia de revisão de código\",\"summary\":\"O que olhamos primeiro numa PR, e o que deixamos para depois.\",\"image\":\"https://picsum.photos/seed/peek-blog-4/640/360\",\"date_published\":\"2026-09-12T16:20:00-03:00\"},{\"id\":\"https://exemplo.dev/M/5\",\"url\":\"https://exemplo.dev/posts/5\",\"title\":\"Migrando do cron para filas\",\"summary\":\"Por que o job das três da manhã finalmente parou de falhar.\",\"image\":\"https://picsum.photos/seed/peek-blog-5/640/360\",\"date_published\":\"2026-09-05T08:30:00-03:00\"}]}"
+  "slot" : {
+    "alertsOnThreshold" : false,
+    "label" : "{{items | count}}",
+    "style" : "number",
+    "total" : "",
+    "value" : ""
+  },
+  "source" : {
+    "body" : "",
+    "errand" : "copy",
+    "format" : {
+      "all" : false,
+      "hasHeader" : false,
+      "kind" : "json",
+      "pattern" : "",
+      "separator" : "whitespace",
+      "skip" : 0
+    },
+    "headers" : [
+
+    ],
+    "kind" : "http",
+    "language" : "applescript",
+    "method" : "GET",
+    "script" : "",
+    "steps" : [
+
+    ],
+    "text" : "",
+    "url" : "{{$settings.endereco}}"
+  }
 }

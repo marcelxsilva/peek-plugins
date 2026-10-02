@@ -1,84 +1,218 @@
 {
-  "schema": 5,
-  "id": "plugin.exemplo.hackernews",
-  "name": "Hacker News",
-  "interval": 900,
-  "icon": {
-    "kind": "picture",
-    "symbolName": "newspaper.fill",
-    "pictureSource": "https://github.com/HackerNews.png?size=128"
-  },
-  "source": {
-    "kind": "http",
-    "method": "GET",
-    "url": "https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=20",
-    "format": {
-      "kind": "json"
-    }
-  },
-  "slot": {
-    "label": "{{hits | count}}",
-    "style": "arc"
-  },
-  "card": {
-    "isEnabled": true,
-    "title": "Hacker News",
-    "subtitle": "Primeira página",
-    "emptyMessage": "A primeira página voltou vazia.",
-    "blocks": [
-      {
-        "type": "stages",
-        "title": "Mais votados",
-        "path": "hits",
-        "label": "{{title}}",
-        "value": "{{points}}",
-        "limit": 5,
-        "format": "integer"
-      },
-      {
-        "type": "list",
-        "limit": 6,
-        "tabs": [
-          {
-            "title": "Histórias",
-            "path": "hits",
-            "rowTitle": "{{title}}",
-            "rowWrapsTitle": true,
-            "rowSubtitle": "{{author}} · {{created_at | ago}}",
-            "rowMeta": "{{num_comments | plural comentário/comentários}}",
-            "rowURL": "https://news.ycombinator.com/item?id={{objectID}}",
-            "badges": [
-              {
-                "value": "{{points}}",
-                "symbolName": "arrowtriangle.up.fill"
-              },
-              {
-                "value": "{{num_comments}}",
-                "symbolName": "bubble.left"
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  "actions": [
+  "actions" : [
     {
-      "name": "Abrir o link",
-      "symbolName": "safari",
-      "place": "row",
-      "listIndex": 0,
-      "run": {
-        "kind": "onTheMac",
-        "errand": "openLink",
-        "text": "{{url ?? story_url}}"
+      "asksForValue" : false,
+      "confirmText" : "",
+      "confirms" : false,
+      "failureMessage" : "Essa história não tem link, só a discussão.",
+      "failureReport" : "message",
+      "id" : "0F909444-4B25-4AB3-872D-5EE2AD9B4C64",
+      "isProminent" : false,
+      "listIndex" : 0,
+      "mark" : {
+        "kind" : "symbol",
+        "value" : "safari"
       },
-      "successReport": "nothing",
-      "failureMessage": "Essa história não tem link, só a discussão."
+      "name" : "Abrir o link",
+      "place" : "row",
+      "question" : "",
+      "run" : {
+        "body" : "",
+        "errand" : "openLink",
+        "format" : {
+          "all" : false,
+          "hasHeader" : false,
+          "kind" : "json",
+          "pattern" : "",
+          "separator" : "whitespace",
+          "skip" : 0
+        },
+        "headers" : [
+
+        ],
+        "kind" : "onTheMac",
+        "language" : "applescript",
+        "method" : "GET",
+        "script" : "",
+        "steps" : [
+
+        ],
+        "text" : "{{url ?? story_url}}",
+        "url" : ""
+      },
+      "runningText" : "",
+      "successMessage" : "",
+      "successReport" : "nothing"
     }
   ],
-  "attention": {
-    "mode": "newRows",
-    "listIndex": 0
+  "attention" : {
+    "comparison" : "above",
+    "countPath" : "",
+    "listIndex" : 0,
+    "mode" : "newRows",
+    "threshold" : 0
+  },
+  "button" : {
+    "cancelLabel" : "",
+    "confirms" : false,
+    "failureMessage" : "",
+    "failureReport" : "message",
+    "okLabel" : "",
+    "question" : "",
+    "runningText" : "",
+    "successMessage" : "",
+    "successReport" : "message"
+  },
+  "card" : {
+    "blocks" : [
+      {
+        "format" : "integer",
+        "id" : "F9355E32-598B-4BE8-8D05-42EE4E53D105",
+        "label" : "{{title}}",
+        "limit" : 5,
+        "path" : "hits",
+        "title" : "Mais votados",
+        "type" : "stages",
+        "value" : "{{points}}"
+      },
+      {
+        "columnGap" : 8,
+        "id" : "79E268BE-E507-402F-8BA9-3F4E19663690",
+        "limit" : 5,
+        "path" : "hits",
+        "rowURL" : "https://news.ycombinator.com/item?id={{objectID}}",
+        "structure" : [
+          {
+            "id" : "0A7AF1B3-FBF8-40B1-A021-D22501B8C5F4",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "C29D73A1-B8E5-47B4-B392-278B1A1E4F04",
+                "items" : [
+                  {
+                    "content" : "{{title}}",
+                    "fills" : true,
+                    "id" : "ED9745A0-70B3-4D85-B77C-CAE90960CB4D",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 0,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "887E835C-FEA8-43D4-93E5-2E21B34A0F03",
+                "items" : [
+                  {
+                    "action" : "0F909444-4B25-4AB3-872D-5EE2AD9B4C64",
+                    "buttonSize" : "medium",
+                    "id" : "C260B332-0D43-4E86-81A0-F64E47016B7D",
+                    "ink" : "secondary",
+                    "kind" : "button",
+                    "look" : "circle"
+                  },
+                  {
+                    "id" : "4FF008AB-D259-424C-B48C-323AFA33DF28",
+                    "kind" : "space",
+                    "spaceWidth" : 0
+                  },
+                  {
+                    "content" : "{{author}} · {{created_at | ago}}",
+                    "id" : "0256B9F1-8D35-4E38-BC9B-FBC3C0863FFC",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "gap" : 8,
+                "id" : "904BFACD-9593-4517-B033-568783C13765",
+                "items" : [
+                  {
+                    "content" : "{{num_comments | plural comentário/comentários}}",
+                    "fills" : true,
+                    "id" : "DC836832-E50D-4AE4-94C6-F5FDE2DCE240",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  },
+                  {
+                    "content" : "{{points}}",
+                    "id" : "FE1F0F4F-54B3-4C0E-A6B3-07FC3D49E0E1",
+                    "ink" : "secondary",
+                    "kind" : "icon",
+                    "size" : 13,
+                    "symbolName" : "arrowtriangle.up.fill"
+                  },
+                  {
+                    "content" : "{{num_comments}}",
+                    "id" : "7C08AA99-F95D-44E4-AC16-AE76BB6DAF46",
+                    "ink" : "secondary",
+                    "kind" : "icon",
+                    "size" : 13,
+                    "symbolName" : "bubble.left"
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
+          }
+        ],
+        "type" : "list"
+      }
+    ],
+    "emptyMessage" : "A primeira página voltou vazia.",
+    "isEnabled" : true,
+    "rowLimit" : 5,
+    "subtitle" : "Primeira página",
+    "title" : "Hacker News"
+  },
+  "icon" : {
+    "kind" : "picture",
+    "pictureSource" : "https://github.com/HackerNews.png?size=128",
+    "symbolName" : "newspaper.fill",
+    "word" : ""
+  },
+  "id" : "plugin.exemplo.hackernews",
+  "interval" : 900,
+  "name" : "Hacker News",
+  "parameters" : [
+
+  ],
+  "readsOnItsOwn" : true,
+  "role" : "reading",
+  "schema" : 12,
+  "slot" : {
+    "alertsOnThreshold" : false,
+    "label" : "{{hits | count}}",
+    "total" : "",
+    "value" : ""
+  },
+  "source" : {
+    "body" : "",
+    "errand" : "copy",
+    "format" : {
+      "all" : false,
+      "hasHeader" : false,
+      "kind" : "json",
+      "pattern" : "",
+      "separator" : "whitespace",
+      "skip" : 0
+    },
+    "headers" : [
+
+    ],
+    "kind" : "http",
+    "language" : "applescript",
+    "method" : "GET",
+    "script" : "",
+    "steps" : [
+
+    ],
+    "text" : "",
+    "url" : "https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=20"
   }
 }

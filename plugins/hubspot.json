@@ -1,159 +1,322 @@
 {
-  "schema": 11,
-  "id": "plugin.exemplo.hubspot",
-  "name": "HubSpot",
-  "interval": 900,
-  "icon": {
-    "kind": "picture",
-    "symbolName": "cube.box.fill",
-    "pictureSource": "https://github.com/HubSpot.png?size=128"
+  "actions" : [
+
+  ],
+  "answer" : "{\"results\":[{\"id\":\"51842907311\",\"properties\":{\"amount\":\"48000\",\"closedate\":\"2026-10-15T17:00:00Z\",\"createdate\":\"2026-09-30T14:12:08.512Z\",\"dealname\":\"Loja Vila Mariana · plano anual\",\"dealstage\":\"contractsent\",\"hs_lastmodifieddate\":\"2026-10-01T12:30:15.402Z\",\"hs_object_id\":\"51842907311\"},\"createdAt\":\"2026-09-30T14:12:08.512Z\",\"updatedAt\":\"2026-10-01T12:30:15.402Z\",\"archived\":false},{\"id\":\"51839120455\",\"properties\":{\"amount\":\"126500\",\"closedate\":\"2026-10-30T17:00:00Z\",\"createdate\":\"2026-09-29T19:40:22.031Z\",\"dealname\":\"Distribuidora Serra Azul\",\"dealstage\":\"presentationscheduled\",\"hs_lastmodifieddate\":\"2026-10-01T12:30:15.402Z\",\"hs_object_id\":\"51839120455\"},\"createdAt\":\"2026-09-29T19:40:22.031Z\",\"updatedAt\":\"2026-10-01T12:30:15.402Z\",\"archived\":false},{\"id\":\"51830054862\",\"properties\":{\"amount\":\"18900\",\"closedate\":\"2026-11-12T17:00:00Z\",\"createdate\":\"2026-09-28T13:05:47.774Z\",\"dealname\":\"Clínica Bem Viver · 12 licenças\",\"dealstage\":\"qualifiedtobuy\",\"hs_lastmodifieddate\":\"2026-10-01T12:30:15.402Z\",\"hs_object_id\":\"51830054862\"},\"createdAt\":\"2026-09-28T13:05:47.774Z\",\"updatedAt\":\"2026-10-01T12:30:15.402Z\",\"archived\":false},{\"id\":\"51822786193\",\"properties\":{\"amount\":\"212000\",\"closedate\":\"2026-10-22T17:00:00Z\",\"createdate\":\"2026-09-26T16:58:11.209Z\",\"dealname\":\"Grupo Horizonte Educação\",\"dealstage\":\"decisionmakerboughtin\",\"hs_lastmodifieddate\":\"2026-10-01T12:30:15.402Z\",\"hs_object_id\":\"51822786193\"},\"createdAt\":\"2026-09-26T16:58:11.209Z\",\"updatedAt\":\"2026-10-01T12:30:15.402Z\",\"archived\":false},{\"id\":\"51816433027\",\"properties\":{\"amount\":\"7200\",\"closedate\":\"2026-09-25T17:00:00Z\",\"createdate\":\"2026-09-24T11:21:36.650Z\",\"dealname\":\"Padaria Pão Quente · renovação\",\"dealstage\":\"closedwon\",\"hs_lastmodifieddate\":\"2026-10-01T12:30:15.402Z\",\"hs_object_id\":\"51816433027\"},\"createdAt\":\"2026-09-24T11:21:36.650Z\",\"updatedAt\":\"2026-10-01T12:30:15.402Z\",\"archived\":false},{\"id\":\"51809871544\",\"properties\":{\"amount\":\"64300\",\"closedate\":\"2026-09-20T17:00:00Z\",\"createdate\":\"2026-09-22T18:44:02.118Z\",\"dealname\":\"Transportes Rota Sul\",\"dealstage\":\"closedlost\",\"hs_lastmodifieddate\":\"2026-10-01T12:30:15.402Z\",\"hs_object_id\":\"51809871544\"},\"createdAt\":\"2026-09-22T18:44:02.118Z\",\"updatedAt\":\"2026-10-01T12:30:15.402Z\",\"archived\":false}],\"paging\":{\"next\":{\"after\":\"51809871543\",\"link\":\"https://api.hubapi.com/crm/v3/objects/deals?after=51809871543\"}}}",
+  "attention" : {
+    "comparison" : "above",
+    "countPath" : "",
+    "listIndex" : 0,
+    "mode" : "newRows",
+    "threshold" : 0
   },
-  "source": {
-    "kind": "http",
-    "method": "GET",
-    "url": "https://api.hubapi.com/crm/v3/objects/deals",
-    "query": [
+  "button" : {
+    "cancelLabel" : "",
+    "confirms" : false,
+    "failureMessage" : "",
+    "failureReport" : "message",
+    "okLabel" : "",
+    "question" : "",
+    "runningText" : "",
+    "successMessage" : "",
+    "successReport" : "message"
+  },
+  "card" : {
+    "blocks" : [
       {
-        "name": "limit",
-        "value": "20"
+        "caption" : "Negócios trazidos",
+        "format" : "integer",
+        "goodDirection" : "up",
+        "id" : "5433421A-980E-4F7E-A322-A11E384A7B51",
+        "type" : "hero",
+        "value" : "{{results | count}}"
       },
       {
-        "name": "properties",
-        "value": "dealname,amount,dealstage,closedate"
-      },
-      {
-        "name": "sort",
-        "value": "-createdate"
-      }
-    ],
-    "headers": [
-      {
-        "name": "Authorization",
-        "value": "Bearer {{$settings.token}}"
-      }
-    ],
-    "format": {
-      "kind": "json"
-    }
-  },
-  "slot": {
-    "label": "{{results | count}}",
-    "style": "number"
-  },
-  "card": {
-    "isEnabled": true,
-    "title": "HubSpot",
-    "subtitle": "Negócios no CRM",
-    "emptyMessage": "Nenhum negócio, ou o token não tem o escopo de CRM.",
-    "blocks": [
-      {
-        "type": "hero",
-        "value": "{{results | count}}",
-        "caption": "Negócios trazidos",
-        "goodDirection": "up",
-        "format": "integer"
-      },
-      {
-        "type": "breakdown",
-        "title": "Por etapa",
-        "breakdownStyle": "list",
-        "path": "results",
-        "groupField": "{{properties.dealstage}}",
-        "groupKind": "text",
-        "measure": "sum",
-        "shows": "amount",
-        "groups": [
+        "breakdownStyle" : "list",
+        "groupField" : "{{properties.dealstage}}",
+        "groupKind" : "text",
+        "groups" : [
           {
-            "id": "AA36209C-4EFC-439C-B3F3-143F3A79F292",
-            "name": "Reunião marcada",
-            "color": "blue",
-            "match": "appointmentscheduled"
+            "color" : "blue",
+            "id" : "AA36209C-4EFC-439C-B3F3-143F3A79F292",
+            "match" : "appointmentscheduled",
+            "name" : "Reunião marcada",
+            "truth" : true
           },
           {
-            "id": "F1174301-3A31-451F-A560-9599635396FA",
-            "name": "Qualificado",
-            "color": "teal",
-            "match": "qualifiedtobuy"
+            "color" : "teal",
+            "id" : "F1174301-3A31-451F-A560-9599635396FA",
+            "match" : "qualifiedtobuy",
+            "name" : "Qualificado",
+            "truth" : true
           },
           {
-            "id": "97C5E47E-5E95-4172-B62A-F9362B4A5845",
-            "name": "Apresentação",
-            "color": "indigo",
-            "match": "presentationscheduled"
+            "color" : "indigo",
+            "id" : "97C5E47E-5E95-4172-B62A-F9362B4A5845",
+            "match" : "presentationscheduled",
+            "name" : "Apresentação",
+            "truth" : true
           },
           {
-            "id": "1E3EDBB4-018E-4437-BAB0-2FBAE4822182",
-            "name": "Decisor a bordo",
-            "color": "purple",
-            "match": "decisionmakerboughtin"
+            "color" : "purple",
+            "id" : "1E3EDBB4-018E-4437-BAB0-2FBAE4822182",
+            "match" : "decisionmakerboughtin",
+            "name" : "Decisor a bordo",
+            "truth" : true
           },
           {
-            "id": "5D9A1F9D-6487-41EA-A61A-9637E7CE7098",
-            "name": "Contrato enviado",
-            "color": "yellow",
-            "match": "contractsent"
+            "color" : "yellow",
+            "id" : "5D9A1F9D-6487-41EA-A61A-9637E7CE7098",
+            "match" : "contractsent",
+            "name" : "Contrato enviado",
+            "truth" : true
           },
           {
-            "id": "A4EA75DF-72AE-4B2F-A5A0-C1696CE48998",
-            "name": "Ganho",
-            "color": "green",
-            "match": "closedwon"
+            "color" : "green",
+            "id" : "A4EA75DF-72AE-4B2F-A5A0-C1696CE48998",
+            "match" : "closedwon",
+            "name" : "Ganho",
+            "truth" : true
           },
           {
-            "id": "4A17F22A-1B04-494E-85EA-6C1DF2CFC723",
-            "name": "Perdido",
-            "color": "red",
-            "match": "closedlost"
+            "color" : "red",
+            "id" : "4A17F22A-1B04-494E-85EA-6C1DF2CFC723",
+            "match" : "closedlost",
+            "name" : "Perdido",
+            "truth" : true
           }
         ],
-        "others": {
-          "shows": true,
-          "name": "Outras etapas",
-          "color": "gray"
+        "id" : "533E7C10-5390-4259-9192-71F464E58612",
+        "measure" : "sum",
+        "others" : {
+          "color" : "gray",
+          "name" : "Outras etapas",
+          "shows" : true
         },
-        "sumField": "{{properties.amount}}",
-        "prefix": "R$ "
+        "path" : "results",
+        "prefix" : "R$ ",
+        "shows" : "amount",
+        "sumField" : "{{properties.amount}}",
+        "title" : "Por etapa",
+        "type" : "breakdown"
       },
       {
-        "type": "stages",
-        "path": "results",
-        "label": "{{properties.dealname}}",
-        "value": "{{properties.amount}}",
-        "limit": 5,
-        "format": "money",
-        "currency": "BRL",
-        "title": "Maiores"
+        "currency" : "BRL",
+        "format" : "money",
+        "id" : "35AAF059-ABEF-402F-AA7C-8DBDC0F64BB1",
+        "label" : "{{properties.dealname}}",
+        "limit" : 5,
+        "path" : "results",
+        "title" : "Maiores",
+        "type" : "stages",
+        "value" : "{{properties.amount}}"
       },
       {
-        "type": "list",
-        "limit": 5,
-        "tabs": [
+        "columnGap" : 8,
+        "id" : "25EF19FE-586A-4C9B-8496-F853D2E33A10",
+        "limit" : 5,
+        "path" : "results",
+        "rowEvent" : "none",
+        "structure" : [
           {
-            "title": "Negócios",
-            "path": "results",
-            "rowTitle": "{{properties.dealname}}",
-            "rowSubtitle": "{{properties.dealstage}}",
-            "rowMeta": "Fecha {{properties.closedate | date}}",
-            "rowStatus": "{{properties.amount}}",
-            "rowWrapsTitle": true,
-            "rowEvent": "none"
+            "id" : "91513EBA-179D-44D7-A849-41F24B162325",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "551E58FA-222E-4148-BB23-5ECE3602B2F0",
+                "items" : [
+                  {
+                    "content" : "{{properties.dealname}}",
+                    "fills" : true,
+                    "id" : "BBF7A1C6-9F66-4CED-86C8-FFFEC9C62FEA",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 0,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "1661CFEF-6F76-4B10-BA98-40B236E292E4",
+                "items" : [
+                  {
+                    "content" : "{{properties.dealstage}}",
+                    "fills" : true,
+                    "id" : "9A6F81A3-E5EB-4B12-967A-771C47C013D0",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "gap" : 8,
+                "id" : "FB37FCB6-081D-407F-A2B4-BD413029A693",
+                "items" : [
+                  {
+                    "content" : "Fecha {{properties.closedate | date}}",
+                    "fills" : true,
+                    "id" : "9978C231-D0E5-4051-B551-A6F584B4B3C4",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  },
+                  {
+                    "content" : "{{properties.amount}}",
+                    "id" : "8D433D8E-A7A3-4449-B02B-0A9CDB564257",
+                    "indicator" : "dotAndText",
+                    "kind" : "indicator",
+                    "rules" : [
+                      {
+                        "tint" : "positive",
+                        "value" : "positive"
+                      },
+                      {
+                        "tint" : "positive",
+                        "value" : "ok"
+                      },
+                      {
+                        "tint" : "positive",
+                        "value" : "green"
+                      },
+                      {
+                        "tint" : "positive",
+                        "value" : "success"
+                      },
+                      {
+                        "tint" : "positive",
+                        "value" : "up"
+                      },
+                      {
+                        "tint" : "attention",
+                        "value" : "attention"
+                      },
+                      {
+                        "tint" : "attention",
+                        "value" : "warn"
+                      },
+                      {
+                        "tint" : "attention",
+                        "value" : "warning"
+                      },
+                      {
+                        "tint" : "attention",
+                        "value" : "yellow"
+                      },
+                      {
+                        "tint" : "negative",
+                        "value" : "negative"
+                      },
+                      {
+                        "tint" : "negative",
+                        "value" : "bad"
+                      },
+                      {
+                        "tint" : "negative",
+                        "value" : "red"
+                      },
+                      {
+                        "tint" : "negative",
+                        "value" : "error"
+                      },
+                      {
+                        "tint" : "negative",
+                        "value" : "down"
+                      }
+                    ],
+                    "size" : 13
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
           }
-        ]
+        ],
+        "type" : "list"
       }
-    ]
+    ],
+    "emptyMessage" : "Nenhum negócio, ou o token não tem o escopo de CRM.",
+    "isEnabled" : true,
+    "rowLimit" : 5,
+    "subtitle" : "Negócios no CRM",
+    "title" : "HubSpot"
   },
-  "actions": [],
-  "attention": {
-    "mode": "newRows"
+  "icon" : {
+    "kind" : "picture",
+    "pictureSource" : "https://github.com/HubSpot.png?size=128",
+    "symbolName" : "cube.box.fill",
+    "word" : ""
   },
-  "settings": [
+  "id" : "plugin.exemplo.hubspot",
+  "interval" : 900,
+  "name" : "HubSpot",
+  "parameters" : [
+
+  ],
+  "readsOnItsOwn" : true,
+  "role" : "reading",
+  "schema" : 12,
+  "settings" : [
     {
-      "key": "token",
-      "label": "Token",
-      "type": "secret",
-      "required": true,
-      "help": "Crie um app privado no HubSpot com o escopo crm.objects.deals.read e cole o token aqui."
+      "help" : "Crie um app privado no HubSpot com o escopo crm.objects.deals.read e cole o token aqui.",
+      "key" : "token",
+      "label" : "Token",
+      "required" : true,
+      "type" : "secret"
     }
   ],
-  "answer": "{\"results\":[{\"id\":\"51842907311\",\"properties\":{\"amount\":\"48000\",\"closedate\":\"2026-10-15T17:00:00Z\",\"createdate\":\"2026-09-30T14:12:08.512Z\",\"dealname\":\"Loja Vila Mariana · plano anual\",\"dealstage\":\"contractsent\",\"hs_lastmodifieddate\":\"2026-10-01T12:30:15.402Z\",\"hs_object_id\":\"51842907311\"},\"createdAt\":\"2026-09-30T14:12:08.512Z\",\"updatedAt\":\"2026-10-01T12:30:15.402Z\",\"archived\":false},{\"id\":\"51839120455\",\"properties\":{\"amount\":\"126500\",\"closedate\":\"2026-10-30T17:00:00Z\",\"createdate\":\"2026-09-29T19:40:22.031Z\",\"dealname\":\"Distribuidora Serra Azul\",\"dealstage\":\"presentationscheduled\",\"hs_lastmodifieddate\":\"2026-10-01T12:30:15.402Z\",\"hs_object_id\":\"51839120455\"},\"createdAt\":\"2026-09-29T19:40:22.031Z\",\"updatedAt\":\"2026-10-01T12:30:15.402Z\",\"archived\":false},{\"id\":\"51830054862\",\"properties\":{\"amount\":\"18900\",\"closedate\":\"2026-11-12T17:00:00Z\",\"createdate\":\"2026-09-28T13:05:47.774Z\",\"dealname\":\"Clínica Bem Viver · 12 licenças\",\"dealstage\":\"qualifiedtobuy\",\"hs_lastmodifieddate\":\"2026-10-01T12:30:15.402Z\",\"hs_object_id\":\"51830054862\"},\"createdAt\":\"2026-09-28T13:05:47.774Z\",\"updatedAt\":\"2026-10-01T12:30:15.402Z\",\"archived\":false},{\"id\":\"51822786193\",\"properties\":{\"amount\":\"212000\",\"closedate\":\"2026-10-22T17:00:00Z\",\"createdate\":\"2026-09-26T16:58:11.209Z\",\"dealname\":\"Grupo Horizonte Educação\",\"dealstage\":\"decisionmakerboughtin\",\"hs_lastmodifieddate\":\"2026-10-01T12:30:15.402Z\",\"hs_object_id\":\"51822786193\"},\"createdAt\":\"2026-09-26T16:58:11.209Z\",\"updatedAt\":\"2026-10-01T12:30:15.402Z\",\"archived\":false},{\"id\":\"51816433027\",\"properties\":{\"amount\":\"7200\",\"closedate\":\"2026-09-25T17:00:00Z\",\"createdate\":\"2026-09-24T11:21:36.650Z\",\"dealname\":\"Padaria Pão Quente · renovação\",\"dealstage\":\"closedwon\",\"hs_lastmodifieddate\":\"2026-10-01T12:30:15.402Z\",\"hs_object_id\":\"51816433027\"},\"createdAt\":\"2026-09-24T11:21:36.650Z\",\"updatedAt\":\"2026-10-01T12:30:15.402Z\",\"archived\":false},{\"id\":\"51809871544\",\"properties\":{\"amount\":\"64300\",\"closedate\":\"2026-09-20T17:00:00Z\",\"createdate\":\"2026-09-22T18:44:02.118Z\",\"dealname\":\"Transportes Rota Sul\",\"dealstage\":\"closedlost\",\"hs_lastmodifieddate\":\"2026-10-01T12:30:15.402Z\",\"hs_object_id\":\"51809871544\"},\"createdAt\":\"2026-09-22T18:44:02.118Z\",\"updatedAt\":\"2026-10-01T12:30:15.402Z\",\"archived\":false}],\"paging\":{\"next\":{\"after\":\"51809871543\",\"link\":\"https://api.hubapi.com/crm/v3/objects/deals?after=51809871543\"}}}"
+  "slot" : {
+    "alertsOnThreshold" : false,
+    "label" : "{{results | count}}",
+    "style" : "number",
+    "total" : "",
+    "value" : ""
+  },
+  "source" : {
+    "body" : "",
+    "errand" : "copy",
+    "format" : {
+      "all" : false,
+      "hasHeader" : false,
+      "kind" : "json",
+      "pattern" : "",
+      "separator" : "whitespace",
+      "skip" : 0
+    },
+    "headers" : [
+      {
+        "id" : "43ED999A-AF51-4D30-8956-E43A8D6A6D6C",
+        "name" : "Authorization",
+        "value" : "Bearer {{$settings.token}}"
+      }
+    ],
+    "kind" : "http",
+    "language" : "applescript",
+    "method" : "GET",
+    "query" : [
+      {
+        "id" : "CF6924D0-9BD5-49A7-B1C9-6FA24116D414",
+        "name" : "limit",
+        "value" : "20"
+      },
+      {
+        "id" : "D1723B0F-F2D3-45E2-BD9C-278364FF8CF9",
+        "name" : "properties",
+        "value" : "dealname,amount,dealstage,closedate"
+      },
+      {
+        "id" : "A1FCB871-F351-4D77-BE35-BEEBFE0EEB49",
+        "name" : "sort",
+        "value" : "-createdate"
+      }
+    ],
+    "script" : "",
+    "steps" : [
+
+    ],
+    "text" : "",
+    "url" : "https://api.hubapi.com/crm/v3/objects/deals"
+  }
 }

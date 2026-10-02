@@ -1,84 +1,223 @@
 {
-  "schema": 5,
-  "id": "plugin.exemplo.lobsters",
-  "name": "Lobsters",
-  "interval": 1800,
-  "icon": {
-    "kind": "picture",
-    "symbolName": "text.bubble.fill",
-    "pictureSource": "https://lobste.rs/apple-touch-icon.png"
-  },
-  "source": {
-    "kind": "http",
-    "method": "GET",
-    "url": "https://lobste.rs/hottest.json",
-    "format": {
-      "kind": "json"
-    }
-  },
-  "slot": {
-    "label": "{{[0].score}}",
-    "style": "number"
-  },
-  "card": {
-    "isEnabled": true,
-    "title": "Lobsters",
-    "subtitle": "O que está em alta agora",
-    "emptyMessage": "Nada na primeira página.",
-    "blocks": [
-      {
-        "type": "stages",
-        "title": "Mais votados",
-        "path": "$",
-        "label": "{{title}}",
-        "value": "{{score}}",
-        "limit": 5,
-        "format": "integer"
-      },
-      {
-        "type": "list",
-        "limit": 6,
-        "tabs": [
-          {
-            "title": "Histórias",
-            "path": "$",
-            "rowTitle": "{{title}}",
-            "rowSubtitle": "{{submitter_user}} · {{created_at | ago}}",
-            "rowBadge": "{{tags[0]}}",
-            "rowWrapsTitle": true,
-            "rowURL": "{{url ?? short_id_url}}",
-            "badges": [
-              {
-                "value": "{{score}}",
-                "symbolName": "arrow.up",
-                "tint": "positive"
-              },
-              {
-                "value": "{{comment_count}}",
-                "symbolName": "bubble.left",
-                "tint": "neutral"
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  "actions": [
+  "actions" : [
     {
-      "name": "Comentários",
-      "symbolName": "bubble.left.and.bubble.right",
-      "place": "row",
-      "listIndex": 0,
-      "run": {
-        "kind": "onTheMac",
-        "errand": "openLink",
-        "text": "{{comments_url}}"
+      "asksForValue" : false,
+      "confirmText" : "",
+      "confirms" : false,
+      "failureMessage" : "",
+      "failureReport" : "message",
+      "id" : "09BBE254-3DD4-4A44-B0A6-4A6B3E1857EC",
+      "isProminent" : false,
+      "listIndex" : 0,
+      "mark" : {
+        "kind" : "symbol",
+        "value" : "bubble.left.and.bubble.right"
       },
-      "successReport": "nothing"
+      "name" : "Comentários",
+      "place" : "row",
+      "question" : "",
+      "run" : {
+        "body" : "",
+        "errand" : "openLink",
+        "format" : {
+          "all" : false,
+          "hasHeader" : false,
+          "kind" : "json",
+          "pattern" : "",
+          "separator" : "whitespace",
+          "skip" : 0
+        },
+        "headers" : [
+
+        ],
+        "kind" : "onTheMac",
+        "language" : "applescript",
+        "method" : "GET",
+        "script" : "",
+        "steps" : [
+
+        ],
+        "text" : "{{comments_url}}",
+        "url" : ""
+      },
+      "runningText" : "",
+      "successMessage" : "",
+      "successReport" : "nothing"
     }
   ],
-  "attention": {
-    "mode": "newRows"
+  "attention" : {
+    "comparison" : "above",
+    "countPath" : "",
+    "listIndex" : 0,
+    "mode" : "newRows",
+    "threshold" : 0
+  },
+  "button" : {
+    "cancelLabel" : "",
+    "confirms" : false,
+    "failureMessage" : "",
+    "failureReport" : "message",
+    "okLabel" : "",
+    "question" : "",
+    "runningText" : "",
+    "successMessage" : "",
+    "successReport" : "message"
+  },
+  "card" : {
+    "blocks" : [
+      {
+        "format" : "integer",
+        "id" : "D714622D-83C9-4436-BBCC-5A4EA0984760",
+        "label" : "{{title}}",
+        "limit" : 5,
+        "path" : "$",
+        "title" : "Mais votados",
+        "type" : "stages",
+        "value" : "{{score}}"
+      },
+      {
+        "columnGap" : 8,
+        "id" : "ED8BD4FF-67EC-4D89-9CF4-3B824653F0C9",
+        "limit" : 5,
+        "path" : "$",
+        "rowURL" : "{{url ?? short_id_url}}",
+        "structure" : [
+          {
+            "id" : "0391CBC7-EE23-456A-979C-34DB398834B0",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "96CDA144-AE83-4467-B77B-3584C9B69D97",
+                "items" : [
+                  {
+                    "content" : "{{title}}",
+                    "fills" : true,
+                    "id" : "248C5248-73C2-4FF6-B904-3611CD68CA50",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 0,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "BA40D0AE-DBE2-4D35-983A-8676417E42B2",
+                "items" : [
+                  {
+                    "action" : "09BBE254-3DD4-4A44-B0A6-4A6B3E1857EC",
+                    "buttonSize" : "medium",
+                    "id" : "74597C94-0CCC-4CA8-93FB-12E6A7E98A16",
+                    "ink" : "secondary",
+                    "kind" : "button",
+                    "look" : "circle"
+                  },
+                  {
+                    "id" : "8FB1D1FE-24AA-4907-9BE9-E28867044454",
+                    "kind" : "space",
+                    "spaceWidth" : 0
+                  },
+                  {
+                    "content" : "{{submitter_user}} · {{created_at | ago}}",
+                    "id" : "93510950-47A2-46A0-AF0E-CBE0CD0D633F",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "gap" : 8,
+                "id" : "6FC42BF3-71BD-4FDD-92B2-22AFFA933A93",
+                "items" : [
+                  {
+                    "id" : "B34BA1EB-3400-4564-B5F1-92DD7117C361",
+                    "kind" : "space",
+                    "spaceWidth" : 0
+                  },
+                  {
+                    "content" : "{{tags[0]}}",
+                    "id" : "F7122373-C5C2-4229-8093-38EF78C7DB49",
+                    "ink" : "secondary",
+                    "kind" : "icon",
+                    "size" : 13,
+                    "symbolName" : ""
+                  },
+                  {
+                    "content" : "{{score}}",
+                    "id" : "CA8B15B4-9093-47B2-867E-0D0184188EAD",
+                    "ink" : "positive",
+                    "kind" : "icon",
+                    "size" : 13,
+                    "symbolName" : "arrow.up"
+                  },
+                  {
+                    "content" : "{{comment_count}}",
+                    "id" : "908CEF5D-5533-4578-8ACB-9FED4F75E7F3",
+                    "ink" : "secondary",
+                    "kind" : "icon",
+                    "size" : 13,
+                    "symbolName" : "bubble.left"
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
+          }
+        ],
+        "type" : "list"
+      }
+    ],
+    "emptyMessage" : "Nada na primeira página.",
+    "isEnabled" : true,
+    "rowLimit" : 5,
+    "subtitle" : "O que está em alta agora",
+    "title" : "Lobsters"
+  },
+  "icon" : {
+    "kind" : "picture",
+    "pictureSource" : "https://lobste.rs/apple-touch-icon.png",
+    "symbolName" : "text.bubble.fill",
+    "word" : ""
+  },
+  "id" : "plugin.exemplo.lobsters",
+  "interval" : 1800,
+  "name" : "Lobsters",
+  "parameters" : [
+
+  ],
+  "readsOnItsOwn" : true,
+  "role" : "reading",
+  "schema" : 12,
+  "slot" : {
+    "alertsOnThreshold" : false,
+    "label" : "{{[0].score}}",
+    "style" : "number",
+    "total" : "",
+    "value" : ""
+  },
+  "source" : {
+    "body" : "",
+    "errand" : "copy",
+    "format" : {
+      "all" : false,
+      "hasHeader" : false,
+      "kind" : "json",
+      "pattern" : "",
+      "separator" : "whitespace",
+      "skip" : 0
+    },
+    "headers" : [
+
+    ],
+    "kind" : "http",
+    "language" : "applescript",
+    "method" : "GET",
+    "script" : "",
+    "steps" : [
+
+    ],
+    "text" : "",
+    "url" : "https://lobste.rs/hottest.json"
   }
 }

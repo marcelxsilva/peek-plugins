@@ -1,77 +1,213 @@
 {
-  "schema": 5,
-  "id": "plugin.exemplo.tvmaze",
-  "name": "Na TV hoje",
-  "interval": 10800,
-  "icon": {
-    "kind": "symbol",
-    "symbolName": "tv.fill"
+  "actions" : [
+
+  ],
+  "attention" : {
+    "comparison" : "above",
+    "countPath" : "",
+    "listIndex" : 0,
+    "mode" : "newRows",
+    "threshold" : 0
   },
-  "source": {
-    "kind": "http",
-    "method": "GET",
-    "url": "https://api.tvmaze.com/schedule",
-    "query": [
-      { "name": "country", "value": "{{$settings.pais}}" },
-      { "name": "date", "value": "{{$now | shape yyyy-MM-dd}}" }
-    ],
-    "format": {
-      "kind": "json"
-    }
+  "button" : {
+    "cancelLabel" : "",
+    "confirms" : false,
+    "failureMessage" : "",
+    "failureReport" : "message",
+    "okLabel" : "",
+    "question" : "",
+    "runningText" : "",
+    "successMessage" : "",
+    "successReport" : "message"
   },
-  "slot": {
-    "label": "{{$ | count}}",
-    "style": "number"
-  },
-  "card": {
-    "isEnabled": true,
-    "picture": {
-      "kind": "address",
-      "value": "{{[0].show.image.medium}}",
-      "shape": "rounded",
-      "scale": 1.4
-    },
-    "title": "Na TV hoje",
-    "subtitle": "{{$now | shape dd/MM}} · {{$settings.pais}}",
-    "emptyMessage": "Nada na grade de hoje.",
-    "blocks": [
+  "card" : {
+    "blocks" : [
       {
-        "type": "list",
-        "limit": 6,
-        "tabs": [
+        "columnGap" : 8,
+        "id" : "1300F107-2C4E-4637-9695-0CC36553EAE9",
+        "limit" : 5,
+        "path" : "$",
+        "rowDetail" : "{{show.genres[0]}}",
+        "rowURL" : "{{url}}",
+        "structure" : [
           {
-            "title": "Episódios",
-            "path": "$",
-            "rowTitle": "{{show.name}}",
-            "rowSubtitle": "{{name}}",
-            "rowMeta": "{{airtime}} · {{show.network.name}}",
-            "rowBadge": "T{{season}}E{{number}}",
-            "rowImage": "{{show.image.medium}}",
-            "rowImageShape": "rounded",
-            "rowWrapsTitle": true,
-            "rowURL": "{{url}}",
-            "rowDetail": "{{show.genres[0]}}"
+            "id" : "429A0032-39CF-4793-88D6-AC74C88FFCD2",
+            "lines" : [
+              {
+                "id" : "B04922A6-93FF-4AD9-90D5-D48A07F1E81B",
+                "items" : [
+                  {
+                    "form" : "rounded",
+                    "id" : "568D97B3-3F68-44ED-8AB1-E9112B25F399",
+                    "kind" : "image",
+                    "picture" : {
+                      "kind" : "address",
+                      "shape" : "rounded",
+                      "value" : "{{show.image.medium}}"
+                    },
+                    "size" : 44
+                  }
+                ]
+              }
+            ],
+            "width" : "auto"
+          },
+          {
+            "id" : "E0933036-95D8-4E2A-8D3D-710D608E0472",
+            "lineGap" : 6,
+            "lines" : [
+              {
+                "id" : "6DE089AF-F2E6-46B0-86D8-2779C1F02C70",
+                "items" : [
+                  {
+                    "content" : "{{show.name}}",
+                    "fills" : true,
+                    "id" : "2AA795B6-C248-4FF2-B31F-8DAA5230A0AA",
+                    "ink" : "primary",
+                    "kind" : "text",
+                    "lines" : 0,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "id" : "E8E4F514-A465-4D00-9C4F-37C1F900BBFE",
+                "items" : [
+                  {
+                    "content" : "{{name}}",
+                    "fills" : true,
+                    "id" : "90BDAF9E-B0D7-43B6-8A5D-02B8CC2BF918",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  }
+                ]
+              },
+              {
+                "gap" : 8,
+                "id" : "A21CEBD3-4525-436E-8D92-E42A7BCAE973",
+                "items" : [
+                  {
+                    "content" : "{{airtime}} · {{show.network.name}}",
+                    "fills" : true,
+                    "id" : "F3A01EF3-4CAC-418A-B6F8-380821E9CEF1",
+                    "ink" : "secondary",
+                    "kind" : "text",
+                    "lines" : 1,
+                    "size" : 13
+                  },
+                  {
+                    "content" : "T{{season}}E{{number}}",
+                    "id" : "1472BA60-CF51-4BE8-87D6-4AF1829967D1",
+                    "ink" : "secondary",
+                    "kind" : "icon",
+                    "size" : 13,
+                    "symbolName" : ""
+                  }
+                ]
+              }
+            ],
+            "width" : "fill"
           }
-        ]
+        ],
+        "type" : "list"
       }
-    ]
+    ],
+    "emptyMessage" : "Nada na grade de hoje.",
+    "isEnabled" : true,
+    "picture" : {
+      "kind" : "address",
+      "scale" : 1.4,
+      "shape" : "rounded",
+      "value" : "{{[0].show.image.medium}}"
+    },
+    "rowLimit" : 5,
+    "subtitle" : "{{$now | shape dd/MM}} · {{$settings.pais}}",
+    "title" : "Na TV hoje"
   },
-  "actions": [],
-  "attention": {
-    "mode": "newRows"
+  "icon" : {
+    "kind" : "symbol",
+    "pictureSource" : "",
+    "symbolName" : "tv.fill",
+    "word" : ""
   },
-  "settings": [
+  "id" : "plugin.exemplo.tvmaze",
+  "interval" : 10800,
+  "name" : "Na TV hoje",
+  "parameters" : [
+
+  ],
+  "readsOnItsOwn" : true,
+  "role" : "reading",
+  "schema" : 12,
+  "settings" : [
     {
-      "key": "pais",
-      "label": "País",
-      "type": "choice",
-      "default": "US",
-      "options": [
-        { "value": "US", "label": "Estados Unidos" },
-        { "value": "GB", "label": "Reino Unido" },
-        { "value": "BR", "label": "Brasil" },
-        { "value": "JP", "label": "Japão" }
-      ]
+      "default" : "US",
+      "key" : "pais",
+      "label" : "País",
+      "options" : [
+        {
+          "label" : "Estados Unidos",
+          "value" : "US"
+        },
+        {
+          "label" : "Reino Unido",
+          "value" : "GB"
+        },
+        {
+          "label" : "Brasil",
+          "value" : "BR"
+        },
+        {
+          "label" : "Japão",
+          "value" : "JP"
+        }
+      ],
+      "type" : "choice"
     }
-  ]
+  ],
+  "slot" : {
+    "alertsOnThreshold" : false,
+    "label" : "{{$ | count}}",
+    "style" : "number",
+    "total" : "",
+    "value" : ""
+  },
+  "source" : {
+    "body" : "",
+    "errand" : "copy",
+    "format" : {
+      "all" : false,
+      "hasHeader" : false,
+      "kind" : "json",
+      "pattern" : "",
+      "separator" : "whitespace",
+      "skip" : 0
+    },
+    "headers" : [
+
+    ],
+    "kind" : "http",
+    "language" : "applescript",
+    "method" : "GET",
+    "query" : [
+      {
+        "id" : "566070E1-0B02-403C-B278-07A1177960DB",
+        "name" : "country",
+        "value" : "{{$settings.pais}}"
+      },
+      {
+        "id" : "CCEDBA29-FDB2-40A0-97B2-9CA7A37CF712",
+        "name" : "date",
+        "value" : "{{$now | shape yyyy-MM-dd}}"
+      }
+    ],
+    "script" : "",
+    "steps" : [
+
+    ],
+    "text" : "",
+    "url" : "https://api.tvmaze.com/schedule"
+  }
 }
