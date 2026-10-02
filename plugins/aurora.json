@@ -5,7 +5,7 @@
   "interval": 1800,
   "icon": {
     "kind": "symbol",
-    "symbolName": "sparkles.tv.fill"
+    "symbolName": "sun.max.fill"
   },
   "source": {
     "kind": "http",

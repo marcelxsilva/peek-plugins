@@ -1,5 +1,5 @@
 {
-  "schema": 5,
+  "schema": 7,
   "id": "plugin.exemplo.leads",
   "name": "Leads",
   "interval": 600,
@@ -62,5 +62,6 @@
       "required": true,
       "placeholder": "https://minhaempresa.com/api/leads"
     }
-  ]
+  ],
+  "answer": "[{\"id\":481,\"nome\":\"Mariana Costa\",\"email\":\"mariana.costa@exemplo.com\",\"origem\":\"Site\",\"criado_em\":\"2026-10-01T09:42:00Z\"},{\"id\":480,\"nome\":\"Rafael Lima\",\"email\":\"rafael@lima.exemplo.com\",\"origem\":\"Indicação\",\"criado_em\":\"2026-10-01T08:15:00Z\"},{\"id\":479,\"nome\":\"Patrícia Nunes\",\"email\":\"patricia.nunes@exemplo.com\",\"origem\":\"Instagram\",\"criado_em\":\"2026-09-30T18:03:00Z\"},{\"id\":478,\"nome\":\"Construtora Horizonte\",\"email\":\"compras@horizonte.exemplo.com\",\"origem\":\"Google Ads\",\"criado_em\":\"2026-09-30T14:27:00Z\"},{\"id\":477,\"nome\":\"Diego Almeida\",\"email\":\"diego.almeida@exemplo.com\",\"origem\":\"Evento\",\"criado_em\":\"2026-09-29T16:50:00Z\"}]"
 }

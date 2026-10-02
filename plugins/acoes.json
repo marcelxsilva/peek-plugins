@@ -4,8 +4,9 @@
   "name": "Ações",
   "interval": 600,
   "icon": {
-    "kind": "word",
-    "word": "{{results[0].symbol}}"
+    "kind": "picture",
+    "symbolName": "chart.line.uptrend.xyaxis",
+    "pictureSource": "https://github.com/brapi-dev.png?size=128"
   },
   "source": {
     "kind": "http",
@@ -77,9 +78,8 @@
           {
             "title": "Dia",
             "kind": "text",
-            "value": "{{regularMarketChangePercent}}",
-            "align": "trailing",
-            "format": "percent"
+            "value": "{{regularMarketChangePercent | shape +#,##0.00;-#,##0.00}}%",
+            "align": "trailing"
           }
         ]
       }

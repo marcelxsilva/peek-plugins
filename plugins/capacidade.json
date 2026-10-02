@@ -45,7 +45,7 @@
       },
       {
         "type": "text",
-        "value": "Atualize os números na aba **Dado** ao fim de cada sprint.",
+        "value": "Atualize os números em **Dados** ao fim de cada sprint.",
         "maxHeight": "small"
       }
     ]

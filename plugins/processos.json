@@ -20,14 +20,14 @@
       }
     ],
     "format": {
-      "kind": "columns",
-      "separator": "whitespace",
-      "skip": 1
+      "kind": "regex",
+      "pattern": "(?m)^\\s*(?<cpu>[\\d.,]+)\\s+(?<mem>[\\d.,]+)\\s+(?<nome>.+?)\\s*$",
+      "all": true
     }
   },
   "slot": {
-    "label": "{{rows[0].c1}}%",
-    "value": "{{rows[0].c1}}",
+    "label": "{{matches[0].cpu}}%",
+    "value": "{{matches[0].cpu}}",
     "total": "100",
     "style": "arc"
   },
@@ -39,15 +39,15 @@
       {
         "type": "bars",
         "title": "CPU por processo",
-        "path": "rows[*]",
-        "label": "{{c3}}",
-        "value": "{{c1}}",
+        "path": "matches",
+        "label": "{{nome}}",
+        "value": "{{cpu}}",
         "limit": 6,
         "format": "number"
       },
       {
         "type": "table",
-        "path": "rows[*]",
+        "path": "matches",
         "sortable": true,
         "limit": 10,
         "rowEvent": "none",
@@ -55,20 +55,20 @@
           {
             "title": "Processo",
             "kind": "text",
-            "value": "{{c3}}",
+            "value": "{{nome}}",
             "align": "leading"
           },
           {
-            "title": "CPU",
+            "title": "CPU %",
             "kind": "text",
-            "value": "{{c1}}",
+            "value": "{{cpu}}",
             "align": "trailing",
             "format": "number"
           },
           {
-            "title": "Memória",
+            "title": "Memória %",
             "kind": "text",
-            "value": "{{c2}}",
+            "value": "{{mem}}",
             "align": "trailing",
             "format": "number"
           }

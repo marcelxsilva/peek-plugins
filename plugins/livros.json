@@ -5,8 +5,9 @@
   "interval": 3600,
   "readsOnItsOwn": false,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "books.vertical.fill"
+    "kind": "picture",
+    "symbolName": "books.vertical.fill",
+    "pictureSource": "https://www.google.com/s2/favicons?domain=openlibrary.org&sz=128"
   },
   "source": {
     "kind": "http",

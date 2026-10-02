@@ -4,8 +4,9 @@
   "name": "PyPI",
   "interval": 3600,
   "icon": {
-    "kind": "word",
-    "word": "{{info.version}}"
+    "kind": "picture",
+    "symbolName": "shippingbox.fill",
+    "pictureSource": "https://github.com/pypi.png?size=128"
   },
   "source": {
     "kind": "http",
@@ -16,7 +17,7 @@
     }
   },
   "slot": {
-    "label": "{{info.name}}",
+    "label": "{{info.version}}",
     "style": "arc"
   },
   "card": {
@@ -41,7 +42,7 @@
           {
             "id": "3C9DF98E-B51A-4ED4-892A-5997798D453F",
             "name": "Licença",
-            "value": "{{info.license}}"
+            "value": "{{info.license_expression ?? info.license}}"
           }
         ]
       },

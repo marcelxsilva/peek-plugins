@@ -1,11 +1,12 @@
 {
-  "schema": 5,
+  "schema": 7,
   "id": "plugin.exemplo.git-local",
   "name": "Git",
   "interval": 120,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "arrow.triangle.branch"
+    "kind": "picture",
+    "symbolName": "arrow.triangle.branch",
+    "pictureSource": "https://github.com/git.png?size=128"
   },
   "source": {
     "kind": "command",
@@ -66,6 +67,18 @@
         "text": "{{rows[0].c1}}"
       },
       "successMessage": "{{rows[0].c1}} copiado."
+    },
+    {
+      "name": "Copiar o hash",
+      "symbolName": "doc.on.doc",
+      "place": "row",
+      "listIndex": 0,
+      "run": {
+        "kind": "onTheMac",
+        "errand": "copy",
+        "text": "{{c1}}"
+      },
+      "successMessage": "{{c1}} copiado."
     }
   ],
   "attention": {
@@ -80,5 +93,6 @@
       "help": "Caminho absoluto. Sem til nem variáveis: aqui não há shell.",
       "required": true
     }
-  ]
+  ],
+  "answer": "3f9c2ab\tCorrige o cálculo do frete para o Norte\tAna Souza\t2026-10-01T17:42:18-03:00\nb71e04d\tAdiciona testes do carrinho de compras\tBruno Lima\t2026-10-01T15:08:51-03:00\n9a4d1c7\tAtualiza dependências do projeto\tAna Souza\t2026-10-01T10:26:03-03:00\ne25f8b0\tRemove a tela antiga de login\tCarla Mendes\t2026-09-30T18:55:40-03:00\n41c7a93\tAjusta o layout do checkout no celular\tBruno Lima\t2026-09-30T14:13:27-03:00\n0d6e3f2\tPrimeira versão da busca por categoria\tCarla Mendes\t2026-09-29T19:47:09-03:00"
 }

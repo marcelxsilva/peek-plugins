@@ -4,8 +4,8 @@
   "name": "Taxas",
   "interval": 3600,
   "icon": {
-    "kind": "word",
-    "word": "%"
+    "kind": "symbol",
+    "symbolName": "percent"
   },
   "source": {
     "kind": "http",

@@ -1,11 +1,12 @@
 {
-  "schema": 5,
+  "schema": 7,
   "id": "plugin.exemplo.youtube-videos",
   "name": "Vídeos",
   "interval": 3600,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "play.rectangle.on.rectangle.fill"
+    "kind": "picture",
+    "symbolName": "play.rectangle.fill",
+    "pictureSource": "https://www.google.com/s2/favicons?domain=youtube.com&sz=128"
   },
   "source": {
     "kind": "http",
@@ -34,7 +35,7 @@
       },
       {
         "name": "key",
-        "value": "{{secret}}"
+        "value": "{{$settings.token}}"
       }
     ],
     "format": {
@@ -84,9 +85,17 @@
       "key": "canal",
       "label": "ID do canal",
       "type": "text",
-      "help": "A chave da API do YouTube Data v3 vai no campo de segredo, em Dado.",
+      "help": "Começa com UC.",
       "required": true,
       "placeholder": "UC…"
+    },
+    {
+      "key": "token",
+      "label": "Token",
+      "type": "secret",
+      "required": true,
+      "help": "Chave da YouTube Data API v3, criada no Google Cloud Console."
     }
-  ]
+  ],
+  "answer": "{\"kind\":\"youtube#searchListResponse\",\"etag\":\"Xk2pLq9\",\"nextPageToken\":\"CAoQAA\",\"regionCode\":\"BR\",\"pageInfo\":{\"totalResults\":214,\"resultsPerPage\":10},\"items\":[{\"kind\":\"youtube#searchResult\",\"etag\":\"eaB3dE5fG7hJ\",\"id\":{\"kind\":\"youtube#video\",\"videoId\":\"aB3dE5fG7hJ\"},\"snippet\":{\"publishedAt\":\"2026-09-30T21:00:07Z\",\"channelId\":\"UCx7Kd2Lq9Vn5Rb3Wc8Ys1Tz\",\"title\":\"Pão de fermentação natural em 3 passos\",\"description\":\"Do levain ao forno, sem complicação.\",\"thumbnails\":{\"default\":{\"url\":\"https://i.ytimg.com/vi/aB3dE5fG7hJ/default.jpg\",\"width\":120,\"height\":90},\"medium\":{\"url\":\"https://i.ytimg.com/vi/aB3dE5fG7hJ/mqdefault.jpg\",\"width\":320,\"height\":180},\"high\":{\"url\":\"https://i.ytimg.com/vi/aB3dE5fG7hJ/hqdefault.jpg\",\"width\":480,\"height\":360}},\"channelTitle\":\"Cozinha de Domingo\",\"liveBroadcastContent\":\"none\",\"publishTime\":\"2026-09-30T21:00:07Z\"}},{\"kind\":\"youtube#searchResult\",\"etag\":\"ekL9mN2pQ4rS\",\"id\":{\"kind\":\"youtube#video\",\"videoId\":\"kL9mN2pQ4rS\"},\"snippet\":{\"publishedAt\":\"2026-09-26T21:00:03Z\",\"channelId\":\"UCx7Kd2Lq9Vn5Rb3Wc8Ys1Tz\",\"title\":\"Feijoada leve para o almoço de domingo\",\"description\":\"Uma versão mais rápida da receita clássica.\",\"thumbnails\":{\"default\":{\"url\":\"https://i.ytimg.com/vi/kL9mN2pQ4rS/default.jpg\",\"width\":120,\"height\":90},\"medium\":{\"url\":\"https://i.ytimg.com/vi/kL9mN2pQ4rS/mqdefault.jpg\",\"width\":320,\"height\":180},\"high\":{\"url\":\"https://i.ytimg.com/vi/kL9mN2pQ4rS/hqdefault.jpg\",\"width\":480,\"height\":360}},\"channelTitle\":\"Cozinha de Domingo\",\"liveBroadcastContent\":\"none\",\"publishTime\":\"2026-09-26T21:00:03Z\"}},{\"kind\":\"youtube#searchResult\",\"etag\":\"etU6vW8xY1zA\",\"id\":{\"kind\":\"youtube#video\",\"videoId\":\"tU6vW8xY1zA\"},\"snippet\":{\"publishedAt\":\"2026-09-21T21:00:11Z\",\"channelId\":\"UCx7Kd2Lq9Vn5Rb3Wc8Ys1Tz\",\"title\":\"Molho de tomate caseiro que dura a semana\",\"description\":\"Como preparar e guardar na geladeira.\",\"thumbnails\":{\"default\":{\"url\":\"https://i.ytimg.com/vi/tU6vW8xY1zA/default.jpg\",\"width\":120,\"height\":90},\"medium\":{\"url\":\"https://i.ytimg.com/vi/tU6vW8xY1zA/mqdefault.jpg\",\"width\":320,\"height\":180},\"high\":{\"url\":\"https://i.ytimg.com/vi/tU6vW8xY1zA/hqdefault.jpg\",\"width\":480,\"height\":360}},\"channelTitle\":\"Cozinha de Domingo\",\"liveBroadcastContent\":\"none\",\"publishTime\":\"2026-09-21T21:00:11Z\"}},{\"kind\":\"youtube#searchResult\",\"etag\":\"ebC4dF7gH9jK\",\"id\":{\"kind\":\"youtube#video\",\"videoId\":\"bC4dF7gH9jK\"},\"snippet\":{\"publishedAt\":\"2026-09-16T21:00:00Z\",\"channelId\":\"UCx7Kd2Lq9Vn5Rb3Wc8Ys1Tz\",\"title\":\"Bolo de fubá com goiabada\",\"description\":\"A receita da avó, passo a passo.\",\"thumbnails\":{\"default\":{\"url\":\"https://i.ytimg.com/vi/bC4dF7gH9jK/default.jpg\",\"width\":120,\"height\":90},\"medium\":{\"url\":\"https://i.ytimg.com/vi/bC4dF7gH9jK/mqdefault.jpg\",\"width\":320,\"height\":180},\"high\":{\"url\":\"https://i.ytimg.com/vi/bC4dF7gH9jK/hqdefault.jpg\",\"width\":480,\"height\":360}},\"channelTitle\":\"Cozinha de Domingo\",\"liveBroadcastContent\":\"none\",\"publishTime\":\"2026-09-16T21:00:00Z\"}}]}"
 }

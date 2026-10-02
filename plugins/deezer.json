@@ -4,8 +4,9 @@
   "name": "Mais tocadas",
   "interval": 21600,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "music.note.list"
+    "kind": "picture",
+    "symbolName": "music.note.list",
+    "pictureSource": "https://github.com/deezer.png?size=128"
   },
   "source": {
     "kind": "http",

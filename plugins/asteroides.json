@@ -79,14 +79,14 @@
             "align": "leading"
           },
           {
-            "title": "Diâmetro",
+            "title": "Diâmetro (m)",
             "kind": "text",
             "value": "{{estimated_diameter.meters.estimated_diameter_max}}",
             "align": "trailing",
             "format": "integer"
           },
           {
-            "title": "",
+            "title": "Risco",
             "kind": "status",
             "value": "{{is_potentially_hazardous_asteroid}}",
             "align": "trailing",
@@ -94,7 +94,7 @@
               "true": "negative",
               "false": "positive"
             },
-            "showsWord": true
+            "showsWord": false
           }
         ]
       }

@@ -4,17 +4,34 @@
   "name": "Marte",
   "interval": 86400,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "camera.fill"
+    "kind": "picture",
+    "symbolName": "camera.fill",
+    "pictureSource": "https://github.com/nasa.png?size=128"
   },
   "source": {
     "kind": "http",
     "method": "GET",
-    "url": "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/latest_photos",
+    "url": "https://mars.nasa.gov/api/v1/raw_image_items/",
     "query": [
       {
-        "name": "api_key",
-        "value": "{{$settings.chave}}"
+        "name": "order",
+        "value": "sol desc,date_taken desc"
+      },
+      {
+        "name": "per_page",
+        "value": "12"
+      },
+      {
+        "name": "page",
+        "value": "0"
+      },
+      {
+        "name": "condition_1",
+        "value": "msl:mission"
+      },
+      {
+        "name": "extended",
+        "value": "thumbnail::sample_type::noteq,"
       }
     ],
     "format": {
@@ -22,19 +39,19 @@
     }
   },
   "slot": {
-    "label": "{{latest_photos | count}}",
-    "style": "number"
+    "label": "{{items[0].sol}}",
+    "style": "arc"
   },
   "card": {
     "isEnabled": true,
     "picture": {
       "kind": "address",
-      "value": "{{latest_photos[0].img_src}}",
+      "value": "{{items[0].https_url}}",
       "shape": "rounded",
       "scale": 2.2
     },
     "title": "Marte",
-    "subtitle": "Fotos mais recentes do Curiosity",
+    "subtitle": "Fotos mais recentes do Curiosity, sol {{items[0].sol}}",
     "emptyMessage": "A NASA não respondeu.",
     "blocks": [
       {
@@ -43,12 +60,12 @@
         "tabs": [
           {
             "title": "Fotos",
-            "path": "latest_photos",
-            "rowTitle": "{{camera.full_name}}",
-            "rowSubtitle": "Sol {{sol}} · {{earth_date | date}}",
-            "rowImage": "{{img_src}}",
+            "path": "items",
+            "rowTitle": "{{title}}",
+            "rowSubtitle": "{{date_taken | date}}",
+            "rowImage": "{{https_url}}",
             "rowWrapsTitle": true,
-            "rowURL": "{{img_src}}"
+            "rowURL": "https://mars.nasa.gov{{link}}"
           }
         ]
       }
@@ -57,14 +74,5 @@
   "actions": [],
   "attention": {
     "mode": "never"
-  },
-  "settings": [
-    {
-      "key": "chave",
-      "label": "Chave da NASA",
-      "type": "text",
-      "default": "DEMO_KEY",
-      "help": "DEMO_KEY funciona com poucas chamadas por hora."
-    }
-  ]
+  }
 }

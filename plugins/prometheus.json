@@ -4,8 +4,9 @@
   "name": "Prometheus",
   "interval": 120,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "flame.fill"
+    "kind": "picture",
+    "symbolName": "flame.fill",
+    "pictureSource": "https://github.com/prometheus.png?size=128"
   },
   "source": {
     "kind": "http",

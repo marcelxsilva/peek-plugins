@@ -4,8 +4,9 @@
   "name": "Freshdesk",
   "interval": 600,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "bubble.left.and.exclamationmark.bubble.right.fill"
+    "kind": "picture",
+    "symbolName": "headphones",
+    "pictureSource": "https://www.google.com/s2/favicons?domain=freshdesk.com&sz=128"
   },
   "source": {
     "kind": "http",
@@ -24,7 +25,7 @@
     "headers": [
       {
         "name": "Authorization",
-        "value": "Basic {{secret}}"
+        "value": "Basic {{$settings.token}}"
       }
     ],
     "format": {
@@ -130,9 +131,16 @@
       "key": "dominio",
       "label": "Domínio do Freshdesk",
       "type": "text",
-      "help": "No campo de segredo, em Dado, cole o Base64 de «sua-chave:X».",
       "required": true,
       "placeholder": "minhaempresa.freshdesk.com"
+    },
+    {
+      "key": "token",
+      "label": "Token",
+      "type": "secret",
+      "required": true,
+      "help": "Cole o Base64 de «sua-chave-da-API:X». A chave fica em Perfil › Chave da API."
     }
-  ]
+  ],
+  "answer": "[{\"cc_emails\":[],\"fwd_emails\":[],\"reply_cc_emails\":[],\"fr_escalated\":false,\"spam\":false,\"email_config_id\":null,\"group_id\":43000512211,\"priority\":4,\"requester_id\":43021989827,\"responder_id\":43018276011,\"source\":2,\"company_id\":null,\"status\":2,\"subject\":\"Não consigo emitir a nota fiscal do pedido 4471\",\"to_emails\":null,\"product_id\":null,\"id\":2187,\"type\":\"Question\",\"due_by\":\"2026-10-03T18:00:00Z\",\"fr_due_by\":\"2026-10-02T18:00:00Z\",\"is_escalated\":false,\"custom_fields\":{},\"created_at\":\"2026-10-01T18:42:10Z\",\"updated_at\":\"2026-10-01T18:42:10Z\",\"tags\":[]},{\"cc_emails\":[],\"fwd_emails\":[],\"reply_cc_emails\":[],\"fr_escalated\":false,\"spam\":false,\"email_config_id\":null,\"group_id\":43000512211,\"priority\":3,\"requester_id\":43021989826,\"responder_id\":43018276011,\"source\":2,\"company_id\":null,\"status\":2,\"subject\":\"Cobrança em duplicidade no cartão\",\"to_emails\":null,\"product_id\":null,\"id\":2186,\"type\":\"Question\",\"due_by\":\"2026-10-03T18:00:00Z\",\"fr_due_by\":\"2026-10-02T18:00:00Z\",\"is_escalated\":false,\"custom_fields\":{},\"created_at\":\"2026-10-01T16:05:33Z\",\"updated_at\":\"2026-10-01T16:05:33Z\",\"tags\":[]},{\"cc_emails\":[],\"fwd_emails\":[],\"reply_cc_emails\":[],\"fr_escalated\":false,\"spam\":false,\"email_config_id\":null,\"group_id\":43000512211,\"priority\":1,\"requester_id\":43021989825,\"responder_id\":43018276011,\"source\":2,\"company_id\":null,\"status\":2,\"subject\":\"Como altero o e-mail de acesso da conta?\",\"to_emails\":null,\"product_id\":null,\"id\":2185,\"type\":\"Question\",\"due_by\":\"2026-10-03T18:00:00Z\",\"fr_due_by\":\"2026-10-02T18:00:00Z\",\"is_escalated\":false,\"custom_fields\":{},\"created_at\":\"2026-10-01T13:21:47Z\",\"updated_at\":\"2026-10-01T13:21:47Z\",\"tags\":[]},{\"cc_emails\":[],\"fwd_emails\":[],\"reply_cc_emails\":[],\"fr_escalated\":false,\"spam\":false,\"email_config_id\":null,\"group_id\":43000512211,\"priority\":3,\"requester_id\":43021989824,\"responder_id\":43018276011,\"source\":2,\"company_id\":null,\"status\":3,\"subject\":\"Integração com o ERP parou de sincronizar estoque\",\"to_emails\":null,\"product_id\":null,\"id\":2184,\"type\":\"Question\",\"due_by\":\"2026-10-03T18:00:00Z\",\"fr_due_by\":\"2026-10-02T18:00:00Z\",\"is_escalated\":false,\"custom_fields\":{},\"created_at\":\"2026-09-30T21:58:02Z\",\"updated_at\":\"2026-09-30T21:58:02Z\",\"tags\":[]},{\"cc_emails\":[],\"fwd_emails\":[],\"reply_cc_emails\":[],\"fr_escalated\":false,\"spam\":false,\"email_config_id\":null,\"group_id\":43000512211,\"priority\":2,\"requester_id\":43021989823,\"responder_id\":43018276011,\"source\":2,\"company_id\":null,\"status\":2,\"subject\":\"Pedido chegou com item faltando\",\"to_emails\":null,\"product_id\":null,\"id\":2183,\"type\":\"Question\",\"due_by\":\"2026-10-03T18:00:00Z\",\"fr_due_by\":\"2026-10-02T18:00:00Z\",\"is_escalated\":false,\"custom_fields\":{},\"created_at\":\"2026-09-30T15:12:40Z\",\"updated_at\":\"2026-09-30T15:12:40Z\",\"tags\":[]},{\"cc_emails\":[],\"fwd_emails\":[],\"reply_cc_emails\":[],\"fr_escalated\":false,\"spam\":false,\"email_config_id\":null,\"group_id\":43000512211,\"priority\":2,\"requester_id\":43021989822,\"responder_id\":43018276011,\"source\":2,\"company_id\":null,\"status\":4,\"subject\":\"Dúvida sobre o plano anual\",\"to_emails\":null,\"product_id\":null,\"id\":2182,\"type\":\"Question\",\"due_by\":\"2026-10-03T18:00:00Z\",\"fr_due_by\":\"2026-10-02T18:00:00Z\",\"is_escalated\":false,\"custom_fields\":{},\"created_at\":\"2026-09-29T19:30:15Z\",\"updated_at\":\"2026-09-29T19:30:15Z\",\"tags\":[]}]"
 }

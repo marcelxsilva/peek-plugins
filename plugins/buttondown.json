@@ -1,20 +1,21 @@
 {
-  "schema": 5,
+  "schema": 7,
   "id": "plugin.exemplo.buttondown",
   "name": "Newsletter",
   "interval": 3600,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "envelope.open.fill"
+    "kind": "picture",
+    "symbolName": "envelope.open.fill",
+    "pictureSource": "https://github.com/buttondown.png?size=128"
   },
   "source": {
     "kind": "http",
     "method": "GET",
-    "url": "https://api.buttondown.email/v1/subscribers",
+    "url": "https://api.buttondown.com/v1/subscribers",
     "headers": [
       {
         "name": "Authorization",
-        "value": "Token {{secret}}"
+        "value": "Token {{$settings.token}}"
       }
     ],
     "format": {
@@ -56,10 +57,30 @@
           {
             "title": "Últimos",
             "path": "results",
-            "rowTitle": "{{email}}",
+            "rowTitle": "{{email_address}}",
             "rowSubtitle": "{{creation_date | ago}}",
-            "rowStatus": "{{subscriber_type}}",
-            "rowEvent": "none"
+            "rowStatus": "{{type}}",
+            "rowEvent": "none",
+            "statusWords": {
+              "regular": "gratuito",
+              "premium": "pagante",
+              "gifted": "presente",
+              "trialed": "teste",
+              "unactivated": "sem confirmar",
+              "unsubscribed": "saiu",
+              "churned": "cancelou",
+              "churning": "cancelando"
+            },
+            "statusColors": {
+              "regular": "neutral",
+              "premium": "positive",
+              "gifted": "positive",
+              "trialed": "positive",
+              "unactivated": "attention",
+              "unsubscribed": "negative",
+              "churned": "negative",
+              "churning": "attention"
+            }
           }
         ]
       }
@@ -74,12 +95,22 @@
       "run": {
         "kind": "onTheMac",
         "errand": "openLink",
-        "text": "https://buttondown.email/emails"
+        "text": "https://buttondown.com/subscribers"
       },
       "successReport": "nothing"
     }
   ],
   "attention": {
     "mode": "newRows"
-  }
+  },
+  "settings": [
+    {
+      "key": "token",
+      "label": "Token",
+      "type": "secret",
+      "required": true,
+      "help": "Copie a chave de API em buttondown.com/keys."
+    }
+  ],
+  "answer": "{\"count\":1284,\"next\":\"https://api.buttondown.com/v1/subscribers?page=2\",\"previous\":null,\"results\":[{\"id\":\"sub_01k8x2m4n6p8r0t2v4w6y8z\",\"email_address\":\"ana.lima@exemplo.com\",\"creation_date\":\"2026-10-01T10:42:18Z\",\"type\":\"regular\",\"source\":\"form\",\"tags\":[]},{\"id\":\"sub_02k8x2m4n6p8r0t2v4w6y8z\",\"email_address\":\"bruno.costa@exemplo.com\",\"creation_date\":\"2026-09-30T21:05:44Z\",\"type\":\"premium\",\"source\":\"form\",\"tags\":[]},{\"id\":\"sub_03k8x2m4n6p8r0t2v4w6y8z\",\"email_address\":\"carla.souza@exemplo.com\",\"creation_date\":\"2026-09-30T14:17:02Z\",\"type\":\"unactivated\",\"source\":\"form\",\"tags\":[]},{\"id\":\"sub_04k8x2m4n6p8r0t2v4w6y8z\",\"email_address\":\"diego.alves@exemplo.com\",\"creation_date\":\"2026-09-29T08:51:39Z\",\"type\":\"regular\",\"source\":\"form\",\"tags\":[]},{\"id\":\"sub_05k8x2m4n6p8r0t2v4w6y8z\",\"email_address\":\"elisa.rocha@exemplo.com\",\"creation_date\":\"2026-09-28T19:33:10Z\",\"type\":\"churning\",\"source\":\"form\",\"tags\":[]}]}"
 }

@@ -4,8 +4,9 @@
   "name": "Notion",
   "interval": 600,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "doc.text.fill"
+    "kind": "picture",
+    "symbolName": "doc.text.fill",
+    "pictureSource": "https://github.com/makenotion.png?size=128"
   },
   "source": {
     "kind": "http",
@@ -14,7 +15,7 @@
     "headers": [
       {
         "name": "Authorization",
-        "value": "Bearer {{secret}}"
+        "value": "Bearer {{$settings.token}}"
       },
       {
         "name": "Notion-Version",
@@ -104,6 +105,14 @@
       "type": "text",
       "help": "O trecho de 32 caracteres da URL do banco. Compartilhe o banco com a sua integração antes, senão a chamada volta 404. As linhas leem as propriedades Name, Status e Date; renomeie nos campos da linha se as suas tiverem outro nome.",
       "required": true
+    },
+    {
+      "key": "token",
+      "label": "Token",
+      "type": "secret",
+      "required": true,
+      "help": "Crie uma integração interna em notion.so/my-integrations e cole o segredo dela."
     }
-  ]
+  ],
+  "answer": "{\"object\":\"list\",\"results\":[{\"object\":\"page\",\"id\":\"1a2b3c4d-0001-4e5f-8a9b-0c1d2e3f4a51\",\"created_time\":\"2026-09-20T12:00:00.000Z\",\"last_edited_time\":\"2026-10-01T09:30:00.000Z\",\"archived\":false,\"url\":\"https://www.notion.so/Planejamento-do-quarto-trimestre-1a2b3c4d00014e5f8a9b0c1d2e3f4a51\",\"properties\":{\"Name\":{\"id\":\"title\",\"type\":\"title\",\"title\":[{\"type\":\"text\",\"text\":{\"content\":\"Planejamento do quarto trimestre\",\"link\":null},\"plain_text\":\"Planejamento do quarto trimestre\",\"href\":null}]},\"Status\":{\"id\":\"%5EOE%40\",\"type\":\"status\",\"status\":{\"id\":\"s1a2b\",\"name\":\"In progress\",\"color\":\"blue\"}},\"Date\":{\"id\":\"%3AuKE\",\"type\":\"date\",\"date\":{\"start\":\"2026-10-03\",\"end\":null,\"time_zone\":null}}}},{\"object\":\"page\",\"id\":\"1a2b3c4d-0002-4e5f-8a9b-0c1d2e3f4a52\",\"created_time\":\"2026-09-20T12:00:00.000Z\",\"last_edited_time\":\"2026-09-30T16:10:00.000Z\",\"archived\":false,\"url\":\"https://www.notion.so/Pesquisa-com-clientes-1a2b3c4d00024e5f8a9b0c1d2e3f4a52\",\"properties\":{\"Name\":{\"id\":\"title\",\"type\":\"title\",\"title\":[{\"type\":\"text\",\"text\":{\"content\":\"Pesquisa com clientes\",\"link\":null},\"plain_text\":\"Pesquisa com clientes\",\"href\":null}]},\"Status\":{\"id\":\"%5EOE%40\",\"type\":\"status\",\"status\":{\"id\":\"s1a2b\",\"name\":\"Not started\",\"color\":\"default\"}},\"Date\":{\"id\":\"%3AuKE\",\"type\":\"date\",\"date\":{\"start\":\"2026-10-08\",\"end\":null,\"time_zone\":null}}}},{\"object\":\"page\",\"id\":\"1a2b3c4d-0003-4e5f-8a9b-0c1d2e3f4a53\",\"created_time\":\"2026-09-20T12:00:00.000Z\",\"last_edited_time\":\"2026-09-30T11:45:00.000Z\",\"archived\":false,\"url\":\"https://www.notion.so/Lançamento-da-versão-2.4-1a2b3c4d00034e5f8a9b0c1d2e3f4a53\",\"properties\":{\"Name\":{\"id\":\"title\",\"type\":\"title\",\"title\":[{\"type\":\"text\",\"text\":{\"content\":\"Lançamento da versão 2.4\",\"link\":null},\"plain_text\":\"Lançamento da versão 2.4\",\"href\":null}]},\"Status\":{\"id\":\"%5EOE%40\",\"type\":\"status\",\"status\":{\"id\":\"s1a2b\",\"name\":\"Em revisão\",\"color\":\"purple\"}},\"Date\":{\"id\":\"%3AuKE\",\"type\":\"date\",\"date\":{\"start\":\"2026-10-06\",\"end\":null,\"time_zone\":null}}}},{\"object\":\"page\",\"id\":\"1a2b3c4d-0004-4e5f-8a9b-0c1d2e3f4a54\",\"created_time\":\"2026-09-20T12:00:00.000Z\",\"last_edited_time\":\"2026-09-29T18:20:00.000Z\",\"archived\":false,\"url\":\"https://www.notion.so/Atualizar-o-manual-de-integração-1a2b3c4d00044e5f8a9b0c1d2e3f4a54\",\"properties\":{\"Name\":{\"id\":\"title\",\"type\":\"title\",\"title\":[{\"type\":\"text\",\"text\":{\"content\":\"Atualizar o manual de integração\",\"link\":null},\"plain_text\":\"Atualizar o manual de integração\",\"href\":null}]},\"Status\":{\"id\":\"%5EOE%40\",\"type\":\"status\",\"status\":{\"id\":\"s1a2b\",\"name\":\"Done\",\"color\":\"green\"}},\"Date\":{\"id\":\"%3AuKE\",\"type\":\"date\",\"date\":{\"start\":\"2026-09-29\",\"end\":null,\"time_zone\":null}}}},{\"object\":\"page\",\"id\":\"1a2b3c4d-0005-4e5f-8a9b-0c1d2e3f4a55\",\"created_time\":\"2026-09-20T12:00:00.000Z\",\"last_edited_time\":\"2026-09-28T14:05:00.000Z\",\"archived\":false,\"url\":\"https://www.notion.so/Revisar-contrato-com-fornecedor-1a2b3c4d00054e5f8a9b0c1d2e3f4a55\",\"properties\":{\"Name\":{\"id\":\"title\",\"type\":\"title\",\"title\":[{\"type\":\"text\",\"text\":{\"content\":\"Revisar contrato com fornecedor\",\"link\":null},\"plain_text\":\"Revisar contrato com fornecedor\",\"href\":null}]},\"Status\":{\"id\":\"%5EOE%40\",\"type\":\"status\",\"status\":{\"id\":\"s1a2b\",\"name\":\"In progress\",\"color\":\"blue\"}},\"Date\":{\"id\":\"%3AuKE\",\"type\":\"date\",\"date\":{\"start\":\"2026-10-10\",\"end\":null,\"time_zone\":null}}}}],\"next_cursor\":null,\"has_more\":false,\"type\":\"page_or_database\",\"page_or_database\":{}}"
 }

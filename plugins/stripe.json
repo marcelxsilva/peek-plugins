@@ -4,27 +4,27 @@
   "name": "Stripe",
   "interval": 900,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "creditcard.fill"
+    "kind": "picture",
+    "symbolName": "creditcard.fill",
+    "pictureSource": "https://github.com/stripe.png?size=128"
   },
   "source": {
     "kind": "command",
     "steps": [
       {
-        "program": "/usr/bin/curl",
+        "program": "/usr/bin/env",
         "arguments": [
-          "-sS",
-          "-m",
-          "10",
-          "-H",
-          "Authorization: Bearer {{secret}}",
-          "https://api.stripe.com/v1/balance"
+          "PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin",
+          "stripe",
+          "get",
+          "/v1/balance",
+          "{{$settings.modo}}"
         ]
       },
       {
         "program": "/usr/bin/jq",
         "arguments": [
-          "{ disponivel: (.available[0].amount / 100), pendente: (.pending[0].amount / 100), moeda: (.available[0].currency | ascii_upcase) }"
+          "{ disponivel: ((.available[0].amount // 0) / 100), pendente: ((.pending[0].amount // 0) / 100), moeda: ((.available[0].currency // \"usd\") | ascii_upcase) }"
         ]
       }
     ],
@@ -50,7 +50,7 @@
         "value": "{{disponivel}}",
         "caption": "Disponível em {{moeda}}",
         "format": "money",
-        "currency": "BRL",
+        "currency": "{{moeda}}",
         "goodDirection": "up",
         "width": "half"
       },
@@ -60,7 +60,7 @@
         "value": "{{pendente}}",
         "caption": "Pendente em {{moeda}}",
         "format": "money",
-        "currency": "BRL",
+        "currency": "{{moeda}}",
         "goodDirection": "up"
       },
       {
@@ -69,7 +69,7 @@
         "style": "area",
         "height": "medium",
         "format": "money",
-        "currency": "BRL"
+        "currency": "{{moeda}}"
       }
     ]
   },
@@ -88,5 +88,24 @@
   ],
   "attention": {
     "mode": "never"
-  }
+  },
+  "settings": [
+    {
+      "key": "modo",
+      "label": "Modo",
+      "type": "choice",
+      "default": "--live",
+      "options": [
+        {
+          "value": "--live",
+          "label": "Produção"
+        },
+        {
+          "value": "--confirm",
+          "label": "Teste"
+        }
+      ],
+      "help": "Entre antes com stripe login no Terminal."
+    }
+  ]
 }

@@ -1,11 +1,12 @@
 {
-  "schema": 5,
+  "schema": 7,
   "id": "plugin.exemplo.estreias",
   "name": "Estreias",
   "interval": 86400,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "film.stack.fill"
+    "kind": "picture",
+    "symbolName": "film.stack.fill",
+    "pictureSource": "https://www.google.com/s2/favicons?domain=themoviedb.org&sz=128"
   },
   "source": {
     "kind": "http",
@@ -14,7 +15,7 @@
     "query": [
       {
         "name": "api_key",
-        "value": "{{secret}}"
+        "value": "{{$settings.token}}"
       },
       {
         "name": "language",
@@ -52,12 +53,23 @@
         "rowTitle": "{{title}}",
         "rowSubtitle": "{{overview}}",
         "range": "upcoming",
-        "limit": 8
+        "limit": 8,
+        "rowURL": "https://www.themoviedb.org/movie/{{id}}"
       }
     ]
   },
   "actions": [],
   "attention": {
     "mode": "newRows"
-  }
+  },
+  "settings": [
+    {
+      "key": "token",
+      "label": "Chave da API",
+      "type": "secret",
+      "required": true,
+      "help": "Crie em themoviedb.org › Configurações › API (chave v3)."
+    }
+  ],
+  "answer": "{\"dates\":{\"maximum\":\"2026-10-28\",\"minimum\":\"2026-09-30\"},\"page\":1,\"results\":[{\"adult\":false,\"backdrop_path\":\"/2c9zNZJL0ZdagD6JbmU3hH4hovs.jpg\",\"genre_ids\":[28,53],\"id\":1377237,\"original_language\":\"en\",\"original_title\":\"Runner\",\"overview\":\"Um transportador de elite embarca em uma missão urgente: entregar um órgão vital para salvar a vida de uma garotinha de sete anos.\",\"popularity\":412.3,\"poster_path\":\"/vzb3bKOFtciIVSEIsLOZH4uJfxN.jpg\",\"release_date\":\"2026-10-08\",\"title\":\"Três Horas Para Viver\",\"video\":false,\"vote_average\":0.0,\"vote_count\":0},{\"adult\":false,\"backdrop_path\":\"/hrCTKrc3Tz2wbPOt5rcrlAhqF11.jpg\",\"genre_ids\":[878,27],\"id\":1058424,\"original_language\":\"en\",\"original_title\":\"Hope\",\"overview\":\"A polícia investiga a presença de uma criatura misteriosa que vem causando tumulto na remota vila de Hope Harbor.\",\"popularity\":198.7,\"poster_path\":\"/yDiw6WUpAdlidbQDtI09rWVvGtu.jpg\",\"release_date\":\"2026-10-08\",\"title\":\"Hope: O Primeiro Impacto\",\"video\":false,\"vote_average\":0.0,\"vote_count\":0},{\"adult\":false,\"backdrop_path\":\"/zDE9hd1SG9695YncbZGjSf7Z9Jk.jpg\",\"genre_ids\":[28,12],\"id\":1153576,\"original_language\":\"en\",\"original_title\":\"Street Fighter\",\"overview\":\"Em 1993, os lutadores afastados Ryu e Ken Masters são colocados de volta em combate quando a misteriosa Chun-Li os recruta para o próximo Torneio do Guerreiro Global.\",\"popularity\":356.1,\"poster_path\":\"/dJPT2Uf12X6aFg8i5N67NTpIZ9t.jpg\",\"release_date\":\"2026-10-15\",\"title\":\"Street Fighter\",\"video\":false,\"vote_average\":0.0,\"vote_count\":0},{\"adult\":false,\"backdrop_path\":\"/1A7s8zG4PF6YoJrncrTO6N4r0Sx.jpg\",\"genre_ids\":[27,80],\"id\":1400940,\"original_language\":\"en\",\"original_title\":\"Clayface\",\"overview\":\"A ascensão meteórica de Matt Hagen de garoto das ruas de Gotham a astro de Hollywood é interrompida quando um chefão do crime local o deixa desfigurado.\",\"popularity\":287.4,\"poster_path\":\"/dqvHs2YXks989ScXvsngbqAeBHX.jpg\",\"release_date\":\"2026-10-22\",\"title\":\"Cara-de-Barro\",\"video\":false,\"vote_average\":0.0,\"vote_count\":0},{\"adult\":false,\"backdrop_path\":\"/ycqTwRV7jUxjMospXxKTVS74nft.jpg\",\"genre_ids\":[18],\"id\":1281331,\"original_language\":\"en\",\"original_title\":\"The Social Reckoning\",\"overview\":\"Frances Haugen, uma jovem engenheira do Facebook, conta com a ajuda de Jeff Horwitz, repórter do Wall Street Journal, para revelar os segredos da rede social.\",\"popularity\":142.9,\"poster_path\":\"/a8AKu5hpl1OYpckBrihdrQRXiXt.jpg\",\"release_date\":\"2026-10-22\",\"title\":\"O Outro Lado das Redes\",\"video\":false,\"vote_average\":0.0,\"vote_count\":0}],\"total_pages\":1,\"total_results\":5}"
 }

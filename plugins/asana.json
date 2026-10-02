@@ -1,11 +1,12 @@
 {
-  "schema": 3,
+  "schema": 7,
   "id": "plugin.exemplo.asana",
   "name": "Asana",
   "interval": 600,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "circle.hexagongrid.fill"
+    "kind": "picture",
+    "symbolName": "checkmark.circle.fill",
+    "pictureSource": "https://github.com/Asana.png?size=128"
   },
   "source": {
     "kind": "http",
@@ -27,12 +28,16 @@
       {
         "name": "opt_fields",
         "value": "name,due_on,permalink_url,projects.name"
+      },
+      {
+        "name": "limit",
+        "value": "100"
       }
     ],
     "headers": [
       {
         "name": "Authorization",
-        "value": "Bearer {{secret}}"
+        "value": "Bearer {{$settings.token}}"
       }
     ],
     "format": {
@@ -73,7 +78,33 @@
       }
     ]
   },
-  "actions": [],
+  "actions": [
+    {
+      "name": "Concluir",
+      "symbolName": "checkmark",
+      "place": "row",
+      "listIndex": 0,
+      "confirms": true,
+      "confirmText": "Concluir «{{name}}»?",
+      "runningText": "Concluindo…",
+      "run": {
+        "kind": "http",
+        "method": "PUT",
+        "url": "https://app.asana.com/api/1.0/tasks/{{gid}}",
+        "headers": [
+          {
+            "name": "Authorization",
+            "value": "Bearer {{$settings.token}}"
+          }
+        ],
+        "body": "{\"data\": {\"completed\": true}}",
+        "format": {
+          "kind": "json"
+        }
+      },
+      "successMessage": "Tarefa concluída."
+    }
+  ],
   "attention": {
     "mode": "newRows"
   },
@@ -82,8 +113,16 @@
       "key": "workspace",
       "label": "ID do workspace",
       "type": "text",
-      "help": "Aparece na URL do Asana. O token vai no campo de segredo, em Dado.",
+      "help": "Abra app.asana.com/api/1.0/workspaces com a sessão do Asana e copie o gid.",
       "required": true
+    },
+    {
+      "key": "token",
+      "label": "Token",
+      "type": "secret",
+      "required": true,
+      "help": "Crie um token pessoal em app.asana.com/0/my-apps."
     }
-  ]
+  ],
+  "answer": "{\"data\":[{\"gid\":\"1209876543210001\",\"name\":\"Revisar o contrato com o fornecedor de embalagens\",\"due_on\":\"2026-10-02\",\"permalink_url\":\"https://app.asana.com/0/1209876543200001/1209876543210001\",\"projects\":[{\"gid\":\"1209876543200001\",\"name\":\"Compras\",\"resource_type\":\"project\"}],\"resource_type\":\"task\"},{\"gid\":\"1209876543210002\",\"name\":\"Preparar a apresentação do resultado do trimestre\",\"due_on\":\"2026-10-06\",\"permalink_url\":\"https://app.asana.com/0/1209876543200002/1209876543210002\",\"projects\":[{\"gid\":\"1209876543200002\",\"name\":\"Diretoria\",\"resource_type\":\"project\"}],\"resource_type\":\"task\"},{\"gid\":\"1209876543210003\",\"name\":\"Atualizar o roteiro de onboarding dos novos vendedores\",\"due_on\":\"2026-10-09\",\"permalink_url\":\"https://app.asana.com/0/1209876543200003/1209876543210003\",\"projects\":[{\"gid\":\"1209876543200003\",\"name\":\"Comercial\",\"resource_type\":\"project\"}],\"resource_type\":\"task\"},{\"gid\":\"1209876543210004\",\"name\":\"Responder o questionário de segurança do cliente\",\"due_on\":\"2026-10-01\",\"permalink_url\":\"https://app.asana.com/0/1209876543200004/1209876543210004\",\"projects\":[{\"gid\":\"1209876543200004\",\"name\":\"Sucesso do cliente\",\"resource_type\":\"project\"}],\"resource_type\":\"task\"},{\"gid\":\"1209876543210005\",\"name\":\"Fechar a pauta da reunião de planejamento\",\"due_on\":\"2026-10-14\",\"permalink_url\":\"https://app.asana.com/0/1209876543200002/1209876543210005\",\"projects\":[{\"gid\":\"1209876543200002\",\"name\":\"Diretoria\",\"resource_type\":\"project\"}],\"resource_type\":\"task\"}],\"next_page\":null}"
 }

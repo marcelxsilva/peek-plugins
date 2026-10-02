@@ -4,23 +4,28 @@
   "name": "Todoist",
   "interval": 300,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "checkmark.circle.fill"
+    "kind": "picture",
+    "symbolName": "checkmark.circle.fill",
+    "pictureSource": "https://todoist.com/static/apple-touch-icon.png"
   },
   "source": {
     "kind": "http",
     "method": "GET",
-    "url": "https://api.todoist.com/rest/v2/tasks",
+    "url": "https://api.todoist.com/api/v1/tasks/filter",
     "query": [
       {
-        "name": "filter",
+        "name": "query",
         "value": "{{$settings.filtro}}"
+      },
+      {
+        "name": "limit",
+        "value": "50"
       }
     ],
     "headers": [
       {
         "name": "Authorization",
-        "value": "Bearer {{secret}}"
+        "value": "Bearer {{$settings.token}}"
       }
     ],
     "format": {
@@ -28,7 +33,7 @@
     }
   },
   "slot": {
-    "label": "{{$ | count}}",
+    "label": "{{results | count}}",
     "style": "number"
   },
   "card": {
@@ -39,7 +44,7 @@
     "blocks": [
       {
         "type": "hero",
-        "value": "{{$ | count}}",
+        "value": "{{results | count}}",
         "caption": "Tarefas neste filtro",
         "goodDirection": "down",
         "format": "integer",
@@ -50,9 +55,9 @@
         "title": "Prioridade",
         "width": "half",
         "breakdownStyle": "list",
-        "path": "$",
+        "path": "results",
         "groupField": "{{priority}}",
-        "groupKind": "text",
+        "groupKind": "number",
         "measure": "count",
         "shows": "amount",
         "groups": [
@@ -60,25 +65,25 @@
             "id": "D095EB74-21F9-45EB-8EE8-435CDD5F3D89",
             "name": "Urgente",
             "color": "red",
-            "match": "4"
+            "from": "4"
           },
           {
             "id": "AC25B9DF-82EE-4981-98D8-FB0DE15159B4",
             "name": "Alta",
             "color": "orange",
-            "match": "3"
+            "from": "3"
           },
           {
             "id": "7E27990B-0CC4-481D-B4E0-7D19C5F5A5E5",
             "name": "Média",
             "color": "blue",
-            "match": "2"
+            "from": "2"
           },
           {
             "id": "29B79C7C-65E2-47B7-BDA9-F195255B0A7D",
             "name": "Normal",
             "color": "gray",
-            "match": "1"
+            "from": "1"
           }
         ],
         "others": {
@@ -93,18 +98,24 @@
         "tabs": [
           {
             "title": "Tarefas",
-            "path": "$",
+            "path": "results",
             "rowTitle": "{{content}}",
             "rowSubtitle": "{{due.string}}",
             "rowWrapsTitle": true,
-            "rowStatus": "P{{priority}}",
+            "rowStatus": "{{priority}}",
             "statusColors": {
-              "P4": "negative",
-              "P3": "attention",
-              "P2": "neutral",
-              "P1": "neutral"
+              "4": "negative",
+              "3": "attention",
+              "2": "neutral",
+              "1": "neutral"
             },
-            "rowURL": "{{url}}"
+            "rowURL": "https://app.todoist.com/app/task/{{id}}",
+            "statusWords": {
+              "4": "P1",
+              "3": "P2",
+              "2": "P3",
+              "1": "P4"
+            }
           }
         ]
       }
@@ -121,11 +132,11 @@
       "run": {
         "kind": "http",
         "method": "POST",
-        "url": "https://api.todoist.com/rest/v2/tasks",
+        "url": "https://api.todoist.com/api/v1/tasks",
         "headers": [
           {
             "name": "Authorization",
-            "value": "Bearer {{secret}}"
+            "value": "Bearer {{$settings.token}}"
           },
           {
             "name": "Content-Type",
@@ -149,7 +160,15 @@
       "label": "Filtro",
       "type": "text",
       "default": "today | overdue",
-      "help": "A mesma sintaxe de filtro do Todoist. O token vai no campo de segredo, em Dado."
+      "help": "A mesma sintaxe de filtro do Todoist."
+    },
+    {
+      "key": "token",
+      "label": "Token",
+      "type": "secret",
+      "required": true,
+      "help": "Copie em Todoist › Configurações › Integrações › Desenvolvedor."
     }
-  ]
+  ],
+  "answer": "{\"results\":[{\"id\":\"6X7rM8997g3RQmvh\",\"user_id\":\"2671355\",\"project_id\":\"6Jf8VQXxpwv56VQ7\",\"section_id\":null,\"parent_id\":null,\"labels\":[],\"checked\":false,\"is_deleted\":false,\"added_at\":\"2026-09-28T13:02:11.000000Z\",\"completed_at\":null,\"updated_at\":\"2026-09-30T18:40:00.000000Z\",\"due\":{\"date\":\"2026-10-01\",\"timezone\":null,\"string\":\"hoje\",\"lang\":\"pt\",\"is_recurring\":false},\"priority\":4,\"child_order\":1,\"content\":\"Enviar proposta revisada para o cliente\",\"description\":\"\",\"note_count\":0,\"day_order\":1,\"is_collapsed\":false},{\"id\":\"6X7rfFVPjhvv84XG\",\"user_id\":\"2671355\",\"project_id\":\"6Jf8VQXxpwv56VQ7\",\"section_id\":null,\"parent_id\":null,\"labels\":[\"financeiro\"],\"checked\":false,\"is_deleted\":false,\"added_at\":\"2026-09-25T09:15:00.000000Z\",\"completed_at\":null,\"updated_at\":\"2026-09-29T11:00:00.000000Z\",\"due\":{\"date\":\"2026-09-30\",\"timezone\":null,\"string\":\"30 set\",\"lang\":\"pt\",\"is_recurring\":false},\"priority\":3,\"child_order\":2,\"content\":\"Pagar boleto do aluguel\",\"description\":\"\",\"note_count\":1,\"day_order\":2,\"is_collapsed\":false},{\"id\":\"6X7rhQ2Wm5c3Hj9P\",\"user_id\":\"2671355\",\"project_id\":\"6Jf8VQXxpwv56VQ8\",\"section_id\":null,\"parent_id\":null,\"labels\":[],\"checked\":false,\"is_deleted\":false,\"added_at\":\"2026-09-01T08:00:00.000000Z\",\"completed_at\":null,\"updated_at\":\"2026-09-30T08:00:00.000000Z\",\"due\":{\"date\":\"2026-10-01\",\"timezone\":null,\"string\":\"todo dia\",\"lang\":\"pt\",\"is_recurring\":true},\"priority\":2,\"child_order\":3,\"content\":\"Revisar pull requests da equipe\",\"description\":\"\",\"note_count\":0,\"day_order\":3,\"is_collapsed\":false},{\"id\":\"6X7rk3Lq8Vb2Nd4T\",\"user_id\":\"2671355\",\"project_id\":\"6Jf8VQXxpwv56VQ9\",\"section_id\":null,\"parent_id\":null,\"labels\":[\"casa\"],\"checked\":false,\"is_deleted\":false,\"added_at\":\"2026-09-30T20:30:00.000000Z\",\"completed_at\":null,\"updated_at\":\"2026-09-30T20:30:00.000000Z\",\"due\":{\"date\":\"2026-10-01\",\"timezone\":null,\"string\":\"hoje\",\"lang\":\"pt\",\"is_recurring\":false},\"priority\":1,\"child_order\":4,\"content\":\"Comprar ração do gato\",\"description\":\"\",\"note_count\":0,\"day_order\":4,\"is_collapsed\":false},{\"id\":\"6X7rp9Ys2Kd6Fm1W\",\"user_id\":\"2671355\",\"project_id\":\"6Jf8VQXxpwv56VQ7\",\"section_id\":null,\"parent_id\":null,\"labels\":[],\"checked\":false,\"is_deleted\":false,\"added_at\":\"2026-09-27T10:00:00.000000Z\",\"completed_at\":null,\"updated_at\":\"2026-09-27T10:00:00.000000Z\",\"due\":{\"date\":\"2026-10-01T15:00:00\",\"timezone\":null,\"string\":\"hoje às 15h\",\"lang\":\"pt\",\"is_recurring\":false},\"priority\":3,\"child_order\":5,\"content\":\"Reunião de planejamento do trimestre\",\"description\":\"\",\"note_count\":0,\"day_order\":5,\"is_collapsed\":false}],\"next_cursor\":null}"
 }

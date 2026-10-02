@@ -89,7 +89,7 @@
       "category": "prod",
       "kind": "panel",
       "description": "Guarda as datas que importam, como entrega, renovação e férias, e mostra sempre a que vem primeiro. Não lê nada da internet: as datas ficam escritas dentro do próprio arquivo.",
-      "needs": "Nada. Edite as datas na aba Dado.",
+      "needs": "Nada. Edite as datas na aba Dados.",
       "file": "plugins/contagem.json"
     },
     {
@@ -107,7 +107,7 @@
       "name": "Salvar a página",
       "icon": "SP",
       "category": "prod",
-      "kind": "command",
+      "kind": "onTheMac",
       "description": "Um ícone que é só um botão: clique e a página aberta no navegador vai para a sua lista de Ler mais tarde. Sem cartão, sem leitura periódica, sem ajuste nenhum.",
       "needs": "Permissão de automação do navegador, pedida na primeira vez.",
       "file": "plugins/salvar-pagina.json"
@@ -149,8 +149,9 @@
       "category": "prod",
       "kind": "http",
       "description": "Traz as tarefas do filtro que você escrever e mostra a contagem no ícone. Um botão pergunta o que precisa ser feito e cria a tarefa sem abrir o app.",
-      "needs": "Um token do Todoist, no campo de segredo.",
-      "file": "plugins/todoist.json"
+      "needs": "Um token da API do Todoist.",
+      "file": "plugins/todoist.json",
+      "logo": "https://todoist.com/static/apple-touch-icon.png"
     },
     {
       "slug": "notas",
@@ -170,7 +171,8 @@
       "kind": "http",
       "description": "Quanto tempo você passou escrevendo código hoje, com barras por projeto e por linguagem. O arco enche conforme o dia avança em direção às oito horas.",
       "needs": "Uma chave da API do WakaTime.",
-      "file": "plugins/wakatime.json"
+      "file": "plugins/wakatime.json",
+      "logo": "https://github.com/wakatime.png?size=128"
     },
     {
       "slug": "github",
@@ -180,27 +182,30 @@
       "kind": "command",
       "description": "As suas pull requests abertas, as que esperam a sua revisão e as que você já revisou, em abas separadas. Cada linha traz o avatar do repositório, o rosto do autor e o estado dos checks.",
       "needs": "O gh instalado e autenticado.",
-      "file": "plugins/github.json"
+      "file": "plugins/github.json",
+      "logo": "https://github.com/github.png?size=128"
     },
     {
       "slug": "github-notificacoes",
       "name": "Notificações do GitHub",
       "icon": "NG",
       "category": "dev",
-      "kind": "http",
+      "kind": "command",
       "description": "A sua caixa de notificações do GitHub na borda da tela, com o motivo de cada uma escrito em português. Pisca quando chega algo novo, e clicar abre o repositório.",
-      "needs": "Um token do GitHub com escopo de notificações.",
-      "file": "plugins/github-notificacoes.json"
+      "needs": "O gh instalado e autenticado.",
+      "file": "plugins/github-notificacoes.json",
+      "logo": "https://github.com/github.png?size=128"
     },
     {
       "slug": "github-repo",
       "name": "Repositório",
       "icon": "RE",
       "category": "dev",
-      "kind": "http",
+      "kind": "command",
       "description": "Acompanha as estrelas de um repositório, com forks, issues e a linha de crescimento ao longo do tempo. O gráfico é feito das leituras que o Peek guarda, então é seu, não do GitHub.",
-      "needs": "O repositório, no formato dono/nome.",
-      "file": "plugins/github-repo.json"
+      "needs": "O gh instalado e autenticado, e o repositório.",
+      "file": "plugins/github-repo.json",
+      "logo": "https://github.com/github.png?size=128"
     },
     {
       "slug": "github-actions",
@@ -210,16 +215,17 @@
       "kind": "command",
       "description": "Uma grade com as últimas execuções do CI e o estado de cada uma, verde ou vermelho. O ícone fica com a cor da execução mais recente.",
       "needs": "O gh instalado e autenticado, e o repositório.",
-      "file": "plugins/github-actions.json"
+      "file": "plugins/github-actions.json",
+      "logo": "https://github.com/actions.png?size=128"
     },
     {
       "slug": "linguagens",
       "name": "Linguagens",
       "icon": "LI",
       "category": "dev",
-      "kind": "http",
+      "kind": "command",
       "description": "A divisão de linguagens de um repositório em barras, da maior para a menor. Bom para perceber quando o projeto virou outra coisa.",
-      "needs": "O nome do repositório.",
+      "needs": "O gh instalado e autenticado, e o repositório.",
       "file": "plugins/linguagens.json"
     },
     {
@@ -230,7 +236,8 @@
       "kind": "http",
       "description": "Os downloads de um pacote npm no último mês, com o número do dia e o gráfico de 30 dias. A tabela mostra dia a dia, para achar o pico.",
       "needs": "O nome do pacote.",
-      "file": "plugins/npm.json"
+      "file": "plugins/npm.json",
+      "logo": "https://github.com/npm.png?size=128"
     },
     {
       "slug": "pypi",
@@ -240,7 +247,8 @@
       "kind": "http",
       "description": "A versão atual de um pacote Python, o resumo, a licença e os arquivos da última publicação. Um botão copia a linha do pip install já com a versão.",
       "needs": "O nome do pacote.",
-      "file": "plugins/pypi.json"
+      "file": "plugins/pypi.json",
+      "logo": "https://github.com/pypi.png?size=128"
     },
     {
       "slug": "crates",
@@ -250,7 +258,8 @@
       "kind": "http",
       "description": "Os downloads de uma crate do Rust, com as últimas versões publicadas em tabela. Um botão copia a linha pronta para o Cargo.toml.",
       "needs": "O nome da crate.",
-      "file": "plugins/crates.json"
+      "file": "plugins/crates.json",
+      "logo": "https://raw.githubusercontent.com/rust-lang/crates.io/main/svelte/src/lib/assets/cargo.png"
     },
     {
       "slug": "docker",
@@ -259,8 +268,9 @@
       "category": "dev",
       "kind": "command",
       "description": "Todos os contêineres desta máquina numa grade colorida por estado, e uma tabela com imagem e situação. Dá para ver de relance o que está rodando e o que morreu.",
-      "needs": "Docker instalado, e o jq que já vem no macOS.",
-      "file": "plugins/docker.json"
+      "needs": "O Docker instalado e rodando.",
+      "file": "plugins/docker.json",
+      "logo": "https://github.com/docker.png?size=128"
     },
     {
       "slug": "git-local",
@@ -270,7 +280,8 @@
       "kind": "command",
       "description": "Os últimos commits de uma pasta do seu disco, com autor, mensagem e quando foram feitos. Pisca quando aparece um commit que você ainda não tinha visto.",
       "needs": "O caminho absoluto do repositório.",
-      "file": "plugins/git-local.json"
+      "file": "plugins/git-local.json",
+      "logo": "https://github.com/git.png?size=128"
     },
     {
       "slug": "uptime",
@@ -320,7 +331,8 @@
       "kind": "http",
       "description": "O estado da Cloudflare com incidentes, manutenções e os pontos de presença numa grade. O ícone é só a cor: tudo bem ou não.",
       "needs": "",
-      "file": "plugins/cloudflare.json"
+      "file": "plugins/cloudflare.json",
+      "logo": "https://github.com/cloudflare.png?size=128"
     },
     {
       "slug": "vercel",
@@ -329,8 +341,9 @@
       "category": "infra",
       "kind": "http",
       "description": "Os últimos deploys de um projeto, com a mensagem do commit, quem subiu e se passou. Clicar numa linha abre o deploy.",
-      "needs": "O ID do projeto e um token da Vercel.",
-      "file": "plugins/vercel.json"
+      "needs": "Um token da Vercel.",
+      "file": "plugins/vercel.json",
+      "logo": "https://github.com/vercel.png?size=128"
     },
     {
       "slug": "kubernetes",
@@ -339,8 +352,9 @@
       "category": "infra",
       "kind": "command",
       "description": "Os pods do cluster em uso numa grade por fase, com os reinícios contados por pod. Usa o contexto para onde o seu kubectl já está apontando.",
-      "needs": "kubectl instalado.",
-      "file": "plugins/kubernetes.json"
+      "needs": "O kubectl instalado e com um contexto configurado.",
+      "file": "plugins/kubernetes.json",
+      "logo": "https://github.com/kubernetes.png?size=128"
     },
     {
       "slug": "prometheus",
@@ -350,7 +364,8 @@
       "kind": "http",
       "description": "O resultado de uma consulta PromQL no ícone, com histórico e uma barra por série. Vale para Prometheus em localhost ou num nome .local da sua rede.",
       "needs": "A consulta. O Peek não fala http com a internet aberta.",
-      "file": "plugins/prometheus.json"
+      "file": "plugins/prometheus.json",
+      "logo": "https://github.com/prometheus.png?size=128"
     },
     {
       "slug": "rede",
@@ -379,8 +394,9 @@
       "category": "gestao",
       "kind": "http",
       "description": "Os cartões atribuídos a você, com prazo, comentários e checklist em selos. Clicar numa linha abre o cartão no Trello.",
-      "needs": "A API key e o token do Trello.",
-      "file": "plugins/trello.json"
+      "needs": "Uma API key e um token do Trello.",
+      "file": "plugins/trello.json",
+      "logo": "https://github.com/trello.png?size=128"
     },
     {
       "slug": "notion",
@@ -389,8 +405,9 @@
       "category": "gestao",
       "kind": "http",
       "description": "Os itens de um banco de dados do Notion, com status e data. Ajuste os nomes das propriedades se as suas não forem Name, Status e Date.",
-      "needs": "O ID do banco e um token de integração com acesso a ele.",
-      "file": "plugins/notion.json"
+      "needs": "Um token de integração interna do Notion, com o banco compartilhado com ela.",
+      "file": "plugins/notion.json",
+      "logo": "https://github.com/makenotion.png?size=128"
     },
     {
       "slug": "linear",
@@ -399,8 +416,9 @@
       "category": "gestao",
       "kind": "http",
       "description": "As issues atribuídas a você, agrupadas pelo estado em que estão. A prioridade vira a cor do status na linha.",
-      "needs": "Uma chave de API pessoal do Linear.",
-      "file": "plugins/linear.json"
+      "needs": "Uma chave pessoal da API do Linear.",
+      "file": "plugins/linear.json",
+      "logo": "https://github.com/linear.png?size=128"
     },
     {
       "slug": "jira",
@@ -409,7 +427,7 @@
       "category": "gestao",
       "kind": "http",
       "description": "O resultado de uma busca JQL, com chave, responsável e status em cada linha. Clicar abre a issue no Jira.",
-      "needs": "O domínio e o Base64 de e-mail:token.",
+      "needs": "Um token da API do Jira, em Base64 junto com o seu e-mail.",
       "file": "plugins/jira.json"
     },
     {
@@ -419,8 +437,9 @@
       "category": "gestao",
       "kind": "http",
       "description": "As tarefas no seu nome dentro de um workspace, com projeto e prazo. Clicar abre a tarefa.",
-      "needs": "O ID do workspace e um token pessoal.",
-      "file": "plugins/asana.json"
+      "needs": "Um token pessoal do Asana e o ID do workspace.",
+      "file": "plugins/asana.json",
+      "logo": "https://github.com/Asana.png?size=128"
     },
     {
       "slug": "clickup",
@@ -429,8 +448,9 @@
       "category": "gestao",
       "kind": "http",
       "description": "As tarefas abertas de uma lista, com responsável, prazo e status. Clicar abre a tarefa no ClickUp.",
-      "needs": "O ID da lista e um token pessoal.",
-      "file": "plugins/clickup.json"
+      "needs": "Um token pessoal do ClickUp e o ID da lista.",
+      "file": "plugins/clickup.json",
+      "logo": "https://github.com/clickup.png?size=128"
     },
     {
       "slug": "okr",
@@ -580,7 +600,8 @@
       "kind": "http",
       "description": "O preço dos papéis que você acompanha, com máxima e mínima do dia e a variação em tabela. O primeiro código vira a marca do ícone.",
       "needs": "Os códigos da B3. Um token da brapi é opcional.",
-      "file": "plugins/acoes.json"
+      "file": "plugins/acoes.json",
+      "logo": "https://github.com/brapi-dev.png?size=128"
     },
     {
       "slug": "fiis",
@@ -589,8 +610,9 @@
       "category": "inv",
       "kind": "http",
       "description": "A cota dos seus fundos imobiliários, com o logo de cada um na tabela. Mesma ideia das ações, com os códigos terminados em 11.",
-      "needs": "Os códigos dos fundos.",
-      "file": "plugins/fiis.json"
+      "needs": "Um token da brapi.",
+      "file": "plugins/fiis.json",
+      "logo": "https://github.com/brapi-dev.png?size=128"
     },
     {
       "slug": "ibovespa",
@@ -599,7 +621,7 @@
       "category": "inv",
       "kind": "http",
       "description": "Os pontos do índice agora, a variação do dia e a curva desde que o Peek abriu. Um número só, sempre visível na borda.",
-      "needs": "",
+      "needs": "Um token grátis da brapi.",
       "file": "plugins/ibovespa.json"
     },
     {
@@ -677,7 +699,7 @@
       "name": "Pipeline",
       "icon": "PI",
       "category": "vendas",
-      "kind": "command",
+      "kind": "panel",
       "description": "As etapas do funil com a contagem de cada uma; clicar numa etapa filtra a lista abaixo. A meta do período aparece como barra no número grande.",
       "needs": "O comando que traz os seus dados.",
       "file": "plugins/pipeline.json"
@@ -689,8 +711,9 @@
       "category": "vendas",
       "kind": "http",
       "description": "Os negócios abertos do CRM, com os maiores em barras e a lista com organização e responsável. Pisca quando entra um negócio novo.",
-      "needs": "O subdomínio da empresa e o token da API.",
-      "file": "plugins/pipedrive.json"
+      "needs": "O subdomínio e o token de API do Pipedrive.",
+      "file": "plugins/pipedrive.json",
+      "logo": "https://github.com/pipedrive.png?size=128"
     },
     {
       "slug": "hubspot",
@@ -699,8 +722,9 @@
       "category": "vendas",
       "kind": "http",
       "description": "Os negócios do CRM da HubSpot, com valor, etapa e data de fechamento. Os maiores aparecem em barras acima da lista.",
-      "needs": "Um token privado com escopo de CRM.",
-      "file": "plugins/hubspot.json"
+      "needs": "Um token de app privado do HubSpot com o escopo de negócios.",
+      "file": "plugins/hubspot.json",
+      "logo": "https://github.com/HubSpot.png?size=128"
     },
     {
       "slug": "stripe",
@@ -709,8 +733,9 @@
       "category": "vendas",
       "kind": "command",
       "description": "O saldo disponível e o pendente da sua conta Stripe, já convertido de centavos. A cadeia de dois programas mostra como tratar uma API que responde em centavos.",
-      "needs": "Uma chave secreta da Stripe.",
-      "file": "plugins/stripe.json"
+      "needs": "O Stripe CLI instalado e com login feito (stripe login).",
+      "file": "plugins/stripe.json",
+      "logo": "https://github.com/stripe.png?size=128"
     },
     {
       "slug": "meta",
@@ -779,8 +804,9 @@
       "category": "mkt",
       "kind": "http",
       "description": "As visitas do seu site nos últimos 30 dias, com o dia de ontem no número grande. Gráfico e tabela dia a dia, sem cookie e sem painel aberto.",
-      "needs": "O domínio do site e uma chave da API do Plausible.",
-      "file": "plugins/plausible.json"
+      "needs": "Uma chave da API do Plausible.",
+      "file": "plugins/plausible.json",
+      "logo": "https://github.com/plausible.png?size=128"
     },
     {
       "slug": "youtube",
@@ -789,7 +815,7 @@
       "category": "mkt",
       "kind": "http",
       "description": "Os inscritos do canal no ícone, com o crescimento desenhado a partir das leituras do Peek. O avatar do canal vira a marca.",
-      "needs": "O ID do canal e uma chave da API do YouTube Data.",
+      "needs": "Uma chave da YouTube Data API v3.",
       "file": "plugins/youtube.json"
     },
     {
@@ -799,8 +825,9 @@
       "category": "mkt",
       "kind": "http",
       "description": "Os últimos vídeos publicados no canal, com miniatura e data. Pisca quando um vídeo novo sobe.",
-      "needs": "O ID do canal e a chave da API.",
-      "file": "plugins/youtube-videos.json"
+      "needs": "Uma chave da YouTube Data API v3.",
+      "file": "plugins/youtube-videos.json",
+      "logo": "https://www.google.com/s2/favicons?domain=youtube.com&sz=128"
     },
     {
       "slug": "buttondown",
@@ -809,8 +836,9 @@
       "category": "mkt",
       "kind": "http",
       "description": "Quantas pessoas assinam a sua newsletter, com a curva de crescimento. Os últimos inscritos aparecem na lista.",
-      "needs": "Um token do Buttondown.",
-      "file": "plugins/buttondown.json"
+      "needs": "Uma chave de API do Buttondown.",
+      "file": "plugins/buttondown.json",
+      "logo": "https://github.com/buttondown.png?size=128"
     },
     {
       "slug": "bluesky",
@@ -820,7 +848,8 @@
       "kind": "http",
       "description": "Seguidores, seguindo e posts de um perfil no Bluesky, com o avatar no topo. A API é pública, então não precisa de login.",
       "needs": "O handle da conta.",
-      "file": "plugins/bluesky.json"
+      "file": "plugins/bluesky.json",
+      "logo": "https://web-cdn.bsky.app/static/apple-touch-icon.png"
     },
     {
       "slug": "mastodon",
@@ -830,7 +859,8 @@
       "kind": "http",
       "description": "Seguidores e posts de uma conta do Mastodon, em qualquer instância. Também sem login: a API pública basta.",
       "needs": "A instância e o nome da conta.",
-      "file": "plugins/mastodon.json"
+      "file": "plugins/mastodon.json",
+      "logo": "https://github.com/mastodon.png?size=128"
     },
     {
       "slug": "utm",
@@ -880,7 +910,8 @@
       "kind": "http",
       "description": "Quantas pessoas estão online no seu servidor agora, com a lista e o estado de cada uma. Usa o widget público do servidor, sem bot.",
       "needs": "Ligar o widget nas configurações do servidor.",
-      "file": "plugins/discord.json"
+      "file": "plugins/discord.json",
+      "logo": "https://github.com/discord.png?size=128"
     },
     {
       "slug": "telegram",
@@ -889,8 +920,9 @@
       "category": "atend",
       "kind": "http",
       "description": "As mensagens que chegaram para o seu bot, com quem mandou e quando. O Telegram guarda apenas as últimas 24 horas.",
-      "needs": "O token do bot.",
-      "file": "plugins/telegram.json"
+      "needs": "O token de um bot do Telegram.",
+      "file": "plugins/telegram.json",
+      "logo": "https://telegram.org/img/apple-touch-icon.png"
     },
     {
       "slug": "slack",
@@ -899,8 +931,9 @@
       "category": "atend",
       "kind": "http",
       "description": "As últimas mensagens de um canal do Slack, direto na borda da tela. Pisca quando aparece mensagem nova.",
-      "needs": "O ID do canal e um token com acesso a ele.",
-      "file": "plugins/slack.json"
+      "needs": "Um token do Slack com o escopo channels:history.",
+      "file": "plugins/slack.json",
+      "logo": "https://github.com/slackhq.png?size=128"
     },
     {
       "slug": "zendesk",
@@ -909,8 +942,9 @@
       "category": "atend",
       "kind": "http",
       "description": "Os chamados que ainda não foram resolvidos, com prioridade e número. Clicar abre o chamado no Zendesk.",
-      "needs": "O domínio e o Base64 de e-mail/token:token.",
-      "file": "plugins/zendesk.json"
+      "needs": "O e-mail e um token da API do Zendesk, em Base64.",
+      "file": "plugins/zendesk.json",
+      "logo": "https://github.com/zendesk.png?size=128"
     },
     {
       "slug": "freshdesk",
@@ -919,8 +953,9 @@
       "category": "atend",
       "kind": "http",
       "description": "Os chamados recentes do Freshdesk, com a prioridade escrita por extenso. Clicar abre o chamado.",
-      "needs": "O domínio e o Base64 da chave.",
-      "file": "plugins/freshdesk.json"
+      "needs": "Domínio do Freshdesk e a chave da API em Base64.",
+      "file": "plugins/freshdesk.json",
+      "logo": "https://www.google.com/s2/favicons?domain=freshdesk.com&sz=128"
     },
     {
       "slug": "chatwoot",
@@ -929,8 +964,9 @@
       "category": "atend",
       "kind": "http",
       "description": "As conversas abertas, quantas estão sem dono e a última mensagem de cada uma. O avatar de quem escreveu aparece na linha.",
-      "needs": "O ID da conta e um token de acesso.",
-      "file": "plugins/chatwoot.json"
+      "needs": "O endereço do Chatwoot, o ID da conta e um token de acesso.",
+      "file": "plugins/chatwoot.json",
+      "logo": "https://github.com/chatwoot.png?size=128"
     },
     {
       "slug": "fila",
@@ -979,8 +1015,9 @@
       "category": "casa",
       "kind": "http",
       "description": "Acende e apaga as luzes da sua casa pelo Home Assistant, com os botões mudando de cor conforme o estado. Um botão grande apaga tudo, com confirmação.",
-      "needs": "Home Assistant na rede e um token de acesso.",
-      "file": "plugins/casa.json"
+      "needs": "O endereço do Home Assistant (https ou .local) e um token de acesso de longa duração.",
+      "file": "plugins/casa.json",
+      "logo": "https://github.com/home-assistant.png?size=128"
     },
     {
       "slug": "energia",
@@ -989,7 +1026,7 @@
       "category": "casa",
       "kind": "http",
       "description": "O consumo de energia agora, lido de um sensor do Home Assistant, com a curva ao longo do tempo. Troque o entity_id pelo sensor da sua casa.",
-      "needs": "Home Assistant e um token.",
+      "needs": "Home Assistant em homeassistant.local e um token de acesso de longa duração.",
       "file": "plugins/energia.json"
     },
     {
@@ -1129,8 +1166,9 @@
       "category": "sistema",
       "kind": "command",
       "description": "Quantas fórmulas e casks do Homebrew estão desatualizados, com a versão de cada um. Um botão copia o brew upgrade.",
-      "needs": "Homebrew instalado.",
-      "file": "plugins/brew.json"
+      "needs": "O Homebrew instalado.",
+      "file": "plugins/brew.json",
+      "logo": "https://github.com/Homebrew.png?size=128"
     },
     {
       "slug": "vpn",
@@ -1180,7 +1218,8 @@
       "kind": "http",
       "description": "As histórias em alta no Hacker News, com pontos e comentários em cada linha. Um botão em cada linha abre os comentários.",
       "needs": "",
-      "file": "plugins/hackernews.json"
+      "file": "plugins/hackernews.json",
+      "logo": "https://github.com/HackerNews.png?size=128"
     },
     {
       "slug": "lobsters",
@@ -1190,7 +1229,8 @@
       "kind": "http",
       "description": "O que está subindo no Lobsters, com a tag e a pontuação de cada história. As mais votadas aparecem em barras acima da lista.",
       "needs": "",
-      "file": "plugins/lobsters.json"
+      "file": "plugins/lobsters.json",
+      "logo": "https://lobste.rs/apple-touch-icon.png"
     },
     {
       "slug": "devto",
@@ -1200,7 +1240,8 @@
       "kind": "http",
       "description": "Os artigos em alta no DEV no período que você escolher, com capa e reações. Um botão em cada linha guarda para ler depois, e Ver mais carrega a próxima página.",
       "needs": "",
-      "file": "plugins/devto.json"
+      "file": "plugins/devto.json",
+      "logo": "https://github.com/thepracticaldev.png?size=128"
     },
     {
       "slug": "espaco",
@@ -1220,7 +1261,8 @@
       "kind": "http",
       "description": "As notícias e releases oficiais do IBGE, com o tipo de cada uma em selo. Um botão em cada linha guarda para ler depois.",
       "needs": "",
-      "file": "plugins/noticias-br.json"
+      "file": "plugins/noticias-br.json",
+      "logo": "https://www.google.com/s2/favicons?domain=ibge.gov.br&sz=128"
     },
     {
       "slug": "wikipedia",
@@ -1230,7 +1272,8 @@
       "kind": "http",
       "description": "O que aconteceu neste dia na história, com imagem e link para cada artigo. Parar o ponteiro numa linha mostra o resumo do artigo.",
       "needs": "",
-      "file": "plugins/wikipedia.json"
+      "file": "plugins/wikipedia.json",
+      "logo": "https://pt.wikipedia.org/static/apple-touch/wikipedia.png"
     },
     {
       "slug": "destaque",
@@ -1240,7 +1283,8 @@
       "kind": "http",
       "description": "Os artigos mais lidos da Wikipédia em português hoje, com o número de visitas. Bom termômetro do que o país está procurando.",
       "needs": "",
-      "file": "plugins/destaque.json"
+      "file": "plugins/destaque.json",
+      "logo": "https://pt.wikipedia.org/static/apple-touch/wikipedia.png"
     },
     {
       "slug": "livros",
@@ -1250,7 +1294,8 @@
       "kind": "http",
       "description": "Busca um livro na Open Library e mostra capa, autor e ano de cada resultado. O botão Buscar pergunta o termo e relê na hora.",
       "needs": "",
-      "file": "plugins/livros.json"
+      "file": "plugins/livros.json",
+      "logo": "https://www.google.com/s2/favicons?domain=openlibrary.org&sz=128"
     },
     {
       "slug": "citacao",
@@ -1320,7 +1365,8 @@
       "kind": "http",
       "description": "A foto astronômica do dia da NASA, em tamanho grande, com a explicação embaixo. Um botão abre a versão em alta resolução.",
       "needs": "Nada. Uma chave própria da NASA é opcional.",
-      "file": "plugins/apod.json"
+      "file": "plugins/apod.json",
+      "logo": "https://github.com/nasa.png?size=128"
     },
     {
       "slug": "marte",
@@ -1329,8 +1375,9 @@
       "category": "ciencia",
       "kind": "http",
       "description": "As fotos mais recentes que o Curiosity mandou de Marte, com a câmera e o sol marciano. A primeira foto fica no topo do cartão.",
-      "needs": "Nada. Uma chave própria da NASA é opcional.",
-      "file": "plugins/marte.json"
+      "needs": "Nada.",
+      "file": "plugins/marte.json",
+      "logo": "https://github.com/nasa.png?size=128"
     },
     {
       "slug": "asteroides",
@@ -1389,8 +1436,9 @@
       "category": "midia",
       "kind": "http",
       "description": "As últimas faixas que você ouviu, com capa e horário de cada uma. Pisca quando você escuta algo novo.",
-      "needs": "O seu usuário e uma chave da API do Last.fm.",
-      "file": "plugins/lastfm.json"
+      "needs": "Uma chave da API do Last.fm.",
+      "file": "plugins/lastfm.json",
+      "logo": "https://github.com/lastfm.png?size=128"
     },
     {
       "slug": "deezer",
@@ -1400,7 +1448,8 @@
       "kind": "http",
       "description": "As faixas mais tocadas no Deezer agora, com capa e duração. A capa da primeira fica no topo do cartão.",
       "needs": "",
-      "file": "plugins/deezer.json"
+      "file": "plugins/deezer.json",
+      "logo": "https://github.com/deezer.png?size=128"
     },
     {
       "slug": "radio",
@@ -1450,7 +1499,8 @@
       "kind": "http",
       "description": "Os filmes que ainda vão estrear, numa linha do tempo por data de lançamento. A imagem do primeiro fica no topo do cartão.",
       "needs": "Uma chave da API do TMDB.",
-      "file": "plugins/estreias.json"
+      "file": "plugins/estreias.json",
+      "logo": "https://www.google.com/s2/favicons?domain=themoviedb.org&sz=128"
     },
     {
       "slug": "steam",
@@ -1459,8 +1509,9 @@
       "category": "midia",
       "kind": "http",
       "description": "Quanto tempo você jogou cada jogo nas últimas duas semanas. Clicar numa linha abre a página da loja.",
-      "needs": "O seu SteamID64 e uma chave da API da Steam.",
-      "file": "plugins/steam.json"
+      "needs": "Uma chave da Web API da Steam.",
+      "file": "plugins/steam.json",
+      "logo": "https://www.google.com/s2/favicons?domain=store.steampowered.com&sz=128"
     },
     {
       "slug": "xkcd",

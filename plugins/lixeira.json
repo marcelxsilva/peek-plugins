@@ -1,5 +1,5 @@
 {
-  "schema": 5,
+  "schema": 7,
   "id": "plugin.exemplo.lixeira",
   "name": "Lixeira",
   "interval": 1800,
@@ -84,5 +84,6 @@
       "required": true,
       "placeholder": "/Users/voce/.Trash"
     }
-  ]
+  ],
+  "answer": "/Users/voce/.Trash/proposta-cliente-v3.pdf\n/Users/voce/.Trash/Captura de Tela 2026-09-28 às 14.32.10.png\n/Users/voce/.Trash/backup-antigo\n/Users/voce/.Trash/video-reuniao.mov\n/Users/voce/.Trash/rascunho.txt\n"
 }

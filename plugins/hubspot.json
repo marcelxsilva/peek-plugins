@@ -4,8 +4,9 @@
   "name": "HubSpot",
   "interval": 900,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "cube.box.fill"
+    "kind": "picture",
+    "symbolName": "cube.box.fill",
+    "pictureSource": "https://github.com/HubSpot.png?size=128"
   },
   "source": {
     "kind": "http",
@@ -28,7 +29,7 @@
     "headers": [
       {
         "name": "Authorization",
-        "value": "Bearer {{secret}}"
+        "value": "Bearer {{$settings.token}}"
       }
     ],
     "format": {
@@ -43,7 +44,7 @@
     "isEnabled": true,
     "title": "HubSpot",
     "subtitle": "Negócios no CRM",
-    "emptyMessage": "Nenhum negócio, ou o token não tem escopo de CRM.",
+    "emptyMessage": "Nenhum negócio, ou o token não tem o escopo de CRM.",
     "blocks": [
       {
         "type": "hero",
@@ -144,5 +145,15 @@
   "actions": [],
   "attention": {
     "mode": "newRows"
-  }
+  },
+  "settings": [
+    {
+      "key": "token",
+      "label": "Token",
+      "type": "secret",
+      "required": true,
+      "help": "Crie um app privado no HubSpot com o escopo crm.objects.deals.read e cole o token aqui."
+    }
+  ],
+  "answer": "{\"results\":[{\"id\":\"51842907311\",\"properties\":{\"amount\":\"48000\",\"closedate\":\"2026-10-15T17:00:00Z\",\"createdate\":\"2026-09-30T14:12:08.512Z\",\"dealname\":\"Loja Vila Mariana · plano anual\",\"dealstage\":\"contractsent\",\"hs_lastmodifieddate\":\"2026-10-01T12:30:15.402Z\",\"hs_object_id\":\"51842907311\"},\"createdAt\":\"2026-09-30T14:12:08.512Z\",\"updatedAt\":\"2026-10-01T12:30:15.402Z\",\"archived\":false},{\"id\":\"51839120455\",\"properties\":{\"amount\":\"126500\",\"closedate\":\"2026-10-30T17:00:00Z\",\"createdate\":\"2026-09-29T19:40:22.031Z\",\"dealname\":\"Distribuidora Serra Azul\",\"dealstage\":\"presentationscheduled\",\"hs_lastmodifieddate\":\"2026-10-01T12:30:15.402Z\",\"hs_object_id\":\"51839120455\"},\"createdAt\":\"2026-09-29T19:40:22.031Z\",\"updatedAt\":\"2026-10-01T12:30:15.402Z\",\"archived\":false},{\"id\":\"51830054862\",\"properties\":{\"amount\":\"18900\",\"closedate\":\"2026-11-12T17:00:00Z\",\"createdate\":\"2026-09-28T13:05:47.774Z\",\"dealname\":\"Clínica Bem Viver · 12 licenças\",\"dealstage\":\"qualifiedtobuy\",\"hs_lastmodifieddate\":\"2026-10-01T12:30:15.402Z\",\"hs_object_id\":\"51830054862\"},\"createdAt\":\"2026-09-28T13:05:47.774Z\",\"updatedAt\":\"2026-10-01T12:30:15.402Z\",\"archived\":false},{\"id\":\"51822786193\",\"properties\":{\"amount\":\"212000\",\"closedate\":\"2026-10-22T17:00:00Z\",\"createdate\":\"2026-09-26T16:58:11.209Z\",\"dealname\":\"Grupo Horizonte Educação\",\"dealstage\":\"decisionmakerboughtin\",\"hs_lastmodifieddate\":\"2026-10-01T12:30:15.402Z\",\"hs_object_id\":\"51822786193\"},\"createdAt\":\"2026-09-26T16:58:11.209Z\",\"updatedAt\":\"2026-10-01T12:30:15.402Z\",\"archived\":false},{\"id\":\"51816433027\",\"properties\":{\"amount\":\"7200\",\"closedate\":\"2026-09-25T17:00:00Z\",\"createdate\":\"2026-09-24T11:21:36.650Z\",\"dealname\":\"Padaria Pão Quente · renovação\",\"dealstage\":\"closedwon\",\"hs_lastmodifieddate\":\"2026-10-01T12:30:15.402Z\",\"hs_object_id\":\"51816433027\"},\"createdAt\":\"2026-09-24T11:21:36.650Z\",\"updatedAt\":\"2026-10-01T12:30:15.402Z\",\"archived\":false},{\"id\":\"51809871544\",\"properties\":{\"amount\":\"64300\",\"closedate\":\"2026-09-20T17:00:00Z\",\"createdate\":\"2026-09-22T18:44:02.118Z\",\"dealname\":\"Transportes Rota Sul\",\"dealstage\":\"closedlost\",\"hs_lastmodifieddate\":\"2026-10-01T12:30:15.402Z\",\"hs_object_id\":\"51809871544\"},\"createdAt\":\"2026-09-22T18:44:02.118Z\",\"updatedAt\":\"2026-10-01T12:30:15.402Z\",\"archived\":false}],\"paging\":{\"next\":{\"after\":\"51809871543\",\"link\":\"https://api.hubapi.com/crm/v3/objects/deals?after=51809871543\"}}}"
 }

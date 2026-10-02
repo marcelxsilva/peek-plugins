@@ -1,5 +1,5 @@
 {
-  "schema": 5,
+  "schema": 7,
   "id": "plugin.exemplo.tmdb",
   "name": "Nos cinemas",
   "interval": 21600,
@@ -12,10 +12,22 @@
     "method": "GET",
     "url": "https://api.themoviedb.org/3/movie/now_playing",
     "query": [
-      { "name": "api_key", "value": "{{secret}}" },
-      { "name": "language", "value": "pt-BR" },
-      { "name": "region", "value": "BR" },
-      { "name": "page", "value": "{{$page}}" }
+      {
+        "name": "api_key",
+        "value": "{{$settings.token}}"
+      },
+      {
+        "name": "language",
+        "value": "pt-BR"
+      },
+      {
+        "name": "region",
+        "value": "BR"
+      },
+      {
+        "name": "page",
+        "value": "{{$page}}"
+      }
     ],
     "format": {
       "kind": "json"
@@ -74,5 +86,15 @@
   "actions": [],
   "attention": {
     "mode": "newRows"
-  }
+  },
+  "settings": [
+    {
+      "key": "token",
+      "label": "Token",
+      "type": "secret",
+      "required": true,
+      "help": "Crie a chave da API (v3) em themoviedb.org › Configurações › API."
+    }
+  ],
+  "answer": "{\"dates\":{\"maximum\":\"2026-10-08\",\"minimum\":\"2026-08-27\"},\"page\":1,\"results\":[{\"adult\":false,\"backdrop_path\":\"/fH4kQ8Yb1cLq2mZx7dVwP3nR9tA.jpg\",\"genre_ids\":[28,12],\"id\":1184918,\"original_language\":\"en\",\"original_title\":\"The Last Signal\",\"overview\":\"Uma equipe de resgate atravessa o deserto atrás de um sinal de rádio que não deveria existir.\",\"popularity\":412.7,\"poster_path\":\"/a8Xc3pQe9LmR2vT5nY7kD1sW4uB.jpg\",\"release_date\":\"2026-09-25\",\"title\":\"O Último Sinal\",\"video\":false,\"vote_average\":7.4,\"vote_count\":318},{\"adult\":false,\"backdrop_path\":\"/k2Lm9pRt4vXb8nQy1cZs6dWe3fH.jpg\",\"genre_ids\":[16,10751],\"id\":1022789,\"original_language\":\"en\",\"original_title\":\"Paper Boats\",\"overview\":\"Duas irmãs descobrem que os barquinhos de papel que soltam no rio chegam a outro mundo.\",\"popularity\":288.1,\"poster_path\":\"/q7Vn2bLx5sKp8mRt3wYc9dZf1hJ.jpg\",\"release_date\":\"2026-09-18\",\"title\":\"Barcos de Papel\",\"video\":false,\"vote_average\":8.1,\"vote_count\":524},{\"adult\":false,\"backdrop_path\":\"/t9Rw3xLm7pKb2nVq5cYs8dZe1fG.jpg\",\"genre_ids\":[18],\"id\":1311402,\"original_language\":\"pt\",\"original_title\":\"Maré Baixa\",\"overview\":\"Um pescador volta à vila onde cresceu para vender a casa da família.\",\"popularity\":96.3,\"poster_path\":\"/m4Ks8nPq2vLx7bRt5wYc3dZf9hJ.jpg\",\"release_date\":\"2026-10-01\",\"title\":\"Maré Baixa\",\"video\":false,\"vote_average\":6.9,\"vote_count\":41},{\"adult\":false,\"backdrop_path\":\"/w5Tn1yLm3pKb9nVq7cXs2dZe8fR.jpg\",\"genre_ids\":[27,53],\"id\":1198034,\"original_language\":\"en\",\"original_title\":\"Night Shift\",\"overview\":\"Na primeira noite como vigia de um hospital desativado, Lia ouve alguém chamar o seu nome.\",\"popularity\":201.5,\"poster_path\":\"/z1Bp6nKq4vLx2bRt8wYc5dZf3hM.jpg\",\"release_date\":\"2026-09-11\",\"title\":\"Plantão Noturno\",\"video\":false,\"vote_average\":6.2,\"vote_count\":207}],\"total_pages\":3,\"total_results\":54}"
 }

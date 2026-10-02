@@ -10,14 +10,14 @@
   "source": {
     "kind": "http",
     "method": "GET",
-    "url": "https://api.open-meteo.com/v1/forecast?latitude={{$settings.lat}}&longitude={{$settings.lon}}&current=precipitation,rain&hourly=precipitation_probability,precipitation&forecast_days=1&timezone=auto",
+    "url": "https://api.open-meteo.com/v1/forecast?latitude={{$settings.lat}}&longitude={{$settings.lon}}&current=precipitation,rain,precipitation_probability&hourly=precipitation_probability,precipitation&forecast_hours=24&timezone=auto",
     "format": {
       "kind": "json"
     }
   },
   "slot": {
-    "label": "{{hourly.precipitation_probability[0]}}%",
-    "value": "{{hourly.precipitation_probability[0]}}",
+    "label": "{{current.precipitation_probability}}%",
+    "value": "{{current.precipitation_probability}}",
     "total": "100",
     "style": "arc",
     "alertsOnThreshold": true
@@ -29,11 +29,11 @@
     "blocks": [
       {
         "type": "hero",
-        "value": "{{hourly.precipitation_probability[0]}}",
+        "value": "{{current.precipitation_probability}}",
         "total": "100",
-        "caption": "Chance de chuva na próxima hora",
+        "caption": "Chance de chuva agora, em %",
         "goodDirection": "down",
-        "format": "percent",
+        "format": "integer",
         "width": "half"
       },
       {
@@ -51,12 +51,12 @@
       {
         "type": "chart",
         "style": "area",
-        "title": "Chance ao longo do dia",
+        "title": "Chance nas próximas 24 horas (%)",
         "path": "hourly.precipitation_probability",
         "x": "hourly.time",
         "dateFormat": "yyyy-MM-dd'T'HH:mm",
         "height": "medium",
-        "format": "percent"
+        "format": "integer"
       }
     ]
   },
@@ -64,7 +64,7 @@
   "attention": {
     "mode": "countAbove",
     "comparison": "above",
-    "countPath": "hourly.precipitation_probability[0]",
+    "countPath": "current.precipitation_probability",
     "threshold": "{{$settings.avisar}}"
   },
   "settings": [

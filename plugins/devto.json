@@ -4,8 +4,9 @@
   "name": "DEV",
   "interval": 3600,
   "icon": {
-    "kind": "word",
-    "word": "DEV"
+    "kind": "picture",
+    "symbolName": "newspaper.fill",
+    "pictureSource": "https://github.com/thepracticaldev.png?size=128"
   },
   "source": {
     "kind": "http",

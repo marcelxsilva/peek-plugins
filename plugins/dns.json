@@ -44,7 +44,7 @@
             "path": "Answer",
             "rowTitle": "{{data}}",
             "rowSubtitle": "{{name}}",
-            "rowMeta": "TTL {{TTL}} s",
+            "rowMeta": "TTL {{TTL | duration}}",
             "rowEvent": "none",
             "rowWrapsTitle": true
           }
@@ -63,6 +63,18 @@
         "text": "{{Answer[0].data}}"
       },
       "successMessage": "{{Answer[0].data}} copiado."
+    },
+    {
+      "name": "Copiar",
+      "symbolName": "doc.on.doc",
+      "place": "row",
+      "listIndex": 0,
+      "run": {
+        "kind": "onTheMac",
+        "errand": "copy",
+        "text": "{{data}}"
+      },
+      "successMessage": "Copiado."
     }
   ],
   "attention": {

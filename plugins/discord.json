@@ -4,8 +4,9 @@
   "name": "Discord",
   "interval": 300,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "bubble.left.and.bubble.right.fill"
+    "kind": "picture",
+    "symbolName": "bubble.left.and.bubble.right.fill",
+    "pictureSource": "https://github.com/discord.png?size=128"
   },
   "source": {
     "kind": "http",
@@ -124,5 +125,6 @@
       "help": "Configurações do servidor › Widget › ligue o widget e copie o ID do servidor.",
       "required": true
     }
-  ]
+  ],
+  "answer": "{\"id\":\"1187654321098765432\",\"name\":\"Comunidade Dev BR\",\"instant_invite\":\"https://discord.com/invite/exemploDevBR\",\"channels\":[{\"id\":\"1187654321098765433\",\"name\":\"Geral\",\"position\":0},{\"id\":\"1187654321098765434\",\"name\":\"Pareando\",\"position\":1}],\"members\":[{\"id\":\"0\",\"username\":\"ana.dev\",\"discriminator\":\"0000\",\"avatar\":null,\"status\":\"online\",\"avatar_url\":\"https://cdn.discordapp.com/embed/avatars/0.png\",\"game\":{\"name\":\"Visual Studio Code\"}},{\"id\":\"1\",\"username\":\"brunocosta\",\"discriminator\":\"0000\",\"avatar\":null,\"status\":\"online\",\"avatar_url\":\"https://cdn.discordapp.com/embed/avatars/1.png\",\"game\":{\"name\":\"Terminal\"}},{\"id\":\"2\",\"username\":\"carla_s\",\"discriminator\":\"0000\",\"avatar\":null,\"status\":\"idle\",\"avatar_url\":\"https://cdn.discordapp.com/embed/avatars/2.png\",\"game\":{\"name\":\"Spotify\"}},{\"id\":\"3\",\"username\":\"diego.alves\",\"discriminator\":\"0000\",\"avatar\":null,\"status\":\"dnd\",\"avatar_url\":\"https://cdn.discordapp.com/embed/avatars/3.png\",\"game\":{\"name\":\"Xcode\"}},{\"id\":\"4\",\"username\":\"elisa\",\"discriminator\":\"0000\",\"avatar\":null,\"status\":\"online\",\"avatar_url\":\"https://cdn.discordapp.com/embed/avatars/4.png\",\"game\":{\"name\":\"Figma\"}},{\"id\":\"5\",\"username\":\"fabio.m\",\"discriminator\":\"0000\",\"avatar\":null,\"status\":\"idle\",\"avatar_url\":\"https://cdn.discordapp.com/embed/avatars/5.png\",\"game\":{\"name\":\"Notion\"}}],\"presence_count\":37}"
 }

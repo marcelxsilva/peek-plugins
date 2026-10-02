@@ -4,8 +4,9 @@
   "name": "Cloudflare",
   "interval": 600,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "cloud.fill"
+    "kind": "picture",
+    "symbolName": "cloud.fill",
+    "pictureSource": "https://github.com/cloudflare.png?size=128"
   },
   "source": {
     "kind": "http",

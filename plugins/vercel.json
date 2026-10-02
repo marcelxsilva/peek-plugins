@@ -4,13 +4,14 @@
   "name": "Vercel",
   "interval": 300,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "triangle.fill"
+    "kind": "picture",
+    "symbolName": "triangle.fill",
+    "pictureSource": "https://github.com/vercel.png?size=128"
   },
   "source": {
     "kind": "http",
     "method": "GET",
-    "url": "https://api.vercel.com/v6/deployments",
+    "url": "https://api.vercel.com/v7/deployments",
     "query": [
       {
         "name": "limit",
@@ -24,7 +25,7 @@
     "headers": [
       {
         "name": "Authorization",
-        "value": "Bearer {{secret}}"
+        "value": "Bearer {{$settings.token}}"
       }
     ],
     "format": {
@@ -40,7 +41,9 @@
       "BUILDING": "attention",
       "QUEUED": "attention",
       "ERROR": "negative",
-      "CANCELED": "neutral"
+      "CANCELED": "neutral",
+      "INITIALIZING": "attention",
+      "BLOCKED": "negative"
     }
   },
   "card": {
@@ -104,7 +107,7 @@
             "title": "Deploys",
             "path": "deployments",
             "rowTitle": "{{meta.githubCommitMessage ?? name}}",
-            "rowSubtitle": "{{creator.username}} · {{created | ago}}",
+            "rowSubtitle": "{{creator.username}} · {{created | shape dd/MM HH:mm}}",
             "rowBadge": "{{target}}",
             "rowStatus": "{{state}}",
             "rowWrapsTitle": true,
@@ -113,14 +116,18 @@
               "BUILDING": "buildando",
               "QUEUED": "na fila",
               "ERROR": "erro",
-              "CANCELED": "cancelado"
+              "CANCELED": "cancelado",
+              "INITIALIZING": "iniciando",
+              "BLOCKED": "bloqueado"
             },
             "statusColors": {
               "READY": "positive",
               "BUILDING": "attention",
               "QUEUED": "attention",
               "ERROR": "negative",
-              "CANCELED": "neutral"
+              "CANCELED": "neutral",
+              "INITIALIZING": "attention",
+              "BLOCKED": "negative"
             },
             "rowURL": "https://{{url}}"
           }
@@ -139,6 +146,14 @@
       "type": "text",
       "help": "Painel da Vercel › o projeto › Settings › Project ID.",
       "required": true
+    },
+    {
+      "key": "token",
+      "label": "Token",
+      "type": "secret",
+      "required": true,
+      "help": "Crie em vercel.com/account/tokens."
     }
-  ]
+  ],
+  "answer": "{\"deployments\":[{\"uid\":\"dpl_3Fk8Lq2Vn7Rb5Xc1Wd9Ys4Tz\",\"name\":\"loja-web\",\"projectId\":\"prj_7Qb2Lx9Kd4Vn8Rt1Wc3Ys5Zf\",\"url\":\"loja-web-k3j9x2a1p-exemplo.vercel.app\",\"created\":1759327200000,\"createdAt\":1759327200000,\"buildingAt\":1759327201200,\"ready\":null,\"state\":\"BUILDING\",\"readyState\":\"BUILDING\",\"type\":\"LAMBDAS\",\"source\":\"git\",\"target\":\"production\",\"creator\":{\"uid\":\"Kc8Nd2Lq5Vx7Rb3T\",\"username\":\"marina-dev\",\"email\":\"dev@exemplo.com\"},\"meta\":{\"githubCommitMessage\":\"Ajusta o cálculo do frete no checkout\",\"githubCommitRef\":\"main\",\"githubCommitSha\":\"9f3c2a1b7e4d\",\"githubOrg\":\"exemplo\",\"githubRepo\":\"loja-web\"},\"inspectorUrl\":\"https://vercel.com/exemplo/loja-web/3Fk8Lq2Vn7Rb5Xc1Wd9Ys4Tz\"},{\"uid\":\"dpl_8Ht2Mq6Vn1Rb9Xc4Wd3Ys7Lp\",\"name\":\"loja-web\",\"projectId\":\"prj_7Qb2Lx9Kd4Vn8Rt1Wc3Ys5Zf\",\"url\":\"loja-web-p8f2m6q1z-exemplo.vercel.app\",\"created\":1759320000000,\"createdAt\":1759320000000,\"buildingAt\":1759320001200,\"ready\":1759320048000,\"state\":\"READY\",\"readyState\":\"READY\",\"type\":\"LAMBDAS\",\"source\":\"git\",\"target\":\"preview\",\"creator\":{\"uid\":\"Kc8Nd2Lq5Vx7Rb3T\",\"username\":\"joao-silva\",\"email\":\"dev@exemplo.com\"},\"meta\":{\"githubCommitMessage\":\"Adiciona botão de cupom no carrinho\",\"githubCommitRef\":\"feat/checkout\",\"githubCommitSha\":\"9f3c2a1b7e4d\",\"githubOrg\":\"exemplo\",\"githubRepo\":\"loja-web\"},\"inspectorUrl\":\"https://vercel.com/exemplo/loja-web/8Ht2Mq6Vn1Rb9Xc4Wd3Ys7Lp\"},{\"uid\":\"dpl_5Rt9Kq3Vn8Lb2Xc6Wd1Ys4Mn\",\"name\":\"loja-web\",\"projectId\":\"prj_7Qb2Lx9Kd4Vn8Rt1Wc3Ys5Zf\",\"url\":\"loja-web-z5r9k3q8n-exemplo.vercel.app\",\"created\":1759312800000,\"createdAt\":1759312800000,\"buildingAt\":1759312801200,\"ready\":null,\"state\":\"ERROR\",\"readyState\":\"ERROR\",\"type\":\"LAMBDAS\",\"source\":\"git\",\"target\":\"preview\",\"creator\":{\"uid\":\"Kc8Nd2Lq5Vx7Rb3T\",\"username\":\"joao-silva\",\"email\":\"dev@exemplo.com\"},\"meta\":{\"githubCommitMessage\":\"Migra a página de produto para o novo layout\",\"githubCommitRef\":\"feat/checkout\",\"githubCommitSha\":\"9f3c2a1b7e4d\",\"githubOrg\":\"exemplo\",\"githubRepo\":\"loja-web\"},\"inspectorUrl\":\"https://vercel.com/exemplo/loja-web/5Rt9Kq3Vn8Lb2Xc6Wd1Ys4Mn\"},{\"uid\":\"dpl_1Bc7Nq4Vn2Rb8Xc5Wd6Ys3Kp\",\"name\":\"loja-web\",\"projectId\":\"prj_7Qb2Lx9Kd4Vn8Rt1Wc3Ys5Zf\",\"url\":\"loja-web-b1c7n4q2r-exemplo.vercel.app\",\"created\":1759240800000,\"createdAt\":1759240800000,\"buildingAt\":1759240801200,\"ready\":1759240848000,\"state\":\"READY\",\"readyState\":\"READY\",\"type\":\"LAMBDAS\",\"source\":\"git\",\"target\":\"production\",\"creator\":{\"uid\":\"Kc8Nd2Lq5Vx7Rb3T\",\"username\":\"marina-dev\",\"email\":\"dev@exemplo.com\"},\"meta\":{\"githubCommitMessage\":\"Corrige imagens quebradas na vitrine\",\"githubCommitRef\":\"main\",\"githubCommitSha\":\"9f3c2a1b7e4d\",\"githubOrg\":\"exemplo\",\"githubRepo\":\"loja-web\"},\"inspectorUrl\":\"https://vercel.com/exemplo/loja-web/1Bc7Nq4Vn2Rb8Xc5Wd6Ys3Kp\"},{\"uid\":\"dpl_6Wd2Pq9Vn5Rb1Xc8Ys7Lm3Tz\",\"name\":\"loja-web\",\"projectId\":\"prj_7Qb2Lx9Kd4Vn8Rt1Wc3Ys5Zf\",\"url\":\"loja-web-w6d2p9q5v-exemplo.vercel.app\",\"created\":1759237200000,\"createdAt\":1759237200000,\"buildingAt\":1759237201200,\"ready\":null,\"state\":\"CANCELED\",\"readyState\":\"CANCELED\",\"type\":\"LAMBDAS\",\"source\":\"git\",\"target\":\"preview\",\"creator\":{\"uid\":\"Kc8Nd2Lq5Vx7Rb3T\",\"username\":\"marina-dev\",\"email\":\"dev@exemplo.com\"},\"meta\":{\"githubCommitMessage\":\"Teste de cache no CDN\",\"githubCommitRef\":\"feat/checkout\",\"githubCommitSha\":\"9f3c2a1b7e4d\",\"githubOrg\":\"exemplo\",\"githubRepo\":\"loja-web\"},\"inspectorUrl\":\"https://vercel.com/exemplo/loja-web/6Wd2Pq9Vn5Rb1Xc8Ys7Lm3Tz\"}],\"pagination\":{\"count\":5,\"next\":1759237199000,\"prev\":1759327201000}}"
 }

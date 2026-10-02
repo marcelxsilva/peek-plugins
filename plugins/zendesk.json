@@ -4,8 +4,9 @@
   "name": "Zendesk",
   "interval": 600,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "headphones"
+    "kind": "picture",
+    "symbolName": "headphones",
+    "pictureSource": "https://github.com/zendesk.png?size=128"
   },
   "source": {
     "kind": "http",
@@ -28,7 +29,7 @@
     "headers": [
       {
         "name": "Authorization",
-        "value": "Basic {{secret}}"
+        "value": "Basic {{$settings.token}}"
       }
     ],
     "format": {
@@ -113,7 +114,17 @@
               "normal": "neutral",
               "low": "neutral"
             },
-            "rowURL": "https://{{$settings.dominio}}/agent/tickets/{{id}}"
+            "rowURL": "https://{{$settings.dominio}}/agent/tickets/{{id}}",
+            "statusWords": {
+              "urgent": "urgente",
+              "high": "alta",
+              "normal": "normal",
+              "low": "baixa",
+              "new": "novo",
+              "open": "aberto",
+              "pending": "pendente",
+              "hold": "em espera"
+            }
           }
         ]
       }
@@ -128,9 +139,16 @@
       "key": "dominio",
       "label": "Domínio do Zendesk",
       "type": "text",
-      "help": "No campo de segredo, em Dado, cole o Base64 de «seu-email/token:token-da-api».",
       "required": true,
       "placeholder": "minhaempresa.zendesk.com"
+    },
+    {
+      "key": "token",
+      "label": "Token",
+      "type": "secret",
+      "required": true,
+      "help": "Cole o Base64 de «seu-email/token:token-da-api»."
     }
-  ]
+  ],
+  "answer": "{\"results\":[{\"url\":\"https://minhaempresa.zendesk.com/api/v2/tickets/4821.json\",\"id\":4821,\"created_at\":\"2026-10-01T11:42:18Z\",\"updated_at\":\"2026-10-01T11:42:18Z\",\"type\":\"question\",\"subject\":\"Não consigo acessar minha conta depois da troca de senha\",\"raw_subject\":\"Não consigo acessar minha conta depois da troca de senha\",\"priority\":\"urgent\",\"status\":\"new\",\"requester_id\":36120198451,\"assignee_id\":36120198452,\"group_id\":36120198460,\"tags\":[],\"via\":{\"channel\":\"email\"},\"result_type\":\"ticket\"},{\"url\":\"https://minhaempresa.zendesk.com/api/v2/tickets/4819.json\",\"id\":4819,\"created_at\":\"2026-10-01T09:05:51Z\",\"updated_at\":\"2026-10-01T09:05:51Z\",\"type\":\"question\",\"subject\":\"Cobrança duplicada no cartão\",\"raw_subject\":\"Cobrança duplicada no cartão\",\"priority\":\"high\",\"status\":\"open\",\"requester_id\":36120198451,\"assignee_id\":36120198452,\"group_id\":36120198460,\"tags\":[],\"via\":{\"channel\":\"email\"},\"result_type\":\"ticket\"},{\"url\":\"https://minhaempresa.zendesk.com/api/v2/tickets/4815.json\",\"id\":4815,\"created_at\":\"2026-09-30T17:30:02Z\",\"updated_at\":\"2026-09-30T17:30:02Z\",\"type\":\"question\",\"subject\":\"Como emitir a segunda via da nota fiscal?\",\"raw_subject\":\"Como emitir a segunda via da nota fiscal?\",\"priority\":\"normal\",\"status\":\"pending\",\"requester_id\":36120198451,\"assignee_id\":36120198452,\"group_id\":36120198460,\"tags\":[],\"via\":{\"channel\":\"email\"},\"result_type\":\"ticket\"},{\"url\":\"https://minhaempresa.zendesk.com/api/v2/tickets/4810.json\",\"id\":4810,\"created_at\":\"2026-09-30T13:12:44Z\",\"updated_at\":\"2026-09-30T13:12:44Z\",\"type\":\"question\",\"subject\":\"Pedido chegou com item faltando\",\"raw_subject\":\"Pedido chegou com item faltando\",\"priority\":null,\"status\":\"open\",\"requester_id\":36120198451,\"assignee_id\":36120198452,\"group_id\":36120198460,\"tags\":[],\"via\":{\"channel\":\"email\"},\"result_type\":\"ticket\"},{\"url\":\"https://minhaempresa.zendesk.com/api/v2/tickets/4802.json\",\"id\":4802,\"created_at\":\"2026-09-29T10:01:09Z\",\"updated_at\":\"2026-09-29T10:01:09Z\",\"type\":\"question\",\"subject\":\"Sugestão: exportar relatório em PDF\",\"raw_subject\":\"Sugestão: exportar relatório em PDF\",\"priority\":\"low\",\"status\":\"hold\",\"requester_id\":36120198451,\"assignee_id\":36120198452,\"group_id\":36120198460,\"tags\":[],\"via\":{\"channel\":\"email\"},\"result_type\":\"ticket\"}],\"facets\":null,\"next_page\":null,\"previous_page\":null,\"count\":5}"
 }

@@ -4,8 +4,8 @@
   "name": "Cotações",
   "interval": 600,
   "icon": {
-    "kind": "word",
-    "word": "{{[0].code}}"
+    "kind": "symbol",
+    "symbolName": "dollarsign.arrow.circlepath"
   },
   "source": {
     "kind": "http",
@@ -52,7 +52,7 @@
           {
             "id": "7747CAE4-AA5D-41D7-A139-5408B5A9D3D0",
             "name": "Variação",
-            "value": "{{[0].pctChange}}%"
+            "value": "{{[0].pctChange | shape +#,##0.00;-#,##0.00}}%"
           }
         ]
       },
@@ -89,11 +89,11 @@
             "currency": "BRL"
           },
           {
-            "title": "Variação",
+            "title": "Var. %",
             "kind": "text",
             "value": "{{pctChange}}",
             "align": "trailing",
-            "format": "percent"
+            "format": "number"
           },
           {
             "title": "",

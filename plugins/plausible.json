@@ -4,8 +4,9 @@
   "name": "Visitas",
   "interval": 900,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "chart.xyaxis.line"
+    "kind": "picture",
+    "symbolName": "chart.xyaxis.line",
+    "pictureSource": "https://github.com/plausible.png?size=128"
   },
   "source": {
     "kind": "http",
@@ -28,7 +29,7 @@
     "headers": [
       {
         "name": "Authorization",
-        "value": "Bearer {{secret}}"
+        "value": "Bearer {{$settings.token}}"
       }
     ],
     "format": {
@@ -99,8 +100,16 @@
       "label": "Domínio do site",
       "type": "text",
       "placeholder": "exemplo.dev",
-      "help": "O mesmo domínio cadastrado no Plausible. A chave da API vai no campo de segredo, em Dado.",
+      "help": "O mesmo domínio cadastrado no Plausible.",
       "required": true
+    },
+    {
+      "key": "token",
+      "label": "Token",
+      "type": "secret",
+      "required": true,
+      "help": "Crie em plausible.io › Configurações › Chaves da API."
     }
-  ]
+  ],
+  "answer": "{\"results\":[{\"date\":\"2026-09-02\",\"visitors\":316,\"pageviews\":843},{\"date\":\"2026-09-03\",\"visitors\":329,\"pageviews\":819},{\"date\":\"2026-09-04\",\"visitors\":292,\"pageviews\":757},{\"date\":\"2026-09-05\",\"visitors\":159,\"pageviews\":368},{\"date\":\"2026-09-06\",\"visitors\":158,\"pageviews\":418},{\"date\":\"2026-09-07\",\"visitors\":322,\"pageviews\":683},{\"date\":\"2026-09-08\",\"visitors\":354,\"pageviews\":832},{\"date\":\"2026-09-09\",\"visitors\":333,\"pageviews\":717},{\"date\":\"2026-09-10\",\"visitors\":361,\"pageviews\":770},{\"date\":\"2026-09-11\",\"visitors\":326,\"pageviews\":869},{\"date\":\"2026-09-12\",\"visitors\":182,\"pageviews\":445},{\"date\":\"2026-09-13\",\"visitors\":229,\"pageviews\":487},{\"date\":\"2026-09-14\",\"visitors\":351,\"pageviews\":746},{\"date\":\"2026-09-15\",\"visitors\":344,\"pageviews\":782},{\"date\":\"2026-09-16\",\"visitors\":349,\"pageviews\":846},{\"date\":\"2026-09-17\",\"visitors\":374,\"pageviews\":911},{\"date\":\"2026-09-18\",\"visitors\":362,\"pageviews\":782},{\"date\":\"2026-09-19\",\"visitors\":227,\"pageviews\":527},{\"date\":\"2026-09-20\",\"visitors\":277,\"pageviews\":700},{\"date\":\"2026-09-21\",\"visitors\":358,\"pageviews\":884},{\"date\":\"2026-09-22\",\"visitors\":418,\"pageviews\":1048},{\"date\":\"2026-09-23\",\"visitors\":413,\"pageviews\":1059},{\"date\":\"2026-09-24\",\"visitors\":422,\"pageviews\":1034},{\"date\":\"2026-09-25\",\"visitors\":425,\"pageviews\":984},{\"date\":\"2026-09-26\",\"visitors\":262,\"pageviews\":675},{\"date\":\"2026-09-27\",\"visitors\":266,\"pageviews\":571},{\"date\":\"2026-09-28\",\"visitors\":417,\"pageviews\":1007},{\"date\":\"2026-09-29\",\"visitors\":426,\"pageviews\":1081},{\"date\":\"2026-09-30\",\"visitors\":423,\"pageviews\":1042},{\"date\":\"2026-10-01\",\"visitors\":400,\"pageviews\":868}]}"
 }

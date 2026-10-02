@@ -1,11 +1,12 @@
 {
-  "schema": 5,
+  "schema": 7,
   "id": "plugin.exemplo.fiis",
   "name": "Fundos imobiliários",
   "interval": 900,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "building.fill"
+    "kind": "picture",
+    "symbolName": "building.2.fill",
+    "pictureSource": "https://github.com/brapi-dev.png?size=128"
   },
   "source": {
     "kind": "http",
@@ -76,9 +77,8 @@
           {
             "title": "Dia",
             "kind": "text",
-            "value": "{{regularMarketChangePercent}}",
-            "align": "trailing",
-            "format": "percent"
+            "value": "{{regularMarketChangePercent | shape +#,##0.00;-#,##0.00}}%",
+            "align": "trailing"
           }
         ]
       }
@@ -101,7 +101,9 @@
       "key": "token",
       "label": "Token da brapi",
       "type": "secret",
-      "help": "Opcional. Sem ele a brapi atende com limite baixo."
+      "help": "Crie em brapi.dev/dashboard. Fundos imobiliários pedem token.",
+      "required": true
     }
-  ]
+  ],
+  "answer": "{\"results\":[{\"currency\":\"BRL\",\"shortName\":\"FII MAXI RENCI\",\"longName\":\"Maxi Renda Fundo de Investimento Imobiliário\",\"regularMarketChange\":0.03,\"regularMarketChangePercent\":0.31,\"regularMarketTime\":\"2026-10-01T20:07:00.000Z\",\"regularMarketPrice\":9.62,\"regularMarketDayHigh\":9.65,\"regularMarketDayRange\":\"9.57 - 9.65\",\"regularMarketDayLow\":9.57,\"regularMarketVolume\":4183200,\"regularMarketPreviousClose\":9.59,\"regularMarketOpen\":9.59,\"symbol\":\"MXRF11\",\"logourl\":\"https://icons.brapi.dev/icons/BRAPI.svg\"},{\"currency\":\"BRL\",\"shortName\":\"FII CGHGLOG\",\"longName\":\"CSHG Logística Fundo de Investimento Imobiliário\",\"regularMarketChange\":-0.7,\"regularMarketChangePercent\":-0.44,\"regularMarketTime\":\"2026-10-01T20:07:00.000Z\",\"regularMarketPrice\":158.4,\"regularMarketDayHigh\":159.6,\"regularMarketDayRange\":\"157.9 - 159.6\",\"regularMarketDayLow\":157.9,\"regularMarketVolume\":61540,\"regularMarketPreviousClose\":159.1,\"regularMarketOpen\":159.1,\"symbol\":\"HGLG11\",\"logourl\":\"https://icons.brapi.dev/icons/BRAPI.svg\"},{\"currency\":\"BRL\",\"shortName\":\"FII KINEA\",\"longName\":\"Kinea Renda Imobiliária Fundo de Investimento Imobiliário\",\"regularMarketChange\":0.25,\"regularMarketChangePercent\":0.18,\"regularMarketTime\":\"2026-10-01T20:07:00.000Z\",\"regularMarketPrice\":141.75,\"regularMarketDayHigh\":142.1,\"regularMarketDayRange\":\"141.2 - 142.1\",\"regularMarketDayLow\":141.2,\"regularMarketVolume\":38720,\"regularMarketPreviousClose\":141.5,\"regularMarketOpen\":141.5,\"symbol\":\"KNRI11\",\"logourl\":\"https://icons.brapi.dev/icons/BRAPI.svg\"},{\"currency\":\"BRL\",\"shortName\":\"FII XP MALLS\",\"longName\":\"XP Malls Fundo de Investimento Imobiliário\",\"regularMarketChange\":-0.12,\"regularMarketChangePercent\":-0.12,\"regularMarketTime\":\"2026-10-01T20:07:00.000Z\",\"regularMarketPrice\":103.9,\"regularMarketDayHigh\":104.6,\"regularMarketDayRange\":\"103.5 - 104.6\",\"regularMarketDayLow\":103.5,\"regularMarketVolume\":152300,\"regularMarketPreviousClose\":104.02,\"regularMarketOpen\":104.02,\"symbol\":\"XPML11\",\"logourl\":\"https://icons.brapi.dev/icons/BRAPI.svg\"},{\"currency\":\"BRL\",\"shortName\":\"FII VINCI SC\",\"longName\":\"Vinci Shopping Centers Fundo de Investimento Imobiliário\",\"regularMarketChange\":0.69,\"regularMarketChangePercent\":0.67,\"regularMarketTime\":\"2026-10-01T20:07:00.000Z\",\"regularMarketPrice\":104.35,\"regularMarketDayHigh\":104.5,\"regularMarketDayRange\":\"103.6 - 104.5\",\"regularMarketDayLow\":103.6,\"regularMarketVolume\":47810,\"regularMarketPreviousClose\":103.66,\"regularMarketOpen\":103.66,\"symbol\":\"VISC11\",\"logourl\":\"https://icons.brapi.dev/icons/BRAPI.svg\"}],\"requestedAt\":\"2026-10-01T20:10:12.418Z\",\"took\":\"0ms\"}"
 }

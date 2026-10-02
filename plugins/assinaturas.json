@@ -40,7 +40,7 @@
         "limit": 6,
         "format": "money",
         "currency": "BRL",
-        "title": "Quem come mais"
+        "title": "Mais caras"
       },
       {
         "type": "timeline",

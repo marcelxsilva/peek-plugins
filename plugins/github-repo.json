@@ -4,17 +4,21 @@
   "name": "Repositório",
   "interval": 1800,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "star.fill"
+    "kind": "picture",
+    "symbolName": "star.fill",
+    "pictureSource": "https://github.com/github.png?size=128"
   },
   "source": {
-    "kind": "http",
-    "method": "GET",
-    "url": "https://api.github.com/repos/{{$settings.repo}}",
-    "headers": [
+    "kind": "command",
+    "steps": [
       {
-        "name": "Accept",
-        "value": "application/vnd.github+json"
+        "program": "/usr/bin/env",
+        "arguments": [
+          "PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin",
+          "gh",
+          "api",
+          "repos/{{$settings.repo}}"
+        ]
       }
     ],
     "format": {
@@ -113,9 +117,10 @@
       "key": "repo",
       "label": "Repositório",
       "type": "text",
-      "default": "apple/swift",
+      "default": "swiftlang/swift",
       "placeholder": "dono/nome",
-      "required": true
+      "required": true,
+      "help": "Lido pelo gh, com a sua sessão. Funciona com repositório privado."
     }
   ]
 }

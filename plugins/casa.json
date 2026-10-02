@@ -4,17 +4,18 @@
   "name": "Casa",
   "interval": 60,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "house.fill"
+    "kind": "picture",
+    "symbolName": "house.fill",
+    "pictureSource": "https://github.com/home-assistant.png?size=128"
   },
   "source": {
     "kind": "http",
     "method": "GET",
-    "url": "http://homeassistant.local:8123/api/states",
+    "url": "{{$settings.endereco}}/api/states",
     "headers": [
       {
         "name": "Authorization",
-        "value": "Bearer {{secret}}"
+        "value": "Bearer {{$settings.token}}"
       }
     ],
     "format": {
@@ -100,11 +101,11 @@
       "run": {
         "kind": "http",
         "method": "POST",
-        "url": "http://homeassistant.local:8123/api/services/light/toggle",
+        "url": "{{$settings.endereco}}/api/services/light/toggle",
         "headers": [
           {
             "name": "Authorization",
-            "value": "Bearer {{secret}}"
+            "value": "Bearer {{$settings.token}}"
           },
           {
             "name": "Content-Type",
@@ -129,11 +130,11 @@
       "run": {
         "kind": "http",
         "method": "POST",
-        "url": "http://homeassistant.local:8123/api/services/light/toggle",
+        "url": "{{$settings.endereco}}/api/services/light/toggle",
         "headers": [
           {
             "name": "Authorization",
-            "value": "Bearer {{secret}}"
+            "value": "Bearer {{$settings.token}}"
           },
           {
             "name": "Content-Type",
@@ -157,11 +158,11 @@
       "run": {
         "kind": "http",
         "method": "POST",
-        "url": "http://homeassistant.local:8123/api/services/light/turn_off",
+        "url": "{{$settings.endereco}}/api/services/light/turn_off",
         "headers": [
           {
             "name": "Authorization",
-            "value": "Bearer {{secret}}"
+            "value": "Bearer {{$settings.token}}"
           },
           {
             "name": "Content-Type",
@@ -175,5 +176,23 @@
   ],
   "attention": {
     "mode": "never"
-  }
+  },
+  "settings": [
+    {
+      "key": "endereco",
+      "label": "Endereço",
+      "type": "text",
+      "default": "http://homeassistant.local:8123",
+      "required": true,
+      "help": "Use https ou um endereço .local."
+    },
+    {
+      "key": "token",
+      "label": "Token",
+      "type": "secret",
+      "required": true,
+      "help": "Crie em Perfil › Segurança › Tokens de acesso de longa duração."
+    }
+  ],
+  "answer": "[{\"entity_id\":\"light.sala\",\"state\":\"on\",\"attributes\":{\"friendly_name\":\"Sala\",\"color_mode\":\"brightness\",\"brightness\":204,\"supported_color_modes\":[\"brightness\"],\"supported_features\":40},\"last_changed\":\"2026-10-01T12:14:03.218451+00:00\",\"last_reported\":\"2026-10-01T12:14:03.218451+00:00\",\"last_updated\":\"2026-10-01T12:14:03.218451+00:00\",\"context\":{\"id\":\"01J9ZQ4K7M3N8P2R5T6V9W0X1Y\",\"parent_id\":null,\"user_id\":null}},{\"entity_id\":\"light.cozinha\",\"state\":\"off\",\"attributes\":{\"friendly_name\":\"Cozinha\",\"color_mode\":null,\"brightness\":null,\"supported_color_modes\":[\"brightness\"],\"supported_features\":40},\"last_changed\":\"2026-10-01T09:02:47.551203+00:00\",\"last_reported\":\"2026-10-01T09:02:47.551203+00:00\",\"last_updated\":\"2026-10-01T09:02:47.551203+00:00\",\"context\":{\"id\":\"01J9ZQ4K7M3N8P2R5T6V9W0X1Y\",\"parent_id\":null,\"user_id\":null}},{\"entity_id\":\"sensor.temperatura\",\"state\":\"23.4\",\"attributes\":{\"friendly_name\":\"Temperatura da sala\",\"state_class\":\"measurement\",\"unit_of_measurement\":\"°C\",\"device_class\":\"temperature\"},\"last_changed\":\"2026-10-01T12:14:03.218451+00:00\",\"last_reported\":\"2026-10-01T12:14:03.218451+00:00\",\"last_updated\":\"2026-10-01T12:14:03.218451+00:00\",\"context\":{\"id\":\"01J9ZQ4K7M3N8P2R5T6V9W0X1Y\",\"parent_id\":null,\"user_id\":null}},{\"entity_id\":\"sensor.umidade\",\"state\":\"61\",\"attributes\":{\"friendly_name\":\"Umidade da sala\",\"state_class\":\"measurement\",\"unit_of_measurement\":\"%\",\"device_class\":\"humidity\"},\"last_changed\":\"2026-10-01T12:14:03.218451+00:00\",\"last_reported\":\"2026-10-01T12:14:03.218451+00:00\",\"last_updated\":\"2026-10-01T12:14:03.218451+00:00\",\"context\":{\"id\":\"01J9ZQ4K7M3N8P2R5T6V9W0X1Y\",\"parent_id\":null,\"user_id\":null}},{\"entity_id\":\"sun.sun\",\"state\":\"above_horizon\",\"attributes\":{\"friendly_name\":\"Sun\",\"elevation\":52.3,\"rising\":false},\"last_changed\":\"2026-10-01T12:14:03.218451+00:00\",\"last_reported\":\"2026-10-01T12:14:03.218451+00:00\",\"last_updated\":\"2026-10-01T12:14:03.218451+00:00\",\"context\":{\"id\":\"01J9ZQ4K7M3N8P2R5T6V9W0X1Y\",\"parent_id\":null,\"user_id\":null}}]"
 }

@@ -8,15 +8,28 @@
     "symbolName": "chevron.left.forwardslash.chevron.right"
   },
   "source": {
-    "kind": "http",
-    "method": "GET",
-    "url": "https://api.github.com/repos/{{$settings.repo}}/languages",
+    "kind": "command",
+    "steps": [
+      {
+        "program": "/usr/bin/env",
+        "arguments": [
+          "PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin",
+          "gh",
+          "api",
+          "repos/{{$settings.repo}}/languages",
+          "--jq",
+          "([.[]] | add // 0) as $t | {total: $t, principal: (if $t > 0 then ([.[]] | max) / $t else 0 end), linguagens: (to_entries | sort_by(-.value) | map({nome: .key, bytes: .value}))}"
+        ]
+      }
+    ],
     "format": {
       "kind": "json"
     }
   },
   "slot": {
-    "style": "arc"
+    "label": "{{principal | percent}}",
+    "value": "{{principal}}",
+    "total": "1"
   },
   "card": {
     "isEnabled": true,
@@ -26,31 +39,32 @@
     "blocks": [
       {
         "type": "bars",
-        "path": "$ | entries",
-        "label": "{{key}}",
-        "value": "{{value}}",
+        "path": "linguagens",
+        "label": "{{nome}}",
+        "value": "{{bytes}}",
         "limit": 6,
-        "format": "bytes"
+        "format": "bytes",
+        "title": "{{linguagens[0].nome}} na frente"
       },
       {
         "type": "table",
         "title": "Todas",
-        "path": "$ | entries",
+        "path": "linguagens",
         "sortable": true,
         "limit": 8,
         "rowEvent": "open",
-        "rowURL": "https://github.com/{{$settings.repo}}/search?l={{key}}",
+        "rowURL": "https://github.com/{{$settings.repo}}/search?l={{nome}}",
         "columns": [
           {
             "title": "Linguagem",
             "kind": "text",
-            "value": "{{key}}",
+            "value": "{{nome}}",
             "align": "leading"
           },
           {
             "title": "Tamanho",
             "kind": "text",
-            "value": "{{value}}",
+            "value": "{{bytes}}",
             "align": "trailing",
             "format": "bytes"
           }
@@ -69,7 +83,7 @@
       "type": "text",
       "default": "swiftlang/swift",
       "placeholder": "dono/nome",
-      "help": "Sem token, o GitHub aceita 60 leituras por hora."
+      "help": "Lido pelo gh, com a sua sessão. Funciona com repositório privado."
     }
   ]
 }

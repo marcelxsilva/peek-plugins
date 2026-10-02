@@ -40,7 +40,7 @@
         "path": "results",
         "date": "{{net}}",
         "rowTitle": "{{name}}",
-        "rowSubtitle": "{{launch_service_provider.name}}",
+        "rowSubtitle": "{{lsp_name}} · {{location}}",
         "range": "upcoming",
         "limit": 8
       }

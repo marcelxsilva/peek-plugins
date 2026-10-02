@@ -22,13 +22,13 @@
   "card": {
     "isEnabled": true,
     "title": "Terremotos",
-    "subtitle": "{{metadata.title}}",
+    "subtitle": "Últimas 24 horas, segundo o USGS",
     "emptyMessage": "Nada acima desse limite nas últimas 24 horas.",
     "blocks": [
       {
         "type": "hero",
         "value": "{{metadata.count}}",
-        "caption": "Nas últimas 24 horas · maior de {{features[0].properties.mag}}",
+        "caption": "Nas últimas 24 horas · último de magnitude {{features[0].properties.mag}}",
         "format": "integer",
         "goodDirection": "down"
       },

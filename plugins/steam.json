@@ -1,11 +1,12 @@
 {
-  "schema": 3,
+  "schema": 7,
   "id": "plugin.exemplo.steam",
   "name": "Steam",
   "interval": 3600,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "gamecontroller.fill"
+    "kind": "picture",
+    "symbolName": "gamecontroller.fill",
+    "pictureSource": "https://www.google.com/s2/favicons?domain=store.steampowered.com&sz=128"
   },
   "source": {
     "kind": "http",
@@ -14,7 +15,7 @@
     "query": [
       {
         "name": "key",
-        "value": "{{secret}}"
+        "value": "{{$settings.token}}"
       },
       {
         "name": "steamid",
@@ -82,9 +83,17 @@
       "key": "steamid",
       "label": "SteamID64",
       "type": "text",
-      "help": "O número de 17 dígitos do seu perfil. A chave da API vai no campo de segredo, em Dado.",
+      "help": "O número de 17 dígitos do seu perfil.",
       "required": true,
       "placeholder": "7656119…"
+    },
+    {
+      "key": "token",
+      "label": "Token",
+      "type": "secret",
+      "required": true,
+      "help": "Crie em steamcommunity.com/dev/apikey."
     }
-  ]
+  ],
+  "answer": "{\"response\":{\"total_count\":5,\"games\":[{\"appid\":1086940,\"name\":\"Baldur's Gate 3\",\"playtime_2weeks\":742,\"playtime_forever\":9310,\"img_icon_url\":\"d866cae7ea1e471fdbc206287111f1b642373bd9\",\"playtime_windows_forever\":0,\"playtime_mac_forever\":9310,\"playtime_linux_forever\":0,\"playtime_deck_forever\":0},{\"appid\":413150,\"name\":\"Stardew Valley\",\"playtime_2weeks\":385,\"playtime_forever\":12840,\"img_icon_url\":\"35d1377200084a4034238c05b0c8930451e2fb40\",\"playtime_windows_forever\":0,\"playtime_mac_forever\":12840,\"playtime_linux_forever\":0,\"playtime_deck_forever\":0},{\"appid\":1145360,\"name\":\"Hades\",\"playtime_2weeks\":214,\"playtime_forever\":3120,\"img_icon_url\":\"8a3fca36a00883e8066263ad35dd15d77a1f9abc\",\"playtime_windows_forever\":0,\"playtime_mac_forever\":3120,\"playtime_linux_forever\":0,\"playtime_deck_forever\":0},{\"appid\":892970,\"name\":\"Valheim\",\"playtime_2weeks\":96,\"playtime_forever\":5475,\"img_icon_url\":\"2f64c9a826e2c6cf3253fea4834c2e612db09143\",\"playtime_windows_forever\":0,\"playtime_mac_forever\":5475,\"playtime_linux_forever\":0,\"playtime_deck_forever\":0},{\"appid\":570,\"name\":\"Dota 2\",\"playtime_2weeks\":41,\"playtime_forever\":20110,\"img_icon_url\":\"48eb825bb93787945065b460bdc109e395384ebf\",\"playtime_windows_forever\":0,\"playtime_mac_forever\":20110,\"playtime_linux_forever\":0,\"playtime_deck_forever\":0}]}}"
 }

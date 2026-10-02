@@ -23,7 +23,7 @@
     "isEnabled": true,
     "picture": {
       "kind": "address",
-      "value": "{{flag.img}}",
+      "value": "https://flagcdn.com/w160/{{country_code | lower}}.png",
       "shape": "rounded"
     },
     "title": "{{ip}}",

@@ -4,15 +4,18 @@
   "name": "Kubernetes",
   "interval": 120,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "cube.transparent.fill"
+    "kind": "picture",
+    "symbolName": "helm",
+    "pictureSource": "https://github.com/kubernetes.png?size=128"
   },
   "source": {
     "kind": "command",
     "steps": [
       {
-        "program": "/opt/homebrew/bin/kubectl",
+        "program": "/usr/bin/env",
         "arguments": [
+          "PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin",
+          "kubectl",
           "get",
           "pods",
           "-A",

@@ -4,8 +4,9 @@
   "name": "npm",
   "interval": 3600,
   "icon": {
-    "kind": "word",
-    "word": "npm"
+    "kind": "picture",
+    "symbolName": "shippingbox.fill",
+    "pictureSource": "https://github.com/npm.png?size=128"
   },
   "source": {
     "kind": "http",
@@ -54,7 +55,8 @@
         "scale": "automatic",
         "heatUnit": "downloads"
       }
-    ]
+    ],
+    "emptyMessage": "O npm não respondeu."
   },
   "actions": [
     {
@@ -78,7 +80,8 @@
       "label": "Pacote",
       "type": "text",
       "default": "react",
-      "required": true
+      "required": true,
+      "help": "O nome do pacote, como react ou @scope/nome."
     }
   ]
 }

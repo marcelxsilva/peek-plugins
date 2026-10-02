@@ -4,8 +4,9 @@
   "name": "Mastodon",
   "interval": 1800,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "m.circle.fill"
+    "kind": "picture",
+    "symbolName": "m.circle.fill",
+    "pictureSource": "https://github.com/mastodon.png?size=128"
   },
   "source": {
     "kind": "http",

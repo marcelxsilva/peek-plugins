@@ -1,5 +1,5 @@
 {
-  "schema": 5,
+  "schema": 6,
   "id": "plugin.exemplo.espaco",
   "name": "Espaço",
   "interval": 1800,
@@ -63,7 +63,20 @@
       }
     ]
   },
-  "actions": [],
+  "actions": [
+    {
+      "name": "Ler depois",
+      "symbolName": "bookmark",
+      "place": "row",
+      "listIndex": 0,
+      "run": {
+        "kind": "onTheMac",
+        "errand": "readLater",
+        "text": "{{url}}"
+      },
+      "successMessage": "Guardado."
+    }
+  ],
   "attention": {
     "mode": "newRows",
     "listIndex": 0

@@ -106,13 +106,33 @@
   },
   "actions": [
     {
-      "name": "Copiar o caminho do mais novo",
+      "name": "Mostrar no Finder",
+      "symbolName": "folder",
+      "place": "row",
+      "listIndex": 0,
+      "run": {
+        "kind": "command",
+        "steps": [
+          {
+            "program": "/usr/bin/open",
+            "arguments": [
+              "-R",
+              "{{path}}"
+            ]
+          }
+        ]
+      },
+      "successReport": "nothing"
+    },
+    {
+      "name": "Copiar o caminho",
       "symbolName": "doc.on.doc",
-      "place": "card",
+      "place": "row",
+      "listIndex": 0,
       "run": {
         "kind": "onTheMac",
         "errand": "copy",
-        "text": "{{files[0].path}}"
+        "text": "{{path}}"
       },
       "successMessage": "Caminho copiado."
     }
@@ -129,5 +149,6 @@
       "required": true,
       "placeholder": "/Users/voce/Downloads"
     }
-  ]
+  ],
+  "answer": "/Users/voce/Downloads/Relatório trimestral Q3.pdf\n/Users/voce/Downloads/Captura de Tela 2026-09-30 às 15.42.11.png\n/Users/voce/Downloads/Docker.dmg\n/Users/voce/Downloads/planilha-orcamento-2026.xlsx\n/Users/voce/Downloads/fotos-evento.zip\n/Users/voce/Downloads/reuniao-gravada.mp4\n"
 }

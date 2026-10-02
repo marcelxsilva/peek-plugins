@@ -5,7 +5,7 @@
   "interval": 1800,
   "icon": {
     "kind": "symbol",
-    "symbolName": "globe"
+    "symbolName": "bitcoinsign.circle.fill"
   },
   "source": {
     "kind": "http",
@@ -16,7 +16,7 @@
     }
   },
   "slot": {
-    "label": "{{data.market_cap_change_percentage_24h_usd | round}}",
+    "label": "{{data.market_cap_change_percentage_24h_usd | round}}%",
     "style": "sparkline"
   },
   "history": {

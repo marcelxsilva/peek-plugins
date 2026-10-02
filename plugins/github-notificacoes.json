@@ -4,21 +4,21 @@
   "name": "Notificações do GitHub",
   "interval": 300,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "bell.badge.fill"
+    "kind": "picture",
+    "symbolName": "bell.badge.fill",
+    "pictureSource": "https://github.com/github.png?size=128"
   },
   "source": {
-    "kind": "http",
-    "method": "GET",
-    "url": "https://api.github.com/notifications",
-    "headers": [
+    "kind": "command",
+    "steps": [
       {
-        "name": "Authorization",
-        "value": "Bearer {{secret}}"
-      },
-      {
-        "name": "Accept",
-        "value": "application/vnd.github+json"
+        "program": "/usr/bin/env",
+        "arguments": [
+          "PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin",
+          "gh",
+          "api",
+          "notifications"
+        ]
       }
     ],
     "format": {
@@ -131,6 +131,31 @@
         "kind": "onTheMac",
         "errand": "openLink",
         "text": "https://github.com/notifications"
+      },
+      "successReport": "nothing"
+    },
+    {
+      "name": "Marcar como lida",
+      "symbolName": "checkmark.circle",
+      "place": "row",
+      "listIndex": 0,
+      "runningText": "Marcando…",
+      "run": {
+        "kind": "command",
+        "steps": [
+          {
+            "program": "/usr/bin/env",
+            "arguments": [
+              "PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin",
+              "gh",
+              "api",
+              "-X",
+              "PATCH",
+              "notifications/threads/{{id}}",
+              "--silent"
+            ]
+          }
+        ]
       },
       "successReport": "nothing"
     }

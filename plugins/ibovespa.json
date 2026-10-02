@@ -4,16 +4,22 @@
   "name": "Ibovespa",
   "interval": 600,
   "icon": {
-    "kind": "word",
-    "word": "IBOV"
+    "kind": "symbol",
+    "symbolName": "chart.line.uptrend.xyaxis.circle.fill"
   },
   "source": {
     "kind": "http",
     "method": "GET",
-    "url": "https://brapi.dev/api/quote/%5EBVSP?token={{$settings.token}}",
+    "url": "https://brapi.dev/api/quote/%5EBVSP",
     "format": {
       "kind": "json"
-    }
+    },
+    "query": [
+      {
+        "name": "token",
+        "value": "{{$settings.token}}"
+      }
+    ]
   },
   "slot": {
     "label": "{{results[0].regularMarketPrice | shape #,##0}}",
@@ -27,7 +33,7 @@
     "isEnabled": true,
     "title": "Ibovespa",
     "subtitle": "{{results[0].regularMarketTime | ago}}",
-    "emptyMessage": "A brapi não respondeu.",
+    "emptyMessage": "A brapi não respondeu. Confira o token.",
     "blocks": [
       {
         "type": "hero",
@@ -75,9 +81,11 @@
   "settings": [
     {
       "key": "token",
-      "label": "Token da brapi",
+      "label": "Token",
       "type": "secret",
-      "help": "Opcional."
+      "required": true,
+      "help": "Crie grátis em brapi.dev/dashboard. O índice não abre sem token."
     }
-  ]
+  ],
+  "answer": "{\"results\":[{\"currency\":\"BRL\",\"shortName\":\"IBOVESPA\",\"longName\":\"IBOVESPA\",\"regularMarketChange\":1221,\"regularMarketChangePercent\":0.84,\"regularMarketTime\":\"2026-10-01T20:07:00.000Z\",\"regularMarketPrice\":146832,\"regularMarketDayHigh\":147105,\"regularMarketDayRange\":\"145410 - 147105\",\"regularMarketDayLow\":145410,\"regularMarketVolume\":8214500000,\"regularMarketPreviousClose\":145611,\"regularMarketOpen\":145611,\"symbol\":\"^BVSP\",\"logourl\":\"https://icons.brapi.dev/icons/BRAPI.svg\"}],\"requestedAt\":\"2026-10-01T20:10:12.418Z\",\"took\":\"0ms\"}"
 }

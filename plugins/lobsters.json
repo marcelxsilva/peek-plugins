@@ -4,8 +4,9 @@
   "name": "Lobsters",
   "interval": 1800,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "text.bubble.fill"
+    "kind": "picture",
+    "symbolName": "text.bubble.fill",
+    "pictureSource": "https://lobste.rs/apple-touch-icon.png"
   },
   "source": {
     "kind": "http",

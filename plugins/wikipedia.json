@@ -4,8 +4,9 @@
   "name": "Hoje na história",
   "interval": 21600,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "book.closed.fill"
+    "kind": "picture",
+    "symbolName": "book.closed.fill",
+    "pictureSource": "https://pt.wikipedia.org/static/apple-touch/wikipedia.png"
   },
   "source": {
     "kind": "http",

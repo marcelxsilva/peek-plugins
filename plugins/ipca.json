@@ -10,7 +10,7 @@
   "source": {
     "kind": "http",
     "method": "GET",
-    "url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.{{$settings.serie}}/dados/ultimos/24?formato=json",
+    "url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.{{$settings.serie}}/dados/ultimos/12?formato=json",
     "format": {
       "kind": "json"
     }
@@ -34,7 +34,7 @@
       },
       {
         "type": "chart",
-        "title": "Últimos 24 meses",
+        "title": "Últimos 12 meses",
         "style": "bar",
         "path": "$",
         "x": "{{data}}",
@@ -79,10 +79,22 @@
       "default": "433",
       "help": "As séries do Banco Central. Qualquer código do SGS serve.",
       "options": [
-        { "value": "433", "label": "IPCA" },
-        { "value": "188", "label": "INPC" },
-        { "value": "189", "label": "IGP-M" },
-        { "value": "4390", "label": "CDI ao mês" }
+        {
+          "value": "433",
+          "label": "IPCA"
+        },
+        {
+          "value": "188",
+          "label": "INPC"
+        },
+        {
+          "value": "189",
+          "label": "IGP-M"
+        },
+        {
+          "value": "4390",
+          "label": "CDI ao mês"
+        }
       ]
     }
   ]

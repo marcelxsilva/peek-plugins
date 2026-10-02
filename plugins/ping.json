@@ -40,7 +40,7 @@
     "isEnabled": true,
     "title": "Ping",
     "subtitle": "{{$settings.host}}",
-    "emptyMessage": "Sem resposta. Quando tudo se perde não há tempo médio para mostrar.",
+    "emptyMessage": "Sem resposta do endereço.",
     "blocks": [
       {
         "type": "hero",

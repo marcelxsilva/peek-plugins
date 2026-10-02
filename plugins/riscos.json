@@ -95,7 +95,7 @@
       },
       {
         "type": "text",
-        "value": "Escreva os riscos na aba **Dado**. Um quadro de riscos que ninguém abre não serve; este fica na borda da tela.",
+        "value": "Escreva os riscos na aba **Dado**.",
         "maxHeight": "small"
       }
     ]

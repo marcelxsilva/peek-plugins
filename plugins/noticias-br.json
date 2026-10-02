@@ -4,8 +4,9 @@
   "name": "Notícias do IBGE",
   "interval": 3600,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "newspaper.fill"
+    "kind": "picture",
+    "symbolName": "newspaper.fill",
+    "pictureSource": "https://www.google.com/s2/favicons?domain=ibge.gov.br&sz=128"
   },
   "source": {
     "kind": "http",

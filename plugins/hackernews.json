@@ -4,8 +4,9 @@
   "name": "Hacker News",
   "interval": 900,
   "icon": {
-    "kind": "word",
-    "word": "HN"
+    "kind": "picture",
+    "symbolName": "newspaper.fill",
+    "pictureSource": "https://github.com/HackerNews.png?size=128"
   },
   "source": {
     "kind": "http",

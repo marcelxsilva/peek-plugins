@@ -39,13 +39,13 @@
             "id": "2173572D-F679-41BB-A6D3-A6F97747322F",
             "name": "Direta",
             "color": "blue",
-            "match": "DRCT"
+            "match": "Direta, DRCT"
           },
           {
             "id": "435FE507-B4BC-4DFE-B096-4A3F4C219E81",
             "name": "Indireta",
             "color": "teal",
-            "match": "IDRT"
+            "match": "Indireta, IDRT"
           }
         ],
         "others": {

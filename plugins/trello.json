@@ -1,11 +1,12 @@
 {
-  "schema": 5,
+  "schema": 7,
   "id": "plugin.exemplo.trello",
   "name": "Trello",
   "interval": 600,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "rectangle.stack.fill"
+    "kind": "picture",
+    "symbolName": "rectangle.stack.fill",
+    "pictureSource": "https://github.com/trello.png?size=128"
   },
   "source": {
     "kind": "http",
@@ -18,7 +19,7 @@
       },
       {
         "name": "token",
-        "value": "{{secret}}"
+        "value": "{{$settings.token}}"
       },
       {
         "name": "fields",
@@ -95,8 +96,16 @@
       "key": "chave",
       "label": "API key",
       "type": "text",
-      "help": "Pegue em trello.com/power-ups/admin. O token vai no campo de segredo, abaixo.",
+      "help": "Pegue em trello.com/power-ups/admin.",
       "required": true
+    },
+    {
+      "key": "token",
+      "label": "Token",
+      "type": "secret",
+      "required": true,
+      "help": "Gere o token na mesma página da API key."
     }
-  ]
+  ],
+  "answer": "[{\"id\":\"66f1a2b3c4d5e6f7a8b9c0d1\",\"name\":\"Atualizar a página de preços\",\"shortUrl\":\"https://trello.com/c/a8b9c0d1\",\"due\":\"2026-10-03T18:00:00.000Z\",\"dueComplete\":false,\"dateLastActivity\":\"2026-09-30T14:22:10.512Z\",\"badges\":{\"attachmentsByType\":{\"trello\":{\"board\":0,\"card\":0}},\"location\":false,\"votes\":0,\"viewingMemberVoted\":false,\"subscribed\":true,\"fogbugz\":\"\",\"checkItems\":5,\"checkItemsChecked\":2,\"checkItemsEarliestDue\":null,\"comments\":3,\"attachments\":0,\"description\":true,\"due\":\"2026-10-03T18:00:00.000Z\",\"dueComplete\":false,\"start\":null}},{\"id\":\"66f1a2b3c4d5e6f7a8b9c0d2\",\"name\":\"Revisar contrato com fornecedor\",\"shortUrl\":\"https://trello.com/c/a8b9c0d2\",\"due\":null,\"dueComplete\":false,\"dateLastActivity\":\"2026-09-29T10:05:44.120Z\",\"badges\":{\"attachmentsByType\":{\"trello\":{\"board\":0,\"card\":0}},\"location\":false,\"votes\":0,\"viewingMemberVoted\":false,\"subscribed\":true,\"fogbugz\":\"\",\"checkItems\":0,\"checkItemsChecked\":0,\"checkItemsEarliestDue\":null,\"comments\":1,\"attachments\":0,\"description\":true,\"due\":null,\"dueComplete\":false,\"start\":null}},{\"id\":\"66f1a2b3c4d5e6f7a8b9c0d3\",\"name\":\"Preparar apresentação para a diretoria\",\"shortUrl\":\"https://trello.com/c/a8b9c0d3\",\"due\":\"2026-10-07T12:00:00.000Z\",\"dueComplete\":false,\"dateLastActivity\":\"2026-10-01T09:12:30.000Z\",\"badges\":{\"attachmentsByType\":{\"trello\":{\"board\":0,\"card\":0}},\"location\":false,\"votes\":0,\"viewingMemberVoted\":false,\"subscribed\":true,\"fogbugz\":\"\",\"checkItems\":6,\"checkItemsChecked\":4,\"checkItemsEarliestDue\":null,\"comments\":0,\"attachments\":0,\"description\":true,\"due\":\"2026-10-07T12:00:00.000Z\",\"dueComplete\":false,\"start\":null}},{\"id\":\"66f1a2b3c4d5e6f7a8b9c0d4\",\"name\":\"Corrigir fluxo de cadastro no app\",\"shortUrl\":\"https://trello.com/c/a8b9c0d4\",\"due\":null,\"dueComplete\":false,\"dateLastActivity\":\"2026-09-26T16:48:02.900Z\",\"badges\":{\"attachmentsByType\":{\"trello\":{\"board\":0,\"card\":0}},\"location\":false,\"votes\":0,\"viewingMemberVoted\":false,\"subscribed\":true,\"fogbugz\":\"\",\"checkItems\":3,\"checkItemsChecked\":1,\"checkItemsEarliestDue\":null,\"comments\":5,\"attachments\":0,\"description\":true,\"due\":null,\"dueComplete\":false,\"start\":null}}]"
 }

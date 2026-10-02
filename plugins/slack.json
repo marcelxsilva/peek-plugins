@@ -1,11 +1,12 @@
 {
-  "schema": 5,
+  "schema": 7,
   "id": "plugin.exemplo.slack",
   "name": "Slack",
   "interval": 300,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "number.square.fill"
+    "kind": "picture",
+    "symbolName": "number.square.fill",
+    "pictureSource": "https://github.com/slackhq.png?size=128"
   },
   "source": {
     "kind": "http",
@@ -24,7 +25,7 @@
     "headers": [
       {
         "name": "Authorization",
-        "value": "Bearer {{secret}}"
+        "value": "Bearer {{$settings.token}}"
       }
     ],
     "format": {
@@ -74,9 +75,17 @@
       "key": "canal",
       "label": "ID do canal",
       "type": "text",
-      "help": "Aparece em «Copiar link do canal». O token de usuário ou de app vai no campo de segredo, em Dado.",
+      "help": "Aparece em «Copiar link do canal».",
       "required": true,
       "placeholder": "C01ABCDEFG"
+    },
+    {
+      "key": "token",
+      "label": "Token",
+      "type": "secret",
+      "required": true,
+      "help": "Crie um app em api.slack.com/apps com o escopo channels:history e cole o token."
     }
-  ]
+  ],
+  "answer": "{\"ok\":true,\"messages\":[{\"type\":\"message\",\"user\":\"U04ABCD1234\",\"text\":\"Deploy da versão 2.4 em produção concluído :rocket:\",\"ts\":\"1790855580.100200\"},{\"type\":\"message\",\"user\":\"U02EFGH5678\",\"text\":\"Alguém consegue revisar o PR do checkout antes das 15h?\",\"ts\":\"1790854020.100201\"},{\"type\":\"message\",\"user\":\"U07IJKL9012\",\"text\":\"Reunião de planejamento mudou para quinta, 10h.\",\"ts\":\"1790850600.100202\"},{\"type\":\"message\",\"user\":\"U04ABCD1234\",\"text\":\"Os alertas de latência voltaram ao normal.\",\"ts\":\"1790846400.100203\"},{\"type\":\"message\",\"user\":\"U05MNOP3456\",\"text\":\"Bom dia! Lembrete: retrospectiva hoje às 17h.\",\"ts\":\"1790841600.100204\"}],\"has_more\":false,\"pin_count\":0,\"response_metadata\":{\"next_cursor\":\"\"}}"
 }

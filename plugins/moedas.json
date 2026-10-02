@@ -28,8 +28,7 @@
       {
         "type": "hero",
         "value": "{{USDBRL.bid}}",
-        "previous": "{{USDBRL.pctChange}}",
-        "caption": "Dólar",
+        "caption": "Dólar · {{USDBRL.pctChange | shape +#,##0.00;-#,##0.00}}% hoje",
         "goodDirection": "down",
         "format": "money",
         "currency": "BRL",
@@ -77,9 +76,8 @@
           {
             "title": "Dia",
             "kind": "text",
-            "value": "{{value.pctChange}}",
-            "align": "trailing",
-            "format": "percent"
+            "value": "{{value.pctChange | shape +#,##0.00;-#,##0.00}}%",
+            "align": "trailing"
           }
         ]
       }

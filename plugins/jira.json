@@ -28,7 +28,7 @@
     "headers": [
       {
         "name": "Authorization",
-        "value": "Basic {{secret}}"
+        "value": "Basic {{$settings.token}}"
       },
       {
         "name": "Accept",
@@ -127,8 +127,15 @@
       "key": "jql",
       "label": "Busca JQL",
       "type": "text",
-      "default": "assignee = currentUser() AND statusCategory != Done ORDER BY updated DESC",
-      "help": "No campo de segredo, em Dado, cole o Base64 de «seu-email:token-da-api». É assim que o Jira Cloud pede a autenticação básica."
+      "default": "assignee = currentUser() AND statusCategory != Done ORDER BY updated DESC"
+    },
+    {
+      "key": "token",
+      "label": "Token",
+      "type": "secret",
+      "required": true,
+      "help": "Crie o token em id.atlassian.com e cole o Base64 de «seu-email:token»."
     }
-  ]
+  ],
+  "answer": "{\"issues\":[{\"expand\":\"\",\"id\":\"10482\",\"self\":\"https://exemplo.atlassian.net/rest/api/3/issue/10482\",\"key\":\"APP-312\",\"fields\":{\"summary\":\"Erro ao salvar o endereço de entrega no app\",\"status\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/status/3\",\"description\":\"\",\"name\":\"Em andamento\",\"id\":\"3\",\"statusCategory\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/statuscategory/4\",\"id\":4,\"key\":\"indeterminate\",\"colorName\":\"yellow\",\"name\":\"In Progress\"}},\"priority\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/priority/2\",\"name\":\"High\",\"id\":\"2\"},\"assignee\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/user?accountId=5b10ac8d82e05b22cc7d4ef5\",\"accountId\":\"5b10ac8d82e05b22cc7d4ef5\",\"displayName\":\"Ana Souza\",\"active\":true,\"timeZone\":\"America/Sao_Paulo\",\"accountType\":\"atlassian\"},\"updated\":\"2026-10-01T16:48:22.104-0300\"}},{\"expand\":\"\",\"id\":\"10479\",\"self\":\"https://exemplo.atlassian.net/rest/api/3/issue/10479\",\"key\":\"APP-309\",\"fields\":{\"summary\":\"Botão de pagamento some no iPhone SE\",\"status\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/status/3\",\"description\":\"\",\"name\":\"Em revisão\",\"id\":\"3\",\"statusCategory\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/statuscategory/4\",\"id\":4,\"key\":\"indeterminate\",\"colorName\":\"yellow\",\"name\":\"In Progress\"}},\"priority\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/priority/2\",\"name\":\"Highest\",\"id\":\"2\"},\"assignee\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/user?accountId=5b10ac8d82e05b22cc7d4ef5\",\"accountId\":\"5b10ac8d82e05b22cc7d4ef5\",\"displayName\":\"Bruno Lima\",\"active\":true,\"timeZone\":\"America/Sao_Paulo\",\"accountType\":\"atlassian\"},\"updated\":\"2026-10-01T11:02:05.330-0300\"}},{\"expand\":\"\",\"id\":\"10475\",\"self\":\"https://exemplo.atlassian.net/rest/api/3/issue/10475\",\"key\":\"APP-305\",\"fields\":{\"summary\":\"Traduzir as mensagens de erro do cadastro\",\"status\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/status/3\",\"description\":\"\",\"name\":\"Tarefas pendentes\",\"id\":\"3\",\"statusCategory\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/statuscategory/2\",\"id\":2,\"key\":\"new\",\"colorName\":\"blue-gray\",\"name\":\"To Do\"}},\"priority\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/priority/2\",\"name\":\"Medium\",\"id\":\"2\"},\"assignee\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/user?accountId=5b10ac8d82e05b22cc7d4ef5\",\"accountId\":\"5b10ac8d82e05b22cc7d4ef5\",\"displayName\":\"Carla Mendes\",\"active\":true,\"timeZone\":\"America/Sao_Paulo\",\"accountType\":\"atlassian\"},\"updated\":\"2026-09-30T17:25:41.877-0300\"}},{\"expand\":\"\",\"id\":\"10471\",\"self\":\"https://exemplo.atlassian.net/rest/api/3/issue/10471\",\"key\":\"APP-301\",\"fields\":{\"summary\":\"Relatório de vendas por região\",\"status\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/status/3\",\"description\":\"\",\"name\":\"Tarefas pendentes\",\"id\":\"3\",\"statusCategory\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/statuscategory/2\",\"id\":2,\"key\":\"new\",\"colorName\":\"blue-gray\",\"name\":\"To Do\"}},\"priority\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/priority/2\",\"name\":\"Low\",\"id\":\"2\"},\"assignee\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/user?accountId=5b10ac8d82e05b22cc7d4ef5\",\"accountId\":\"5b10ac8d82e05b22cc7d4ef5\",\"displayName\":\"Ana Souza\",\"active\":true,\"timeZone\":\"America/Sao_Paulo\",\"accountType\":\"atlassian\"},\"updated\":\"2026-09-30T09:14:10.552-0300\"}},{\"expand\":\"\",\"id\":\"10466\",\"self\":\"https://exemplo.atlassian.net/rest/api/3/issue/10466\",\"key\":\"APP-296\",\"fields\":{\"summary\":\"Atualizar o SDK de notificações\",\"status\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/status/3\",\"description\":\"\",\"name\":\"Concluído\",\"id\":\"3\",\"statusCategory\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/statuscategory/3\",\"id\":3,\"key\":\"done\",\"colorName\":\"green\",\"name\":\"Done\"}},\"priority\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/priority/2\",\"name\":\"Medium\",\"id\":\"2\"},\"assignee\":{\"self\":\"https://exemplo.atlassian.net/rest/api/3/user?accountId=5b10ac8d82e05b22cc7d4ef5\",\"accountId\":\"5b10ac8d82e05b22cc7d4ef5\",\"displayName\":\"Bruno Lima\",\"active\":true,\"timeZone\":\"America/Sao_Paulo\",\"accountType\":\"atlassian\"},\"updated\":\"2026-09-29T18:39:57.019-0300\"}}],\"isLast\":true}"
 }

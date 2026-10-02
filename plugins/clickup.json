@@ -4,8 +4,9 @@
   "name": "ClickUp",
   "interval": 600,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "square.stack.3d.up.fill"
+    "kind": "picture",
+    "symbolName": "checklist",
+    "pictureSource": "https://github.com/clickup.png?size=128"
   },
   "source": {
     "kind": "http",
@@ -24,7 +25,7 @@
     "headers": [
       {
         "name": "Authorization",
-        "value": "{{secret}}"
+        "value": "{{$settings.token}}"
       }
     ],
     "format": {
@@ -111,8 +112,16 @@
       "key": "lista",
       "label": "ID da lista",
       "type": "text",
-      "help": "O número no fim da URL da lista. O token pessoal vai no campo de segredo, em Dado.",
+      "help": "O número no fim da URL da lista.",
       "required": true
+    },
+    {
+      "key": "token",
+      "label": "Token",
+      "type": "secret",
+      "required": true,
+      "help": "Crie em Configurações › Apps › Token de API."
     }
-  ]
+  ],
+  "answer": "{\"tasks\":[{\"id\":\"86b1x2a3c\",\"custom_id\":null,\"name\":\"Ajustar o fluxo de cadastro no app\",\"status\":{\"id\":\"p901_in_progress\",\"status\":\"in progress\",\"color\":\"#4194f6\",\"type\":\"custom\",\"orderindex\":1},\"assignees\":[{\"id\":48201101,\"username\":\"Ana Lima\",\"color\":\"#7b68ee\",\"initials\":\"AL\",\"email\":\"ana@exemplo.com\",\"profilePicture\":null}],\"due_date\":\"1759449600000\",\"url\":\"https://app.clickup.com/t/86b1x2a3c\",\"list\":{\"id\":\"901234567890\",\"name\":\"Sprint 42\"}},{\"id\":\"86b1x2a3d\",\"custom_id\":null,\"name\":\"Revisar textos da página de preços\",\"status\":{\"id\":\"p901_review\",\"status\":\"review\",\"color\":\"#a875ff\",\"type\":\"custom\",\"orderindex\":1},\"assignees\":[{\"id\":48201102,\"username\":\"Bruno Costa\",\"color\":\"#7b68ee\",\"initials\":\"BC\",\"email\":\"bruno@exemplo.com\",\"profilePicture\":null}],\"due_date\":\"1759536000000\",\"url\":\"https://app.clickup.com/t/86b1x2a3d\",\"list\":{\"id\":\"901234567890\",\"name\":\"Sprint 42\"}},{\"id\":\"86b1x2a3e\",\"custom_id\":null,\"name\":\"Corrigir o relatório de vendas por região\",\"status\":{\"id\":\"p901_to_do\",\"status\":\"to do\",\"color\":\"#d3d3d3\",\"type\":\"open\",\"orderindex\":1},\"assignees\":[{\"id\":48201103,\"username\":\"Carla Souza\",\"color\":\"#7b68ee\",\"initials\":\"CS\",\"email\":\"carla@exemplo.com\",\"profilePicture\":null}],\"due_date\":\"1759795200000\",\"url\":\"https://app.clickup.com/t/86b1x2a3e\",\"list\":{\"id\":\"901234567890\",\"name\":\"Sprint 42\"}},{\"id\":\"86b1x2a3f\",\"custom_id\":null,\"name\":\"Configurar alertas de erro em produção\",\"status\":{\"id\":\"p901_in_progress\",\"status\":\"in progress\",\"color\":\"#4194f6\",\"type\":\"custom\",\"orderindex\":1},\"assignees\":[{\"id\":48201101,\"username\":\"Ana Lima\",\"color\":\"#7b68ee\",\"initials\":\"AL\",\"email\":\"ana@exemplo.com\",\"profilePicture\":null}],\"due_date\":\"1759363200000\",\"url\":\"https://app.clickup.com/t/86b1x2a3f\",\"list\":{\"id\":\"901234567890\",\"name\":\"Sprint 42\"}},{\"id\":\"86b1x2a3g\",\"custom_id\":null,\"name\":\"Planejar a pesquisa com clientes\",\"status\":{\"id\":\"p901_to_do\",\"status\":\"to do\",\"color\":\"#d3d3d3\",\"type\":\"open\",\"orderindex\":1},\"assignees\":[{\"id\":48201104,\"username\":\"Diego Alves\",\"color\":\"#7b68ee\",\"initials\":\"DA\",\"email\":\"diego@exemplo.com\",\"profilePicture\":null}],\"due_date\":\"1760054400000\",\"url\":\"https://app.clickup.com/t/86b1x2a3g\",\"list\":{\"id\":\"901234567890\",\"name\":\"Sprint 42\"}},{\"id\":\"86b1x2a3h\",\"custom_id\":null,\"name\":\"Atualizar a documentação da API\",\"status\":{\"id\":\"p901_review\",\"status\":\"review\",\"color\":\"#a875ff\",\"type\":\"custom\",\"orderindex\":1},\"assignees\":[{\"id\":48201102,\"username\":\"Bruno Costa\",\"color\":\"#7b68ee\",\"initials\":\"BC\",\"email\":\"bruno@exemplo.com\",\"profilePicture\":null}],\"due_date\":\"1759622400000\",\"url\":\"https://app.clickup.com/t/86b1x2a3h\",\"list\":{\"id\":\"901234567890\",\"name\":\"Sprint 42\"}}],\"last_page\":true}"
 }

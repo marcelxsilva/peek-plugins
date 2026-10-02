@@ -6,14 +6,16 @@
   "icon": {
     "kind": "picture",
     "symbolName": "chevron.left.forwardslash.chevron.right",
-    "pictureSource": "{{data.viewer.avatarUrl}}"
+    "pictureSource": "https://github.com/github.png?size=128"
   },
   "source": {
     "kind": "command",
     "steps": [
       {
-        "program": "/opt/homebrew/bin/gh",
+        "program": "/usr/bin/env",
         "arguments": [
+          "PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin",
+          "gh",
           "api",
           "graphql",
           "-f",

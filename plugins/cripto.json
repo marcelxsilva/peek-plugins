@@ -5,6 +5,7 @@
   "interval": 600,
   "icon": {
     "kind": "picture",
+    "symbolName": "bitcoinsign.circle.fill",
     "pictureSource": "{{[0].image}}"
   },
   "source": {
@@ -115,11 +116,11 @@
             "currency": "BRL"
           },
           {
-            "title": "24 h",
+            "title": "24 h %",
             "kind": "text",
             "value": "{{price_change_percentage_24h}}",
             "align": "trailing",
-            "format": "percent"
+            "format": "number"
           }
         ]
       }

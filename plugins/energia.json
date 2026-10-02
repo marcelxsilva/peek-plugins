@@ -1,5 +1,5 @@
 {
-  "schema": 2,
+  "schema": 7,
   "id": "plugin.exemplo.energia",
   "name": "Energia",
   "interval": 300,
@@ -14,7 +14,7 @@
     "headers": [
       {
         "name": "Authorization",
-        "value": "Bearer {{secret}}"
+        "value": "Bearer {{$settings.token}}"
       }
     ],
     "format": {
@@ -48,11 +48,6 @@
         "title": "Consumo ao longo do tempo",
         "height": "medium",
         "format": "number"
-      },
-      {
-        "type": "text",
-        "value": "O sensor lido é `{{$settings.sensor}}`. Troque na aba Dado pelo da sua casa.",
-        "maxHeight": "small"
       }
     ]
   },
@@ -66,8 +61,16 @@
       "label": "Sensor",
       "type": "text",
       "default": "sensor.consumo_atual",
-      "help": "O entity_id do sensor de potência. O token do Home Assistant vai no campo de segredo, em Dado.",
+      "help": "O entity_id do sensor de potência no Home Assistant.",
       "required": true
+    },
+    {
+      "key": "token",
+      "label": "Token",
+      "type": "secret",
+      "required": true,
+      "help": "Crie no Home Assistant em Perfil › Segurança › Tokens de acesso de longa duração."
     }
-  ]
+  ],
+  "answer": "{\"entity_id\":\"sensor.consumo_atual\",\"state\":\"412.6\",\"attributes\":{\"state_class\":\"measurement\",\"unit_of_measurement\":\"W\",\"device_class\":\"power\",\"friendly_name\":\"Consumo da casa\"},\"last_changed\":\"2026-10-01T12:14:03.218451+00:00\",\"last_reported\":\"2026-10-01T12:14:03.218451+00:00\",\"last_updated\":\"2026-10-01T12:14:03.218451+00:00\",\"context\":{\"id\":\"01J9ZQ4K7M3N8P2R5T6V9W0X1Z\",\"parent_id\":null,\"user_id\":null}}"
 }

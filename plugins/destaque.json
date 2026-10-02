@@ -4,8 +4,9 @@
   "name": "Mais lidas",
   "interval": 21600,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "chart.line.uptrend.xyaxis.circle.fill"
+    "kind": "picture",
+    "symbolName": "book.fill",
+    "pictureSource": "https://pt.wikipedia.org/static/apple-touch/wikipedia.png"
   },
   "source": {
     "kind": "http",

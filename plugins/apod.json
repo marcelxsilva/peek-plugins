@@ -4,8 +4,9 @@
   "name": "Foto do dia da NASA",
   "interval": 21600,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "sparkles"
+    "kind": "picture",
+    "symbolName": "sparkles",
+    "pictureSource": "https://github.com/nasa.png?size=128"
   },
   "source": {
     "kind": "http",

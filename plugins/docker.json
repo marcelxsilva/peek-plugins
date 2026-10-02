@@ -4,15 +4,18 @@
   "name": "Docker",
   "interval": 60,
   "icon": {
-    "kind": "symbol",
-    "symbolName": "shippingbox.fill"
+    "kind": "picture",
+    "symbolName": "shippingbox.fill",
+    "pictureSource": "https://github.com/docker.png?size=128"
   },
   "source": {
     "kind": "command",
     "steps": [
       {
-        "program": "/usr/local/bin/docker",
+        "program": "/usr/bin/env",
         "arguments": [
+          "PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin",
+          "docker",
           "ps",
           "-a",
           "--format",
@@ -127,6 +130,15 @@
               "paused": "attention",
               "exited": "negative"
             }
+          },
+          {
+            "title": "",
+            "kind": "button",
+            "value": "",
+            "align": "trailing",
+            "action": "Reiniciar",
+            "symbolName": "arrow.clockwise",
+            "tint": "neutral"
           }
         ]
       }
@@ -143,6 +155,29 @@
         "text": "{{[*].Names}}"
       },
       "successMessage": "Copiado."
+    },
+    {
+      "name": "Reiniciar",
+      "symbolName": "arrow.clockwise",
+      "place": "column",
+      "confirms": true,
+      "confirmText": "Reiniciar {{Names}}?",
+      "runningText": "Reiniciando…",
+      "run": {
+        "kind": "command",
+        "steps": [
+          {
+            "program": "/usr/bin/env",
+            "arguments": [
+              "PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin",
+              "docker",
+              "restart",
+              "{{ID}}"
+            ]
+          }
+        ]
+      },
+      "successMessage": "{{Names}} reiniciado."
     }
   ],
   "attention": {

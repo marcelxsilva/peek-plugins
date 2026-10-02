@@ -20,7 +20,7 @@
     ],
     "format": {
       "kind": "regex",
-      "pattern": "yiaddr = (?<ip>[\\d.]+)[\\s\\S]*?Router = (?<roteador>[\\d.]+)"
+      "pattern": "yiaddr = (?<ip>[\\d.]+)[\\s\\S]*?Router\\s*[:=]\\s*(?<roteador>[\\d.]+)"
     }
   },
   "slot": {

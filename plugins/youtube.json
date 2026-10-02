@@ -5,6 +5,7 @@
   "interval": 3600,
   "icon": {
     "kind": "picture",
+    "symbolName": "play.rectangle.fill",
     "pictureSource": "{{items[0].snippet.thumbnails.default.url}}"
   },
   "source": {
@@ -22,7 +23,7 @@
       },
       {
         "name": "key",
-        "value": "{{secret}}"
+        "value": "{{$settings.token}}"
       }
     ],
     "format": {
@@ -95,8 +96,16 @@
       "label": "ID do canal",
       "type": "text",
       "placeholder": "UC…",
-      "help": "Começa com UC. A chave da API do YouTube Data v3 vai no campo de segredo, em Dado.",
+      "help": "Começa com UC.",
       "required": true
+    },
+    {
+      "key": "token",
+      "label": "Token",
+      "type": "secret",
+      "required": true,
+      "help": "Chave da YouTube Data API v3, criada no Google Cloud Console."
     }
-  ]
+  ],
+  "answer": "{\"kind\":\"youtube#channelListResponse\",\"etag\":\"Pq7Lm2\",\"pageInfo\":{\"totalResults\":1,\"resultsPerPage\":5},\"items\":[{\"kind\":\"youtube#channel\",\"etag\":\"Zr4Kd8\",\"id\":\"UCx7Kd2Lq9Vn5Rb3Wc8Ys1Tz\",\"snippet\":{\"title\":\"Cozinha de Domingo\",\"description\":\"Receitas simples para a semana inteira.\",\"customUrl\":\"@cozinhadedomingo\",\"publishedAt\":\"2019-03-12T14:20:31Z\",\"thumbnails\":{\"default\":{\"url\":\"https://yt3.ggpht.com/ytc/exemplo-cozinha=s88-c-k-c0x00ffffff-no-rj\",\"width\":88,\"height\":88},\"medium\":{\"url\":\"https://yt3.ggpht.com/ytc/exemplo-cozinha=s240-c-k-c0x00ffffff-no-rj\",\"width\":240,\"height\":240},\"high\":{\"url\":\"https://yt3.ggpht.com/ytc/exemplo-cozinha=s800-c-k-c0x00ffffff-no-rj\",\"width\":800,\"height\":800}},\"localized\":{\"title\":\"Cozinha de Domingo\",\"description\":\"Receitas simples para a semana inteira.\"},\"country\":\"BR\"},\"statistics\":{\"viewCount\":\"18432907\",\"subscriberCount\":\"128400\",\"hiddenSubscriberCount\":false,\"videoCount\":\"214\"}}]}"
 }

@@ -1,23 +1,14 @@
 {
-  "schema": 2,
+  "schema": 7,
   "id": "plugin.exemplo.pipeline",
   "name": "Pipeline",
-  "interval": 600,
+  "interval": 3600,
   "icon": {
     "kind": "symbol",
     "symbolName": "briefcase.fill"
   },
   "source": {
-    "kind": "command",
-    "steps": [
-      {
-        "program": "/bin/echo",
-        "arguments": [
-          "{\"meta\":{\"moeda\":\"BRL\",\"objetivo\":1200000,\"fechado\":175000},\"etapas\":[{\"nome\":\"Prospecção\",\"quantidade\":6,\"valor\":214000},{\"nome\":\"Proposta\",\"quantidade\":4,\"valor\":388000},{\"nome\":\"Negociação\",\"quantidade\":3,\"valor\":296000},{\"nome\":\"Ganho\",\"quantidade\":2,\"valor\":175000}],\"historico\":[{\"mes\":\"2026-04\",\"valor\":82000},{\"mes\":\"2026-05\",\"valor\":117000},{\"mes\":\"2026-06\",\"valor\":96000},{\"mes\":\"2026-07\",\"valor\":148000},{\"mes\":\"2026-08\",\"valor\":131000},{\"mes\":\"2026-09\",\"valor\":175000}],\"negocios\":[{\"cliente\":\"Padaria Aurora\",\"etapa\":\"Prospecção\",\"valor\":18000,\"dono\":\"Marina\"},{\"cliente\":\"Clínica Sete\",\"etapa\":\"Prospecção\",\"valor\":24000,\"dono\":\"Rafael\"},{\"cliente\":\"Transportes Vale\",\"etapa\":\"Prospecção\",\"valor\":61000,\"dono\":\"Marina\"},{\"cliente\":\"Estúdio Norte\",\"etapa\":\"Prospecção\",\"valor\":33000,\"dono\":\"Bia\"},{\"cliente\":\"Mercado Bom Dia\",\"etapa\":\"Prospecção\",\"valor\":47000,\"dono\":\"Rafael\"},{\"cliente\":\"Oficina Central\",\"etapa\":\"Prospecção\",\"valor\":31000,\"dono\":\"Bia\"},{\"cliente\":\"Construtora Lima\",\"etapa\":\"Proposta\",\"valor\":145000,\"dono\":\"Marina\"},{\"cliente\":\"Rede Farmácia Sul\",\"etapa\":\"Proposta\",\"valor\":98000,\"dono\":\"Rafael\"},{\"cliente\":\"Colégio Horizonte\",\"etapa\":\"Proposta\",\"valor\":76000,\"dono\":\"Bia\"},{\"cliente\":\"Hotel Praia Azul\",\"etapa\":\"Proposta\",\"valor\":69000,\"dono\":\"Marina\"},{\"cliente\":\"Laticínios Serra\",\"etapa\":\"Negociação\",\"valor\":132000,\"dono\":\"Rafael\"},{\"cliente\":\"Gráfica Ponto\",\"etapa\":\"Negociação\",\"valor\":87000,\"dono\":\"Bia\"},{\"cliente\":\"Academia Pulso\",\"etapa\":\"Negociação\",\"valor\":77000,\"dono\":\"Marina\"},{\"cliente\":\"Distribuidora Ré\",\"etapa\":\"Ganho\",\"valor\":105000,\"dono\":\"Rafael\"},{\"cliente\":\"Café da Esquina\",\"etapa\":\"Ganho\",\"valor\":70000,\"dono\":\"Bia\"}]}"
-        ],
-        "isEnabled": true
-      }
-    ],
+    "kind": "panel",
     "format": {
       "kind": "json"
     }
@@ -89,5 +80,7 @@
   "actions": [],
   "attention": {
     "mode": "never"
-  }
+  },
+  "readsOnItsOwn": false,
+  "answer": "{\n  \"meta\": {\n    \"moeda\": \"BRL\",\n    \"objetivo\": 1200000,\n    \"fechado\": 175000\n  },\n  \"etapas\": [\n    {\n      \"nome\": \"Prospecção\",\n      \"quantidade\": 6,\n      \"valor\": 214000\n    },\n    {\n      \"nome\": \"Proposta\",\n      \"quantidade\": 4,\n      \"valor\": 388000\n    },\n    {\n      \"nome\": \"Negociação\",\n      \"quantidade\": 3,\n      \"valor\": 296000\n    },\n    {\n      \"nome\": \"Ganho\",\n      \"quantidade\": 2,\n      \"valor\": 175000\n    }\n  ],\n  \"historico\": [\n    {\n      \"mes\": \"2026-04\",\n      \"valor\": 82000\n    },\n    {\n      \"mes\": \"2026-05\",\n      \"valor\": 117000\n    },\n    {\n      \"mes\": \"2026-06\",\n      \"valor\": 96000\n    },\n    {\n      \"mes\": \"2026-07\",\n      \"valor\": 148000\n    },\n    {\n      \"mes\": \"2026-08\",\n      \"valor\": 131000\n    },\n    {\n      \"mes\": \"2026-09\",\n      \"valor\": 175000\n    }\n  ],\n  \"negocios\": [\n    {\n      \"cliente\": \"Padaria Aurora\",\n      \"etapa\": \"Prospecção\",\n      \"valor\": 18000,\n      \"dono\": \"Marina\"\n    },\n    {\n      \"cliente\": \"Clínica Sete\",\n      \"etapa\": \"Prospecção\",\n      \"valor\": 24000,\n      \"dono\": \"Rafael\"\n    },\n    {\n      \"cliente\": \"Transportes Vale\",\n      \"etapa\": \"Prospecção\",\n      \"valor\": 61000,\n      \"dono\": \"Marina\"\n    },\n    {\n      \"cliente\": \"Estúdio Norte\",\n      \"etapa\": \"Prospecção\",\n      \"valor\": 33000,\n      \"dono\": \"Bia\"\n    },\n    {\n      \"cliente\": \"Mercado Bom Dia\",\n      \"etapa\": \"Prospecção\",\n      \"valor\": 47000,\n      \"dono\": \"Rafael\"\n    },\n    {\n      \"cliente\": \"Oficina Central\",\n      \"etapa\": \"Prospecção\",\n      \"valor\": 31000,\n      \"dono\": \"Bia\"\n    },\n    {\n      \"cliente\": \"Construtora Lima\",\n      \"etapa\": \"Proposta\",\n      \"valor\": 145000,\n      \"dono\": \"Marina\"\n    },\n    {\n      \"cliente\": \"Rede Farmácia Sul\",\n      \"etapa\": \"Proposta\",\n      \"valor\": 98000,\n      \"dono\": \"Rafael\"\n    },\n    {\n      \"cliente\": \"Colégio Horizonte\",\n      \"etapa\": \"Proposta\",\n      \"valor\": 76000,\n      \"dono\": \"Bia\"\n    },\n    {\n      \"cliente\": \"Hotel Praia Azul\",\n      \"etapa\": \"Proposta\",\n      \"valor\": 69000,\n      \"dono\": \"Marina\"\n    },\n    {\n      \"cliente\": \"Laticínios Serra\",\n      \"etapa\": \"Negociação\",\n      \"valor\": 132000,\n      \"dono\": \"Rafael\"\n    },\n    {\n      \"cliente\": \"Gráfica Ponto\",\n      \"etapa\": \"Negociação\",\n      \"valor\": 87000,\n      \"dono\": \"Bia\"\n    },\n    {\n      \"cliente\": \"Academia Pulso\",\n      \"etapa\": \"Negociação\",\n      \"valor\": 77000,\n      \"dono\": \"Marina\"\n    },\n    {\n      \"cliente\": \"Distribuidora Ré\",\n      \"etapa\": \"Ganho\",\n      \"valor\": 105000,\n      \"dono\": \"Rafael\"\n    },\n    {\n      \"cliente\": \"Café da Esquina\",\n      \"etapa\": \"Ganho\",\n      \"valor\": 70000,\n      \"dono\": \"Bia\"\n    }\n  ]\n}"
 }

@@ -4,8 +4,9 @@
   "name": "crates.io",
   "interval": 3600,
   "icon": {
-    "kind": "word",
-    "word": "{{crate.max_version}}"
+    "kind": "picture",
+    "symbolName": "shippingbox.fill",
+    "pictureSource": "https://raw.githubusercontent.com/rust-lang/crates.io/main/svelte/src/lib/assets/cargo.png"
   },
   "source": {
     "kind": "http",
