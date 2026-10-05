@@ -105,7 +105,8 @@
             "kind": "image",
             "title": "",
             "value": "{{actor.avatar_url}}",
-            "shape": "rounded"
+            "shape": "rounded",
+            "hover": "{{actor.login}}"
           },
           {
             "kind": "text",
