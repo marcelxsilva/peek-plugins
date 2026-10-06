@@ -1,0 +1,158 @@
+{
+  "schema": 12,
+  "id": "plugin.exemplo.emuladores",
+  "name": "Emuladores",
+  "interval": 30,
+  "icon": {
+    "kind": "symbol",
+    "symbolName": "iphone"
+  },
+  "source": {
+    "kind": "script",
+    "language": "javascript",
+    "script": "var app = Application.currentApplication(); app.includeStandardAdditions = true;\nvar env = 'export PATH=\"$HOME/Library/Android/sdk/emulator:$HOME/Library/Android/sdk/platform-tools:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin\"; ';\nfunction sh(c) { try { return app.doShellScript(env + c); } catch (e) { return ''; } }\nfunction lines(t) { return t.split(/[\\r\\n]+/).filter(function (l) { return l.trim() !== ''; }); }\nvar ios = [];\ntry {\n  var list = JSON.parse(app.doShellScript('/usr/bin/xcrun simctl list devices available -j')).devices;\n  Object.keys(list).forEach(function (runtime) {\n    var m = runtime.match(/SimRuntime\\.(\\w+)-(.+)$/);\n    var system = m ? m[1] + ' ' + m[2].replace(/-/g, '.') : runtime;\n    list[runtime].forEach(function (d) {\n      ios.push(face({ name: d.name, udid: d.udid, system: system }, d.state === 'Booted'));\n    });\n  });\n} catch (e) {}\nfunction face(d, on) {\n  d.state = on ? 'Ligado' : 'Desligado';\n  d.symbol = on ? 'stop.fill' : 'play.fill';\n  d.hint = on ? 'Encerrar' : 'Iniciar';\n  d.doing = on ? 'Encerrando…' : 'Iniciando…';\n  d.done = on ? 'encerrado' : 'iniciado';\n  return d;\n}\nvar running = {};\nlines(sh('adb devices')).forEach(function (l) {\n  var m = l.match(/^(emulator-\\d+)\\s+device/);\n  if (m) { var n = lines(sh('adb -s ' + m[1] + ' emu avd name'))[0]; if (n) running[n.trim()] = m[1]; }\n});\nvar android = lines(sh('emulator -list-avds')).filter(function (l) { return !/^(INFO|WARNING|ERROR)\\b/.test(l) && l.indexOf('|') < 0; }).map(function (n) {\n  n = n.trim();\n  return face({ name: n, serial: running[n] || '' }, !!running[n]);\n});\nvar on = ios.concat(android).filter(function (d) { return d.state === 'Ligado'; }).length;\nJSON.stringify({ ios: ios, android: android, ligados: on })"
+  },
+  "slot": {
+    "label": "{{ligados}}",
+    "style": "number"
+  },
+  "card": {
+    "isEnabled": true,
+    "title": "Emuladores",
+    "subtitle": "{{ligados}} ligados agora",
+    "emptyMessage": "Nenhum emulador encontrado.",
+    "components": [
+      {
+        "id": "5B0E7C1A-2F4D-4E8B-9A61-3C7D2E9F1A00",
+        "type": "tabs",
+        "pages": [
+          {
+            "id": "5B0E7C1A-2F4D-4E8B-9A61-3C7D2E9F1A10",
+            "kind": "text",
+            "name": "iOS {{ios | count}}",
+            "bodies": [
+              "5B0E7C1A-2F4D-4E8B-9A61-3C7D2E9F1A01"
+            ]
+          },
+          {
+            "id": "5B0E7C1A-2F4D-4E8B-9A61-3C7D2E9F1A11",
+            "kind": "text",
+            "name": "Android {{android | count}}",
+            "bodies": [
+              "5B0E7C1A-2F4D-4E8B-9A61-3C7D2E9F1A02"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "5B0E7C1A-2F4D-4E8B-9A61-3C7D2E9F1A01",
+        "type": "table",
+        "path": "ios",
+        "sortable": true,
+        "limit": 8,
+        "rowEvent": "none",
+        "columns": [
+          {
+            "title": "Nome",
+            "kind": "text",
+            "value": "{{name}}",
+            "align": "leading"
+          },
+          {
+            "title": "Sistema",
+            "kind": "text",
+            "value": "{{system}}",
+            "align": "leading"
+          },
+          {
+            "title": "",
+            "kind": "status",
+            "value": "{{state}}",
+            "align": "trailing",
+            "showsWord": true,
+            "statusColors": {
+              "Ligado": "positive",
+              "Desligado": "neutral"
+            }
+          },
+          {
+            "title": "",
+            "kind": "button",
+            "value": "",
+            "align": "trailing",
+            "action": "Simulador iOS",
+            "symbolName": "{{symbol}}",
+            "tint": "neutral"
+          }
+        ]
+      },
+      {
+        "id": "5B0E7C1A-2F4D-4E8B-9A61-3C7D2E9F1A02",
+        "type": "table",
+        "path": "android",
+        "sortable": true,
+        "limit": 8,
+        "rowEvent": "none",
+        "columns": [
+          {
+            "title": "Nome",
+            "kind": "text",
+            "value": "{{name}}",
+            "align": "leading"
+          },
+          {
+            "title": "",
+            "kind": "status",
+            "value": "{{state}}",
+            "align": "trailing",
+            "showsWord": true,
+            "statusColors": {
+              "Ligado": "positive",
+              "Desligado": "neutral"
+            }
+          },
+          {
+            "title": "",
+            "kind": "button",
+            "value": "",
+            "align": "trailing",
+            "action": "Emulador Android",
+            "symbolName": "{{symbol}}",
+            "tint": "neutral"
+          }
+        ]
+      }
+    ]
+  },
+  "actions": [
+    {
+      "name": "Simulador iOS",
+      "symbolName": "play.fill",
+      "place": "column",
+      "runningText": "{{doing}}",
+      "run": {
+        "kind": "script",
+        "language": "javascript",
+        "script": "var app = Application.currentApplication(); app.includeStandardAdditions = true;\nvar on = '{{state}}' === 'Ligado';\napp.doShellScript(on\n  ? \"/usr/bin/xcrun simctl shutdown '{{udid}}'\"\n  : \"/usr/bin/xcrun simctl boot '{{udid}}' 2>/dev/null; /usr/bin/open -a Simulator\");\n'ok'"
+      },
+      "successMessage": "{{name}} {{done}}.",
+      "hint": "{{hint}}"
+    },
+    {
+      "name": "Emulador Android",
+      "symbolName": "play.fill",
+      "place": "column",
+      "runningText": "{{doing}}",
+      "run": {
+        "kind": "script",
+        "language": "javascript",
+        "script": "var app = Application.currentApplication(); app.includeStandardAdditions = true;\nvar on = '{{state}}' === 'Ligado';\napp.doShellScript(\"export PATH=\\\"$HOME/Library/Android/sdk/emulator:$HOME/Library/Android/sdk/platform-tools:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin\\\"; \" + (on\n  ? \"adb -s '{{serial}}' emu kill\"\n  : \"nohup emulator -avd '{{name}}' >/dev/null 2>&1 &\"));\n'ok'"
+      },
+      "successMessage": "{{name}} {{done}}.",
+      "hint": "{{hint}}"
+    }
+  ],
+  "attention": {
+    "mode": "never"
+  }
+}

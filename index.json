@@ -166,6 +166,20 @@
       "logo": "https://github.com/docker.png?size=128"
     },
     {
+      "slug": "emuladores",
+      "name": "Emuladores",
+      "name_en": "Emulators",
+      "icon": "EM",
+      "category": "dev",
+      "kind": "script",
+      "description": "Os simuladores do iOS e os emuladores do Android desta máquina, cada sistema numa aba. Cada linha mostra se ele está ligado e tem um botão para iniciar.",
+      "description_en": "The iOS simulators and Android emulators on this machine, one tab for each system. Each row shows whether it is on and has a button to start it.",
+      "needs": "O Xcode para os simuladores do iOS e o Android Studio para os emuladores do Android.",
+      "needs_en": "Xcode for the iOS simulators and Android Studio for the Android emulators.",
+      "file": "plugins/emuladores.json",
+      "logo": "https://github.com/android.png?size=128"
+    },
+    {
       "slug": "uptime",
       "name": "No ar",
       "name_en": "Uptime",
